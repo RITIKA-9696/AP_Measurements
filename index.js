@@ -1,4 +1,119 @@
 // ============================================
+// MOBILE SIDEBAR FUNCTIONALITY - OVERLAY
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+  const mobileSidebar = document.getElementById('mobileSidebar');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const mobileProductsToggle = document.getElementById('mobileProductsToggle');
+  const mobileProductsMenu = document.getElementById('mobileProductsMenu');
+  const productsArrow = document.getElementById('productsArrow');
+
+  // Check if elements exist before using them
+  if (!mobileSidebar || !menuOverlay) {
+    console.error('❌ Required mobile menu elements not found');
+    return;
+  }
+
+  // Function to open sidebar
+  function openSidebar() {
+    mobileSidebar.classList.add('active');
+    menuOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    console.log('📱 Sidebar opened');
+  }
+
+  // Function to close sidebar
+  function closeSidebar() {
+    mobileSidebar.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
+    
+    // Close products submenu if it exists
+    if (mobileProductsMenu && productsArrow) {
+      mobileProductsMenu.classList.remove('active');
+      productsArrow.style.transform = 'rotate(0deg)';
+    }
+    
+    console.log('📱 Sidebar closed');
+  }
+
+  // Open sidebar
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openSidebar();
+    });
+  }
+
+  // Close sidebar with X button
+  if (closeSidebarBtn) {
+    closeSidebarBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeSidebar();
+    });
+  }
+
+  // Close sidebar when clicking overlay
+  if (menuOverlay) {
+    menuOverlay.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeSidebar();
+    });
+  }
+
+  // Prevent closing when clicking inside sidebar
+  if (mobileSidebar) {
+    mobileSidebar.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  }
+
+  // Toggle products submenu
+  if (mobileProductsToggle && mobileProductsMenu && productsArrow) {
+    mobileProductsToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      mobileProductsMenu.classList.toggle('active');
+      productsArrow.style.transform = mobileProductsMenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+      console.log('📂 Products menu toggled');
+    });
+  }
+
+  // Close sidebar when clicking nav links (except toggle)
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link:not(#mobileProductsToggle), .mobile-submenu-link, .mobile-nav-cta');
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.stopPropagation();
+      closeSidebar();
+    });
+  });
+
+  // Close sidebar on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && mobileSidebar.classList.contains('active')) {
+      closeSidebar();
+    }
+  });
+
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 1024 && mobileSidebar.classList.contains('active')) {
+      closeSidebar();
+    }
+  });
+
+  console.log('📱 Mobile sidebar initialized');
+});
+
+// ============================================
 // CAROUSEL FUNCTIONALITY
 // ============================================
 
@@ -106,8 +221,14 @@ function initMegaMenu() {
   const megaMenuItems = document.querySelectorAll('.mega-menu-item');
   const isMobile = window.innerWidth < 1024;
 
+  // Check if mega menu items exist
+  if (megaMenuItems.length === 0) {
+    console.log('ℹ️ No mega menu items found');
+    return;
+  }
+
   megaMenuItems.forEach(item => {
-    const trigger = item.querySelector('.products-trigger');
+    const trigger = item.querySelector('a'); // Use the anchor tag as trigger
     const menu = item.querySelector('.mega-menu');
 
     if (trigger && menu) {
@@ -195,44 +316,6 @@ function closeMegaMenu(menu) {
 }
 
 // ============================================
-// MOBILE MENU
-// ============================================
-
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const navMenu = document.querySelector('ul.hidden');
-
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      if (navMenu) {
-        navMenu.classList.toggle('hidden');
-        console.log('📱 Mobile menu toggled');
-      }
-    });
-  }
-
-  // Close menu when clicking links
-  if (navMenu) {
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function() {
-        navMenu.classList.add('hidden');
-      });
-    });
-  }
-
-  // Close menu when clicking outside
-  document.addEventListener('click', function(e) {
-    const nav = document.querySelector('nav');
-    if (navMenu && nav && !nav.contains(e.target)) {
-      navMenu.classList.add('hidden');
-    }
-  });
-});
-
-// ============================================
 // SMOOTH SCROLL
 // ============================================
 
@@ -290,24 +373,22 @@ document.addEventListener('DOMContentLoaded', observeElements);
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
-  const productsTrigger = document.querySelector('.products-trigger');
+  const productsTrigger = document.querySelector('.mega-menu-item a');
   
   if (productsTrigger) {
     const arrow = productsTrigger.querySelector('svg');
     
-    productsTrigger.addEventListener('mouseenter', function() {
-      if (arrow) {
+    if (arrow) {
+      productsTrigger.addEventListener('mouseenter', function() {
         arrow.style.transform = 'rotate(180deg)';
-      }
-    });
-    
-    const megaMenu = productsTrigger.closest('.mega-menu-item').querySelector('.mega-menu');
-    if (megaMenu) {
-      megaMenu.addEventListener('mouseleave', function() {
-        if (arrow) {
-          arrow.style.transform = 'rotate(0deg)';
-        }
       });
+      
+      const megaMenu = productsTrigger.closest('.mega-menu-item').querySelector('.mega-menu');
+      if (megaMenu) {
+        megaMenu.addEventListener('mouseleave', function() {
+          arrow.style.transform = 'rotate(0deg)';
+        });
+      }
     }
   }
 });
