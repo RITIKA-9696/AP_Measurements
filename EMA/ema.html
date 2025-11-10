@@ -12,145 +12,950 @@
             theme: {
                 extend: {
                     colors: {
-                        'laba-blue': '#0066cc',
+                        
                         'laba-dark': '#003366',
                         'laba-light': '#e6f2ff'
                     }
                 }
             }
         }
+        
     </script>
+    <style>
+    body { font-family: 'Inter', sans-serif; }
+    .backface-hidden { backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+  </style>
 </head>
-<body class="bg-white">
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-6">
-            <div class="flex justify-between items-center py-4">
-                <!-- Logo -->
-                <div class="flex items-center px-4 mx-2">
-                    <img src="../assets/logo.jpg" alt="" class="h-10 w-auto object-contain">
-                    
-                </div>
-                
-                <!-- Desktop Nav -->
-        <ul class="hidden lg:flex space-x-6 items-center text-xs font-medium">
-          <li><a href="#home" class="text-dark hover:text-primary transition duration-300">Home</a></li>
+<body class="bg-gray-50 min-h-screen">
+    <!-- ==================== FIXED NAVBAR ==================== -->
+  <header class="fixed inset-x-0 top-0 z-50 bg-gray-200 shadow-md">
+    <nav class="container mx-auto px-6">
+      <div class="flex justify-between items-center py-5">
 
-          <!-- PRODUCTS -->
-          <li class="mega-menu-item relative">
-            <a href="#" class="text-dark hover:text-primary transition duration-300 flex items-center">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <img src="../assets/logo.jpg"
+               alt="Logo"
+               class="h-16 w-auto object-cover mix-blend-multiply brightness-120 contrast-120 saturate-200 hue-rotate-15">
+        </div>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+          <li><a href="#home"
+                 class="text-dark hover:text-primary transition duration-300">Home</a></li>
+
+          <!-- PRODUCTS MEGA MENU -->
+          <li class="relative group">
+            <a href="#"
+               class="text-dark hover:text-primary transition duration-300 flex items-center">
               Products
-              <svg class="w-3 h-3 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg class="w-3 h-3 ml-1 transition-transform group-hover:rotate-180"
+                   fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2" d="M19 9l-7 7-7-7"/>
               </svg>
             </a>
 
-            <!-- Products Dropdown -->
-            <div class="mega-menu absolute top-full left-1/2 transform -translate-x-1/2 w-[95vw] max-w-5xl bg-white rounded-lg shadow-2xl backdrop-blur-sm border border-white/10">
-              <div class="container mx-auto px-4 py-8">
+            <!-- Mega Dropdown -->
+            <div class="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] max-w-5xl
+                            bg-white rounded-lg shadow-2xl
+                            opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                            transition-all duration-300 pointer-events-none group-hover:pointer-events-auto
+                            mt-2">
+              <div class="container mx-auto px-6 py-8">
                 <div class="grid grid-cols-4 gap-8">
-                  <!-- Marine Column -->
-                  <div class="mega-menu-column">
-                    <div class="text-orange-600 font-bold text-sm uppercase tracking-wide mb-4 flex items-center gap-2">
-                    <i class="fas fa-car-side"></i>
-                    Suspention Testing</div>
-                    <a href="../EMA/ema.html" class="mega-menu-link block py-3 text-gray-600">EMA</a>
-                    <a href="#" class="mega-menu-link block py-3 text-gray-600">Shock Dyno</a>
-                    <a href="#" class="mega-menu-link block py-3 text-gray-600">String Rate Tester</a>
-                    <a href="#" class="mega-menu-link block py-3 text-gray-600">Suspention Tools</a>
-                    <a href="#" class="mega-menu-link block py-3 text-gray-600">Adapters</a>
+
+                  <!-- Suspension Testing -->
+                  <div>
+                    <div class="text-primary font-bold text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <i class="fas fa-car-side"></i> Suspension Testing
+                    </div>
+                    <a href="/EMA/ema.html" class="block py-2 text-gray-600 hover:text-primary text-sm">EMA</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Shock Dyno</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Spring Rate Tester</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Suspension Tools</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Adapters</a>
                   </div>
 
-                  <!-- On Highway Column -->
-                  <div class="mega-menu-column">
-                    <div class="text-orange-600 font-bold text-sm uppercase tracking-wide mb-4 flex items-center gap-2">
-                        <i class="fas fa-database"></i>
-                        Data Logger</div>
-                    
-                    <a href="#" class="mega-menu-link block py-3 text-gray-600">Data Acquisition System</a>
-                    
+                  <!-- Data Logger -->
+                  <div>
+                    <div class="text-primary font-bold text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <i class="fas fa-database"></i> Data Logger
+                    </div>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Data Acquisition System</a>
                   </div>
 
-                  <!-- Off Highway Column -->
-                  <div class="mega-menu-column">
-                    <div class="text-orange-600 font-bold text-sm uppercase tracking-wide mb-4 flex items-center gap-2">
-                        <i class="fas fa-microchip"></i>
-                        Sensors</div>
-                    <a href="#" class="mega-menu-link block py-3 text-gray-600">Accelometer</a>
-                    <a href="#" class="mega-menu-link block py-3 text-gray-600">Imapact Hammer</a>
-                    <a href="#" class="mega-menu-link block py-3 text-gray-600">Pressure Sensor</a>
-                    <a href="#" class="mega-menu-link block py-3 text-gray-600">Rasing Scales</a>
-                   
+                  <!-- Sensors -->
+                  <div>
+                    <div class="text-primary font-bold text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <i class="fas fa-microchip"></i> Sensors
+                    </div>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Accelerometer</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Impact Hammer</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Pressure Sensor</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Weighing Scales</a>
                   </div>
-                  </div>
+                </div>
               </div>
             </div>
           </li>
 
-          <li><a href="#about" class="text-dark hover:text-primary transition duration-300">About</a></li>
-          <li><a href="#contact" class="text-dark hover:text-primary transition duration-300">Contact</a></li>
-          <li><a href="#" class="bg-orange-600 text-white px-4 py-2 rounded text-xs font-semibold hover:bg-primary-dark transition duration-300">Enquiry</a></li>
+          <li><a href="#about"
+                 class="text-dark hover:text-primary transition duration-300">About</a></li>
+          <li><a href="#contact"
+                 class="text-dark hover:text-primary transition duration-300">Contact</a></li>
+          <li>
+            <a href="#"
+               class="bg-orange-500 text-white px-5 py-2.5 rounded text-xs font-semibold
+                      hover:bg-primary-dark transition duration-300">
+              Enquiry
+            </a>
+          </li>
         </ul>
 
-        <!-- Mobile Menu Button -->
-        <button class="lg:hidden text-dark" id="mobileMenuBtn">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-            <!-- Mobile Menu -->
-            <div class="mobile-menu lg:hidden bg-white border-t" id="mobileMenu">
-                <div class="py-4 space-y-4">
-                    <a href="#home" class="block text-dark hover:text-primary transition duration-300 py-2">Home</a>
-                    <a href="#products" class="block text-dark hover:text-primary transition duration-300 py-2">Products</a>
-                    <a href="#about" class="block text-dark hover:text-primary transition duration-300 py-2">About</a>
-                    <a href="#contact" class="block text-dark hover:text-primary transition duration-300 py-2">Contact</a>
-                    <a href="#" class="block bg-primary text-white px-4 py-2 rounded text-center font-semibold hover:bg-primary-dark transition duration-300">
-                        Enquiry
-                    </a>
-                </div>
-            </div>
-        </nav>
-  </header>
-            
-            <!-- Mobile Navigation
-            <div id="mobile-menu" class="hidden md:hidden py-4 border-t">
-                <div class="flex flex-col space-y-4">
-                    <a href="#" class="text-gray-700 hover:text-laba-blue font-medium">Home</a>
-                    <a href="#features" class="text-gray-700 hover:text-laba-blue font-medium">Features</a>
-                    <a href="#specifications" class="text-gray-700 hover:text-laba-blue font-medium">Specifications</a>
-                    <a href="#applications" class="text-gray-700 hover:text-laba-blue font-medium">Applications</a>
-                    <a href="#gallery" class="text-gray-700 hover:text-laba-blue font-medium">Gallery</a>
-                    <a href="#contact" class="text-gray-700 hover:text-laba-blue font-medium">Contact</a>
-                </div>
-            </div>
+        <!-- Mobile Hamburger -->
+        <button id="mobileBtn"
+                class="lg:hidden text-dark p-2"
+                aria-label="Toggle mobile menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu (hidden by default) -->
+      <div id="mobileMenu" class="lg:hidden hidden bg-white border-t">
+        <div class="py-4 space-y-3 px-6">
+          <a href="#home" class="block text-dark hover:text-primary py-2">Home</a>
+          <a href="#products" class="block text-dark hover:text-primary py-2">Products</a>
+          <a href="#about" class="block text-dark hover:text-primary py-2">About</a>
+          <a href="#contact" class="block text-dark hover:text-primary py-2">Contact</a>
+          <a href="#" class="block bg-primary text-white px-6 py-2.5 rounded text-center
+                             font-semibold hover:bg-primary-dark">
+            Enquiry
+          </a>
         </div>
-    </header> -->
+      </div>
+    </nav>
+  </header>
+
+  
+
+  <!-- ==================== Mobile toggle (tiny vanilla JS) ==================== -->
+  <script>
+    document.getElementById('mobileBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+  </script>
 
     <!-- Hero Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-r from-laba-blue to-laba-dark text-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Electromagnetic Shock Dyno</h1>
-                    <p class="text-xl mb-6">Advanced testing solution for high-performance suspension systems</p>
-                    <p class="mb-8">Precision measurement and analysis of shock absorbers using cutting-edge electromagnetic technology.</p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#contact" class="bg-white text-laba-blue px-6 py-3 rounded-lg font-semibold text-center hover:bg-gray-100 transition duration-300">Request Quote</a>
-                        <a href="#specifications" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold text-center hover:bg-white hover:text-laba-blue transition duration-300">Technical Specs</a>
+    <section class="py-32 md:py-48  bg-blue-600 text-white">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center min-h-screen md:min-h-0">
+      <div class="md:w-1/2 mb-12 md:mb-0">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          Electromagnetic Shock Dyno
+        </h1>
+        <p class="text-xl mb-6">
+          Advanced testing solution for high-performance suspension systems
+        </p>
+        <p class="mb-10 text-lg leading-relaxed">
+          Precision measurement and analysis of shock absorbers using cutting-edge electromagnetic technology.
+        </p>
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 ">
+          <a href="#contact" 
+             class="border-2 border-white bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold text-center 
+                    hover:bg-orange-600 transition duration-300 shadow-lg">
+            Request Quote
+          </a>
+          <a href="#specifications" 
+             class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-center 
+                    hover:bg-orange-600 bg-orange-500 transition duration-300">
+            Technical Specs
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN – IMAGE THAT FITS -->
+<div class="md:w-1/2 flex justify-center">
+  <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 w-full max-w-lg shadow-2xl">
+    <!-- IMAGE CONTAINER -->
+    <div class="overflow-hidden rounded-xl">
+      <img src="../assets/electromagnetic shock dyno(product).jpg"
+           alt="Electromagnetic Shock Dyno"
+           class="w-full h-auto object-contain object-center">
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- Specs Table -->
+ <section class="py-4 md:py-24 ml-20 bg-gray-200 mr-20">
+    <div class="max-w-7xl mx-auto px-8">
+
+        <!-- PRICING CARDS -->
+      <div class="grid md:grid-cols-4 gap-2 mb-16 ml-52">
+        <!-- 30 kW -->
+        <div class="text-center">
+          <div class="text-2xl font-bold text-gray-900 mb-2">30 kW</div>
+          <a href="#" class="inline-block bg-orange-500 text-white px-6 py-2 rounded-full border border-gray-300 font-medium hover:bg-orange-600 transition">
+            Get offer
+          </a>
+        </div>
+
+        <!-- 60 kW -->
+        <div class="text-center">
+          <div class="text-2xl font-bold text-gray-900 mb-2">60 kW</div>
+          <a href="#" class="inline-block bg-orange-500 text-white px-6 py-2 rounded-full border border-gray-300 font-medium hover:bg-orange-600 transition">
+            Get offer
+          </a>
+        </div>
+        <!-- 90 kW -->
+        <div class="text-center">
+          <div class="text-2xl font-bold text-gray-900 mb-2">90 kW</div>
+          <a href="#" class="inline-block bg-orange-500 text-white px-6 py-2 rounded-full border border-gray-300 font-medium hover:bg-orange-600 transition">
+            Get offer
+          </a>
+        </div>
+
+        <!-- 120 kW -->
+        <div class="text-center">
+          <div class="text-2xl font-bold text-gray-900 mb-2">120 kW</div>
+          <a href="#" class="inline-block bg-orange-500 text-white px-6 py-2 rounded-full border border-gray-300 font-medium hover:bg-orange-600 transition">
+            Get offer
+          </a>
+        </div>
+      </div>
+
+    <!-- specs table -->
+     <div class="overflow-x-auto">
+      <table class="w-full border-collapse border border-gray-400 text-sm">
+        <thead>
+        
+          <!-- Actuator Power -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Actuator power</td>
+            <td class="py-4 px-6 text-center border-r border-gray-400">30 kW</td>
+            <td class="py-4 px-6 text-center bg-gray-200 border-r border-gray-400">60 kW</td>
+            <td class="py-4 px-6 text-center border-r border-gray-400">90 kW</td>
+            <td class="py-4 px-6 text-center border-gray-400 bg-gray-200">120 kW</td>
+          </tr>
+          </thead>
+
+          <!-- Peak Force -->
+           <tbody>
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Peak force @ 2 m/s</td>
+            <td class="py-4 px-6 text-center border-r border-gray-400">10 kN <span class="text-gray-500 text-xs">(2248 lbf)*</span></td>
+            <td class="py-4 px-6 text-center bg-gray-200 border-r border-gray-400">20 kN <span class="text-gray-500 text-xs">(4496 lbf)*</span></td>
+            <td class="py-4 px-6 text-center border-r border-gray-400">30 kN <span class="text-gray-500 text-xs">(6744 lbf)*</span></td>
+            <td class="py-4 px-6 text-center border-gray-400 bg-gray-200">40 kN <span class="text-gray-500 text-xs">(8992 lbf)*</span></td>
+          </tr>
+
+          <!-- Max Velocity -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Max velocity</td>
+            <td colspan="4" class="py-4 px-6 text-center border-gray-400">7,000 mm/s <span class="text-gray-500 text-xs">(276 in/s)</span></td>
+          </tr>
+
+          <!-- Min Velocity -->
+          <tr class="border-t border-gray-400">
+            <td class=" py-4 px-6 text-gray-700 border-r border-gray-400">Min velocity</td>
+            <td colspan="4" class="py-4 px-6 text-center border-gray-400">0.1 mm/s <span class="text-gray-500 text-xs">(0.04 in/s)</span></td>
+          </tr>
+
+          <!-- Max Test Frequency -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Max test frequency</td>
+            <td colspan="4" class="py-4 px-6 text-center border-gray-400">150 Hz</td>
+          </tr>
+
+          <!-- Max Acceleration -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Max acceleration</td>
+            <td colspan="4" class="py-4 px-6 text-center border-gray-400">100 G</td>
+          </tr>
+
+          <!-- Data Sampling -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Data sampling frequency</td>
+            <td colspan="4" class="py-4 px-6 text-center text-xs leading-tight border-gray-400">
+              Digital position sampling 20 kHz.<br>
+              Synchronized analog load cell sampling 20 kHz, 20-bit resolution.
+            </td>
+          </tr>
+
+          <!-- Additional ADC -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Additional ADC channels</td>
+            <td colspan="4" class="py-4 px-6 text-center text-xs border-gray-400">
+              8 synchronized channels. Up to 10 kHz sampling rate.
+            </td>
+          </tr>
+
+          <!-- Position Resolution -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Position resolution</td>
+            <td colspan="4" class="py-4 px-6 text-center border-gray-400">50 nanometers</td>
+          </tr>
+
+          <!-- Stroke -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Stroke (mm)</td>
+            <td colspan="4" class="py-4 px-6 text-center border-gray-400">250 mm <span class="text-gray-500 text-xs">(9.85 in)</span></td>
+          </tr>
+
+          <!-- Power Requirement -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Power requirement</td>
+            <td colspan="4" class="py-4 px-6 text-center text-xs leading-tight border-gray-400">
+              3-phase 380/400 VAC 16 A. Can be optimized for 1-phase 220/240 VAC or other configurations. Contact us to learn more.
+            </td>
+          </tr>
+
+          <!-- Cooling -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Cooling</td>
+            <td colspan="4" class="py-4 px-6 text-center border-gray-400">Compressed air</td>
+          </tr>
+
+          <!-- Supported Waveforms -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Supported waveforms</td>
+            <td colspan="4" class="py-4 px-6 text-center border-gray-400">
+              Sine, Triangle, Square, Pulse, Pink noise, Sweep, Chirp, and Direct track data import.
+            </td>
+          </tr>
+          <!--  -->
+          <tr class="border-t border-gray-400">
+            <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Supported waveforms</td>
+            <td colspan="4" class="py-4 px-6 text-center border-gray-400">Compressed air</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+</section>
+   
+
+ 
+  <!-- ==================== FLIP CARDS (TALL) ==================== -->
+  <section class="py-20 md:py-32">               <!-- more vertical padding -->
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900">
+        Products
+      </h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <!-- CARD 1 -->
+        <div class="group h-96 [perspective:1000px]">                     <!-- taller -->
+          <div class="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+
+            <!-- Front -->
+            <div class="absolute inset-0 backface-hidden bg-gray-300 rounded-xl shadow-lg flex flex-col items-center justify-center p-8 border border-gray-200">
+              <div class="w-20 h-20 rounded-full flex items-center justify-center mb-6">
+               <img src="../assets/electromagnetic shock dyno(product).jpg" alt="">
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">EMA Technology</h3>
+            </div>
+
+            <!-- Back -->
+            <div class="absolute inset-0 backface-hidden [transform:rotateY(180deg)] rounded-xl shadow-lg flex flex-col items-center justify-center p-8 text-blue-600">
+              <h3 class="text-2xl font-bold mb-4">Electromagnetic Actuation</h3>
+              <p class="text-base text-center mb-6">
+                Linear, silent, and precise control for high‑speed testing.
+              </p>
+              <a href="#" class="bg-white text-red-600 px-5 py-3 rounded-full font-medium hover:bg-gray-100 transition">
+                Learn More
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="group h-96 [perspective:1000px]">
+          <div class="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+            <div class="absolute inset-0 backface-hidden bg-white rounded-xl shadow-lg flex flex-col items-center justify-center p-8 border border-gray-200">
+              <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                <i class="fas fa-microchip text-3xl text-blue-600"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Data Sync</h3>
+            </div>
+            <div class="absolute inset-0 backface-hidden [transform:rotateY(180deg)] bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg flex flex-col items-center justify-center p-8 text-white">
+              <h3 class="text-2xl font-bold mb-4">20 kHz Sampling</h3>
+              <p class="text-base text-center mb-6">
+                Synchronized digital & analog data at 20‑bit resolution.
+              </p>
+              <a href="#" class="bg-white text-blue-600 px-5 py-3 rounded-full font-medium hover:bg-gray-100 transition">
+                View Specs
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="group h-96 [perspective:1000px]">
+          <div class="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+            <div class="absolute inset-0 backface-hidden bg-white rounded-xl shadow-lg flex flex-col items-center justify-center p-8 border border-gray-200">
+              <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                <i class="fas fa-tachometer-alt text-3xl text-green-600"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">High Speed</h3>
+            </div>
+            <div class="absolute inset-0 backface-hidden [transform:rotateY(180deg)] bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg flex flex-col items-center justify-center p-8 text-white">
+              <h3 class="text-2xl font-bold mb-4">7,000 mm/s</h3>
+              <p class="text-base text-center mb-6">
+                Maximum velocity for extreme damper testing.
+              </p>
+              <a href="#" class="bg-white text-green-600 px-5 py-3 rounded-full font-medium hover:bg-gray-100 transition">
+                See Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="group h-96 [perspective:1000px]">
+          <div class="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+            <div class="absolute inset-0 backface-hidden bg-white rounded-xl shadow-lg flex flex-col items-center justify-center p-8 border border-gray-200">
+              <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                <i class="fas fa-cogs text-3xl text-purple-600"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900">Custom Add‑ons</h3>
+            </div>
+            <div class="absolute inset-0 backface-hidden [transform:rotateY(180deg)] bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg flex flex-col items-center justify-center p-8 text-white">
+              <h3 class="text-2xl font-bold mb-4">Modular Design</h3>
+              <p class="text-base text-center mb-6">
+                Seamless integration with HIL, sensors, and tools.
+              </p>
+              <a href="#" class="bg-white text-purple-600 px-5 py-3 rounded-full font-medium hover:bg-gray-100 transition">
+                Explore
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+    <!-- STANDARD FEATURES SECTION -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .feature-card {
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .graphic-container {
+            position: relative;
+        }
+        .pulse-ring {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+    </style>
+
+    <section class="py-20 bg-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+
+            <!-- Section Title -->
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Standard features of all EMAs
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Our Electromechanical Actuators (EMAs) are engineered with precision and versatility in mind, offering industry-leading performance across all applications.
+                </p>
+            </div>
+
+            <!-- Feature 1: Sampling Rate -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                
+                <!-- Text Content -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-cyan-600">Sampling rate and accuracy</h3>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Digital position sensor that samples data at a frequency of <strong class="text-gray-900">20 kHz</strong> with an accuracy of <strong class="text-gray-900">50 nm</strong>. To ensure there is no phase shift in the data, we simultaneously read force measurements at the same <strong class="text-gray-900">20 kHz</strong> speed using an analog sensor.
+                    </p>
+                    
+                    <!-- Feature Highlights -->
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">20 kHz sampling frequency for precise measurements</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">50 nm accuracy for ultra-precise positioning</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Simultaneous force and position measurement</span>
+                        </div>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="bg-white/20 rounded-xl p-6 w-full max-w-md">
-                        <div class="bg-white/30 h-64 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-cogs text-6xl text-white/70"></i>
+
+                <!-- Graphic -->
+                <div class="flex justify-center">
+                    <div class="graphic-container">
+                       <img src="../assets/products11.png" alt="">
+                        
+                       
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2: Analog Inputs -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <!-- Graphic -->
+                <div class="flex justify-center order-2 md:order-1">
+                    <div class="graphic-container">
+                       <img src="../assets/products12.png" alt="">
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="order-1 md:order-2">
+                    <h3 class="text-2xl font-semibold mb-4 text-green-600">Easy integration</h3>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Designed with compatibility in mind, our EMAs seamlessly integrate with your existing systems. With standardized communication protocols and comprehensive API support, you can have your system up and running in minimal time.
+                    </p>
+                    
+                    <!-- Feature Highlights -->
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Standard communication protocols (CAN, Ethernet, RS-485)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Comprehensive API and SDK support</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Plug-and-play installation</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Feature 3: High Performance -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                
+                <!-- Text Content -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-cyan-600">Sampling rate and accuracy</h3>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Digital position sensor that samples data at a frequency of <strong class="text-gray-900">20 kHz</strong> with an accuracy of <strong class="text-gray-900">50 nm</strong>. To ensure there is no phase shift in the data, we simultaneously read force measurements at the same <strong class="text-gray-900">20 kHz</strong> speed using an analog sensor.
+                    </p>
+                    
+                    <!-- Feature Highlights -->
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">20 kHz sampling frequency for precise measurements</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">50 nm accuracy for ultra-precise positioning</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-cyan-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Simultaneous force and position measurement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic -->
+                <div class="flex justify-center">
+                    <div class="graphic-container">
+                       <img src="../assets/Automaticproduct.jpg" alt="">
+                        
+                       
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 4: Easy Integration -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <!-- Graphic -->
+                <div class="flex justify-center order-2 md:order-1">
+                    <div class="graphic-container">
+                       <img src="../assets/customsolutions.jpg" alt="">
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="order-1 md:order-2">
+                    <h3 class="text-2xl font-semibold mb-4 text-green-600">Easy integration</h3>
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Designed with compatibility in mind, our EMAs seamlessly integrate with your existing systems. With standardized communication protocols and comprehensive API support, you can have your system up and running in minimal time.
+                    </p>
+                    
+                    <!-- Feature Highlights -->
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Standard communication protocols (CAN, Ethernet, RS-485)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Comprehensive API and SDK support</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Plug-and-play installation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
+
+    <!-- MAIN SECTION: Components Developed In-House -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Title -->
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
+        Components developed in-house
+      </h2>
+
+      <!-- Data Logger Content -->
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Subtitle -->
+        <h3 class="text-2xl font-semibold text-center mb-10 text-gray-700">Data logger</h3>
+
+        <!-- Paragraphs -->
+        <div class="space-y-6 text-gray-700 leading-relaxed text-center md:text-left">
+          <p>
+            The data logger for EMA is a marvel. Our engineers developed it in-house with the sole objective of detecting even the tiniest force changes in damper performance.
+          </p>
+          <p>
+            It delivers an impressive <strong>position resolution of 50 nanometers</strong> and a <strong>sampling rate of 20 kHz</strong>. The load cell resolution and sampling rate are equally impressive of <strong>20-bit and 20 kHz</strong>.
+          </p>
+          <p>
+            Our data logger supports multiple analog output and input channels to maximize versatility of the machine.
+          </p>
+        </div>
+
+        <!-- Graphs (Two SVGs) -->
+        <div class="grid md:grid-cols-2 gap-10 mt-16">
+
+          <!-- Graph 1: Position Resolution (Left) -->
+          <div class="flex flex-col items-center">
+            <img src="./assets/data-logger1.png" alt="">
+          </div>
+
+          <!-- Graph 2: Sampling Rate (Right) -->
+          <div class="flex flex-col items-center">
+            <div class="text-right w-full mb-2">
+              <span class="text-sm text-gray-600">– 5 kHz</span>
+              <span class="ml-4 text-sm text-green-600">– 20 kHz</span>
+            </div>
+            <img src="./assets/data-logger2.png" alt="">
+          </div>
+        
+        </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- MAIN SECTION: Control Unit -->
+  <section class="py-20 bg-gray-300 pb-12">
+
+    <!-- control unit -->
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+      <!-- Title -->
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-16">
+        Control unit
+      </h2>
+
+      <!-- Paragraphs -->
+      <div class="space-y-6 text-lg text-gray-700 leading-relaxed max-w-5xl mx-auto ">
+
+        <p>
+          The control unit of EMA is integrated with a data logger into a single board. This solution allows us to provide the most accurate test results in real time.
+        </p>
+
+        <p>
+          Incorporating state-of-the-art technologies such as <strong>silicon carbide (SiC) MOSFETs</strong> allowed us to generate significantly more power at a fraction of the cost.
+        </p>
+
+        <p>
+          Additionally, this unit controls the operation of the smart power supply, enhancing the efficiency of EMA by LABA7 while reducing energy consumption.
+        </p>
+
+      </div>
+
+      <!-- PCB Image -->
+      <div class="mt-16 flex justify-center">
+        <div class="relative w-full max-w-md">
+          <!-- Blurred background effect -->
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-100 to-transparent rounded-lg blur-xl opacity-50"></div>
+          
+          <!-- Actual Image -->
+          <img 
+            src="./assets/control-unit.png"
+            class="relative z-10 rounded-lg shadow-2xl w-full h-auto object-cover"
+          />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- power unit -->
+
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+      <!-- Title -->
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-16 mt-12">
+        Power unit
+      </h2>
+
+      <!-- Paragraphs -->
+      <div class="space-y-6 text-lg text-gray-700 leading-relaxed max-w-5xl mx-auto">
+
+        <p>
+          The smart power supply unit of the EMA is the first and, to date, the only such solution on the market. The high-voltage power supply to the actuators, facilitated by supercapacitor packs, eliminates the dependency on high-voltage and amperage input. This innovation eliminates the need for high-power input and opens possibilities for suspension workshops, motorsport teams, or R&D labs to utilize electromagnetic linear shock dynos for the first time. Even on a trackside!
+        </p>
+
+        <p>
+          EMA operates from a <strong>3-phase 380/400 VAC 16 A,</strong> but all models can be optimized to run from a standard <strong>1-phase 220/240 VAC</strong>  socket on request. Other power input configurations, for example, <strong> 110/120 VAC,</strong> are also available. Contact us to learn more.
+        </p>
+
+        <p>
+          In addition, the unit stores electrical power. This reserve allows tests to continue and be completed even during power shortages.
+        </p>
+
+      </div>
+
+      <!-- PCB Image -->
+      <div class="mt-16 flex justify-center">
+        <div class="relative w-full max-w-md">
+          <!-- Blurred background effect -->
+          <!-- <div class="absolute inset-0 bg-gradient-to-t from-gray-100 to-transparent rounded-lg blur-xl opacity-50"></div> -->
+          
+          <!-- Actual Image -->
+          <img src="./assets/control-unit2.png" alt="">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- software -->
+
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+      <!-- Title -->
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-16 mt-12">
+        Software
+      </h2>
+
+      <!-- Paragraphs -->
+      <div class="space-y-6 text-lg text-gray-700 leading-relaxed max-w-5xl mx-auto">
+
+        <p>
+          LABA7’s software for electromagnetic damper test systems is designed with <strong>user experience</strong> in mind. Operators can easily find, manage, and customize the features of the tests,<strong> minimizing the onboarding time.</strong>
+        </p>
+
+        <p>
+          Our software for EMA allows pre- and post-test editing of data. To save time, it enables operators to <strong>trim track data</strong> and test damper performance in specific stages of the course. After the test, operators can slide and cut graphs as well as push individual cycles on top of each other for <strong>better data analysis.</strong>
+        </p>
+
+        <p>
+          The software enables seamless integration with additional sensors and testing equipment.
+        </p>
+
+      </div>
+
+      <!-- PCB Image -->
+      <div class="mt-16 flex justify-center">
+        <div class="relative w-full max-w-md">
+          <!-- Blurred background effect -->
+          <!-- <div class="absolute inset-0 bg-gradient-to-t from-gray-100 to-transparent rounded-lg blur-xl opacity-50"></div> -->
+          
+          <!-- Actual Image -->
+          <img src="./assets/control-unit3.png" alt="">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== MAIN SECTION ==================== -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-8">
+        Expand your possibilities with shock dyno adapters
+      </h2>
+
+      <p class="text-lg text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed">
+        LABA7 shock dyno adapters create a seamless link, allowing for the most accurate and insightful tests of your shock absorbers.
+      </p>
+
+      <!-- ==================== ADAPTER GRID ==================== -->
+      <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+
+        <!-- ==== MTB ==== -->
+        <div class="space-y-6">
+          <div class="bg-orange-300 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block">
+            Adapters for MTB dampers
+          </div>
+          <div class="adapter-box bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center relative overflow-hidden"
+               data-img="./assets/shock-dyno.png">
+            <img src="./assets/shock-dyno.png"
+                 alt="MTB Shock Adapter"
+                 class="adapter-img w-full h-auto object-contain transition-all duration-400">
+            <div class="plus absolute text-red-600">+</div>
+          </div>
+        </div>
+
+        <!-- ==== MOTO ==== -->
+        <div class="space-y-6">
+          <div class="bg-orange-300 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block">
+            Adapters for MOTO dampers
+          </div>
+          <div class="adapter-box bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center relative overflow-hidden"
+               data-img="./assets/shock-dyno2.png">
+            <img src="./assets/shock-dyno2.png"
+                 alt="MOTO Shock Adapter"
+                 class="adapter-img w-full h-auto object-contain transition-all duration-400">
+            <div class="plus absolute text-red-600">+</div>
+          </div>
+        </div>
+
+        <!-- ==== AUTO ==== -->
+        <div class="space-y-6">
+          <div class="bg-orange-300 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block">
+            Adapters for AUTO dampers
+          </div>
+          <div class="adapter-box bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center relative overflow-hidden"
+               data-img="./assets/shock-dyno3.png">
+            <img src="./assets/shock-dyno3.png"
+                 alt="AUTO Shock Adapter"
+                 class="adapter-img w-full h-auto object-contain transition-all duration-400">
+            <div class="plus absolute text-red-600">+</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- ==================== MODAL OVERLAY ==================== -->
+  <div id="modal"
+       class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center p-4 md:p-8 z-50">
+    <div class="max-w-5xl w-full mx-auto">
+      <img id="modalImg"
+           src=""
+           alt="Enlarged view"
+           class="w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl">
+    </div>
+  </div>
+
+  <!-- ==================== SCRIPT ==================== -->
+  <script>
+    // Open modal
+    document.querySelectorAll('.adapter-box').forEach(box => {
+      box.addEventListener('click', () => {
+        const imgUrl = box.dataset.img;
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+
+        modalImg.src = imgUrl;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+    });
+
+    // Close modal (outside click or Esc)
+    const modal = document.getElementById('modal');
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+    });
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  </script>
+
+                              <!-- hydraulic damper -->
+  <!-- MAIN SECTION: Electromagnetic vs Hydraulic -->
+  <section class="py-20 bg-gray-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Title -->
+      <h2 class="text-4xl md:text-4xl font-bold text-center text-gray-800 mb-16">
+        Electromagnetic vs Hydraulic damper testing systems
+      </h2>
+
+      <!-- Two-Column Layout -->
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Left: Text Content -->
+        <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+          <p>
+            Electromagnetic and hydraulic damper test systems are two distinct technologies used to evaluate and test dampers in various applications.
+          </p>
+          <p>
+            <strong>Electromagnetic actuators</strong> provide high precision in force control with quick response times. They excel in handling a wide range of frequencies and operate quietly, thanks to fewer moving parts and the absence of fluid dynamics. Additionally, these systems require less maintenance and experience minimal downtime, making them highly efficient.
+          </p>
+          <p>
+            On the other hand, <strong>hydraulic damper testing systems</strong> are designed to generate the higher forces needed for testing large or industrial dampers. Especially in lower-frequency testing. However, hydraulic systems demand regular maintenance due to potential leaks, fluid replacement needs, and the wear and tear of mechanical components. Moreover, they have more stringent health and safety requirements for operators compared to electromagnetic test systems.
+          </p>
+        </div>
+
+        <!-- Right: 3D Render Image -->
+        <div class="flex justify-center">
+          <div class="relative">
+            <!-- Optional: Add subtle shadow or glow -->
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-200 to-transparent rounded-lg blur-xl opacity-50 -z-10"></div>
+            <img 
+              src="./assets/hydraulic-damper.png" 
+              alt="LABA7 Electromagnetic Shock Dyno" 
+              class="zoom-image w-full cursor-pointer max-w-md h-auto object-contain rounded-lg shadow-xl"
+            />
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Learn More Button -->
+      <div class="mt-16 text-center">
+        <a href="#" class="inline-block border-2 border-gray-800 text-gray-800 px-8 py-3 rounded-full font-medium hover:bg-blue-600 hover:text-white transition">
+          Learn more about different types of shock dynos
+        </a>
+      </div>
+
+    </div>
+  </section>
 
     <!-- Features Section -->
     <section id="features" class="py-16 bg-white">
