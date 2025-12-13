@@ -7,6 +7,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="./include.js"></script>
   <script>
     tailwind.config = {
@@ -74,373 +76,241 @@
     input:valid, textarea:valid {
       border-color: #10b981;
     }
+
+    /* Make form scrollable */
+    .form-container {
+      max-height: 650px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    /* Custom scrollbar for form */
+    .form-container::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .form-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    .form-container::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 10px;
+    }
+
+    .form-container::-webkit-scrollbar-thumb:hover {
+      background: #a1a1a1;
+    }
   </style>
 </head>
 
-<body class="bg-gray-50 min-h-screen font-inter">
+<body class="bg-[#F5EDED] min-h-screen font-inter">
 
   <!-- ==================== HEADER ==================== -->
   <div data-include="./header.html"></div>
 
   <!-- ==================== CONTACT PAGE CONTENT ==================== -->
   <main class="pt-8">
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-50 to-gray-100 py-16">
-      <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Contact AP DYNAMICS</h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Get in touch with our team for inquiries about our industrial solutions, technical support, or partnership opportunities.
-        </p>
-      </div>
-    </section>
-
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
+    <section id="contact" class="py-8 mt-4">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 text-laba-dark">Contact Us</h2>
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-700">Contact Us</h2>
         
-        <div class="flex flex-col lg:flex-row gap-8">
-          <!-- Left Column: Contact Info -->
-          <div class="lg:w-1/2">
-            <div class="bg-laba-light p-8 rounded-xl shadow-lg">
-              <h3 class="text-2xl font-semibold mb-6 text-laba-blue">Get In Touch</h3>
-              <p class="mb-6 text-gray-700">
+        <div class="flex flex-col lg:flex-row gap-6 w-full max-w-6xl mx-auto">
+          <!-- Left Column: Contact Info & Map -->
+          <div class="lg:w-1/2 flex flex-col gap-6">
+            <!-- Contact Info Card -->
+            <div class="bg-gray-100 p-6 rounded-xl shadow-lg h-auto">
+              <h3 class="text-xl font-semibold mb-4 text-gray-700 text-center">Get In Touch</h3>
+              <p class="mb-5 text-gray-600 text-base">
                 Interested in our industrial solutions? Contact our sales team for pricing, technical specifications, 
                 or to schedule a demonstration of our products.
               </p>
               
-              <div class="space-y-6">
+              <div class="space-y-5">
                 <div class="flex items-start">
-                  <div class="bg-blue-100 p-3 rounded-full mr-4">
-                    <i class="fas fa-envelope text-laba-blue text-lg"></i>
+                  <div class="bg-blue-100 p-2 rounded-full mr-3 flex-shrink-0">
+                    <i class="fas fa-envelope text-laba-blue text-base"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-lg">Email</h4>
-                    <p class="text-gray-700">sales@apdynamics.com</p>
-                    <p class="text-gray-700">support@apdynamics.com</p>
+                    <h4 class="font-semibold text-base">Email</h4>
+                    <p class="text-gray-700 text-sm">ashish@apmeasurements.com</p>
                   </div>
                 </div>
                 
                 <div class="flex items-start">
-                  <div class="bg-blue-100 p-3 rounded-full mr-4">
-                    <i class="fas fa-phone text-laba-blue text-lg"></i>
+                  <div class="bg-blue-100 p-2 rounded-full mr-3 flex-shrink-0">
+                    <i class="fas fa-phone text-laba-blue text-base"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-lg">Phone</h4>
-                    <p class="text-gray-700">+91 (123) 456-7890</p>
-                    <p class="text-gray-700">+91 (987) 654-3210</p>
+                    <h4 class="font-semibold text-base">Phone</h4>
+                    <p class="text-gray-700 text-sm">+91 8793505677</p>
                   </div>
                 </div>
                 
                 <div class="flex items-start">
-                  <div class="bg-blue-100 p-3 rounded-full mr-4">
-                    <i class="fas fa-map-marker-alt text-laba-blue text-lg"></i>
+                  <div class="bg-blue-100 p-2 rounded-full mr-3 flex-shrink-0">
+                    <i class="fas fa-map-marker-alt text-laba-blue text-base"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-lg">Address</h4>
-                    <p class="text-gray-700">Industrial Area, Phase II</p>
-                    <p class="text-gray-700">Pune, Maharashtra 411045</p>
-                    <p class="text-gray-700">India</p>
+                    <h4 class="font-semibold text-base">Address</h4>
+                    <p class="text-gray-700 text-sm">Sr. No. - 40/1/4/4, FL No - C-504, Lotus Laxmi-2</p>
+                    <p class="text-gray-700 text-sm">Pimpri Chinchwad, Ravet, Pune, Maharashtra, 411035</p>
+                    <p class="text-gray-700 text-sm">India</p>
                   </div>
-                </div>
-
-                <div class="flex items-start">
-                  <div class="bg-blue-100 p-3 rounded-full mr-4">
-                    <i class="fas fa-clock text-laba-blue text-lg"></i>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-lg">Business Hours</h4>
-                    <p class="text-gray-700">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                    <p class="text-gray-700">Saturday: 10:00 AM - 4:00 PM</p>
-                    <p class="text-gray-700">Sunday: Closed</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Social Media -->
-              <div class="mt-8 pt-6 border-t border-gray-200">
-                <h4 class="font-semibold text-lg mb-4">Follow Us</h4>
-                <div class="flex space-x-4">
-                  <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition">
-                    <i class="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition">
-                    <i class="fab fa-twitter"></i>
-                  </a>
-                  <a href="#" class="bg-blue-800 text-white p-3 rounded-full hover:bg-blue-900 transition">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                  <a href="#" class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition">
-                    <i class="fab fa-youtube"></i>
-                  </a>
                 </div>
               </div>
             </div>
 
-            <!-- Map -->
-            <div class="mt-8 bg-laba-light p-8 rounded-xl shadow-lg">
-              <h3 class="text-2xl font-semibold mb-6 text-laba-blue">Our Location</h3>
-              <div class="bg-gray-200 h-64 rounded-lg overflow-hidden">
-                <!-- Google Maps Embed -->
+            <!-- Map Card -->
+            <div class="bg-laba-light p-6 rounded-xl shadow-lg h-auto">
+              <h3 class="text-xl font-semibold mb-4 text-laba-blue">Our Location</h3>
+              <div class="bg-gray-200 h-56 rounded-lg overflow-hidden">
+                <!-- Updated Google Maps Embed with exact address -->
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.265588856342!2d73.91456!3d18.562695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c147b8b3a3bf%3A0x6f7fdcc8e4d6c77e!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1647857293159!5m2!1sen!2sin" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.265588856342!2d73.91456!3d18.562695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c147b8b3a3bf%3A0x6f7fdcc8e4d6c77e!2sLotus%20Laxmi-2%2C%20Sr.%20No.%2040%2F1%2F4%2F4%2C%20FL%20No%20C-504%2C%20Ravet%2C%20Pimpri-Chinchwad%2C%20Maharashtra%20411035%2C%20India!5e0!3m2!1sen!2sus!4v1647857293159" 
                   width="100%" 
                   height="100%" 
                   style="border:0;" 
                   allowfullscreen="" 
-                  loading="lazy">
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
               </div>
+              <p class="text-sm text-gray-600 mt-3 text-center">
+                Lotus Laxmi-2, Ravet, Pimpri-Chinchwad, Maharashtra
+              </p>
             </div>
           </div>
           
           <!-- Right Column: Contact Form -->
           <div class="lg:w-1/2">
-            <div class="bg-white border border-gray-200 p-8 rounded-xl shadow-lg">
-              <h3 class="text-2xl font-semibold mb-6 text-laba-dark">Send a Message</h3>
+            <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-lg h-full">
+              <h3 class="text-xl font-semibold mb-5 text-gray-700 text-center">Send a Message</h3>
               
-              <form id="contact-form">
-                <!-- Name and Email -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                  <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
-                      Name <span class="text-red-500">*</span>
-                    </label>
+              <!-- Scrollable form container -->
+              <div class="form-container">
+                <form id="contact-form">
+                  <!-- Name and Email -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+                        Name <span class="text-red-500">*</span>
+                      </label>
+                      <input 
+                        type="text" 
+                        id="name" 
+                        name="name"
+                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                        placeholder="Your full name"
+                        required
+                      >
+                      <div class="text-xs text-red-500 mt-1 hidden" id="name-error">Please enter your name</div>
+                    </div>
+                    <div>
+                      <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                        Email <span class="text-red-500">*</span>
+                      </label>
+                      <input 
+                        type="email" 
+                        id="email" 
+                        name="email"
+                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                        placeholder="your.email@example.com"
+                        required
+                      >
+                      <div class="text-xs text-red-500 mt-1 hidden" id="email-error">Please enter a valid email address</div>
+                    </div>
+                  </div>
+                  
+                  <!-- Company -->
+                  <div class="mb-4">
+                    <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company</label>
                     <input 
                       type="text" 
-                      id="name" 
-                      name="name"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                      placeholder="Your full name"
-                      required
+                      id="company" 
+                      name="company"
+                      class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                      placeholder="Your company name"
                     >
-                    <div class="text-xs text-red-500 mt-1 hidden" id="name-error">Please enter your name</div>
                   </div>
-                  <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
-                      Email <span class="text-red-500">*</span>
+                  
+                  <!-- Phone -->
+                  <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
+                      Phone Number <span class="text-red-500">*</span>
                     </label>
                     <input 
-                      type="email" 
-                      id="email" 
-                      name="email"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                      placeholder="your.email@example.com"
+                      type="tel" 
+                      id="phone" 
+                      name="phone"
+                      class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                      placeholder="+91 1234567890"
                       required
                     >
-                    <div class="text-xs text-red-500 mt-1 hidden" id="email-error">Please enter a valid email address</div>
+                    <div class="text-xs text-red-500 mt-1 hidden" id="phone-error">Please enter a valid phone number</div>
                   </div>
-                </div>
-                
-                <!-- Company -->
-                <div class="mb-4">
-                  <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company</label>
-                  <input 
-                    type="text" 
-                    id="company" 
-                    name="company"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                    placeholder="Your company name"
+                  
+                  <!-- Subject -->
+                  <div class="mb-4">
+                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                    <input 
+                      type="text" 
+                      id="subject" 
+                      name="subject"
+                      class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                      placeholder="Brief subject of your inquiry"
+                    >
+                  </div>
+                  
+                  <!-- Message -->
+                  <div class="mb-5">
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
+                      Message <span class="text-red-500">*</span>
+                    </label>
+                    <textarea 
+                      id="message" 
+                      name="message"
+                      rows="4" 
+                      class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                      placeholder="Please provide details about your inquiry..."
+                      required
+                    ></textarea>
+                    <div class="text-xs text-red-500 mt-1 hidden" id="message-error">Please enter your message</div>
+                  </div>
+                  
+                  <!-- File Upload (Optional) -->
+                  <div class="mb-5">
+                    <label for="attachment" class="block text-sm font-medium text-gray-700 mb-1">Attachment (Optional)</label>
+                    <input 
+                      type="file" 
+                      id="attachment" 
+                      name="attachment"
+                      class="w-full px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                    >
+                    <p class="text-xs text-gray-500 mt-1">Max file size: 5MB. Allowed formats: PDF, DOC, JPG, PNG</p>
+                  </div>
+                  
+                  <!-- Submit Button -->
+                  <button 
+                    type="submit" 
+                    id="submit-btn"
+                    class="w-full bg-laba-blue text-white py-2.5 rounded-lg font-semibold text-sm hover:bg-blue-700 transition duration-300 flex items-center justify-center"
                   >
-                </div>
-                
-                <!-- Phone -->
-                <div class="mb-4">
-                  <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
-                    Phone Number <span class="text-red-500">*</span>
-                  </label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                    placeholder="+91 1234567890"
-                    required
-                  >
-                  <div class="text-xs text-red-500 mt-1 hidden" id="phone-error">Please enter a valid phone number</div>
-                </div>
-                
-                <!-- Inquiry Type -->
-                <div class="mb-4">
-                  <label for="inquiry-type" class="block text-sm font-medium text-gray-700 mb-1">
-                    Inquiry Type <span class="text-red-500">*</span>
-                  </label>
-                  <select 
-                    id="inquiry-type" 
-                    name="inquiry-type"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                    required
-                  >
-                    <option value="" disabled selected>Select inquiry type</option>
-                    <option value="sales">Sales Inquiry</option>
-                    <option value="support">Technical Support</option>
-                    <option value="parts">Spare Parts</option>
-                    <option value="service">Service Request</option>
-                    <option value="partnership">Partnership</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <div class="text-xs text-red-500 mt-1 hidden" id="inquiry-error">Please select an inquiry type</div>
-                </div>
-                
-                <!-- Product Interest -->
-                <div class="mb-4">
-                  <label for="product-interest" class="block text-sm font-medium text-gray-700 mb-1">Product Interest</label>
-                  <select 
-                    id="product-interest" 
-                    name="product-interest"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                  >
-                    <option value="" selected>Select product (optional)</option>
-                    <option value="ema">Electromagnetic Shock Dyno</option>
-                    <option value="shock-dyno">Shock Dyno</option>
-                    <option value="spring-tester">Spring Rate Tester</option>
-                    <option value="data-logger">Data Acquisition System</option>
-                    <option value="sensors">Sensors</option>
-                    <option value="tools">Suspension Tools</option>
-                    <option value="all">All Products</option>
-                  </select>
-                </div>
-                
-                <!-- Subject -->
-                <div class="mb-4">
-                  <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                  <input 
-                    type="text" 
-                    id="subject" 
-                    name="subject"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                    placeholder="Brief subject of your inquiry"
-                  >
-                </div>
-                
-                <!-- Message -->
-                <div class="mb-6">
-                  <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
-                    Message <span class="text-red-500">*</span>
-                  </label>
-                  <textarea 
-                    id="message" 
-                    name="message"
-                    rows="5" 
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                    placeholder="Please provide details about your inquiry..."
-                    required
-                  ></textarea>
-                  <div class="text-xs text-red-500 mt-1 hidden" id="message-error">Please enter your message</div>
-                </div>
-                
-                <!-- File Upload (Optional) -->
-                <div class="mb-6">
-                  <label for="attachment" class="block text-sm font-medium text-gray-700 mb-1">Attachment (Optional)</label>
-                  <input 
-                    type="file" 
-                    id="attachment" 
-                    name="attachment"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-                  >
-                  <p class="text-xs text-gray-500 mt-1">Max file size: 5MB. Allowed formats: PDF, DOC, JPG, PNG</p>
-                </div>
-                
-                <!-- Submit Button -->
-                <button 
-                  type="submit" 
-                  id="submit-btn"
-                  class="w-full bg-laba-blue text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center"
-                >
-                  <span id="submit-text">Send Message</span>
-                  <svg id="loading-spinner" class="hidden w-5 h-5 ml-2 animate-spin" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                </button>
-                
-                <!-- Success/Error Message -->
-                <div id="form-message" class="mt-4 hidden p-4 rounded-lg"></div>
-              </form>
-            </div>
-
-            <!-- FAQ Section -->
-            <div class="mt-8 bg-laba-light p-8 rounded-xl shadow-lg">
-              <h3 class="text-2xl font-semibold mb-6 text-laba-dark">Frequently Asked Questions</h3>
-              
-              <div class="space-y-4">
-                <div class="border-b border-gray-200 pb-4">
-                  <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(1)">
-                    <span class="font-medium text-gray-800">What is your typical response time?</span>
-                    <i class="fas fa-chevron-down text-laba-blue"></i>
+                    <span id="submit-text">Send Message</span>
+                    <svg id="loading-spinner" class="hidden w-4 h-4 ml-2 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
                   </button>
-                  <div id="faq-1" class="mt-2 text-gray-600 hidden">
-                    We typically respond to inquiries within 24 hours during business days. For urgent technical support, please call our hotline.
-                  </div>
-                </div>
-                
-                <div class="border-b border-gray-200 pb-4">
-                  <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(2)">
-                    <span class="font-medium text-gray-800">Do you provide on-site demonstrations?</span>
-                    <i class="fas fa-chevron-down text-laba-blue"></i>
-                  </button>
-                  <div id="faq-2" class="mt-2 text-gray-600 hidden">
-                    Yes, we offer on-site demonstrations for qualified customers. Contact our sales team to schedule a demonstration.
-                  </div>
-                </div>
-                
-                <div class="border-b border-gray-200 pb-4">
-                  <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(3)">
-                    <span class="font-medium text-gray-800">What is your warranty policy?</span>
-                    <i class="fas fa-chevron-down text-laba-blue"></i>
-                  </button>
-                  <div id="faq-3" class="mt-2 text-gray-600 hidden">
-                    All our products come with a standard 12-month warranty. Extended warranty options are available.
-                  </div>
-                </div>
-                
-                <div class="pb-4">
-                  <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(4)">
-                    <span class="font-medium text-gray-800">Do you ship internationally?</span>
-                    <i class="fas fa-chevron-down text-laba-blue"></i>
-                  </button>
-                  <div id="faq-4" class="mt-2 text-gray-600 hidden">
-                    Yes, we ship our products worldwide. Contact us for shipping rates and delivery times to your location.
-                  </div>
-                </div>
+                  
+                  <!-- Success/Error Message -->
+                  <div id="form-message" class="mt-4 hidden p-3 rounded-lg text-sm"></div>
+                </form>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Support Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-8 text-laba-dark">Need Immediate Assistance?</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white p-8 rounded-xl shadow-lg">
-            <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-headset text-red-600 text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-4">Technical Support</h3>
-            <p class="text-gray-600 mb-4">24/7 technical support for existing customers</p>
-            <p class="font-bold text-laba-blue">+91 (800) 123-4567</p>
-          </div>
-          
-          <div class="bg-white p-8 rounded-xl shadow-lg">
-            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-shopping-cart text-green-600 text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-4">Sales Inquiries</h3>
-            <p class="text-gray-600 mb-4">Get quotes and product information</p>
-            <p class="font-bold text-laba-blue">+91 (800) 987-6543</p>
-          </div>
-          
-          <div class="bg-white p-8 rounded-xl shadow-lg">
-            <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <i class="fas fa-tools text-blue-600 text-2xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold mb-4">Service & Maintenance</h3>
-            <p class="text-gray-600 mb-4">Schedule service or maintenance</p>
-            <p class="font-bold text-laba-blue">+91 (800) 456-7890</p>
           </div>
         </div>
       </div>
@@ -448,10 +318,16 @@
   </main>
 
   <!-- ==================== FOOTER ==================== -->
- <div data-include="./footer.html"></div>
+  <div data-include="./footer.html"></div>
 
   <!-- JavaScript -->
   <script>
+    // Initialize EmailJS with your public key
+    (function() {
+      // Replace with your EmailJS Public Key
+      emailjs.init("TgaIf0ESXRV4KNMfK");
+    })();
+
     // Form submission handling
     document.addEventListener('DOMContentLoaded', function() {
       const contactForm = document.getElementById('contact-form');
@@ -459,22 +335,6 @@
       const submitText = document.getElementById('submit-text');
       const loadingSpinner = document.getElementById('loading-spinner');
       const formMessage = document.getElementById('form-message');
-
-      // FAQ toggle function
-      window.toggleFAQ = function(faqNumber) {
-        const faqContent = document.getElementById(`faq-${faqNumber}`);
-        const icon = document.querySelector(`[onclick="toggleFAQ(${faqNumber})"] i`);
-        
-        if (faqContent.classList.contains('hidden')) {
-          faqContent.classList.remove('hidden');
-          icon.classList.remove('fa-chevron-down');
-          icon.classList.add('fa-chevron-up');
-        } else {
-          faqContent.classList.add('hidden');
-          icon.classList.remove('fa-chevron-up');
-          icon.classList.add('fa-chevron-down');
-        }
-      };
 
       // Form validation
       function validateForm() {
@@ -517,16 +377,6 @@
           phone.classList.remove('border-red-500');
         }
         
-        // Inquiry type validation
-        const inquiryType = document.getElementById('inquiry-type');
-        if (!inquiryType.value) {
-          document.getElementById('inquiry-error').classList.remove('hidden');
-          inquiryType.classList.add('border-red-500');
-          isValid = false;
-        } else {
-          inquiryType.classList.remove('border-red-500');
-        }
-        
         // Message validation
         const message = document.getElementById('message');
         if (!message.value.trim()) {
@@ -542,26 +392,28 @@
       
       // File validation
       const attachment = document.getElementById('attachment');
-      attachment.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-          const maxSize = 5 * 1024 * 1024; // 5MB
-          const allowedTypes = ['application/pdf', 'application/msword', 
-                               'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                               'image/jpeg', 'image/jpg', 'image/png'];
-          
-          if (file.size > maxSize) {
-            alert('File size exceeds 5MB limit. Please choose a smaller file.');
-            this.value = '';
-          } else if (!allowedTypes.includes(file.type)) {
-            alert('Please select a valid file type (PDF, DOC, JPG, PNG).');
-            this.value = '';
+      if (attachment) {
+        attachment.addEventListener('change', function() {
+          const file = this.files[0];
+          if (file) {
+            const maxSize = 5 * 1024 * 1024; // 5MB
+            const allowedTypes = ['application/pdf', 'application/msword', 
+                                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                 'image/jpeg', 'image/jpg', 'image/png'];
+            
+            if (file.size > maxSize) {
+              alert('File size exceeds 5MB limit. Please choose a smaller file.');
+              this.value = '';
+            } else if (!allowedTypes.includes(file.type)) {
+              alert('Please select a valid file type (PDF, DOC, JPG, PNG).');
+              this.value = '';
+            }
           }
-        }
-      });
+        });
+      }
       
       // Form submission
-      contactForm.addEventListener('submit', function(e) {
+      contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         if (!validateForm()) {
@@ -573,33 +425,94 @@
         loadingSpinner.classList.remove('hidden');
         submitBtn.disabled = true;
         
-        // Simulate API call (replace with actual backend integration)
-        setTimeout(() => {
-          // Reset form
-          contactForm.reset();
+        try {
+          // Collect form data
+          const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            company: document.getElementById('company').value || 'Not provided',
+            phone: document.getElementById('phone').value,
+            subject: document.getElementById('subject').value || 'No subject',
+            message: document.getElementById('message').value,
+            timestamp: new Date().toLocaleString(),
+            page_url: window.location.href
+          };
           
-          // Show success message
-          formMessage.innerHTML = `
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded alert-message">
-              <div class="flex items-center">
-                <i class="fas fa-check-circle mr-2"></i>
-                <span class="font-medium">Thank you for your message!</span>
+          // Send email using EmailJS
+          // Replace these values with your actual EmailJS Service ID and Template ID
+          const response = await emailjs.send(
+            'service_inuuzpa',      // Replace with your EmailJS Service ID
+            'template_yavp5wa',     // Replace with your EmailJS Template ID
+            formData
+          );
+          
+          if (response.status === 200) {
+            // Show success message
+            formMessage.innerHTML = `
+              <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded alert-message">
+                <div class="flex items-center">
+                  <i class="fas fa-check-circle mr-2"></i>
+                  <span class="font-medium">Message sent successfully!</span>
+                </div>
+                <p class="mt-1 text-sm">Thank you for contacting AP DYNAMICS. We'll get back to you within 24 hours.</p>
+                <p class="mt-1 text-xs">A confirmation email has been sent to ${formData.email}</p>
               </div>
-              <p class="mt-1 text-sm">We've received your inquiry and will get back to you within 24 hours.</p>
+            `;
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Also send a confirmation email to the user
+            try {
+              await emailjs.send(
+                'service_inuuzpa',      // Replace with your EmailJS Service ID
+                'template_wang3qs', // Replace with your user confirmation template ID
+                {
+                  to_name: formData.name,
+                  to_email: formData.email,
+                  company: formData.company,
+                  message: formData.message,
+                  reply_time: '24 hours'
+                }
+              );
+            } catch (confirmationError) {
+              console.log('Confirmation email failed, but main email was sent:', confirmationError);
+            }
+            
+          } else {
+            throw new Error('Failed to send message');
+          }
+          
+        } catch (error) {
+          console.error('Email sending error:', error);
+          
+          // Show error message
+          formMessage.innerHTML = `
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded alert-message">
+              <div class="flex items-center">
+                <i class="fas fa-exclamation-circle mr-2"></i>
+                <span class="font-medium">Failed to send message</span>
+              </div>
+              <p class="mt-1 text-sm">Sorry, there was an error sending your message. Please try again or contact us directly at ashish@apmeasurements.com</p>
+              <p class="mt-1 text-xs">Error: ${error.text || error.message}</p>
             </div>
           `;
+        } finally {
           formMessage.classList.remove('hidden');
           
-          // Hide message after 5 seconds
-          setTimeout(() => {
-            formMessage.classList.add('hidden');
-          }, 5000);
+          // Scroll to message
+          formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           
           // Reset button
           submitText.textContent = 'Send Message';
           loadingSpinner.classList.add('hidden');
           submitBtn.disabled = false;
-        }, 1500);
+          
+          // Hide message after 8 seconds
+          setTimeout(() => {
+            formMessage.classList.add('hidden');
+          }, 8000);
+        }
       });
       
       // Real-time validation
