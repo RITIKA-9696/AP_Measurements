@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AP DYNAMICS - Industrial Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#dc2626',
+            'primary-dark': '#c91621',
+            dark: '#1f2937',
+            'gray-600': '#4b5563',
+            'blue-primary': '#155379',
+            'blue-light': '#67B2D8'
+          },
+          fontFamily: {
+            'inter': ['Inter', 'sans-serif']
+          },
+          maxWidth: {
+            '8xl': '90rem',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom styles that can't be done with Tailwind */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+      font-family: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Mobile Sidebar Animation */
+    @keyframes slideInLeft {
+      from {
+        left: -100%;
+        opacity: 0;
+      }
+      to {
+        left: 0;
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    /* Mobile Menu Overlay */
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+      backdrop-filter: blur(4px);
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Mobile Sidebar */
+    .mobile-sidebar {
+      position: fixed;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      max-width: 320px;
+      height: 100vh;
+      background: white;
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+      transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1001;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-sidebar.active {
+      left: 0;
+      animation: slideInLeft 0.4s ease-out;
+    }
+
+    /* Mobile Sidebar Header */
+    .mobile-sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .close-sidebar-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #6b7280;
+    }
+
+    /* Mobile Sidebar Navigation */
+    .mobile-sidebar-nav {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      color: #374151;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+    }
+
+    .mobile-nav-link:hover {
+      background-color: #f3f4f6;
+    }
+
+    /* Mobile Submenu */
+    .mobile-submenu {
+      background: #fafafa;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-left: 20px;
+      border-radius: 8px;
+    }
+
+    .mobile-submenu.active {
+      max-height: 1200px;
+    }
+
+    .mobile-submenu-section {
+      padding: 12px 0;
+    }
+
+    .mobile-submenu-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: #dc2626;
+      font-size: 14px;
+      margin-bottom: 8px;
+      padding: 0 16px;
+    }
+
+    .mobile-submenu-link {
+      display: block;
+      padding: 8px 16px;
+      color: #6b7280;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .mobile-submenu-link:hover {
+      color: #dc2626;
+    }
+
+    .mobile-nav-cta {
+      display: block;
+      padding: 12px 16px;
+      background-color: #dc2626;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 8px;
+      margin-top: 8px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+
+    .mobile-nav-cta:hover {
+      background-color: #c91621;
+    }
+
+    /* Mega Menu */
+    .mega-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      width: 95vw;
+      max-width: 1000px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 0;
+    }
+
+    .group:hover .mega-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Hide mobile sidebar on desktop */
+    @media (min-width: 1024px) {
+      .mobile-sidebar,
+      .mobile-menu-overlay,
+      #mobileBtn {
+        display: none !important;
+      }
+    }
+
+    /* Responsive Mega Menu */
+    @media (max-width: 1024px) {
+      .mega-menu {
+        width: 100vw;
+        left: 0;
+        right: 0;
+        transform: translateX(0) translateY(-20px);
+        border-radius: 0;
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .group:hover .mega-menu {
+        transform: translateX(0) translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mega-menu {
+        width: 100vw;
+        left: 0 !important;
+        right: 0;
+        transform: translateX(0) translateY(-20px) !important;
+        border-radius: 0;
+        max-width: 100%;
+        position: fixed;
+        top: auto;
+        bottom: auto;
+        margin: 0;
+      }
+
+      .group:hover .mega-menu {
+        transform: translateX(0) translateY(0) !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-[#F5EDED] min-h-screen font-inter">
+
+  <!-- ==================== FIXED NAVBAR ==================== -->
+   <header class="fixed inset-x-0 top-0 z-50 bg-white shadow-md">
+    <nav class="container mx-auto px-6">
+      <div class="flex justify-between items-center py-5">
+
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="../index.html">
+          <img src="../assets/logo.jpg"
+               alt="Logo"
+               class="h-16 w-auto object-cover mix-blend-multiply brightness-120 contrast-120 saturate-200 hue-rotate-15">
+               </a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden lg:flex items-center space-x-8 text-sm font-medium">
+          <li><a href="../index.html"
+                 class="text-dark hover:text-primary transition duration-300">Home</a></li>
+
+          <!-- PRODUCTS MEGA MENU -->
+          <li class="relative group mega-menu-item">
+            <a href="#"
+               class="text-dark hover:text-primary transition duration-300 flex items-center">
+              Products
+              <svg class="w-3 h-3 ml-1 transition-transform group-hover:rotate-180"
+                   fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </a>
+
+            <!-- Mega Dropdown -->
+            <div class="mega-menu">
+              <div class="container mx-auto px-6 py-8">
+                <div class="grid grid-cols-4 gap-8">
+
+                  <!-- Suspension Testing -->
+                  <div>
+                    <div class="text-primary font-bold text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <i class="fas fa-car-side"></i> Suspension Testing
+                    </div>
+                    <a href="../EMA/ema.html" class="block py-2 text-gray-600 hover:text-primary text-sm">EMA</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Shock Dyno</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Spring Rate Tester</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Suspension Tools</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Adapters</a>
+                  </div>
+
+                  <!-- Data Logger -->
+                  <div>
+                    <div class="text-primary font-bold text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <i class="fas fa-database"></i> Data Logger
+                    </div>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Data Acquisition System</a>
+                  </div>
+
+                  <!-- Sensors -->
+                  <div>
+                    <div class="text-primary font-bold text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
+                      <i class="fas fa-microchip"></i> Sensors
+                    </div>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Accelerometer</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Impact Hammer</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Pressure Sensor</a>
+                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Weighing Scales</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li><a href="#about"
+                 class="text-dark hover:text-primary transition duration-300">About</a></li>
+          <li><a href="#contact"
+                 class="text-dark hover:text-primary transition duration-300">Contact</a></li>
+          <li>
+            <a href="#"
+               class="bg-primary text-white px-5 py-2.5 rounded text-xs font-semibold
+                      hover:bg-primary-dark transition duration-300">
+              Testing Sensors
+            </a>
+          </li>
+        </ul>
+
+        <!-- Mobile Hamburger -->
+        <button id="mobileBtn"
+                class="lg:hidden text-dark p-2"
+                aria-label="Toggle mobile menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu (hidden by default) -->
+      <div id="mobileMenu" class="lg:hidden hidden bg-white border-t">
+        <div class="py-4 space-y-3 px-6">
+          <a href="../index.html" class="block text-dark hover:text-primary py-2">Home</a>
+          <a href="#products" class="block text-dark hover:text-primary py-2">Products</a>
+          <a href="#about" class="block text-dark hover:text-primary py-2">About</a>
+          <a href="#contact" class="block text-dark hover:text-primary py-2">Contact</a>
+          <a href="#" class="block bg-primary text-white px-6 py-2.5 rounded text-center
+                             font-semibold hover:bg-primary-dark">
+            testing Sensors
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="mobile-menu-overlay" id="menuOverlay"></div>
+  
+  <!-- Mobile Sidebar -->
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="mobile-sidebar-header">
+      <h2 class="text-lg font-bold text-blue-primary">Menu</h2>
+      <button class="close-sidebar-btn" id="closeSidebarBtn">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-sidebar-nav">
+      <a href="../index.html" class="mobile-nav-link">Home</a>
+      <a href="#" class="mobile-nav-link" id="mobileProductsToggle">
+        Products
+        <i class="fas fa-chevron-down text-xs ml-auto" id="productsArrow"></i>
+      </a>
+      <div class="mobile-submenu" id="mobileProductsMenu">
+        <div class="mobile-submenu-section">
+          <div class="mobile-submenu-title">
+            <i class="fas fa-car-side"></i> Suspension Testing
+          </div>
+          <a href="../EMA/ema.html" class="mobile-submenu-link">EMA</a>
+          <a href="#" class="mobile-submenu-link">Shock Dyno</a>
+          <a href="#" class="mobile-submenu-link">Spring Rate Tester</a>
+          <a href="#" class="mobile-submenu-link">Suspension Tools</a>
+          <a href="#" class="mobile-submenu-link">Adapters</a>
+        </div>
+        <div class="mobile-submenu-section">
+          <div class="mobile-submenu-title">
+            <i class="fas fa-database"></i> Data Logger
+          </div>
+          <a href="#" class="mobile-submenu-link">Data Acquisition System</a>
+        </div>
+        <div class="mobile-submenu-section">
+          <div class="mobile-submenu-title">
+            <i class="fas fa-microchip"></i> Sensors
+          </div>
+          <a href="#" class="mobile-submenu-link">Accelerometer</a>
+          <a href="#" class="mobile-submenu-link">Impact Hammer</a>
+          <a href="#" class="mobile-submenu-link">Pressure Sensor</a>
+          <a href="#" class="mobile-submenu-link">Weighing Scales</a>
+        </div>
+      </div>
+      <a href="#about" class="mobile-nav-link">About</a>
+      <a href="#contact" class="mobile-nav-link">Contact</a>
+      <a href="#" class="mobile-nav-cta">Testing Sensors</a>
+    </nav>
+  </div>
+  </body>
+  </html>

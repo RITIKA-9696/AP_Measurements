@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AP DYNAMICS - Contact Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="./include.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#dc2626',
+            'primary-dark': '#c91621',
+            dark: '#1f2937',
+            'gray-600': '#4b5563',
+            'blue-primary': '#155379',
+            'blue-light': '#67B2D8',
+            'laba-blue': '#155379',
+            'laba-dark': '#1f2937',
+            'laba-light': '#f3f4f6'
+          },
+          fontFamily: {
+            'inter': ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+      font-family: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Form styling */
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      ring: 2px;
+    }
+
+    /* Success/Error message animations */
+    .alert-message {
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Form validation styles */
+    input:invalid, textarea:invalid {
+      border-color: #f87171;
+    }
+
+    input:valid, textarea:valid {
+      border-color: #10b981;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-inter">
+
+  <!-- ==================== HEADER ==================== -->
+  <div data-include="./header.html"></div>
+
+  <!-- ==================== CONTACT PAGE CONTENT ==================== -->
+  <main class="pt-8">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-50 to-gray-100 py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Contact AP DYNAMICS</h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Get in touch with our team for inquiries about our industrial solutions, technical support, or partnership opportunities.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-laba-dark">Contact Us</h2>
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+          <!-- Left Column: Contact Info -->
+          <div class="lg:w-1/2">
+            <div class="bg-laba-light p-8 rounded-xl shadow-lg">
+              <h3 class="text-2xl font-semibold mb-6 text-laba-blue">Get In Touch</h3>
+              <p class="mb-6 text-gray-700">
+                Interested in our industrial solutions? Contact our sales team for pricing, technical specifications, 
+                or to schedule a demonstration of our products.
+              </p>
+              
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-envelope text-laba-blue text-lg"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">Email</h4>
+                    <p class="text-gray-700">sales@apdynamics.com</p>
+                    <p class="text-gray-700">support@apdynamics.com</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-phone text-laba-blue text-lg"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">Phone</h4>
+                    <p class="text-gray-700">+91 (123) 456-7890</p>
+                    <p class="text-gray-700">+91 (987) 654-3210</p>
+                  </div>
+                </div>
+                
+                <div class="flex items-start">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-map-marker-alt text-laba-blue text-lg"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">Address</h4>
+                    <p class="text-gray-700">Industrial Area, Phase II</p>
+                    <p class="text-gray-700">Pune, Maharashtra 411045</p>
+                    <p class="text-gray-700">India</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-clock text-laba-blue text-lg"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">Business Hours</h4>
+                    <p class="text-gray-700">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p class="text-gray-700">Saturday: 10:00 AM - 4:00 PM</p>
+                    <p class="text-gray-700">Sunday: Closed</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Social Media -->
+              <div class="mt-8 pt-6 border-t border-gray-200">
+                <h4 class="font-semibold text-lg mb-4">Follow Us</h4>
+                <div class="flex space-x-4">
+                  <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                  <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="#" class="bg-blue-800 text-white p-3 rounded-full hover:bg-blue-900 transition">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="#" class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition">
+                    <i class="fab fa-youtube"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map -->
+            <div class="mt-8 bg-laba-light p-8 rounded-xl shadow-lg">
+              <h3 class="text-2xl font-semibold mb-6 text-laba-blue">Our Location</h3>
+              <div class="bg-gray-200 h-64 rounded-lg overflow-hidden">
+                <!-- Google Maps Embed -->
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.265588856342!2d73.91456!3d18.562695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c147b8b3a3bf%3A0x6f7fdcc8e4d6c77e!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1647857293159!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="100%" 
+                  style="border:0;" 
+                  allowfullscreen="" 
+                  loading="lazy">
+                </iframe>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right Column: Contact Form -->
+          <div class="lg:w-1/2">
+            <div class="bg-white border border-gray-200 p-8 rounded-xl shadow-lg">
+              <h3 class="text-2xl font-semibold mb-6 text-laba-dark">Send a Message</h3>
+              
+              <form id="contact-form">
+                <!-- Name and Email -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+                      Name <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      name="name"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                      placeholder="Your full name"
+                      required
+                    >
+                    <div class="text-xs text-red-500 mt-1 hidden" id="name-error">Please enter your name</div>
+                  </div>
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                      Email <span class="text-red-500">*</span>
+                    </label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                      placeholder="your.email@example.com"
+                      required
+                    >
+                    <div class="text-xs text-red-500 mt-1 hidden" id="email-error">Please enter a valid email address</div>
+                  </div>
+                </div>
+                
+                <!-- Company -->
+                <div class="mb-4">
+                  <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company</label>
+                  <input 
+                    type="text" 
+                    id="company" 
+                    name="company"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                    placeholder="Your company name"
+                  >
+                </div>
+                
+                <!-- Phone -->
+                <div class="mb-4">
+                  <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
+                    Phone Number <span class="text-red-500">*</span>
+                  </label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                    placeholder="+91 1234567890"
+                    required
+                  >
+                  <div class="text-xs text-red-500 mt-1 hidden" id="phone-error">Please enter a valid phone number</div>
+                </div>
+                
+                <!-- Inquiry Type -->
+                <div class="mb-4">
+                  <label for="inquiry-type" class="block text-sm font-medium text-gray-700 mb-1">
+                    Inquiry Type <span class="text-red-500">*</span>
+                  </label>
+                  <select 
+                    id="inquiry-type" 
+                    name="inquiry-type"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                    required
+                  >
+                    <option value="" disabled selected>Select inquiry type</option>
+                    <option value="sales">Sales Inquiry</option>
+                    <option value="support">Technical Support</option>
+                    <option value="parts">Spare Parts</option>
+                    <option value="service">Service Request</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <div class="text-xs text-red-500 mt-1 hidden" id="inquiry-error">Please select an inquiry type</div>
+                </div>
+                
+                <!-- Product Interest -->
+                <div class="mb-4">
+                  <label for="product-interest" class="block text-sm font-medium text-gray-700 mb-1">Product Interest</label>
+                  <select 
+                    id="product-interest" 
+                    name="product-interest"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                  >
+                    <option value="" selected>Select product (optional)</option>
+                    <option value="ema">Electromagnetic Shock Dyno</option>
+                    <option value="shock-dyno">Shock Dyno</option>
+                    <option value="spring-tester">Spring Rate Tester</option>
+                    <option value="data-logger">Data Acquisition System</option>
+                    <option value="sensors">Sensors</option>
+                    <option value="tools">Suspension Tools</option>
+                    <option value="all">All Products</option>
+                  </select>
+                </div>
+                
+                <!-- Subject -->
+                <div class="mb-4">
+                  <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                  <input 
+                    type="text" 
+                    id="subject" 
+                    name="subject"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                    placeholder="Brief subject of your inquiry"
+                  >
+                </div>
+                
+                <!-- Message -->
+                <div class="mb-6">
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
+                    Message <span class="text-red-500">*</span>
+                  </label>
+                  <textarea 
+                    id="message" 
+                    name="message"
+                    rows="5" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                    placeholder="Please provide details about your inquiry..."
+                    required
+                  ></textarea>
+                  <div class="text-xs text-red-500 mt-1 hidden" id="message-error">Please enter your message</div>
+                </div>
+                
+                <!-- File Upload (Optional) -->
+                <div class="mb-6">
+                  <label for="attachment" class="block text-sm font-medium text-gray-700 mb-1">Attachment (Optional)</label>
+                  <input 
+                    type="file" 
+                    id="attachment" 
+                    name="attachment"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
+                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                  >
+                  <p class="text-xs text-gray-500 mt-1">Max file size: 5MB. Allowed formats: PDF, DOC, JPG, PNG</p>
+                </div>
+                
+                <!-- Submit Button -->
+                <button 
+                  type="submit" 
+                  id="submit-btn"
+                  class="w-full bg-laba-blue text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center"
+                >
+                  <span id="submit-text">Send Message</span>
+                  <svg id="loading-spinner" class="hidden w-5 h-5 ml-2 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </button>
+                
+                <!-- Success/Error Message -->
+                <div id="form-message" class="mt-4 hidden p-4 rounded-lg"></div>
+              </form>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mt-8 bg-laba-light p-8 rounded-xl shadow-lg">
+              <h3 class="text-2xl font-semibold mb-6 text-laba-dark">Frequently Asked Questions</h3>
+              
+              <div class="space-y-4">
+                <div class="border-b border-gray-200 pb-4">
+                  <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(1)">
+                    <span class="font-medium text-gray-800">What is your typical response time?</span>
+                    <i class="fas fa-chevron-down text-laba-blue"></i>
+                  </button>
+                  <div id="faq-1" class="mt-2 text-gray-600 hidden">
+                    We typically respond to inquiries within 24 hours during business days. For urgent technical support, please call our hotline.
+                  </div>
+                </div>
+                
+                <div class="border-b border-gray-200 pb-4">
+                  <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(2)">
+                    <span class="font-medium text-gray-800">Do you provide on-site demonstrations?</span>
+                    <i class="fas fa-chevron-down text-laba-blue"></i>
+                  </button>
+                  <div id="faq-2" class="mt-2 text-gray-600 hidden">
+                    Yes, we offer on-site demonstrations for qualified customers. Contact our sales team to schedule a demonstration.
+                  </div>
+                </div>
+                
+                <div class="border-b border-gray-200 pb-4">
+                  <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(3)">
+                    <span class="font-medium text-gray-800">What is your warranty policy?</span>
+                    <i class="fas fa-chevron-down text-laba-blue"></i>
+                  </button>
+                  <div id="faq-3" class="mt-2 text-gray-600 hidden">
+                    All our products come with a standard 12-month warranty. Extended warranty options are available.
+                  </div>
+                </div>
+                
+                <div class="pb-4">
+                  <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(4)">
+                    <span class="font-medium text-gray-800">Do you ship internationally?</span>
+                    <i class="fas fa-chevron-down text-laba-blue"></i>
+                  </button>
+                  <div id="faq-4" class="mt-2 text-gray-600 hidden">
+                    Yes, we ship our products worldwide. Contact us for shipping rates and delivery times to your location.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-8 text-laba-dark">Need Immediate Assistance?</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-headset text-red-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Technical Support</h3>
+            <p class="text-gray-600 mb-4">24/7 technical support for existing customers</p>
+            <p class="font-bold text-laba-blue">+91 (800) 123-4567</p>
+          </div>
+          
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shopping-cart text-green-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Sales Inquiries</h3>
+            <p class="text-gray-600 mb-4">Get quotes and product information</p>
+            <p class="font-bold text-laba-blue">+91 (800) 987-6543</p>
+          </div>
+          
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-tools text-blue-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Service & Maintenance</h3>
+            <p class="text-gray-600 mb-4">Schedule service or maintenance</p>
+            <p class="font-bold text-laba-blue">+91 (800) 456-7890</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+ <div data-include="./footer.html"></div>
+
+  <!-- JavaScript -->
+  <script>
+    // Form submission handling
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactForm = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const submitText = document.getElementById('submit-text');
+      const loadingSpinner = document.getElementById('loading-spinner');
+      const formMessage = document.getElementById('form-message');
+
+      // FAQ toggle function
+      window.toggleFAQ = function(faqNumber) {
+        const faqContent = document.getElementById(`faq-${faqNumber}`);
+        const icon = document.querySelector(`[onclick="toggleFAQ(${faqNumber})"] i`);
+        
+        if (faqContent.classList.contains('hidden')) {
+          faqContent.classList.remove('hidden');
+          icon.classList.remove('fa-chevron-down');
+          icon.classList.add('fa-chevron-up');
+        } else {
+          faqContent.classList.add('hidden');
+          icon.classList.remove('fa-chevron-up');
+          icon.classList.add('fa-chevron-down');
+        }
+      };
+
+      // Form validation
+      function validateForm() {
+        let isValid = true;
+        
+        // Reset errors
+        document.querySelectorAll('[id$="-error"]').forEach(error => {
+          error.classList.add('hidden');
+        });
+        
+        // Name validation
+        const name = document.getElementById('name');
+        if (!name.value.trim()) {
+          document.getElementById('name-error').classList.remove('hidden');
+          name.classList.add('border-red-500');
+          isValid = false;
+        } else {
+          name.classList.remove('border-red-500');
+        }
+        
+        // Email validation
+        const email = document.getElementById('email');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.value.trim() || !emailRegex.test(email.value)) {
+          document.getElementById('email-error').classList.remove('hidden');
+          email.classList.add('border-red-500');
+          isValid = false;
+        } else {
+          email.classList.remove('border-red-500');
+        }
+        
+        // Phone validation
+        const phone = document.getElementById('phone');
+        const phoneRegex = /^[+\d\s\-()]{10,}$/;
+        if (!phone.value.trim() || !phoneRegex.test(phone.value)) {
+          document.getElementById('phone-error').classList.remove('hidden');
+          phone.classList.add('border-red-500');
+          isValid = false;
+        } else {
+          phone.classList.remove('border-red-500');
+        }
+        
+        // Inquiry type validation
+        const inquiryType = document.getElementById('inquiry-type');
+        if (!inquiryType.value) {
+          document.getElementById('inquiry-error').classList.remove('hidden');
+          inquiryType.classList.add('border-red-500');
+          isValid = false;
+        } else {
+          inquiryType.classList.remove('border-red-500');
+        }
+        
+        // Message validation
+        const message = document.getElementById('message');
+        if (!message.value.trim()) {
+          document.getElementById('message-error').classList.remove('hidden');
+          message.classList.add('border-red-500');
+          isValid = false;
+        } else {
+          message.classList.remove('border-red-500');
+        }
+        
+        return isValid;
+      }
+      
+      // File validation
+      const attachment = document.getElementById('attachment');
+      attachment.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+          const maxSize = 5 * 1024 * 1024; // 5MB
+          const allowedTypes = ['application/pdf', 'application/msword', 
+                               'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                               'image/jpeg', 'image/jpg', 'image/png'];
+          
+          if (file.size > maxSize) {
+            alert('File size exceeds 5MB limit. Please choose a smaller file.');
+            this.value = '';
+          } else if (!allowedTypes.includes(file.type)) {
+            alert('Please select a valid file type (PDF, DOC, JPG, PNG).');
+            this.value = '';
+          }
+        }
+      });
+      
+      // Form submission
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!validateForm()) {
+          return;
+        }
+        
+        // Show loading state
+        submitText.textContent = 'Sending...';
+        loadingSpinner.classList.remove('hidden');
+        submitBtn.disabled = true;
+        
+        // Simulate API call (replace with actual backend integration)
+        setTimeout(() => {
+          // Reset form
+          contactForm.reset();
+          
+          // Show success message
+          formMessage.innerHTML = `
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded alert-message">
+              <div class="flex items-center">
+                <i class="fas fa-check-circle mr-2"></i>
+                <span class="font-medium">Thank you for your message!</span>
+              </div>
+              <p class="mt-1 text-sm">We've received your inquiry and will get back to you within 24 hours.</p>
+            </div>
+          `;
+          formMessage.classList.remove('hidden');
+          
+          // Hide message after 5 seconds
+          setTimeout(() => {
+            formMessage.classList.add('hidden');
+          }, 5000);
+          
+          // Reset button
+          submitText.textContent = 'Send Message';
+          loadingSpinner.classList.add('hidden');
+          submitBtn.disabled = false;
+        }, 1500);
+      });
+      
+      // Real-time validation
+      const inputs = document.querySelectorAll('input, textarea, select');
+      inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+          if (this.hasAttribute('required') && !this.value.trim()) {
+            this.classList.add('border-red-500');
+          } else {
+            this.classList.remove('border-red-500');
+          }
+        });
+        
+        input.addEventListener('input', function() {
+          this.classList.remove('border-red-500');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

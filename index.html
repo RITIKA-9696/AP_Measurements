@@ -7,135 +7,89 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="./index.css">
+  <script src="./include.js"></script>
   <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#dc2626',
-                        'primary-dark': '#c91621',
-                        dark: '#1f2937',
-                        'gray-600': '#4b5563'
-                    }
-                }
-            }
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#dc2626',
+            'primary-dark': '#c91621',
+            dark: '#1f2937',
+            'gray-600': '#4b5563',
+            'blue-primary': '#155379',
+            'blue-light': '#67B2D8'
+          },
+          fontFamily: {
+            'inter': ['Inter', 'sans-serif']
+          },
+          maxWidth: {
+            '8xl': '90rem',
+          }
         }
-    </script>
-    <style>
-    table { border-collapse: separate; border-spacing: 0; }
-    th, td { border: 1px solid #d1d5db; }
-    th:first-child, td:first-child { border-left: none; }
-    th:last-child, td:last-child { border-right: none; }
-    tr:first-child th { border-top: none; }
-    tr:last-child td { border-bottom: none; }
-
-    /* body { font-family: 'Inter', sans-serif; }
-    
-    .adapter-box {
-      transition: all 0.4s ease;
-      overflow: hidden;
-    } */
-    .adapter-box:hover .adapter-img {
-      transform: scale(0);
-      opacity: 0;
+      }
     }
-    .adapter-box:hover .plus {
-      transform: scale(1);
-      opacity: 1;
-    }
-    .plus {
-      transform: scale(0);
-      opacity: 0;
-      transition: all 0.4s ease;
-      font-size: 3rem;
-      font-weight: bold;
-      cursor: pointer;
+  </script>
+  <style>
+    /* Custom styles that can't be done with Tailwind */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+      font-family: 'Inter', sans-serif;
     }
 
-    /* Modal */
-    #modal {
-      transition: opacity 0.3s ease;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* Zoom effect on hover */
-    .zoom-image {
-      transition: transform 0.5s ease;
-      transform-origin: center;
-    }
-    .zoom-image:hover {
-      transform: scale(1.12);
-    }
-
-    /* Hero Carousel */
+    /* Carousel Styles */
     .carousel-slide {
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+      transform: translateX(100%);
     }
     
     .carousel-slide.active {
       opacity: 1;
+      transform: translateX(0);
+      z-index: 1;
+    }
+    
+    .carousel-slide.prev {
+      transform: translateX(-100%);
+    }
+    
+    .carousel-container {
       position: relative;
-    }
-    
-    .carousel-content {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-    }
-    
-    .carousel-slide.active .carousel-content {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .carousel-title {
-      animation-delay: 0.3s !important;
-    }
-    
-    .carousel-subtitle {
-      animation-delay: 0.6s !important;
-    }
-    
-    .carousel-description {
-      animation-delay: 0.9s !important;
-    }
-    
-    .carousel-buttons {
-      animation-delay: 1.2s !important;
-    }
-    
-    .animate-delay-300 {
-      animation-delay: 0.3s;
-    }
-    
-    .animate-delay-600 {
-      animation-delay: 0.6s;
-    }
-    
-    .animate-delay-900 {
-      animation-delay: 0.9s;
-    }
-    
-    .animate-delay-1200 {
-      animation-delay: 1.2s;
+      width: 100%;
+      height: 100%;
+      min-height: 600px;
     }
 
-    /* Optional: Slight lift on hover */
-    .image-container:hover .zoom-image {
-      transform: scale(1.12);
+    /* Mobile Sidebar Animation */
+    @keyframes slideInLeft {
+      from {
+        left: -100%;
+        opacity: 0;
+      }
+      to {
+        left: 0;
+        opacity: 1;
+      }
     }
-    
-    /* Fade-in animation */
+
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -143,552 +97,906 @@
       }
     }
     
-    .fade-in-up {
-      animation: fadeInUp 0.8s ease forwards;
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
     }
-    </style>
+    
+    /* Card hover effects */
+    .card-item > div {
+      transition-property: transform, box-shadow, border-color;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 300ms;
+    }
+    
+    /* Hover effect for the active card */
+    .card-item.active > div {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-color: rgb(59 130 246);
+    }
+    
+    /* Hover effect for adjacent cards (subtle lift) */
+    .card-item.adjacent > div {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Hover effect for distant cards (very subtle lift) */
+    .card-item.distant > div {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    /* Image zoom on active card */
+    .card-item.active img {
+      transform: scale(1.08) !important;
+    }
+    
+    /* Underline animation on active card */
+    .card-item.active .absolute.bottom-0 {
+      transform: scaleX(1) !important;
+    }
+    
+    /* Text color change on active card */
+    .card-item.active h3,
+    .card-item.active h4 {
+      color: rgb(29 78 216) !important;
+    }
+    
+    /* Description reveal on active card */
+    .card-item.active p {
+      opacity: 1 !important;
+      max-height: 100px !important;
+    }
+
+    /* Mobile Menu Overlay */
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+      backdrop-filter: blur(4px);
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Mobile Sidebar */
+    .mobile-sidebar {
+      position: fixed;
+      left: -100%;
+      top: 0;
+      width: 100%;
+      max-width: 320px;
+      height: 100vh;
+      background: white;
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+      transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1001;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-sidebar.active {
+      left: 0;
+      animation: slideInLeft 0.4s ease-out;
+    }
+
+    /* Mobile Sidebar Header */
+    .mobile-sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .close-sidebar-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #6b7280;
+    }
+
+    /* Mobile Sidebar Navigation */
+    .mobile-sidebar-nav {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      color: #374151;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+    }
+
+    .mobile-nav-link:hover {
+      background-color: #f3f4f6;
+    }
+
+    /* Mobile Submenu */
+    .mobile-submenu {
+      background: #fafafa;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-left: 20px;
+      border-radius: 8px;
+    }
+
+    .mobile-submenu.active {
+      max-height: 1200px;
+    }
+
+    .mobile-submenu-section {
+      padding: 12px 0;
+    }
+
+    .mobile-submenu-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: #dc2626;
+      font-size: 14px;
+      margin-bottom: 8px;
+      padding: 0 16px;
+    }
+
+    .mobile-submenu-link {
+      display: block;
+      padding: 8px 16px;
+      color: #6b7280;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .mobile-submenu-link:hover {
+      color: #dc2626;
+    }
+
+    .mobile-nav-cta {
+      display: block;
+      padding: 12px 16px;
+      background-color: #dc2626;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 8px;
+      margin-top: 8px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+
+    .mobile-nav-cta:hover {
+      background-color: #c91621;
+    }
+
+    /* Mega Menu */
+    .mega-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      width: 95vw;
+      max-width: 1000px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 0;
+    }
+
+    .group:hover .mega-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Zoom effect on hover */
+    .zoom-image {
+      transition: transform 0.5s ease;
+      transform-origin: center;
+    }
+    
+    .zoom-image:hover {
+      transform: scale(1.12);
+    }
+
+    /* Adapter Box Styles */
+    .adapter-box {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .adapter-box img {
+      transition: transform 0.5s ease;
+    }
+
+    .adapter-box:hover img {
+      transform: scale(1.1);
+    }
+
+    .adapter-box .plus {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      color: white;
+      font-size: 3rem;
+      font-weight: bold;
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 2;
+    }
+
+    .adapter-box:hover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 1rem;
+      z-index: 1;
+    }
+
+    .adapter-box:hover .plus {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* Modal Styles */
+    #imageModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #imageModal.active {
+      display: flex;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #modalImage {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 8px;
+      transition: transform 0.3s ease-out;
+    }
+
+    /* Navigation buttons in modal */
+    #prevBtn, #nextBtn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    #prevBtn:hover, #nextBtn:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    #prevBtn {
+      left: 20px;
+    }
+
+    #nextBtn {
+      right: 20px;
+    }
+
+    #closeModal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    #closeModal:hover {
+      transform: scale(1.1);
+    }
+
+    /* Table border fixes */
+    table { border-collapse: separate; border-spacing: 0; }
+    th, td { border: 1px solid #d1d5db; }
+    th:first-child, td:first-child { border-left: none; }
+    th:last-child, td:last-child { border-right: none; }
+    tr:first-child th { border-top: none; }
+    tr:last-child td { border-bottom: none; }
+
+    /* Hide mobile sidebar on desktop */
+    @media (min-width: 1024px) {
+      .mobile-sidebar,
+      .mobile-menu-overlay,
+      #mobileBtn {
+        display: none !important;
+      }
+    }
+
+    /* Responsive Mega Menu */
+    @media (max-width: 1024px) {
+      .mega-menu {
+        width: 100vw;
+        left: 0;
+        right: 0;
+        transform: translateX(0) translateY(-20px);
+        border-radius: 0;
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .group:hover .mega-menu {
+        transform: translateX(0) translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .mega-menu {
+        width: 100vw;
+        left: 0 !important;
+        right: 0;
+        transform: translateX(0) translateY(-20px) !important;
+        border-radius: 0;
+        max-width: 100%;
+        position: fixed;
+        top: auto;
+        bottom: auto;
+        margin: 0;
+      }
+
+      .group:hover .mega-menu {
+        transform: translateX(0) translateY(0) !important;
+      }
+      
+      .carousel-container {
+        min-height: 700px;
+      }
+    }
+
+    /* Smooth animations for form elements */
+    #contactFormSection form > * {
+      animation: slideUp 0.5s ease-out forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    #contactFormSection form > *:nth-child(1) { animation-delay: 0.1s; }
+    #contactFormSection form > *:nth-child(2) { animation-delay: 0.2s; }
+    #contactFormSection form > *:nth-child(3) { animation-delay: 0.3s; }
+    #contactFormSection form > *:nth-child(4) { animation-delay: 0.4s; }
+    #contactFormSection form > *:nth-child(5) { animation-delay: 0.5s; }
+    
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Style for select dropdowns */
+    select {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.5rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+      padding-right: 2.5rem;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  </style>
 </head>
 
-<body class="bg-white min-h-screen">
+<body class="bg-[#F5EDED] min-h-screen font-inter">
 
   <!-- ==================== FIXED NAVBAR ==================== -->
-  <header class="fixed inset-x-0 top-0 z-50 bg-white shadow-md">
-    <nav class="container mx-auto px-6">
-      <div class="flex justify-between items-center py-5">
+  <div data-include="header.html"></div>
 
-        <!-- Logo -->
-        <div class="flex items-center">
-          <a href="./index.html">
-          <img src="./assets/logo.jpg"
-               alt="Logo"
-               class="h-16 w-auto object-cover mix-blend-multiply brightness-120 contrast-120 saturate-200 hue-rotate-15">
-               </a>
+  <!-- Mobile Sidebar Overlay -->
+  <div class="mobile-menu-overlay" id="menuOverlay"></div>
+  
+  <!-- Mobile Sidebar -->
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="mobile-sidebar-header">
+      <h2 class="text-lg font-bold text-blue-primary">Menu</h2>
+      <button class="close-sidebar-btn" id="closeSidebarBtn">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-sidebar-nav">
+      <a href="./index.html" class="mobile-nav-link">Home</a>
+      <a href="#" class="mobile-nav-link" id="mobileProductsToggle">
+        Products
+        <i class="fas fa-chevron-down text-xs ml-auto" id="productsArrow"></i>
+      </a>
+      <div class="mobile-submenu" id="mobileProductsMenu">
+        <div class="mobile-submenu-section">
+          <div class="mobile-submenu-title">
+            <i class="fas fa-car-side"></i> Suspension Testing
+          </div>
+          <a href="/EMA/ema.html" class="mobile-submenu-link">EMA</a>
+          <a href="#" class="mobile-submenu-link">Shock Dyno</a>
+          <a href="#" class="mobile-submenu-link">Spring Rate Tester</a>
+          <a href="#" class="mobile-submenu-link">Suspension Tools</a>
+          <a href="#" class="mobile-submenu-link">Adapters</a>
         </div>
+        <div class="mobile-submenu-section">
+          <div class="mobile-submenu-title">
+            <i class="fas fa-database"></i> Data Logger
+          </div>
+          <a href="#" class="mobile-submenu-link">Data Acquisition System</a>
+        </div>
+        <div class="mobile-submenu-section">
+          <div class="mobile-submenu-title">
+            <i class="fas fa-microchip"></i> Sensors
+          </div>
+          <a href="#" class="mobile-submenu-link">Accelerometer</a>
+          <a href="#" class="mobile-submenu-link">Impact Hammer</a>
+          <a href="#" class="mobile-submenu-link">Pressure Sensor</a>
+          <a href="#" class="mobile-submenu-link">Weighing Scales</a>
+        </div>
+      </div>
+      <a href="#about" class="mobile-nav-link">About</a>
+      <a href="./contact.html" class="mobile-nav-link">Contact</a>
+      <a href="#" class="mobile-nav-cta">Testing Sensors</a>
+    </nav>
+  </div>
 
-        <!-- Desktop Menu -->
-        <ul class="hidden lg:flex items-center space-x-8 text-sm font-medium">
-          <li><a href="./index.html"
-                 class="text-dark hover:text-primary transition duration-300">Home</a></li>
-
-          <!-- PRODUCTS MEGA MENU -->
-          <li class="relative group">
-            <a href="#"
-               class="text-dark hover:text-primary transition duration-300 flex items-center">
-              Products
-              <svg class="w-3 h-3 ml-1 transition-transform group-hover:rotate-180"
-                   fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </a>
-
-            <!-- Mega Dropdown -->
-            <div class="absolute top-full left-1/2 -translate-x-1/2 w-[95vw] max-w-5xl
-                            bg-white rounded-lg shadow-2xl
-                            opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                            transition-all duration-300 pointer-events-none group-hover:pointer-events-auto
-                            mt-2">
-              <div class="container mx-auto px-6 py-8">
-                <div class="grid grid-cols-4 gap-8">
-
-                  <!-- Suspension Testing -->
-                  <div>
-                    <div class="text-primary font-bold text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
-                      <i class="fas fa-car-side"></i> Suspension Testing
-                    </div>
-                    <a href="/EMA/ema.html" class="block py-2 text-gray-600 hover:text-primary text-sm">EMA</a>
-                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Shock Dyno</a>
-                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Spring Rate Tester</a>
-                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Suspension Tools</a>
-                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Adapters</a>
-                  </div>
-
-                  <!-- Data Logger -->
-                  <div>
-                    <div class="text-primary font-bold text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
-                      <i class="fas fa-database"></i> Data Logger
-                    </div>
-                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Data Acquisition System</a>
-                  </div>
-
-                  <!-- Sensors -->
-                  <div>
-                    <div class="text-primary font-bold text-xs uppercase tracking-wider mb-4 flex items-center gap-2">
-                      <i class="fas fa-microchip"></i> Sensors
-                    </div>
-                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Accelerometer</a>
-                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Impact Hammer</a>
-                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Pressure Sensor</a>
-                    <a href="#" class="block py-2 text-gray-600 hover:text-primary text-sm">Weighing Scales</a>
-                  </div>
-                </div>
+ <!-- ==================== HERO CAROUSEL SECTION ==================== -->
+<section class="relative py-10 md:py-20 text-gray-700 min-h-[50vh] flex items-center overflow-hidden ">
+  <!-- Carousel Container -->
+  <div class="carousel-container w-full h-full relative">
+    
+    <!-- Slide 1: Electromagnetic Shock Dyno -->
+    <div class="carousel-slide active ml-12" data-slide="0">
+      <div class="w-full h-full flex items-center">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center w-full">
+          <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12 ml-6">
+            <div class="carousel-content">
+              <h1 class="text-3xl md:text-4xl font-semibold mb-4 leading-tight fade-in-up carousel-title" style="animation-delay: 0.3s">
+                Precision Testing Solutions
+              </h1>
+              <p class="text-xl md:text-xl mb-4 fade-in-up carousel-subtitle" style="animation-delay: 0.6s">
+                Advanced electromagnetic technology for high-performance suspension systems
+              </p>
+              <p class="text-sm md:text-base mb-8 leading-relaxed fade-in-up carousel-description" style="animation-delay: 0.9s">
+                Our Electromagnetic Shock Dyno delivers unmatched accuracy in damper testing with linear actuation, 
+                high-speed data acquisition, and silent operation. Ideal for motorsports teams and suspension developers.
+              </p>
+              <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 fade-in-up carousel-buttons" style="animation-delay: 1.2s">
+                <a href="#contact" 
+                   class="border-2 border-white bg-[#FF8040] text-white px-6 py-2 rounded-lg font-semibold text-center 
+                          hover:bg-orange-600 transition duration-300 shadow-lg">
+                  Request Demo
+                </a>
+                <a href="#specifications" 
+                   class="border-2 border-white text-white px-6 py-2 rounded-lg font-semibold text-center 
+                          hover:bg-orange-600 bg-[#FF8040] transition duration-300">
+                  View Specifications
+                </a>
               </div>
             </div>
-          </li>
-
-          <li><a href="#about"
-                 class="text-dark hover:text-primary transition duration-300">About</a></li>
-          <li><a href="#contact"
-                 class="text-dark hover:text-primary transition duration-300">Contact</a></li>
-          <li>
-            <a href="#"
-               class="bg-primary text-white px-5 py-2.5 rounded text-xs font-semibold
-                      hover:bg-primary-dark transition duration-300">
-              Testing Sensors
-            </a>
-          </li>
-        </ul>
-
-        <!-- Mobile Hamburger -->
-        <button id="mobileBtn"
-                class="lg:hidden text-dark p-2"
-                aria-label="Toggle mobile menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Mobile Menu (hidden by default) -->
-      <div id="mobileMenu" class="lg:hidden hidden bg-white border-t">
-        <div class="py-4 space-y-3 px-6">
-          <a href="#home" class="block text-dark hover:text-primary py-2">Home</a>
-          <a href="#products" class="block text-dark hover:text-primary py-2">Products</a>
-          <a href="#about" class="block text-dark hover:text-primary py-2">About</a>
-          <a href="#contact" class="block text-dark hover:text-primary py-2">Contact</a>
-          <a href="#" class="block bg-primary text-white px-6 py-2.5 rounded text-center
-                             font-semibold hover:bg-primary-dark">
-            testing Sensors
-          </a>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <!-- ==================== HERO CAROUSEL SECTION ==================== -->
-  <section class="relative py-20 md:py-48 bg-[#67B2D8] text-white min-h-screen flex items-center">
-    <!-- Carousel Container -->
-    <div class="carousel-container w-full h-full">
-      
-      <!-- Slide 1: Electromagnetic Shock Dyno -->
-      <div class="carousel-slide active flex flex-col md:flex-row items-center min-h-screen md:min-h-0 container mx-auto px-4 md:px-8">
-        <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-          <div class="carousel-content">
-            <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight fade-in-up carousel-title" style="animation-delay: 0.3s">
-              Precision Testing Solutions
-            </h1>
-            <p class="text-xl md:text-2xl mb-6 fade-in-up carousel-subtitle" style="animation-delay: 0.6s">
-              Advanced electromagnetic technology for high-performance suspension systems
-            </p>
-            <p class="mb-10 text-lg leading-relaxed fade-in-up carousel-description" style="animation-delay: 0.9s">
-              Our Electromagnetic Shock Dyno delivers unmatched accuracy in damper testing with linear actuation, 
-              high-speed data acquisition, and silent operation. Ideal for motorsports teams and suspension developers.
-            </p>
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 fade-in-up carousel-buttons" style="animation-delay: 1.2s">
-              <a href="#contact" 
-                 class="border-2 border-white bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold text-center 
-                        hover:bg-orange-600 transition duration-300 shadow-lg">
-                Request Demo
-              </a>
-              <a href="#specifications" 
-                 class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-center 
-                        hover:bg-orange-600 bg-orange-500 transition duration-300">
-                View Specifications
-              </a>
-            </div>
           </div>
-        </div>
-        
-        <div class="md:w-1/2 flex justify-center">
-          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-full max-w-lg shadow-2xl">
-            <div class="overflow-hidden rounded-xl">
-              <img src="../assets/electromagnetic shock dyno(product).jpg"
-                   alt="Electromagnetic Shock Dyno"
-                   class="w-full h-auto object-contain object-center transform transition-transform duration-500 hover:scale-105">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Slide 2: Spring Rate Testing -->
-      <div class="carousel-slide flex flex-col md:flex-row items-center min-h-screen md:min-h-0 container mx-auto px-4 md:px-8">
-        <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-          <div class="carousel-content">
-            <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight fade-in-up" style="animation-delay: 0.3s">
-              Accurate Spring Rate Analysis
-            </h1>
-            <p class="text-xl md:text-2xl mb-6 fade-in-up" style="animation-delay: 0.6s">
-              Precision measurement for suspension optimization
-            </p>
-            <p class="mb-10 text-lg leading-relaxed fade-in-up" style="animation-delay: 0.9s">
-              Our Spring Rate Testers provide exact measurement of spring constants with repeatable results. 
-              Essential for tuning vehicle dynamics in F1, LMDh, Dakar Rally, and professional motorsports.
-            </p>
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 fade-in-up" style="animation-delay: 1.2s">
-              <a href="#contact" 
-                 class="border-2 border-white bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold text-center 
-                        hover:bg-orange-600 transition duration-300 shadow-lg">
-                Learn More
-              </a>
-              <a href="#specifications" 
-                 class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-center 
-                        hover:bg-orange-600 bg-orange-500 transition duration-300">
-                Technical Data
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="md:w-1/2 flex justify-center">
-          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-full max-w-lg shadow-2xl">
-            <div class="overflow-hidden rounded-xl">
-              <img src="../assets/Spring Rate Tester(product2).jpg"
-                   alt="Spring Rate Tester"
-                   class="w-full h-auto object-contain object-center transform transition-transform duration-500 hover:scale-105">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Slide 3: Data Acquisition Systems -->
-      <div class="carousel-slide flex flex-col md:flex-row items-center min-h-screen md:min-h-0 container mx-auto px-4 md:px-8">
-        <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-          <div class="carousel-content">
-            <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight fade-in-up" style="animation-delay: 0.3s">
-              Advanced Data Acquisition
-            </h1>
-            <p class="text-xl md:text-2xl mb-6 fade-in-up" style="animation-delay: 0.6s">
-              High-resolution data logging for performance analysis
-            </p>
-            <p class="mb-10 text-lg leading-relaxed fade-in-up" style="animation-delay: 0.9s">
-              Our data loggers capture position resolution of 50 nanometers and sampling rates up to 20 kHz. 
-              With 20-bit load cell resolution, you get unparalleled insight into damper performance.
-            </p>
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 fade-in-up" style="animation-delay: 1.2s">
-              <a href="#contact" 
-                 class="border-2 border-white bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold text-center 
-                        hover:bg-orange-600 transition duration-300 shadow-lg">
-                Request Info
-              </a>
-              <a href="#specifications" 
-                 class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-center 
-                        hover:bg-orange-600 bg-orange-500 transition duration-300">
-                View Features
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="md:w-1/2 flex justify-center">
-          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-full max-w-lg shadow-2xl">
-            <div class="overflow-hidden rounded-xl">
-              <img src="../assets/data-logger1.png"
-                   alt="Data Acquisition System"
-                   class="w-full h-auto object-contain object-center transform transition-transform duration-500 hover:scale-105">
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Slide 4: Complete Suspension Solutions -->
-      <div class="carousel-slide flex flex-col md:flex-row items-center min-h-screen md:min-h-0 container mx-auto px-4 md:px-8">
-        <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-          <div class="carousel-content">
-            <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight fade-in-up" style="animation-delay: 0.3s">
-              Complete Suspension Ecosystem
-            </h1>
-            <p class="text-xl md:text-2xl mb-6 fade-in-up" style="animation-delay: 0.6s">
-              End-to-end testing and maintenance solutions
-            </p>
-            <p class="mb-10 text-lg leading-relaxed fade-in-up" style="animation-delay: 0.9s">
-              From shock dynos and spring testers to vacuum bleed pumps and corner weight scales, 
-              we provide everything needed for professional suspension testing and maintenance.
-            </p>
-            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 fade-in-up" style="animation-delay: 1.2s">
-              <a href="#contact" 
-                 class="border-2 border-white bg-orange-500 text-white px-8 py-4 rounded-lg font-semibold text-center 
-                        hover:bg-orange-600 transition duration-300 shadow-lg">
-                Contact Sales
-              </a>
-              <a href="#products" 
-                 class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-center 
-                        hover:bg-orange-600 bg-orange-500 transition duration-300">
-                Browse Products
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="md:w-1/2 flex justify-center">
-          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-full max-w-lg shadow-2xl">
-            <div class="overflow-hidden rounded-xl">
-              <img src="../assets/suspension tool(product5).jpg"
-                   alt="Suspension Tools"
-                   class="w-full h-auto object-contain object-center transform transition-transform duration-500 hover:scale-105">
+          
+          <div class="md:w-1/3 md:ml-14 flex justify-center">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-4 w-full max-w-md shadow-2xl">
+              <div class="overflow-hidden rounded-xl">
+                <img src="./assets/electromagnetic shock dyno(product).jpg"
+                     alt="Electromagnetic Shock Dyno"
+                     class="w-full h-auto object-contain object-center transform transition-transform duration-500 hover:scale-105">
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
     
-    <!-- Carousel Navigation Dots -->
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
-      <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition duration-300 active" data-slide="0"></button>
-      <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition duration-300" data-slide="1"></button>
-      <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition duration-300" data-slide="2"></button>
-      <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition duration-300" data-slide="3"></button>
+    <!-- Slide 2: Spring Rate Testing -->
+    <div class="carousel-slide ml-12" data-slide="1">
+      <div class="w-full h-full flex items-center">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center w-full">
+          <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12 ml-6">
+            <div class="carousel-content">
+              <h1 class="text-3xl md:text-4xl font-semibold mb-4 leading-tight fade-in-up" style="animation-delay: 0.3s">
+                Accurate Spring Rate Analysis
+              </h1>
+              <p class="text-xl md:text-xl mb-4 fade-in-up" style="animation-delay: 0.6s">
+                Precision measurement for suspension optimization
+              </p>
+              <p class="text-sm md:text-base mb-8 leading-relaxed fade-in-up" style="animation-delay: 0.9s">
+                Our Spring Rate Testers provide exact measurement of spring constants with repeatable results. 
+                Essential for tuning vehicle dynamics in F1, LMDh, Dakar Rally, and professional motorsports.
+              </p>
+              <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 fade-in-up" style="animation-delay: 1.2s">
+                <a href="#contact" 
+                   class="border-2 border-white bg-[#FF8040] text-white px-6 py-2 rounded-lg font-semibold text-center 
+                          hover:bg-orange-600 transition duration-300 shadow-lg">
+                  Learn More
+                </a>
+                <a href="#specifications" 
+                   class="border-2 border-white text-white px-6 py-2 rounded-lg font-semibold text-center 
+                          hover:bg-orange-600 bg-[#FF8040] transition duration-300">
+                  Technical Data
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="md:w-1/3 md:ml-14 flex justify-center">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 w-full max-w-md shadow-2xl">
+              <div class="overflow-hidden rounded-xl">
+                <img src="./assets/Spring Rate Tester(product2).jpg"
+                     alt="Spring Rate Tester"
+                     class="w-full h-auto object-contain object-center transform transition-transform duration-500 hover:scale-105">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     
-    <!-- Carousel Navigation Arrows -->
-    <button class="carousel-prev absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition duration-300 z-10">
-      <i class="fas fa-chevron-left text-xl"></i>
-    </button>
-    <button class="carousel-next absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 rounded-full transition duration-300 z-10">
-      <i class="fas fa-chevron-right text-xl"></i>
-    </button>
-    
-    <!-- Auto-play Indicator -->
-    <div class="absolute bottom-6 right-6 text-white/70 text-sm flex items-center space-x-2">
-      <i class="fas fa-play-circle"></i>
-      <span>Auto-play</span>
+    <!-- Slide 3: Data Acquisition Systems -->
+    <div class="carousel-slide ml-4 md:ml-16" data-slide="2">
+      <div class="w-full h-full flex items-center">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center w-full">
+          <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12 ml-6">
+            <div class="carousel-content">
+              <h1 class="text-3xl md:text-4xl font-semibold mb-4 leading-tight fade-in-up" style="animation-delay: 0.3s">
+                Advanced Data Acquisition
+              </h1>
+              <p class="text-xl md:text-xl mb-4 fade-in-up" style="animation-delay: 0.6s">
+                High-resolution data logging for performance analysis
+              </p>
+              <p class="text-sm md:text-base mb-8 leading-relaxed fade-in-up" style="animation-delay: 0.9s">
+                Our data loggers capture position resolution of 50 nanometers and sampling rates up to 20 kHz. 
+                With 20-bit load cell resolution, you get unparalleled insight into damper performance.
+              </p>
+              <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 fade-in-up" style="animation-delay: 1.2s">
+                <a href="#contact" 
+                   class="border-2 border-white bg-[#FF8040] text-white px-6 py-2 rounded-lg font-semibold text-center 
+                          hover:bg-orange-600 transition duration-300 shadow-lg">
+                  Request Info
+                </a>
+                <a href="#specifications" 
+                   class="border-2 border-white text-white px-6 py-2 rounded-lg font-semibold text-center 
+                          hover:bg-orange-600 bg-[#FF8040] transition duration-300">
+                  View Features
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="md:w-1/3 md:ml-14 flex justify-center">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 w-full max-w-md shadow-2xl">
+              <div class="overflow-hidden rounded-xl">
+                <img src="./assets/data-logger1.png"
+                     alt="Data Acquisition System"
+                     class="w-full h-auto object-contain object-center transform transition-transform duration-500 hover:scale-105">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+    
+    <!-- Slide 4: Complete Suspension Solutions -->
+    <div class="carousel-slide  ml-4 md:ml-12" data-slide="3">
+      <div class="w-full h-full flex items-center">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center w-full">
+          <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12 ml-6">
+            <div class="carousel-content">
+              <h1 class="text-3xl md:text-4xl font-semibold mb-4 leading-tight fade-in-up" style="animation-delay: 0.3s">
+                Complete Suspension Ecosystem
+              </h1>
+              <p class="text-xl md:text-xl mb-4 fade-in-up" style="animation-delay: 0.6s">
+                End-to-end testing and maintenance solutions
+              </p>
+              <p class="mb-8 text-sm md:text-base leading-relaxed fade-in-up" style="animation-delay: 0.9s">
+                From shock dynos and spring testers to vacuum bleed pumps and corner weight scales, 
+                we provide everything needed for professional suspension testing and maintenance.
+              </p>
+              <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 fade-in-up" style="animation-delay: 1.2s">
+                <a href="#contact" 
+                   class="border-2 border-white bg-[#FF8040] text-white px-6 py-2 rounded-lg font-semibold text-center 
+                          hover:bg-orange-600 transition duration-300 shadow-lg">
+                  Contact Sales
+                </a>
+                <a href="#products" 
+                   class="border-2 border-white text-white px-6 py-2 rounded-lg font-semibold text-center 
+                          hover:bg-orange-600 bg-[#FF8040] transition duration-300">
+                  Browse Products
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="md:w-1/3 md:ml-14 flex justify-center">
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 w-full max-w-md shadow-2xl">
+              <div class="overflow-hidden rounded-xl">
+                <img src="./assets/suspension tool(product5).jpg"
+                     alt="Suspension Tools"
+                     class="w-full h-auto object-contain object-center transform transition-transform duration-500 hover:scale-105">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Carousel Navigation Dots -->
+  <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+    <button class="carousel-dot w-3 h-3 rounded-full bg-white hover:bg-white transition duration-300 active" data-slide="0"></button>
+    <button class="carousel-dot w-3 h-3 rounded-full bg-white hover:bg-white transition duration-300" data-slide="1"></button>
+    <button class="carousel-dot w-3 h-3 rounded-full bg-white hover:bg-white transition duration-300" data-slide="2"></button>
+    <button class="carousel-dot w-3 h-3 rounded-full bg-white hover:bg-white transition duration-300" data-slide="3"></button>
+  </div>
+  
+  <!-- Carousel Navigation Arrows -->
+  <button class="carousel-prev absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 bg-white/40 hover:bg-white/60 text-gray-500 p-3 rounded-full transition duration-300 z-10">
+    <i class="fas fa-chevron-left text-xl"></i>
+  </button>
+  <button class="carousel-next absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 bg-white/40 hover:bg-white/60 text-gray-500 p-3 rounded-full transition duration-300 z-10">
+    <i class="fas fa-chevron-right text-xl"></i>
+  </button>
+</section>
 
   <!-- About Section -->
-  <section id="about" class="about-section bg-white">
+  <section id="about" class="py-16 md:py-24 bg-gray-100">
     <div class="container mx-auto px-4">
-      <div class="about-grid">
-        <div class="about-content">
-          <h2>About Our Company</h2>
-          <p>We are a leading manufacturer of marine and diesel engines with a global presence spanning over three decades. Our commitment to innovation, quality, and reliability has made us the trusted choice for industrial applications worldwide.</p>
-          <p>From marine propulsion systems to commercial vehicle engines, we deliver cutting-edge solutions that power the world's industries. Our state-of-the-art manufacturing facilities and dedicated R&D team ensure we stay at the forefront of technology.</p>
-          <a href="#" class="carousel-btn">Learn More About Us →</a>
+      <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div class="space-y-6">
+          <h2 class="text-2xl md:text-2xl font-bold text-gray-700 uppercase">About Our Company</h2>
+          <p class="text-gray-500 leading-relaxed">
+            We are a leading manufacturer of marine and diesel engines with a global presence spanning over three decades. Our commitment to innovation, quality, and reliability has made us the trusted choice for industrial applications worldwide.
+          </p>
+          <p class="text-gray-500 leading-relaxed">
+            From marine propulsion systems to commercial vehicle engines, we deliver cutting-edge solutions that power the world's industries. Our state-of-the-art manufacturing facilities and dedicated R&D team ensure we stay at the forefront of technology.
+          </p>
+          <a href="#" class="inline-block bg-[#FF8040] text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300">
+            Learn More About Us →
+          </a>
         </div>
-        <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop" alt="Company">
+        <div class="relative">
+          <div class="bg-gradient-to-r from-primary to-primary-dark rounded-lg overflow-hidden shadow-xl h-80">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop" 
+                 alt="Company" 
+                 class="w-full h-full object-cover">
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- products list -->
-  <section class="py-20 bg-[#67B2D8] mb-12">
+   <!-- suspension tools -->
+  <section class="py-20 mb-12">
     <div class="products-content container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <h1 class="products-content text-center mb-2 text-3xl md:text-4xl font-bold text-white">
+    <h1 class="products-content text-center mb-2 text-2xl md:text-2xl font-bold text-gray-700">
         Suspension Testing Equipments and Tools
       </h1>
     </div>
     <div class="max-w-6xl mx-auto px-4 text-center">
-      <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+      <p class="text-lg text-gray-600 mb-6 leading-relaxed">
         Achieve superior results with LABA7's suspension testing and maintenance tools. Advanced shock dynos, spring testers, and vacuum bleed pumps help engineers and mechanics enhance vehicle performance on everything from mountain bikes and motorcycles to race cars — including F1, LMDh, and Dakar Rally vehicles.
       </p>
-      <p class="text-lg text-gray-700 leading-relaxed">
+      <p class="text-lg text-gray-600 leading-relaxed">
         Designed for accuracy, durability, and ease of use, our tools help professionals test, tune, and maintain with confidence.
       </p>
     </div>
   </section>
 
-  <!-- ==================== PRODUCT CARDS ==================== -->
-  <!-- First Row: 3 Cards -->
-    <section class="mb-20">
-      <div class="max-w-5xl mx-auto px-4">
-        <div class="grid md:grid-cols-3 gap-10 cursor-pointer">
-
-          <!-- Electromagnetic Shock Dynos -->
-          <div class="group">
-            <div class="bg-white h-80 rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-transform duration-300 group-hover:scale-105">
-              <a href="./EMA/ema.html">
-              <div class="p-10 flex justify-center items-center  ">
+   <!-- product card -->
+   <section class="py-16 md:py-20 bg-gray-100">
+     <div class="max-w-7xl mx-auto px-4">
+       <!-- Section Header -->
+    <div class="text-center mb-16 animate-fade-in-up">
+      <h2 class="text-2xl md:text-2xl font-bold text-gray-700 mb-4">Our Products</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">High-performance testing and measurement equipment for suspension systems</p>
+    </div>
+    
+    <!-- Card Container with interconnected hover system -->
+    <div class="card-grid-container">
+      <!-- First Row: 3 Cards -->
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+        <!-- Electromagnetic Shock Dynos -->
+        <div class="group card-item h-68 w-60 ml-4 md:ml-16 cursor-pointer animate-fade-in-up" style="animation-delay: 0.1s">
+          <a href="./EMA/ema.html" class="block h-full">
+            <div class="bg-white h-full rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-all duration-500 ease-out">
+              <div class="relative p-10 flex justify-center items-center h-48 bg-gradient-to-br from-gray-50 to-blue-50">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 transition-opacity duration-700"></div>
                 <img src="./assets/electromagnetic shock dyno(product).jpg" 
                      alt="Electromagnetic Shock Dyno" 
-                     class="h-full w-auto object-contain">
+                     class="h-full w-auto object-contain transition-transform duration-700">
               </div>
-              <div class="p-6 text-center">
-                <h3 class="text-xl font-bold text-gray-900">Electromagnetic Shock Dynos</h3>
+              <div class="p-6 text-center relative overflow-hidden">
+                <div class="absolute bottom-0 left-0 w-full h-1 bg-blue-500 transform scale-x-0 transition-transform duration-500 origin-left"></div>
+                <h3 class="text-xl font-bold text-gray-900 transition-colors duration-300">Electromagnetic Shock Dynos</h3>
+                <p class="mt-2 text-gray-600 text-sm opacity-0 max-h-0 overflow-hidden transition-all duration-500">
+                  Advanced testing systems for precise shock absorber analysis
+                </p>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
+        </div>
 
         <!-- Shock Dynos -->
-          <div class="group">
-            <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-transform duration-300 group-hover:scale-105">
-              <div class="p-10 flex justify-center items-center h-80 bg-gradient-to-b from-gray-50 to-white">
-                <img src="./assets/shock-dyno.png" 
-                     alt="Shock Dyno" 
-                     class="h-full w-auto object-contain">
-              </div>
-              <div class="p-6 text-center">
-                <h3 class="text-xl font-bold text-gray-900">Shock Dynos</h3>
-              </div>
+        <div class="group card-item h-68 w-60 ml-4 md:ml-16 cursor-pointer animate-fade-in-up" style="animation-delay: 0.2s">
+          <div class="bg-white h-full rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-all duration-500 ease-out">
+            <div class="relative p-10 flex justify-center items-center h-60 bg-gradient-to-br from-gray-50 to-blue-50">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 transition-opacity duration-700"></div>
+              <img src="./assets/shock-dyno.png" 
+                   alt="Shock Dyno" 
+                   class="h-full w-auto object-contain transition-transform duration-700">
+            </div>
+            <div class="p-6 text-center relative overflow-hidden">
+              <div class="absolute bottom-0 left-0 w-full h-1 bg-blue-500 transform scale-x-0 transition-transform duration-500 origin-left"></div>
+              <h3 class="text-xl font-bold text-gray-900 transition-colors duration-300">Shock Dynos</h3>
+              <p class="mt-2 text-gray-600 text-sm opacity-0 max-h-0 overflow-hidden transition-all duration-500">
+                Professional-grade dynos for comprehensive shock performance testing
+              </p>
             </div>
           </div>
+        </div>
 
         <!-- Spring Rate Testers -->
-          <div class="group">
-            <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-transform duration-300 group-hover:scale-105">
-              <div class="p-10 flex justify-center items-center h-80 bg-gradient-to-b from-gray-50 to-white">
-                <img src="./assets/Spring Rate Tester(product2).jpg" 
-                     alt="Spring Rate Tester" 
-                     class="h-full w-auto object-contain">
-              </div>
-              <div class="p-6 text-center">
-                <h3 class="text-xl font-bold text-gray-900">Spring Rate Testers</h3>
-              </div>
+        <div class="group card-item h-68 w-60 ml-4 md:ml-16 cursor-pointer animate-fade-in-up" style="animation-delay: 0.3s">
+          <div class="bg-white h-full rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-all duration-500 ease-out">
+            <div class="relative p-10 flex justify-center items-center h-60 bg-gradient-to-br from-gray-50 to-blue-50">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 transition-opacity duration-700"></div>
+              <img src="./assets/Spring Rate Tester(product2).jpg" 
+                   alt="Spring Rate Tester" 
+                   class="h-full w-auto object-contain transition-transform duration-700">
+            </div>
+            <div class="p-6 text-center relative overflow-hidden">
+              <div class="absolute bottom-0 left-0 w-full h-1 bg-blue-500 transform scale-x-0 transition-transform duration-500 origin-left"></div>
+              <h3 class="text-xl font-bold text-gray-900 transition-colors duration-300">Spring Rate Testers</h3>
+              <p class="mt-2 text-gray-600 text-sm opacity-0 max-h-0 overflow-hidden transition-all duration-500">
+                Accurate measurement tools for spring stiffness and performance
+              </p>
             </div>
           </div>
-
         </div>
       </div>
-    </section>
-        <!-- Second Row: 4 Cards -->
-    <section>
-      <div class="max-w-7xl mx-auto px-4 mb-10">
-        <div class="grid md:grid-cols-4 gap-8 cursor-pointer">
 
-          <!-- Automatic Shock Bleeders -->
-          <div class="group">
-            <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-transform duration-300 group-hover:scale-105">
-
-              <div class="p-8 flex justify-center items-center h-64 bg-gradient-to-b from-gray-50 to-white">
-                <img src="./assets/Automaticproduct.jpg" 
-                     alt="Automatic Shock Bleeder" 
-                     class="h-full w-auto object-contain">
-              </div>
-              <div class="p-5 text-center">
-                <h4 class="text-base font-bold text-gray-900">Automatic Shock Bleeders</h4>
-              </div>
+      <!-- Second Row: 3 Cards -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Automatic Shock Bleeders -->
+        <div class="group card-item h-68 w-60 ml-4 md:ml-16 cursor-pointer animate-fade-in-up" style="animation-delay: 0.4s">
+          <div class="bg-white h-full rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-all duration-500 ease-out">
+            <div class="relative p-8 flex justify-center items-center h-52 bg-gradient-to-br from-gray-50 to-blue-50">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 transition-opacity duration-700"></div>
+              <img src="./assets/Automaticproduct.jpg" 
+                   alt="Automatic Shock Bleeder" 
+                   class="h-full w-auto object-contain transition-transform duration-700">
+            </div>
+            <div class="p-5 text-center relative overflow-hidden">
+              <div class="absolute bottom-0 left-0 w-full h-1 bg-blue-500 transform scale-x-0 transition-transform duration-500 origin-left"></div>
+              <h4 class="text-base font-bold text-gray-900 transition-colors duration-300">Automatic Shock Bleeders</h4>
+              <p class="mt-2 text-gray-600 text-sm opacity-0 max-h-0 overflow-hidden transition-all duration-500">
+                Efficient systems for removing air from suspension components
+              </p>
             </div>
           </div>
+        </div>
 
         <!-- Corner Weight Scales -->
-          <div class="group">
-            <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-transform duration-300 group-hover:scale-105">
-              <div class="p-8 flex justify-center items-center h-64 bg-gradient-to-b from-gray-50 to-white">
-                <img src="./assets/corner weight scale(product4).jpg" 
-                     alt="Corner Weight Scales" 
-                     class="h-full w-auto object-contain">
-              </div>
-              <div class="p-5 text-center">
-                <h4 class="text-base font-bold text-gray-900">Corner Weight Scales</h4>
-              </div>
+        <div class="group card-item h-68 w-60 ml-4 md:ml-16 cursor-pointer animate-fade-in-up" style="animation-delay: 0.5s">
+          <div class="bg-white h-full rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-all duration-500 ease-out">
+            <div class="relative p-8 flex justify-center items-center h-52 bg-gradient-to-br from-gray-50 to-blue-50">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 transition-opacity duration-700"></div>
+              <img src="./assets/corner weight scale(product4).jpg" 
+                   alt="Corner Weight Scales" 
+                   class="h-full w-auto object-contain transition-transform duration-700">
+            </div>
+            <div class="p-5 text-center relative overflow-hidden">
+              <div class="absolute bottom-0 left-0 w-full h-1 bg-blue-500 transform scale-x-0 transition-transform duration-500 origin-left"></div>
+              <h4 class="text-base font-bold text-gray-900 transition-colors duration-300">Corner Weight Scales</h4>
+              <p class="mt-2 text-gray-600 text-sm opacity-0 max-h-0 overflow-hidden transition-all duration-500">
+                Precision scales for vehicle weight distribution analysis
+              </p>
             </div>
           </div>
+        </div>
 
-          <!-- Suspension Tools -->
-          <div class="group">
-            <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-transform duration-300 group-hover:scale-105">
-              <div class="p-8 flex justify-center items-center h-64 bg-gradient-to-b from-gray-50 to-white">
-                <img src="./assets/suspension tool(product5).jpg" 
-                     alt="Suspension Tools" 
-                     class="h-full w-auto object-contain">
-              </div>
-              <div class="p-5 text-center">
-                <h4 class="text-base font-bold text-gray-900">Suspension Tools</h4>
-              </div>
+        <!-- Suspension Tools -->
+        <div class="group card-item h-68 w-60 ml-4 md:ml-16 cursor-pointer animate-fade-in-up" style="animation-delay: 0.6s">
+          <div class="bg-white h-full rounded-xl overflow-hidden shadow-lg border border-gray-200 transition-all duration-500 ease-out">
+            <div class="relative p-8 flex justify-center items-center h-52 bg-gradient-to-br from-gray-50 to-blue-50">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 transition-opacity duration-700"></div>
+              <img src="./assets/suspension tool(product5).jpg" 
+                   alt="Suspension Tools" 
+                   class="h-full w-auto object-contain transition-transform duration-700">
+            </div>
+            <div class="p-5 text-center relative overflow-hidden">
+              <div class="absolute bottom-0 left-0 w-full h-1 bg-blue-500 transform scale-x-0 transition-transform duration-500 origin-left"></div>
+              <h4 class="text-base font-bold text-gray-900 transition-colors duration-300">Suspension Tools</h4>
+              <p class="mt-2 text-gray-600 text-sm opacity-0 max-h-0 overflow-hidden transition-all duration-500">
+                Specialized tools for suspension system installation and adjustment
+              </p>
             </div>
           </div>
-
         </div>
-      </div>
-    </section>
-
-  <!-- EMA section -->
-  <section class="py-16 md:py-24">
-    <div class="max-w-7xl mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-        EMA is LABA7's Most Advanced Testing Solution
-      </h1>
-
-      <!-- MAIN LAYOUT: Image | Text | Image -->
-      <div class="grid md:grid-cols-3 gap-8 items-center">
-
-        <!-- LEFT IMAGE -->
-        <div class="flex justify-center">
-          <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg p-6">
-            <img src="./assets/Electromagnetic-linear-damper-test-system-LABA7.webp" 
-                 alt="EMA Side View" 
-                 class="w-full h-auto max-h-96 object-contain">
-          </div>
-        </div>
-
-          <!-- CENTER: Text + Bullet List -->
-        <div class="space-y-6">
-          <p class="text-lg text-gray-700 leading-relaxed">
-            Electromagnetic Damper Test System EMA is built with linear actuation for unmatched control, responsiveness, and precision.
-          </p>
-          <p class="text-lg text-gray-700 leading-relaxed">
-            It runs silently, requires minimal maintenance, and integrates seamlessly with custom add-ons.
-          </p>
-          <p class="text-lg text-gray-700 leading-relaxed">
-            Designed for high-end motorsports teams, suspension developers, and testing facilities.
-          </p>
-
-          <!-- Bullet List with Red Dots -->
-          <ul class="space-y-3 text-gray-700">
-            <li class="flex items-center">
-              <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span> Linear actuation
-            </li>
-            <li class="flex items-center">
-              <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span> HIL testing compatible
-            </li>
-            <li class="flex items-center">
-              <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span> High accuracy
-            </li>
-            <li class="flex items-center">
-              <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span> High data resolution
-            </li>
-            <li class="flex items-center">
-              <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span> High-speed testing
-            </li>
-            <li class="flex items-center">
-              <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span> Low power input requirements
-            </li>
-          </ul>
-        </div>
-
-        <!-- RIGHT IMAGE -->
-        <div class="flex justify-center">
-          <div class="bg-gray-50 rounded-xl overflow-hidden shadow-lg p-6">
-            <img src="./assets/EMA-power-supply-unit-LABA7.webp" 
-                 alt="EMA Front View" 
-                 class="w-full h-auto max-h-96 object-contain">
-          </div>
-        </div>
-
       </div>
     </div>
-  </section>
+  </div>
+   </section>
 
   <!-- Why do professionals trust -->
-    <section class="py-16 md:py-24">
+  <section class="py-20 md:py-24">
     <div class="max-w-7xl mx-auto px-4 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-        Why Do Professionals Trust LABA7?
+      <h1 class="text-2xl md:text-2xl font-bold mb-10 text-gray-700">
+        Why Do Professionals Trust AP MEASUREMENTS?
       </h1>
-      <p class="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+      <p class="text-md text-gray-600 max-w-4xl mx-auto leading-relaxed">
         Driven by a passion for engineering and innovation, LABA7 sets new standards in suspension testing, diagnostics, and service equipment.
       </p>
-      <p class="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+      <p class="text-md text-gray-600 max-w-4xl mx-auto leading-relaxed">
         We've earned the trust of professionals across motorsports and advanced vehicle testing.
       </p>
     </div>
   </section>
 
   <!-- ==================== FEATURES GRID ==================== -->
-  <section class="py-16 bg-gray-50">
+  <section class="py-16 mb-6">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-
+      <div class="grid md:grid-cols-3 lg:grid-cols-3 gap-8">
         <!-- Repeatable Results -->
         <div class="text-center space-y-4">
           <div class="flex justify-center">
-            <div class="w-16 h-16 rounded-full bg-gray-500 shadow-md flex items-center justify-center">
-              <img src="./assets/trust1.png" alt="">
+            <div class="w-16 h-16 rounded-full bg-orange-200 shadow-md flex items-center justify-center">
+              <img src="./assets/trust1.png" alt="Repeatable results icon" class="w-8 h-8">
             </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-900">Repeatable results</h3>
+          <h3 class="text-xl font-bold text-gray-700">Repeatable results</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
             Every LABA7 system is built from the ground up to deliver consistent, accurate, and repeatable results — test after test. We make sure that every element works in sync to ensure long-term measurement stability you can trust.
           </p>
@@ -697,168 +1005,68 @@
         <!-- 24/7 Technical Support -->
         <div class="text-center space-y-4">
           <div class="flex justify-center">
-            <div class="w-16 h-16 rounded-full bg-gray-500 shadow-md flex items-center justify-center">
-              <img src="./assets/trust2.png" alt="">
+            <div class="w-16 h-16 rounded-full bg-orange-200 shadow-md flex items-center justify-center">
+              <img src="./assets/trust2.png" alt="Support icon" class="w-8 h-8">
             </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-900">24/7 technical support</h3>
+          <h3 class="text-xl font-bold text-gray-700">24/7 technical support</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
             LABA7 equipment is built for performance and dependability, but if you ever need assistance, our technical support team is always here to help. We stock critical components to ensure fast turnaround and reduce downtime.
-          </p>
-        </div>
-
-        <!-- Regular Software Updates -->
-        <div class="text-center space-y-4">
-          <div class="flex justify-center">
-            <div class="w-16 h-16 rounded-full bg-gray-500 shadow-md flex items-center justify-center">
-              <img src="./assets/trust3.png" alt="">
-            </div>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900">Regular software updates</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">
-            All LABA7 software is continuously improved with new features, performance enhancements, and compatibility updates — delivered directly to your system with zero hassle.
           </p>
         </div>
 
         <!-- In-house Development -->
         <div class="text-center space-y-4">
           <div class="flex justify-center">
-            <div class="w-16 h-16 rounded-full bg-gray-500 shadow-md flex items-center justify-center">
-              <img src="./assets/trust4.png" alt="">
+            <div class="w-16 h-16 rounded-full bg-orange-200 shadow-md flex items-center justify-center">
+              <img src="./assets/trust4.png" alt="Development icon" class="w-8 h-8">
             </div>
           </div>
-          <h3 class="text-xl font-bold text-gray-900">In-house development</h3>
+          <h3 class="text-xl font-bold text-gray-700">In-house development</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
             From mechanical design to software and electronics, every LABA7 product is developed in-house by our expert team — giving us full control over quality, integration, and innovation.
           </p>
         </div>
-
       </div>
     </div>
   </section>
 
   <!-- ==================== CONTACT SECTION ==================== -->
-  <section class="py-16 md:py-24">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
-        Let's Get in Touch
-      </h2>
-    <div class="max-w-7xl mx-auto px-4">
-      <p class="text-center text-lg text-gray-600 mb-12 max-w-4xl mx-auto">
-        Need help choosing the right LABA7 system? Have questions about pricing and lead times, or need custom solutions?
-      </p>
-      
+  <section id="contact" class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-2xl md:text-2xl font-bold text-center mb-8 text-gray-800">
+      Let's Get in Touch
+    </h2>
+    <p class="text-center text-md text-gray-600 mb-8 max-w-4xl mx-auto">
+      Need help choosing the right AP Measurements system? Have questions about pricing and lead times, or need custom solutions?
+    </p>
 
-      <div class="grid md:grid-cols-2 gap-12 bg-gray-300">
-
-        <!-- LEFT: CONTACT FORM -->
-        <div class="space-y-6 p-8">
-          <form class="space-y-6">
-
-            <!-- Row 1: Name + Email -->
-            <div class="grid sm:grid-cols-2 gap-4">
-              <input type="text" placeholder="Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent">
-              <input type="email" placeholder="Email address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent">
-            </div>
-
-            <!-- Row 2: Phone + Company -->
-            <div class="grid sm:grid-cols-2 gap-4">
-              <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <span class="text-gray-500 text-sm">+1</span>
-                </div>
-                <input type="tel" placeholder="Phone" class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent">
-              </div>
-              <input type="text" placeholder="Company name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent">
-            </div>
-
-            <!-- Row 3: Industry + Product Group -->
-            <div class="grid sm:grid-cols-2 gap-4">
-              <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent appearance-none bg-white">
-                <option>Select industry</option>
-                <option>Motorsports</option>
-                <option>Automotive</option>
-                <option>Bicycle</option>
-              </select>
-              <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent appearance-none bg-white">
-                <option>Select product group</option>
-                <option>Shock Dynos</option>
-                <option>Spring Testers</option>
-                <option>EMA</option>
-              </select>
-            </div>
-
-            <!-- Message -->
-            <textarea placeholder="Your message" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent resize-none"></textarea>
-
-            <!-- Privacy + Submit -->
-            <div class="flex items-center justify-between">
-              <label class="flex items-center space-x-2 cursor-pointer">
-                <input type="checkbox" class="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
-                <span class="text-sm text-gray-600">I agree with <a href="#" class="underline hover:text-red-600">LABA7 Privacy Policy</a></span>
-              </label>
-              <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-800 transition">
-                Send
-              </button>
-            </div>
-
-          </form>
-        </div>
-
-        <!-- RIGHT: CONTACT INFO -->
-        <div class="bg-gray-300 space-y-6 text-gray-700 ml-20 pl-12 pt-8 text-left">
-
-          <!-- Headquarters -->
-          <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Headquarters Address</h3>
-            <p class="leading-relaxed">
-              LABA7, UAB<br>
-              Gilužio str. 15<br>
-              LT-06239, Vilnius, Lithuania
-            </p>
-          </div>
-
-          <!-- General Inquiries -->
-          <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">General Inquiries</h3>
-            <p class="leading-relaxed">
-              Monday-Friday<br>
-              <a href="mailto:info@laba7.com" class="underline hover:text-red-600">info@laba7.com</a><br>
-              <a href="tel:+37062199469" class="underline hover:text-red-600">+370 621 99 469</a>
-            </p>
-          </div>
-
-          <!-- Technical Support -->
-          <div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Technical support</h3>
-            <p class="leading-relaxed">
-              <a href="mailto:support@laba7.com" class="underline hover:text-red-600">support@laba7.com</a><br>
-              WhatsApp: <a href="https://wa.me/37065715336" class="underline hover:text-red-600">+370 657 15 336</a>
-            </p>
-          </div>
-
-        </div>
-
-      </div>
+     <!-- Contact Us Button -->
+    <div class="text-center mb-12">
+      <a href="./contact.html">
+      <button id="contactButton" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        Contact Us
+      </button>
+      </a>
+    </div>
     </div>
   </section>
 
   <!-- MAIN SECTION: Components Developed In-House -->
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
       <!-- Section Title -->
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800">
+      <h2 class="text-2xl md:text-2xl font-bold text-center mb-16 text-gray-700">
         Components developed in-house
       </h2>
 
       <!-- Data Logger Content -->
       <div class="max-w-4xl mx-auto">
-
         <!-- Subtitle -->
         <h3 class="text-2xl font-semibold text-center mb-10 text-gray-700">Data logger</h3>
 
         <!-- Paragraphs -->
-        <div class="space-y-6 text-gray-700 leading-relaxed text-center md:text-left">
+        <div class="space-y-6 text-gray-600 leading-relaxed text-center md:text-left">
           <p>
             The data logger for EMA is a marvel. Our engineers developed it in-house with the sole objective of detecting even the tiniest force changes in damper performance.
           </p>
@@ -870,230 +1078,141 @@
           </p>
         </div>
 
-        <!-- Graphs (Two SVGs) -->
-        <div class="grid md:grid-cols-2 gap-10 mt-16">
-
-          <!-- Graph 1: Position Resolution (Left) -->
-          <div class="flex flex-col items-center">
-            <img src="./assets/data-logger1.png" alt="">
-          </div>
-
-          <!-- Graph 2: Sampling Rate (Right) -->
-          <div class="flex flex-col items-center">
-            <div class="text-right w-full mb-2">
-              <span class="text-sm text-gray-600">– 5 kHz</span>
-              <span class="ml-4 text-sm text-green-600">– 20 kHz</span>
-            </div>
-            <img src="./assets/data-logger2.png" alt="">
-          </div>
-        
-        </div>
-        </div>
-    </div>
-  </section>
-
-  <!-- MAIN SECTION: Control Unit -->
-  <section class="py-20 bg-gray-300 pb-12">
-
-    <!-- control unit -->
-    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-
-      <!-- Title -->
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-16">
-        Control unit
-      </h2>
-
-      <!-- Paragraphs -->
-      <div class="space-y-6 text-lg text-gray-700 leading-relaxed max-w-5xl mx-auto ">
-
-        <p>
-          The control unit of EMA is integrated with a data logger into a single board. This solution allows us to provide the most accurate test results in real time.
-        </p>
-
-        <p>
-          Incorporating state-of-the-art technologies such as <strong>silicon carbide (SiC) MOSFETs</strong> allowed us to generate significantly more power at a fraction of the cost.
-        </p>
-
-        <p>
-          Additionally, this unit controls the operation of the smart power supply, enhancing the efficiency of EMA by LABA7 while reducing energy consumption.
-        </p>
-
+       
       </div>
-
-      <!-- PCB Image -->
-      <div class="mt-16 flex justify-center">
-        <div class="relative w-full max-w-md">
-          <!-- Blurred background effect -->
-          <div class="absolute inset-0 bg-gradient-to-t from-gray-100 to-transparent rounded-lg blur-xl opacity-50"></div>
-          
-          <!-- Actual Image -->
-          <img 
-            src="./assets/control-unit.png"
-            class="relative z-10 rounded-lg shadow-2xl w-full h-auto object-cover"
-          />
-        </div>
-      </div>
-
     </div>
 
-    <!-- power unit -->
-    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-
+     <!-- software -->
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-20">
       <!-- Title -->
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-16 mt-12">
-        Power unit
-      </h2>
-
-      <!-- Paragraphs -->
-      <div class="space-y-6 text-lg text-gray-700 leading-relaxed max-w-5xl mx-auto">
-
-        <p>
-          The smart power supply unit of the EMA is the first and, to date, the only such solution on the market. The high-voltage power supply to the actuators, facilitated by supercapacitor packs, eliminates the dependency on high-voltage and amperage input. This innovation eliminates the need for high-power input and opens possibilities for suspension workshops, motorsport teams, or R&D labs to utilize electromagnetic linear shock dynos for the first time. Even on a trackside!
-        </p>
-
-        <p>
-          EMA operates from a <strong>3-phase 380/400 VAC 16 A,</strong> but all models can be optimized to run from a standard <strong>1-phase 220/240 VAC</strong>  socket on request. Other power input configurations, for example, <strong> 110/120 VAC,</strong> are also available. Contact us to learn more.
-        </p>
-
-        <p>
-          In addition, the unit stores electrical power. This reserve allows tests to continue and be completed even during power shortages.
-        </p>
-
-      </div>
-
-      <!-- PCB Image -->
-      <div class="mt-16 flex justify-center">
-        <div class="relative w-full max-w-md">
-          <!-- Actual Image -->
-          <img src="./assets/control-unit2.png" alt="">
-        </div>
-      </div>
-
-    </div>
-
-    <!-- software -->
-    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-
-      <!-- Title -->
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-16 mt-12">
+      <h2 class="text-2xl md:text-2xl font-semibold text-gray-800 mb-16">
         Software
       </h2>
 
       <!-- Paragraphs -->
       <div class="space-y-6 text-lg text-gray-700 leading-relaxed max-w-5xl mx-auto">
-
         <p>
           LABA7's software for electromagnetic damper test systems is designed with <strong>user experience</strong> in mind. Operators can easily find, manage, and customize the features of the tests,<strong> minimizing the onboarding time.</strong>
         </p>
-
         <p>
           Our software for EMA allows pre- and post-test editing of data. To save time, it enables operators to <strong>trim track data</strong> and test damper performance in specific stages of the course. After the test, operators can slide and cut graphs as well as push individual cycles on top of each other for <strong>better data analysis.</strong>
         </p>
-
         <p>
           The software enables seamless integration with additional sensors and testing equipment.
         </p>
-
       </div>
 
       <!-- PCB Image -->
       <div class="mt-16 flex justify-center">
         <div class="relative w-full max-w-md">
           <!-- Actual Image -->
-          <img src="./assets/control-unit3.png" alt="">
+          <img src="./assets/control-unit3.png" alt="Software Interface">
         </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== MAIN SECTION ==================== -->
-  <section class="py-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-8">
-        Expand your possibilities with shock dyno adapters
-      </h2>
-
-      <p class="text-lg text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed">
-        LABA7 shock dyno adapters create a seamless link, allowing for the most accurate and insightful tests of your shock absorbers.
-      </p>
-
-      <!-- ==================== ADAPTER GRID ==================== -->
-      <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
-
-        <!-- ==== MTB ==== -->
-        <div class="space-y-6">
-          <div class="bg-orange-300 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block">
-            Adapters for MTB dampers
-          </div>
-          <div class="adapter-box bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center relative overflow-hidden"
-               data-img="./assets/shock-dyno.png">
-            <img src="./assets/shock-dyno.png"
-                 alt="MTB Shock Adapter"
-                 class="adapter-img w-full h-auto object-contain transition-all duration-400">
-            <div class="plus absolute text-red-600">+</div>
-          </div>
-        </div>
-
-        <!-- ==== MOTO ==== -->
-        <div class="space-y-6">
-          <div class="bg-orange-300 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block">
-            Adapters for MOTO dampers
-          </div>
-          <div class="adapter-box bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center relative overflow-hidden"
-               data-img="./assets/shock-dyno2.png">
-            <img src="./assets/shock-dyno2.png"
-                 alt="MOTO Shock Adapter"
-                 class="adapter-img w-full h-auto object-contain transition-all duration-400">
-            <div class="plus absolute text-red-600">+</div>
-          </div>
-        </div>
-
-        <!-- ==== AUTO ==== -->
-        <div class="space-y-6">
-          <div class="bg-orange-300 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block">
-            Adapters for AUTO dampers
-          </div>
-          <div class="adapter-box bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center relative overflow-hidden"
-               data-img="./assets/shock-dyno3.png">
-            <img src="./assets/shock-dyno3.png"
-                 alt="AUTO Shock Adapter"
-                 class="adapter-img w-full h-auto object-contain transition-all duration-400">
-            <div class="plus absolute text-red-600">+</div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ==================== MODAL OVERLAY ==================== -->
-  <div id="modal"
-       class="fixed inset-0 bg-black bg-opacity-75 hidden items-center justify-center p-4 md:p-8 z-50">
-    <div class="max-w-5xl w-full mx-auto">
-      <img id="modalImg"
-           src=""
-           alt="Enlarged view"
-           class="w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl">
+ <!-- expand your possibilities -->
+
+ <section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-2xl md:text-2xl font-bold text-gray-700 mb-8">
+      Expand your possibilities with shock dyno adapters
+    </h2>
+    <p class="text-md text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed">
+      LABA7 shock dyno adapters create a seamless link, allowing for the most accurate and insightful tests of your shock absorbers.
+    </p>
+
+    <!-- ==================== ADAPTER GRID ==================== -->
+    <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+      <!-- ==== MTB ==== -->
+      <div class="space-y-6">
+        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block transition duration-300">
+          Adapters for MTB dampers
+        </div>
+        <div class="adapter-box group relative bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center overflow-hidden cursor-pointer"
+             data-img="./assets/shock-dyno.png">
+          <!-- Overlay with + icon -->
+          <div class="absolute inset-0 flex items-center justify-center z-10">
+            <div class="plus">+</div>
+          </div>
+          <img src="./assets/shock-dyno.png"
+               alt="MTB Shock Adapter"
+               class="w-full h-auto object-contain">
+        </div>
+      </div>
+
+      <!-- ==== MOTO ==== -->
+      <div class="space-y-6">
+        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block transition duration-300">
+          Adapters for MOTO dampers
+        </div>
+        <div class="adapter-box group relative bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center overflow-hidden cursor-pointer"
+             data-img="./assets/shock-dyno2.png">
+          <!-- Overlay with + icon -->
+          <div class="absolute inset-0 flex items-center justify-center z-10">
+            <div class="plus">+</div>
+          </div>
+          <img src="./assets/shock-dyno2.png"
+               alt="MOTO Shock Adapter"
+               class="w-full h-auto object-contain">
+        </div>
+      </div>
+
+      <!-- ==== AUTO ==== -->
+      <div class="space-y-6">
+        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block transition duration-300">
+          Adapters for AUTO dampers
+        </div>
+        <div class="adapter-box group relative bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center overflow-hidden cursor-pointer"
+             data-img="./assets/shock-dyno3.png">
+          <!-- Overlay with + icon -->
+          <div class="absolute inset-0 flex items-center justify-center z-10">
+            <div class="plus">+</div>
+          </div>
+          <img src="./assets/shock-dyno3.png"
+               alt="AUTO Shock Adapter"
+               class="w-full h-auto object-contain">
+        </div>
+      </div>
     </div>
   </div>
+</section>
+
+<!-- ==================== MODAL OVERLAY ==================== -->
+<div id="imageModal" class="fixed inset-0 bg-black/90 hidden items-center justify-center p-4 md:p-8 z-50">
+  <!-- Close button -->
+  <button id="closeModal" class="absolute top-4 right-4 md:top-8 md:right-8 text-white text-3xl z-50 hover:text-gray-300 transition duration-200">
+    ✕
+  </button>
+  
+  <!-- Modal content -->
+  <div class="max-w-5xl w-full mx-auto relative">
+    <img id="modalImage" src="" alt="Enlarged view" class="w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl">
+  </div>
+  
+  <!-- Navigation arrows -->
+  <button id="prevBtn" class="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 text-white text-3xl bg-black/50 p-2 rounded-full hover:bg-black/70 transition duration-200">
+    ←
+  </button>
+  <button id="nextBtn" class="absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 text-white text-3xl bg-black/50 p-2 rounded-full hover:bg-black/70 transition duration-200">
+    →
+  </button>
+</div>
 
   <!-- hydraulic damper -->
   <!-- MAIN SECTION: Electromagnetic vs Hydraulic -->
-  <section class="py-20 bg-gray-300">
+  <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
       <!-- Title -->
-      <h2 class="text-4xl md:text-4xl font-bold text-center text-gray-800 mb-16">
+      <h2 class="text-2xl md:text-2xl font-bold text-center text-gray-700 mb-16">
         Electromagnetic vs Hydraulic damper testing systems
       </h2>
 
       <!-- Two-Column Layout -->
       <div class="grid md:grid-cols-2 gap-12 items-center">
-
         <!-- Left: Text Content -->
-        <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+        <div class="space-y-6 text-md text-gray-600 ml-6 leading-relaxed">
           <p>
             Electromagnetic and hydraulic damper test systems are two distinct technologies used to evaluate and test dampers in various applications.
           </p>
@@ -1110,239 +1229,580 @@
           <div class="relative">
             <!-- Optional: Add subtle shadow or glow -->
             <div class="absolute inset-0 bg-gradient-to-t from-gray-200 to-transparent rounded-lg blur-xl opacity-50 -z-10"></div>
-            <img 
-              src="./assets/hydraulic-damper.png" 
-              alt="LABA7 Electromagnetic Shock Dyno" 
-              class="zoom-image w-full cursor-pointer max-w-md h-auto object-contain rounded-lg shadow-xl"
-            />
+            <img src="./assets/hydraulic-damper.png" 
+                 alt="LABA7 Electromagnetic Shock Dyno" 
+                 class="zoom-image w-full cursor-pointer max-w-md h-auto object-contain rounded-lg shadow-xl border-box" />
           </div>
         </div>
-
       </div>
 
       <!-- Learn More Button -->
       <div class="mt-16 text-center">
-        <a href="#" class="inline-block border-2 border-gray-800 text-gray-800 px-8 py-3 rounded-full font-medium hover:bg-blue-600 hover:text-white transition">
+        <a href="#" class="inline-block border-2 border-gray-800 text-gray-800 px-8 py-3 rounded-full font-medium hover:bg-orange-600 hover:text-white transition">
           Learn more about different types of shock dynos
         </a>
       </div>
-
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-        
-        <!-- Company Info -->
-        <div>
-          <h4>About Company</h4>
-          <p class="text-sm text-gray-400 mb-4">Leading manufacturer of marine and diesel engines with global presence</p>
-          <div class="flex gap-4">
-            <a href="#" class="text-gray-400 hover:text-primary transition text-sm">f</a>
-            <a href="#" class="text-gray-400 hover:text-primary transition text-sm">t</a>
-            <a href="#" class="text-gray-400 hover:text-primary transition text-sm">in</a>
-          </div>
-        </div>
+  <!-- Include Footer -->
+  <div data-include="footer.html"></div>
 
-        <!-- Products -->
-        <div>
-          <h4>Products</h4>
-          <a href="#" class="footer-link">Marine Engines</a>
-          <a href="#" class="footer-link">Commercial Vehicles</a>
-          <a href="#" class="footer-link">Off Highway</a>
-          <a href="#" class="footer-link">Components</a>
-          <a href="#" class="footer-link">Spare Parts</a>
-        </div>
-
-        <!-- Resources -->
-        <div>
-          <h4>Resources</h4>
-          <a href="#" class="footer-link">Downloads</a>
-          <a href="#" class="footer-link">News & Events</a>
-          <a href="#" class="footer-link">Blogs</a>
-          <a href="#" class="footer-link">Our Network</a>
-          <a href="#" class="footer-link">Careers</a>
-        </div>
-
-        <!-- Contact -->
-        <div>
-          <h4>Get In Touch</h4>
-          <a href="#" class="footer-link">📞 +91 (123) 456-7890</a>
-          <a href="#" class="footer-link">✉️ apdynamics.com</a>
-          <a href="#" class="footer-link">📍 Industrial Area, pune</a>
-          <a href="#" class="footer-link">Contact Form</a>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2025 AP DYNAMICS Industries. All rights reserved. | <a href="#" class="text-primary">Privacy Policy</a> | <a href="#" class="text-primary">Terms of Service</a></p>
-      </div>
-    </div>
-  </footer>
-
-   <!-- ==================== Mobile toggle ==================== -->
+  <!-- JavaScript -->
   <script>
-    document.getElementById('mobileBtn').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
-  </script>
+    // ============================================
+    // MOBILE SIDEBAR FUNCTIONALITY - OVERLAY
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuBtn = document.getElementById('mobileBtn');
+      const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+      const mobileSidebar = document.getElementById('mobileSidebar');
+      const menuOverlay = document.getElementById('menuOverlay');
+      const mobileProductsToggle = document.getElementById('mobileProductsToggle');
+      const mobileProductsMenu = document.getElementById('mobileProductsMenu');
+      const productsArrow = document.getElementById('productsArrow');
+      const cardItems = document.querySelectorAll('.card-item');
+      const container = document.querySelector('.card-grid-container');
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      const closeModal = document.getElementById('closeModal');
+      const adapterBoxes = document.querySelectorAll('.adapter-box');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
 
-  <!-- ==================== CAROUSEL SCRIPT ==================== -->
-  <script>
-    // Hero Carousel Functionality
-    class HeroCarousel {
-      constructor() {
-        this.slides = document.querySelectorAll('.carousel-slide');
-        this.dots = document.querySelectorAll('.carousel-dot');
-        this.prevBtn = document.querySelector('.carousel-prev');
-        this.nextBtn = document.querySelector('.carousel-next');
-        this.currentSlide = 0;
-        this.totalSlides = this.slides.length;
-        this.autoPlayInterval = null;
-        this.autoPlayDelay = 5000; // 5 seconds
+      // Function to calculate distance between cards in the grid
+      function calculateGridDistance(index1, index2, cols = 3) {
+        const row1 = Math.floor(index1 / cols);
+        const col1 = index1 % cols;
+        const row2 = Math.floor(index2 / cols);
+        const col2 = index2 % cols;
         
-        this.init();
+        // Calculate Manhattan distance (grid distance)
+        return Math.abs(row1 - row2) + Math.abs(col1 - col2);
       }
       
-      init() {
-        // Show first slide
-        this.showSlide(this.currentSlide);
-        
-        // Add event listeners
-        this.prevBtn.addEventListener('click', () => this.prevSlide());
-        this.nextBtn.addEventListener('click', () => this.nextSlide());
-        
-        // Add dot click events
-        this.dots.forEach(dot => {
-          dot.addEventListener('click', (e) => {
-            const slideIndex = parseInt(e.target.dataset.slide);
-            this.goToSlide(slideIndex);
+      // Mouse enter event for cards
+      cardItems.forEach((card, index) => {
+        card.addEventListener('mouseenter', function() {
+          // Remove all previous classes
+          cardItems.forEach(c => {
+            c.classList.remove('active', 'adjacent', 'distant');
           });
-        });
-        
-        // Start autoplay
-        this.startAutoPlay();
-        
-        // Pause on hover
-        const carouselContainer = document.querySelector('.carousel-container');
-        carouselContainer.addEventListener('mouseenter', () => this.stopAutoPlay());
-        carouselContainer.addEventListener('mouseleave', () => this.startAutoPlay());
-      }
-      
-      showSlide(index) {
-        // Hide all slides
-        this.slides.forEach(slide => {
-          slide.classList.remove('active');
-          slide.style.opacity = '0';
-        });
-        
-        // Remove active from all dots
-        this.dots.forEach(dot => dot.classList.remove('active'));
-        
-        // Show current slide
-        this.slides[index].classList.add('active');
-        this.slides[index].style.opacity = '1';
-        
-        // Activate current dot
-        this.dots[index].classList.add('active');
-        
-        // Animate content
-        this.animateContent(index);
-      }
-      
-      animateContent(index) {
-        const slide = this.slides[index];
-        const contentElements = slide.querySelectorAll('.fade-in-up');
-        
-        // Reset animation
-        contentElements.forEach(el => {
-          el.style.opacity = '0';
-          el.style.transform = 'translateY(30px)';
-        });
-        
-        // Animate with delays
-        setTimeout(() => {
-          contentElements.forEach(el => {
-            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
+          
+          // Add active class to hovered card
+          card.classList.add('active');
+          
+          // Add appropriate classes to other cards based on distance
+          cardItems.forEach((otherCard, otherIndex) => {
+            if (index !== otherIndex) {
+              const distance = calculateGridDistance(index, otherIndex);
+              
+              if (distance === 1) {
+                // Adjacent cards (direct neighbors)
+                otherCard.classList.add('adjacent');
+              } else if (distance === 2) {
+                // Cards two steps away
+                otherCard.classList.add('distant');
+              }
+              // Cards with distance > 2 don't get special treatment
+            }
           });
-        }, 100);
-      }
-      
-      nextSlide() {
-        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-        this.showSlide(this.currentSlide);
-        this.resetAutoPlay();
-      }
-      
-      prevSlide() {
-        this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-        this.showSlide(this.currentSlide);
-        this.resetAutoPlay();
-      }
-      
-      goToSlide(index) {
-        this.currentSlide = index;
-        this.showSlide(this.currentSlide);
-        this.resetAutoPlay();
-      }
-      
-      startAutoPlay() {
-        this.stopAutoPlay();
-        this.autoPlayInterval = setInterval(() => this.nextSlide(), this.autoPlayDelay);
-      }
-      
-      stopAutoPlay() {
-        if (this.autoPlayInterval) {
-          clearInterval(this.autoPlayInterval);
-          this.autoPlayInterval = null;
-        }
-      }
-      
-      resetAutoPlay() {
-        this.stopAutoPlay();
-        this.startAutoPlay();
-      }
-    }
-    
-    // Initialize carousel when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-      const heroCarousel = new HeroCarousel();
-      
-      // Modal functionality
-      const modal = document.getElementById('modal');
-      const modalImg = document.getElementById('modalImg');
-      
-      // Open modal
-      document.querySelectorAll('.adapter-box').forEach(box => {
-        box.addEventListener('click', () => {
-          const imgUrl = box.dataset.img;
-          modalImg.src = imgUrl;
-          modal.classList.remove('hidden');
-          modal.classList.add('flex');
         });
       });
       
-      // Close modal (outside click or Esc)
-      modal.addEventListener('click', e => {
+      // Mouse leave event - reset all cards
+      if (container) {
+        container.addEventListener('mouseleave', function() {
+          cardItems.forEach(card => {
+            card.classList.remove('active', 'adjacent', 'distant');
+          });
+        });
+      }
+
+      // Check if elements exist before using them
+      if (!mobileSidebar || !menuOverlay) {
+        console.error('❌ Required mobile menu elements not found');
+        return;
+      }
+
+      // Function to open sidebar
+      function openSidebar() {
+        mobileSidebar.classList.add('active');
+        menuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+        console.log('📱 Sidebar opened');
+      }
+
+      // Function to close sidebar
+      function closeSidebar() {
+        mobileSidebar.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+        
+        // Close products submenu if it exists
+        if (mobileProductsMenu && productsArrow) {
+          mobileProductsMenu.classList.remove('active');
+          productsArrow.style.transform = 'rotate(0deg)';
+        }
+        
+        console.log('📱 Sidebar closed');
+      }
+
+      // Open sidebar
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          openSidebar();
+        });
+      }
+
+      // Close sidebar with X button
+      if (closeSidebarBtn) {
+        closeSidebarBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeSidebar();
+        });
+      }
+
+      // Close sidebar when clicking overlay
+      if (menuOverlay) {
+        menuOverlay.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeSidebar();
+        });
+      }
+
+      // Prevent closing when clicking inside sidebar
+      if (mobileSidebar) {
+        mobileSidebar.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      }
+
+      // Toggle products submenu
+      if (mobileProductsToggle && mobileProductsMenu && productsArrow) {
+        mobileProductsToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          mobileProductsMenu.classList.toggle('active');
+          productsArrow.style.transform = mobileProductsMenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+          console.log('📂 Products menu toggled');
+        });
+      }
+
+      // Close sidebar when clicking nav links (except toggle)
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link:not(#mobileProductsToggle), .mobile-submenu-link, .mobile-nav-cta');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.stopPropagation();
+          closeSidebar();
+        });
+      });
+
+      // Close sidebar on Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileSidebar.classList.contains('active')) {
+          closeSidebar();
+        }
+      });
+
+      // Handle window resize
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 1024 && mobileSidebar.classList.contains('active')) {
+          closeSidebar();
+        }
+      });
+
+      console.log('📱 Mobile sidebar initialized');
+   
+      // ============================================
+      // IMAGE MODAL FUNCTIONALITY
+      // ============================================
+      let currentImageIndex = 0;
+      const images = Array.from(adapterBoxes).map(box => ({
+        src: box.getAttribute('data-img'),
+        alt: box.querySelector('img').getAttribute('alt')
+      }));
+      
+      // Open modal when clicking on any adapter box
+      adapterBoxes.forEach((box, index) => {
+        box.addEventListener('click', function(e) {
+          currentImageIndex = index;
+          const imgSrc = this.getAttribute('data-img');
+          const imgAlt = this.querySelector('img').getAttribute('alt');
+          
+          modalImage.src = imgSrc;
+          modalImage.alt = imgAlt;
+          
+          // Show modal
+          modal.classList.add('active');
+          modal.style.display = 'flex';
+          
+          // Prevent body scrolling
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      
+      // Close modal
+      function closeImageModal() {
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+      
+      closeModal.addEventListener('click', closeImageModal);
+      
+      // Close modal when clicking outside the image
+      modal.addEventListener('click', function(e) {
         if (e.target === modal) {
-          modal.classList.add('hidden');
-          modal.classList.remove('flex');
+          closeImageModal();
         }
       });
       
-      document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-          modal.classList.add('hidden');
-          modal.classList.remove('flex');
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeImageModal();
         }
       });
+
+      function showImage(index) {
+        if (index >= 0 && index < images.length) {
+          currentImageIndex = index;
+          modalImage.src = images[currentImageIndex].src;
+          modalImage.alt = images[currentImageIndex].alt;
+        }
+      }
+      
+      // Previous image
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showImage((currentImageIndex - 1 + images.length) % images.length);
+      });
+      
+      // Next image
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showImage((currentImageIndex + 1) % images.length);
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (modal.classList.contains('active')) {
+          if (e.key === 'ArrowLeft') {
+            showImage((currentImageIndex - 1 + images.length) % images.length);
+          } else if (e.key === 'ArrowRight') {
+            showImage((currentImageIndex + 1) % images.length);
+          }
+        }
+      });
+
+      // ============================================
+      // AUTO-SLIDING CAROUSEL FUNCTIONALITY
+      // ============================================
+      class AutoSlidingCarousel {
+        constructor() {
+          this.slides = document.querySelectorAll('.carousel-slide');
+          this.dots = document.querySelectorAll('.carousel-dot');
+          this.prevBtn = document.querySelector('.carousel-prev');
+          this.nextBtn = document.querySelector('.carousel-next');
+          this.currentSlide = 0;
+          this.totalSlides = this.slides.length;
+          this.autoPlayInterval = null;
+          this.autoPlayDelay = 5000; // 5 seconds between slides
+          this.isAutoPlaying = true;
+          
+          console.log('🚀 Carousel constructor called');
+          console.log(`📊 Found ${this.slides.length} slides`);
+          console.log(`📊 Found ${this.dots.length} dots`);
+        }
+        
+        init() {
+          console.log('🚀 Initializing auto-sliding carousel');
+          
+          // Check if carousel elements exist
+          if (this.slides.length === 0) {
+            console.log('ℹ️ No carousel slides found');
+            return;
+          }
+          
+          // Initialize first slide
+          this.showSlide(this.currentSlide);
+          
+          // Add event listeners for navigation
+          if (this.prevBtn) {
+            this.prevBtn.addEventListener('click', () => {
+              console.log('⬅️ Previous button clicked');
+              this.prevSlide();
+              this.resetAutoPlay();
+            });
+          }
+          
+          if (this.nextBtn) {
+            this.nextBtn.addEventListener('click', () => {
+              console.log('➡️ Next button clicked');
+              this.nextSlide();
+              this.resetAutoPlay();
+            });
+          }
+          
+          // Add dot click events
+          this.dots.forEach(dot => {
+            dot.addEventListener('click', (e) => {
+              const slideIndex = parseInt(e.target.dataset.slide);
+              console.log(`🔘 Dot ${slideIndex} clicked`);
+              this.goToSlide(slideIndex);
+              this.resetAutoPlay();
+            });
+          });
+          
+          // Start auto-play
+          this.startAutoPlay();
+          
+          // Pause on hover
+          const carouselContainer = document.querySelector('.carousel-container');
+          if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => {
+              console.log('🖱️ Mouse entered carousel - pausing autoplay');
+              this.pauseAutoPlay();
+            });
+            carouselContainer.addEventListener('mouseleave', () => {
+              console.log('🖱️ Mouse left carousel - resuming autoplay');
+              this.resumeAutoPlay();
+            });
+          }
+          
+          console.log('✅ Auto-sliding carousel initialized');
+        }
+        
+        showSlide(index) {
+          console.log(`🎬 Showing slide ${index}`);
+          
+          // Hide all slides
+          this.slides.forEach(slide => {
+            slide.classList.remove('active');
+          });
+          
+          // Remove active from all dots
+          this.dots.forEach(dot => dot.classList.remove('active'));
+          
+          // Show current slide
+          this.slides[index].classList.add('active');
+          
+          // Activate current dot
+          if (this.dots[index]) {
+            this.dots[index].classList.add('active');
+          }
+          
+          // Update current slide index
+          this.currentSlide = index;
+          
+          // Animate content
+          this.animateContent(index);
+        }
+        
+        animateContent(index) {
+          const slide = this.slides[index];
+          const contentElements = slide.querySelectorAll('.fade-in-up');
+          
+          // Reset animation
+          contentElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+          });
+          
+          // Animate with delays
+          setTimeout(() => {
+            contentElements.forEach(el => {
+              el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            });
+          }, 300);
+        }
+        
+        nextSlide() {
+          const nextIndex = (this.currentSlide + 1) % this.totalSlides;
+          console.log(`➡️ Moving to next slide: ${nextIndex}`);
+          this.showSlide(nextIndex);
+        }
+        
+        prevSlide() {
+          const prevIndex = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+          console.log(`⬅️ Moving to previous slide: ${prevIndex}`);
+          this.showSlide(prevIndex);
+        }
+        
+        goToSlide(index) {
+          if (index >= 0 && index < this.totalSlides) {
+            console.log(`🎯 Going to slide ${index}`);
+            this.showSlide(index);
+          }
+        }
+        
+        startAutoPlay() {
+          if (this.isAutoPlaying && !this.autoPlayInterval) {
+            console.log('▶️ Starting autoplay');
+            this.autoPlayInterval = setInterval(() => {
+              console.log('⏰ Autoplay timer triggered - moving to next slide');
+              this.nextSlide();
+            }, this.autoPlayDelay);
+          }
+        }
+        
+        pauseAutoPlay() {
+          if (this.autoPlayInterval) {
+            console.log('⏸️ Pausing autoplay');
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+          }
+        }
+        
+        resumeAutoPlay() {
+          if (this.isAutoPlaying && !this.autoPlayInterval) {
+            console.log('▶️ Resuming autoplay');
+            this.startAutoPlay();
+          }
+        }
+        
+        resetAutoPlay() {
+          console.log('🔄 Resetting autoplay timer');
+          this.pauseAutoPlay();
+          if (this.isAutoPlaying) {
+            this.startAutoPlay();
+          }
+        }
+        
+        stopAutoPlay() {
+          this.isAutoPlaying = false;
+          this.pauseAutoPlay();
+        }
+      }
+
+      // ============================================
+      // MEGA MENU FUNCTIONALITY - ENHANCED FOR MOBILE
+      // ============================================
+      function initMegaMenu() {
+        const megaMenuItems = document.querySelectorAll('.mega-menu-item');
+        const isMobile = window.innerWidth < 1024;
+
+        // Check if mega menu items exist
+        if (megaMenuItems.length === 0) {
+          console.log('ℹ️ No mega menu items found');
+          return;
+        }
+
+        megaMenuItems.forEach(item => {
+          const trigger = item.querySelector('a'); // Use the anchor tag as trigger
+          const menu = item.querySelector('.mega-menu');
+
+          if (trigger && menu) {
+            if (isMobile) {
+              // Mobile: Click to toggle
+              trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Close other menus
+                document.querySelectorAll('.mega-menu').forEach(m => {
+                  if (m !== menu) {
+                    m.style.opacity = '0';
+                    m.style.visibility = 'hidden';
+                  }
+                });
+
+                // Toggle current menu
+                const isOpen = menu.style.visibility === 'visible';
+                if (isOpen) {
+                  menu.style.opacity = '0';
+                  menu.style.visibility = 'hidden';
+                } else {
+                  menu.style.opacity = '1';
+                  menu.style.visibility = 'visible';
+                  menu.style.transform = 'translateX(-50%) translateY(0)';
+                }
+                
+                console.log('📱 Mobile menu toggled');
+              });
+            } else {
+              // Desktop: Hover to open
+              item.addEventListener('mouseenter', function() {
+                menu.style.opacity = '1';
+                menu.style.visibility = 'visible';
+                menu.style.transform = 'translateX(-50%) translateY(0)';
+              });
+
+              item.addEventListener('mouseleave', function() {
+                menu.style.opacity = '0';
+                menu.style.visibility = 'hidden';
+                menu.style.transform = 'translateX(-50%) translateY(-20px)';
+              });
+            }
+          }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.mega-menu-item') && !e.target.closest('.mega-menu')) {
+            document.querySelectorAll('.mega-menu').forEach(menu => {
+              menu.style.opacity = '0';
+              menu.style.visibility = 'hidden';
+              menu.style.transform = 'translateX(-50%) translateY(-20px)';
+            });
+          }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            const menus = document.querySelectorAll('.mega-menu');
+            menus.forEach(menu => {
+              menu.style.opacity = '0';
+              menu.style.visibility = 'hidden';
+              menu.style.transform = 'translateX(-50%) translateY(-20px)';
+            });
+          }
+        });
+      }
+
+      // ============================================
+      // SMOOTH SCROLL
+      // ============================================
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          const target = document.querySelector(href);
+          
+          if (target && href !== '#') {
+            e.preventDefault();
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // ============================================
+      // INITIALIZE ALL FEATURES
+      // ============================================
+      console.log('✨ Initializing all features');
+      
+      // Initialize auto-sliding carousel
+      const autoCarousel = new AutoSlidingCarousel();
+      autoCarousel.init();
+      
+      // Initialize mega menu
+      initMegaMenu();
+      
+      console.log('✨ All features initialized successfully');
     });
   </script>
-  
-  <!-- <script src="index.js"></script> -->
+
 </body>
 </html>
