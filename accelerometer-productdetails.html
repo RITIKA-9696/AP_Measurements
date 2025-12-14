@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Sensor Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="./include.js"></script>
+</head>
+<body class="bg-[#F5EDED] mt-32 min-h-screen">
+    <!-- header -->
+    <div data-include="./header.html"></div>
+    
+    <!-- Back Link -->
+    <div class="shadow-sm mb-8">
+        <div class="max-w-4xl mx-auto px-5">
+            <a href="accelerometer.html" class="inline-flex items-center text-blue-500 hover:text-blue-700 font-medium transition-colors ml-4 lg:ml-0">
+                <i class="fas fa-arrow-left mr-2"></i> Back to Catalog
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="max-w-4xl mx-auto px-5">
+        <!-- Product Detail Container -->
+        <div class="flex flex-col lg:flex-row gap-8 mb-8">
+            <!-- Left Side: Product Image -->
+            <div class="lg:w-2/5">
+                <div class="bg-[#F4F4F4] rounded-lg shadow-md p-6 flex items-center justify-center h-64 lg:h-80">
+                    <div id="product-image-container" class="w-full h-full flex items-center justify-center">
+                        <!-- Image will be loaded dynamically -->
+                        <div class="w-full h-full bg-gray-100 rounded flex items-center justify-center">
+                            <i class="fas fa-microchip text-3xl text-blue-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Product Information -->
+            <div class="lg:w-3/5">
+                <div class="mb-4">
+                    <span id="product-category" class="inline-block bg-blue-50 text-blue-500 px-3 py-1 rounded-full text-sm font-medium">
+                        LOADING...
+                    </span>
+                </div>
+                
+                <div id="product-code" class="text-2xl lg:text-3xl font-bold text-gray-700 mb-2">
+                    LOADING...
+                </div>
+                
+                <h1 id="product-name" class="text-xl lg:text-xl font-bold text-gray-700 mb-6">
+                    Loading Product...
+                </h1>
+                
+                <div id="product-highlights" class="mb-6">
+                    <!-- Highlights will be loaded dynamically -->
+                    <div class="flex items-center mb-3">
+                        <div class="text-blue-500 mr-3 w-5">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                        <div class="text-gray-600">
+                            Loading...
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-gray-600">
+                    <strong class="text-gray-800">SKU:</strong> <span id="product-sku">LOADING...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs Section: Description, Specifications, Downloads -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <!-- Tabs Navigation -->
+            <div class="flex border-b border-gray-200 mb-6">
+                <button data-tab="description" class="tab-button px-6 py-3 font-semibold text-gray-500 hover:text-blue-500 border-b-2 border-transparent hover:border-blue-500 transition-all focus:outline-none active">
+                    Description
+                </button>
+                <button data-tab="specifications" class="tab-button px-6 py-3 font-semibold text-gray-500 hover:text-blue-500 border-b-2 border-transparent hover:border-blue-500 transition-all focus:outline-none">
+                    Specifications
+                </button>
+                <button data-tab="downloads" class="tab-button px-6 py-3 font-semibold text-gray-500 hover:text-blue-500 border-b-2 border-transparent hover:border-blue-500 transition-all focus:outline-none">
+                    Downloads
+                </button>
+            </div>
+            
+            <!-- Tab Contents -->
+            <div class="tab-contents">
+                <!-- Description Tab Content -->
+                <div id="description-content" class="tab-content active">
+                    <div id="description-text" class="text-gray-600 leading-relaxed">
+                        <p><strong>Loading description...</strong></p>
+                    </div>
+                </div>
+                
+                <!-- Specifications Tab Content -->
+                <div id="specifications-content" class="tab-content hidden">
+                    <table class="w-full" id="specifications-table">
+                        <!-- Specifications will be loaded dynamically -->
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 pr-4 font-semibold text-gray-800 w-2/5">Loading...</td>
+                            <td class="py-3 text-gray-600">...</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Downloads Tab Content -->
+                <div id="downloads-content" class="tab-content hidden">
+                    <div class="text-center py-8">
+                        <a href="#" id="download-brochure" class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 focus:outline-none">
+                            <i class="fas fa-file-pdf mr-3"></i> Download Datasheet (PDF)
+                        </a>
+                        <p class="mt-4 text-gray-500" id="datasheet-name">Datasheet: Loading...</p>
+                        <p class="mt-2 text-gray-500">
+                            <a href="#" target="_blank" id="manufacturer-link" class="text-blue-500 hover:text-blue-700">
+                                Additional Information on Manufacturer Website
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products Section -->
+        <div class="mb-12">
+            <h2 class="text-xl lg:text-2xl font-bold text-gray-800 mb-6 pb-2 border-b border-gray-200">
+                Related Products
+            </h2>
+            <div id="related-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Related products will be loaded here -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 text-center p-8">
+                    <i class="fas fa-spinner fa-spin text-3xl text-blue-500 mb-4"></i>
+                    <p class="text-sm text-gray-600">Loading related products...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div data-include="./footer.html"></div>
+
+    <script>
+        // Import the product data from the index page structure
+        // This is the same data structure used in index.html
+        const productData = {
+            "general-purpose": [
+                { code: "B02BG2", name: "Base-Isolated IEPE Accelerometer", type: "Uniaxial", category: "General Purpose", img: "./assets/accelerometer/B02BG2.png.png"},
+                { code: "B06BG2", name: "General Purpose Sensor", type: "Standard Model", category: "General Purpose", img: "./assets/accelerometer/B06BG2.png.webp"},
+                { code: "B02A00", name: "Advanced General Sensor", type: "Enhanced Model", category: "General Purpose", img: "./assets/accelerometer/B02A00.png.webp" },
+                { code: "B06A00", name: "Basic General Sensor", type: "Entry Level", category: "General Purpose", img: "./assets/accelerometer/B06A00.png" },
+                { code: "B02B00", name: "Industrial General Sensor", type: "Rugged Design", category: "General Purpose", img: "./assets/accelerometer/B02B00.png" },
+                { code: "B06B00", name: "Professional General Sensor", type: "Commercial Grade", category: "General Purpose", img: "./assets/accelerometer/B06B00.png.webp" }
+            ],
+            "miniature": [
+                { code: "B02A01", name: "Miniature Sensor", type: "Compact Design", category: "Miniature", img: "./assets/accelerometer/B01A01.png.webp" },
+                { code: "B06A01", name: "Advanced Miniature Sensor", type: "High Precision", category: "Miniature", img: "./assets/accelerometer/B06A00.png" },
+                { code: "B02B01", name: "Micro Sensor", type: "Ultra Compact", category: "Miniature", img: "./assets/accelerometer/B02B01.png" },
+                { code: "B06A14", name: "Nano Sensor", type: "Microscopic Design", category: "Miniature", img: "./assets/accelerometer/B06A14.png.webp" },
+                { code: "B06B14", name: "Pico Sensor", type: "Extreme Miniature", category: "Miniature", img: "./assets/accelerometer/B06B14.png.webp" }
+            ],
+            "triaxial": [
+                { code: "B02Y31", name: "Triaxial Sensor", type: "3-Axis Model", category: "Triaxial", img: "./assets/accelerometer/B02Y31.png.webp" },
+                { code: "B06Y31", name: "Advanced Triaxial Sensor", type: "High Sensitivity", category: "Triaxial", img: "./assets/accelerometer/B06Y31-Triaxial.png.webp" },
+                { code: "B02Y32", name: "Precision Triaxial Sensor", type: "Calibrated", category: "Triaxial", img: "./assets/accelerometer/B02Y32.png.webp" },
+                { code: "B06Y32", name: "Industrial Triaxial Sensor", type: "Rugged 3-Axis", category: "Triaxial", img: "./assets/accelerometer/B06Y32.png.webp" },
+                { code: "B02Y36", name: "Professional Triaxial Sensor", type: "Laboratory Grade", category: "Triaxial", img: "./assets/accelerometer/B02Y36.png.webp" }
+            ],
+            "teardrop": [
+                { code: "B02BM1", name: "Teardrop Sensor", type: "Aerodynamic Design", category: "Teardrop" , img: "./assets/accelerometer/B05BM1.png.webp"},
+                { code: "B06BM1", name: "Advanced Teardrop Sensor", type: "High Flow", category: "Teardrop" , img: "./assets/accelerometer/B06BM1.png.webp"},
+                { code: "B06CM1", name: "Precision Teardrop Sensor", type: "Calibrated", category: "Teardrop", img: "./assets/accelerometer/B06CM1.png" },
+                { code: "B01CM5", name: "Industrial Teardrop Sensor", type: "Heavy Duty", category: "Teardrop", img: "./assets/accelerometer/B01CM5.png" }
+            ],
+            "low-frequency": [
+                { code: "B12A00", name: "Low-Frequency Sensor", type: "Sub-Hz Range", category: "Low-Frequency" , img: "./assets/accelerometer/B12A00.png.webp"},
+                { code: "B10Y35", name: "Advanced Low-Frequency Sensor", type: "Ultra Low Noise", category: "Low-Frequency", img: "./assets/accelerometer/B10Y35.png.webp" },
+                { code: "B12A53", name: "Precision Low-Frequency Sensor", type: "High Stability", category: "Low-Frequency" , img: "./assets/accelerometer/B12A53.png"}
+            ],
+            "high-temperature": [
+                { code: "B02A90", name: "High-Temperature Sensor", type: "Up to 200°C", category: "High-Temperature" , img: "./assets/accelerometer/B03A90.png.webp"},
+                { code: "B06A90", name: "Advanced High-Temp Sensor", type: "Up to 300°C", category: "High-Temperature", img: "./assets/accelerometer/B05A90.png.webp" },
+                { code: "B02B90", name: "Extreme High-Temp Sensor", type: "Up to 500°C", category: "High-Temperature", img: "./assets/accelerometer/B06B90.png" },
+                { code: "B06B90", name: "Ultra High-Temp Sensor", type: "Up to 800°C", category: "High-Temperature" , img: "./assets/accelerometer/B06B90.png"},
+                { code: "B02Y91", name: "Industrial High-Temp Sensor", type: "Rugged Design", category: "High-Temperature", img: "./assets/accelerometer/B06Y91.png.webp" },
+                { code: "B06Y91", name: "Professional High-Temp Sensor", type: "Laboratory Grade", category: "High-Temperature",img: "./assets/accelerometer/B06Y91.png.webp"}
+            ]
+        };
+
+        // Product specifications data (based on your image content)
+        // Product specifications data (based on your image content)
+const productSpecs = {
+    "B01BG2": {
+        description: "Base-Isolated IEPE Accelerometer, Uniaxial with 5mV/g sensitivity and ±1000g range. Features frequency range of 1-9k Hz and temperature range of -50~120°C.",
+        specifications: {
+            "Sensitivity (mV/g)": "5",
+            "Range (g)": "1000",
+            "Broadband Resolution (g rms)": "0.002",
+            "Linearity": "1%",
+            "Frequency Range [5%] (Hz)": "1-9k",
+            "Min Frequency [5%] (Hz)": "1",
+            "Max Frequency [5%] (Hz)": "9000",
+            "Frequency Range [10%] (Hz)": "0.5-10k",
+            "Resonant Frequency (kHz)": "≥40",
+            "Discharge Time Constant (s)": "≤1",
+            "Transverse Sensitivity": "≤5%",
+            "Excitation Voltage (Vdc)": "20-30 Vdc",
+            "Constant Current Excitation (mA)": "2-20 mA",
+            "Output Impedance (Ω)": "≤100",
+            "Output Bias Voltage (V)": "8-12 Vdc",
+            "Max Acceleration (g)": "2500",
+            "Max Shock (g)": "8000",
+            "Temperature Range (°C)": "-50~120",
+            "Min Temperature (°C)": "-50",
+            "Max Temperature (°C)": "120",
+            "Sensitivity Temperature Coefficient (%/°C)": "-0.1",
+            "Sealing": "Laser Welding IP68",
+            "Housing Material": "Titanium Alloy",
+            "Output Connector": "10-32 (Side), M5 (Side)",
+            "Mounting": "10-32 Female, M5 Female",
+            "Weight (grams)": "7.5",
+            "Sensor Type": "Isolated",
+            "Output Type": "IEPE",
+            "Axis": "Uniaxial",
+            "TEDS Optional": "No"
+        },
+        highlights: [
+            { icon: "fa-bullseye", label: "Sensitivity", value: "5mV/g" },
+            { icon: "fa-arrows-alt-h", label: "Range", value: "±1000g" },
+            { icon: "fa-wave-square", label: "Frequency (5%)", value: "1-9k Hz" },
+            { icon: "fa-thermometer-half", label: "Temp Range", value: "-50~120°C" },
+            { icon: "fa-plug", label: "Connector", value: "Side" },
+            { icon: "fa-tools", label: "Mount", value: "10-32/MS Female" },
+            { icon: "fa-shipping-fast", label: "Fast Lead Time", value: "" }
+        ]
+    },
+    "B02BG2": {
+        description: "Base-Isolated IEPE Accelerometer designed for general purpose applications with reliable performance and durability.",
+        specifications: {
+            "Sensitivity (mV/g)": "10",
+            "Range (g)": "500",
+            "Broadband Resolution (g rms)": "0.005",
+            "Linearity": "1.5%",
+            "Frequency Range [5%] (Hz)": "2-8k",
+            "Excitation Voltage (Vdc)": "18-30 Vdc",
+            "Constant Current Excitation (mA)": "2-20 mA",
+            "Output Impedance (Ω)": "≤100",
+            "Output Bias Voltage (V)": "8-12 Vdc",
+            "Max Acceleration (g)": "2500",
+            "Max Shock (g)": "8000",
+            "Temperature Range (°C)": "-50~120",
+            "Min Temperature (°C)": "-50",
+            "Max Temperature (°C)": "120",
+            "Sensitivity Temperature Coefficient (%/°C)": "-0.1",
+            "Sealing": "Laser Welding IP68",
+            "Housing Material": "Titanium Alloy",
+            "Output Connector": "10-32 (Side), M5 (Side)",
+            "Mounting": "10-32 Female, M5 Female",
+            "Weight (grams)": "7.5",
+            "Sensor Type": "Isolated",
+            "Output Type": "IEPE",
+            "Axis": "Uniaxial",
+            "TEDS Optional": "No"
+        },
+        highlights: [
+            { icon: "fa-bullseye", label: "Sensitivity", value: "10mV/g" },
+            { icon: "fa-arrows-alt-h", label: "Range", value: "±500g" },
+            { icon: "fa-wave-square", label: "Frequency (5%)", value: "2-8k Hz" },
+            { icon: "fa-thermometer-half", label: "Temp Range", value: "-40~100°C" }
+        ]
+    },
+    "B06BG2": {
+        description: "Advanced general purpose sensor with enhanced features for industrial applications.",
+        specifications: {
+            "Sensitivity (mV/g)": "20",
+            "Range (g)": "200",
+            "Linearity": "0.8%",
+            "Frequency Range [5%] (Hz)": "1-10k",
+            "Excitation Voltage (Vdc)": "20-28 Vdc",
+            "Constant Current Excitation (mA)": "2-20 mA",
+            "Output Impedance (Ω)": "≤100",
+            "Output Bias Voltage (V)": "8-12 Vdc",
+            "Max Acceleration (g)": "2500",
+            "Max Shock (g)": "8000",
+            "Temperature Range (°C)": "-50~120",
+            "Min Temperature (°C)": "-50",
+            "Max Temperature (°C)": "120",
+            "Sensitivity Temperature Coefficient (%/°C)": "-0.1",
+            "Sealing": "Laser Welding IP68",
+            "Housing Material": "Titanium Alloy",
+            "Output Connector": "10-32 (Side), M5 (Side)",
+            "Mounting": "10-32 Female, M5 Female",
+            "Weight (grams)": "7.5",
+            "Sensor Type": "Isolated",
+            "Output Type": "IEPE",
+            "Axis": "Uniaxial",
+            "TEDS Optional": "No"
+        },
+        highlights: [
+            { icon: "fa-bullseye", label: "Sensitivity", value: "20mV/g" },
+            { icon: "fa-arrows-alt-h", label: "Range", value: "±200g" },
+            { icon: "fa-wave-square", label: "Frequency (5%)", value: "1-10k Hz" },
+            { icon: "fa-thermometer-half", label: "Temp Range", value: "-55~125°C" }
+        ]
+    },
+    "B02A00": {
+        description: "Basic general purpose sensor for entry-level applications with cost-effective performance.",
+        specifications: {
+            "Sensitivity (mV/g)": "50",
+            "Range (g)": "100",
+            "Linearity": "2%",
+            "Frequency Range [5%] (Hz)": "5-5k",
+            "Excitation Voltage (Vdc)": "15-30 Vdc",
+            "Constant Current Excitation (mA)": "2-20 mA",
+            "Output Impedance (Ω)": "≤100",
+            "Output Bias Voltage (V)": "8-12 Vdc",
+            "Max Acceleration (g)": "2500",
+            "Max Shock (g)": "8000",
+            "Temperature Range (°C)": "-50~120",
+            "Min Temperature (°C)": "-50",
+            "Max Temperature (°C)": "120",
+            "Sensitivity Temperature Coefficient (%/°C)": "-0.1",
+            "Sealing": "Laser Welding IP68",
+            "Housing Material": "Titanium Alloy",
+            "Output Connector": "10-32 (Side), M5 (Side)",
+            "Mounting": "10-32 Female, M5 Female",
+            "Weight (grams)": "7.5",
+            "Sensor Type": "Isolated",
+            "Output Type": "IEPE",
+            "Axis": "Uniaxial",
+            "TEDS Optional": "No"
+        },
+        highlights: [
+            { icon: "fa-bullseye", label: "Sensitivity", value: "50mV/g" },
+            { icon: "fa-arrows-alt-h", label: "Range", value: "±100g" },
+            { icon: "fa-wave-square", label: "Frequency (5%)", value: "5-5k Hz" },
+            { icon: "fa-thermometer-half", label: "Temp Range", value: "-20~80°C" }
+        ]
+    }
+};
+
+// Default specifications for products not in the specs database
+const defaultSpecs = {
+    description: "High-performance sensor designed for reliable operation in various applications.",
+    specifications: {
+        "Sensitivity (mV/g)": "10",
+        "Range (g)": "500",
+        "Linearity": "1%",
+        "Frequency Range [5%] (Hz)": "1-8k",
+        "Excitation Voltage (Vdc)": "18-30 Vdc",
+        "Constant Current Excitation (mA)": "2-20 mA",
+        "Output Impedance (Ω)": "≤100",
+        "Output Bias Voltage (V)": "8-12 Vdc",
+        "Max Acceleration (g)": "2500",
+        "Max Shock (g)": "8000",
+        "Temperature Range (°C)": "-50~120",
+        "Min Temperature (°C)": "-50",
+        "Max Temperature (°C)": "120",
+        "Sensitivity Temperature Coefficient (%/°C)": "-0.1",
+        "Sealing": "Laser Welding IP68",
+        "Housing Material": "Titanium Alloy",
+        "Output Connector": "10-32 (Side), M5 (Side)",
+        "Mounting": "10-32 Female, M5 Female",
+        "Weight (grams)": "7.5",
+        "Sensor Type": "Isolated",
+        "Output Type": "IEPE",
+        "Axis": "Uniaxial",
+        "TEDS Optional": "No"
+    },
+    highlights: [
+        { icon: "fa-bullseye", label: "Sensitivity", value: "10mV/g" },
+        { icon: "fa-arrows-alt-h", label: "Range", value: "±500g" },
+        { icon: "fa-wave-square", label: "Frequency (5%)", value: "1-8k Hz" },
+        { icon: "fa-thermometer-half", label: "Temp Range", value: "-40~120°C" }
+    ]
+};
+
+        
+
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const productCode = urlParams.get('product') || 'B02BG2';
+        const category = urlParams.get('category') || 'general-purpose';
+
+        // DOM elements
+        const productImageContainer = document.getElementById('product-image-container');
+        const productCategory = document.getElementById('product-category');
+        const productCodeElement = document.getElementById('product-code');
+        const productName = document.getElementById('product-name');
+        const productHighlights = document.getElementById('product-highlights');
+        const productSku = document.getElementById('product-sku');
+        const descriptionText = document.getElementById('description-text');
+        const specificationsTable = document.getElementById('specifications-table');
+        const datasheetName = document.getElementById('datasheet-name');
+        const manufacturerLink = document.getElementById('manufacturer-link');
+        const relatedProductsGrid = document.getElementById('related-products-grid');
+        const downloadBrochureBtn = document.getElementById('download-brochure');
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Find product in productData
+        function findProduct(code, category) {
+            if (productData[category]) {
+                return productData[category].find(product => product.code === code);
+            }
+            
+            // If not found in specified category, search all categories
+            for (const cat in productData) {
+                const found = productData[cat].find(product => product.code === code);
+                if (found) return found;
+            }
+            
+            return null;
+        }
+
+        // Load product data
+        function loadProductData() {
+            const product = findProduct(productCode, category);
+            
+            if (!product) {
+                // Product not found, show error
+                productName.textContent = "Product Not Found";
+                productCodeElement.textContent = productCode;
+                productCategory.textContent = "ERROR";
+                productSku.textContent = productCode;
+                return;
+            }
+            
+            // Update product info
+            productCategory.textContent = product.category.toUpperCase();
+            productCodeElement.textContent = productCode;
+            productName.textContent = product.name;
+            productSku.textContent = productCode;
+            
+            // Load image
+            if (product.img) {
+                productImageContainer.innerHTML = `<img src="${product.img}" alt="${product.name}" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop';" />`;
+            } else {
+                productImageContainer.innerHTML = `<img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop" alt="${product.name}" class="max-h-full max-w-full object-contain" />`;
+            }
+            
+            // Get product specifications (use specific or default)
+            const specs = productSpecs[productCode] || defaultSpecs;
+            
+            // Update highlights
+            productHighlights.innerHTML = '';
+            specs.highlights.forEach(highlight => {
+                const highlightItem = document.createElement('div');
+                highlightItem.className = 'flex items-center mb-3';
+                highlightItem.innerHTML = `
+                    <div class="text-blue-500 mr-3 w-5">
+                        <i class="fas ${highlight.icon}"></i>
+                    </div>
+                    <div class="text-gray-600">
+                        <strong>${highlight.label}:</strong> ${highlight.value}
+                    </div>
+                `;
+                productHighlights.appendChild(highlightItem);
+            });
+            
+            // Update description
+            descriptionText.innerHTML = `
+                <p class="mb-3"><strong>${product.name}, ${product.type}</strong></p>
+                <p class="mb-3">${specs.description}</p>
+                <p>This sensor features ${product.type.toLowerCase()} design with reliable performance for ${product.category.toLowerCase()} applications. It offers excellent stability and accuracy in various operating conditions.</p>
+            `;
+            
+            // Update specifications table
+            specificationsTable.innerHTML = '';
+            for (const [key, value] of Object.entries(specs.specifications)) {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-gray-200';
+                row.innerHTML = `
+                    <td class="py-3 pr-4 font-semibold text-gray-800 w-2/5">${key}</td>
+                    <td class="py-3 text-gray-600">${value}</td>
+                `;
+                specificationsTable.appendChild(row);
+            }
+            
+            // Update downloads section
+            datasheetName.textContent = `Datasheet: ${productCode}.pdf`;
+            manufacturerLink.href = `https://example.com/${productCode}`;
+            manufacturerLink.textContent = "Additional Information on Manufacturer Website";
+            
+            // Load related products
+            loadRelatedProducts(category, productCode);
+        }
+
+        // Tab switching functionality
+        tabButtons.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Remove active class from all tabs
+                tabButtons.forEach(t => {
+                    t.classList.remove('active', 'text-blue-500', 'border-blue-500');
+                    t.classList.add('text-gray-500', 'border-transparent');
+                });
+                
+                // Add active class to clicked tab
+                tab.classList.remove('text-gray-500', 'border-transparent');
+                tab.classList.add('active', 'text-blue-500', 'border-blue-500');
+                
+                // Hide all tab contents
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    content.classList.add('hidden');
+                });
+                
+                // Show corresponding content
+                document.getElementById(`${tabId}-content`).classList.remove('hidden');
+                document.getElementById(`${tabId}-content`).classList.add('active');
+                
+                // Add animation
+                document.getElementById(`${tabId}-content`).style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById(`${tabId}-content`).style.opacity = '1';
+                }, 10);
+            });
+        });
+
+        // Load related products
+        function loadRelatedProducts(category, currentProductCode) {
+            // Get products from the same category
+            const categoryProducts = productData[category] || [];
+            
+            // Filter out current product
+            const relatedProducts = categoryProducts.filter(product => product.code !== currentProductCode);
+            
+            // Clear current related products
+            relatedProductsGrid.innerHTML = '';
+            
+            // Add related products to grid (limit to 3)
+            const productsToShow = relatedProducts.slice(0, 3);
+            
+            if (productsToShow.length === 0) {
+                relatedProductsGrid.innerHTML = `
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 text-center p-8 col-span-1 sm:col-span-2 lg:col-span-3">
+                        <i class="fas fa-info-circle text-3xl text-gray-400 mb-4"></i>
+                        <p class="text-sm text-gray-500">No related products found in this category.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            productsToShow.forEach(product => {
+                const relatedProductCard = document.createElement('a');
+                relatedProductCard.className = 'bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300';
+                relatedProductCard.href = `accelerometer-productdetails.html?product=${product.code}&category=${category}`;
+                
+                const imageHtml = product.img ? 
+                    `<img src="${product.img}" alt="${product.name}" class="w-full h-32 object-contain p-4" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=250&h=150&fit=crop';" />` :
+                    `<div class="w-full h-32 bg-gray-100 flex items-center justify-center">
+                        <i class="fas fa-microchip text-2xl text-blue-500"></i>
+                    </div>`;
+                
+                relatedProductCard.innerHTML = `
+                    <div class="h-32 bg-gray-50 flex items-center justify-center border-b border-gray-200">
+                        ${imageHtml}
+                    </div>
+                    <div class="p-4">
+                        <div class="text-sm font-semibold text-blue-500 mb-1">${product.code}</div>
+                        <div class="font-semibold text-gray-800 text-sm mb-1">${product.name}</div>
+                        <div class="text-xs text-gray-500">${product.type}</div>
+                    </div>
+                `;
+                
+                relatedProductsGrid.appendChild(relatedProductCard);
+            });
+        }
+
+        // Download brochure functionality
+        downloadBrochureBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Create a dummy PDF download
+            const fileName = `${productCode}_datasheet.pdf`;
+            
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = '#';
+            link.download = fileName;
+            
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show a success message
+            alert(`Downloading ${fileName}...\n\nNote: This is a demo. In a real application, this would download the actual datasheet.`);
+        });
+
+        // Initialize page
+        loadProductData();
+    </script>
+</body>
+</html>

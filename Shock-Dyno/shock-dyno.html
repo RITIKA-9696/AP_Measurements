@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shock Dyno - Scotch-Yoke Crank Dynamometers | LABA7</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .tab-button.active {
+            border-bottom-color: #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .shadow-soft {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .hover-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .product-card {
+            border-top: 4px solid #3b82f6;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .spec-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+        
+        .spec-table th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+        }
+        
+        .spec-table td {
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+        }
+        
+        .spec-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .price-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+        
+        .price-table th {
+            background-color: #3b82f6;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            padding: 16px;
+            border: 1px solid #2563eb;
+        }
+        
+        .price-table td {
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            color: #475569;
+        }
+        
+        .price-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .price-table .price-highlight {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1e40af;
+        }
+        
+        .price-table .offer-button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .price-table .offer-button:hover {
+            background-color: #2563eb;
+        }
+        
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            text-align: center;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Modal Styles */
+    #imageModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #imageModal.active {
+      display: flex;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    
+    #modalImage {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 8px;
+      transition: transform 0.3s ease-out;
+    }
+
+    /* Navigation buttons in modal */
+    #prevBtn, #nextBtn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    #prevBtn:hover, #nextBtn:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    #prevBtn {
+      left: 20px;
+    }
+
+    #nextBtn {
+      right: 20px;
+    }
+
+    #closeModal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    #closeModal:hover {
+      transform: scale(1.1);
+    }
+        
+        /* Grid Layout Styles */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            height: 500px;
+        }
+        
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 2rem;
+        }
+        
+        .images-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            height: 100%;
+        }
+        
+        .image-item {
+            position: relative;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .large-image {
+            grid-column: 1 / 3;
+            grid-row: 1 / 2;
+            height: 60%;
+        }
+        
+        .small-image {
+            height: 35%;
+        }
+        
+        .small-image:nth-child(2) {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+        }
+        
+        .small-image:nth-child(3) {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .text-content {
+                padding-right: 0;
+                padding-bottom: 2rem;
+            }
+            
+            .images-grid {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F5EDED] min-h-screen">
+    <!-- Navigation Header -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-xl font-bold text-gray-900">LABA7</h1>
+                    </div>
+                    <nav class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="#" class="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium">Products</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium">Adapters</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium">Support</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium">Contact</a>
+                    </nav>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-gray-500 hover:text-gray-900 px-4 py-2 text-sm font-medium">
+                        <i class="fas fa-phone-alt mr-2"></i> Contact Sales
+                    </a>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                        Request Quote
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-500 hover:text-gray-900" id="mobile-menu-button">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-16">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-blue-50 to-gray-50 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 mb-10 lg:mb-0">
+                        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                            LABA7 <span class="text-blue-600">Shock Dyno</span>
+                        </h1>
+                        <p class="text-lg text-gray-600 mb-8">
+                            High-precision Scotch-Yoke Crank dynamometers designed by racers and mechanics for accurate shock absorber and suspension testing.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                                View Models
+                            </button>
+                            <button class="bg-white hover:bg-gray-50 text-gray-800 border border-gray-300 px-8 py-3 rounded-lg font-semibold transition-colors">
+                                <i class="fas fa-play-circle mr-2"></i> See How It Works
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 flex justify-center">
+                        <div class="relative w-full max-w-lg">
+                            <div class="bg-white rounded-2xl shadow-soft p-8 hover-lift">
+                                <div class="bg-gray-100 rounded-lg h-64 flex items-center justify-center mb-6">
+                                    <i class="fas fa-tachometer-alt text-6xl text-blue-500"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Precision Testing for Maximum Performance</h3>
+                                <p class="text-gray-600">Take your workshop to the next level with our high-precision, user-friendly, and reliable shock dyno.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Models Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Scotch-Yoke Crank Shock Dynos</h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto">
+                        We have developed a range of 5 advanced LABA7 shock dynos, tailored to your specific suspension testing needs.
+                    </p>
+                </div>
+                
+                <!-- Price Table -->
+                <div class="mb-12">
+                    <h3 class="section-title">Model Specifications & Pricing</h3>
+                    <div class="overflow-x-auto">
+                        <table class="price-table">
+                            <thead>
+                                <tr>
+                                    <th>Price (ex VAT)</th>
+                                    <th>Featherlight</th>
+                                    <th>Light</th>
+                                    <th>Mid</th>
+                                    <th>Heavy</th>
+                                    <th>Super Heavy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td><button class="offer-button">Get offer</button></td>
+                                    <td><button class="offer-button">Get offer</button></td>
+                                    <td><button class="offer-button">Get offer</button></td>
+                                    <td><button class="offer-button">Get offer</button></td>
+                                    <td><button class="offer-button">Get offer</button></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="price-highlight">9,000 EUR</td>
+                                    <td class="price-highlight">11,500 EUR</td>
+                                    <td class="price-highlight">15,500 EUR</td>
+                                    <td class="price-highlight">19,500 EUR</td>
+                                    <td class="price-highlight">28,000 EUR</td>
+                                </tr>
+                                <tr>
+                                    <td>Velocity</td>
+                                    <td>5 – 1900 mm/s</td>
+                                    <td>5 – 2500 mm/s</td>
+                                    <td>5 – 2500 mm/s</td>
+                                    <td>8 – 3000 mm/s</td>
+                                    <td>8 – 3000 mm/s</td>
+                                </tr>
+                                <tr>
+                                    <td>Load cell capacity</td>
+                                    <td>10,000 N</td>
+                                    <td>10,000 N</td>
+                                    <td>15,000 N</td>
+                                    <td>15,000 N</td>
+                                    <td>20,000 N</td>
+                                </tr>
+                                <tr>
+                                    <td>Motor power</td>
+                                    <td>3 HP</td>
+                                    <td>4 HP</td>
+                                    <td>5.5 HP</td>
+                                    <td>10 HP</td>
+                                    <td>15 HP</td>
+                                </tr>
+                                <tr>
+                                    <td>Stroke (mm)</td>
+                                    <td colspan="2">25-50-75-100</td>
+                                    <td colspan="3">25-50-75-100-120-150</td>
+                                </tr>
+                                <tr>
+                                    <td>Power requirement</td>
+                                    <td colspan="2">1-phase 220/240 VAC<br><small>Other configurations are available.</small></td>
+                                    <td colspan="3">3-phase 380/400VAC<br><small>Other configurations are available.</small></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Specifications Table -->
+                <div class="mb-12">
+                    <h3 class="section-title">Technical Specifications</h3>
+                    <div class="overflow-x-auto">
+                        <table class="spec-table">
+                            <thead>
+                                <tr>
+                                    <th>Specification</th>
+                                    <th>Model A</th>
+                                    <th>Model B</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Stroke (mm)</td>
+                                    <td>25-50-75-100</td>
+                                    <td>25-50-75-100-120-150</td>
+                                </tr>
+                                <tr>
+                                    <td>Power requirement</td>
+                                    <td>1-phase 220/240 VAC<br>Other configurations are available.</td>
+                                    <td>3-phase 380/400VAC<br>Other configurations are available.</td>
+                                </tr>
+                                <tr>
+                                    <td>Mechanics</td>
+                                    <td colspan="2">Scotch-Yoke, for accurate linear motion</td>
+                                </tr>
+                                <tr>
+                                    <td>Temperature sensor</td>
+                                    <td colspan="2">Contactless, from -40°C to +150°C</td>
+                                </tr>
+                                <tr>
+                                    <td>Free mounting length</td>
+                                    <td>0 – 850 mm</td>
+                                    <td>0 – 955 mm</td>
+                                </tr>
+                                <tr>
+                                    <td>Dimensions WxDxH</td>
+                                    <td>580 x 830 x 1560</td>
+                                    <td>630 x 960 x 1820<br>630 x 1100 x 2110</td>
+                                </tr>
+                                <tr>
+                                    <td>Weight</td>
+                                    <td>180 kg</td>
+                                    <td>260 kg<br>~430 kg</td>
+                                </tr>
+                                <tr>
+                                    <td>Safety enclosure</td>
+                                    <td>Not applicable</td>
+                                    <td>Standard feature, no extra cost.</td>
+                                </tr>
+                                <tr>
+                                    <td>Software</td>
+                                    <td colspan="2">Shock dyno software v2, no extra cost. 1-on-1 personalized online onboarding and training.</td>
+                                </tr>
+                                <tr>
+                                    <td>Technical support</td>
+                                    <td colspan="2">Typical resolution time is less than 24 hours. Spare parts in stock for quick dispatch.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+                    <!-- Featherlight Card -->
+                    <div class="product-card bg-white rounded-xl shadow-soft p-6 hover-lift">
+                        <div class="mb-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">3 HP</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Featherlight</h3>
+                        <p class="text-gray-600 text-sm mb-4">Ideal for light-duty applications and smaller workshops</p>
+                        <div class="text-blue-600 font-bold text-lg mb-6">From $8,500</div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Light Card -->
+                    <div class="product-card bg-white rounded-xl shadow-soft p-6 hover-lift">
+                        <div class="mb-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">5 HP</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Light</h3>
+                        <p class="text-gray-600 text-sm mb-4">Perfect for motorcycle shops and performance tuning</p>
+                        <div class="text-blue-600 font-bold text-lg mb-6">From $10,500</div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Mid Card -->
+                    <div class="product-card bg-white rounded-xl shadow-soft p-6 hover-lift border-t-blue-600">
+                        <div class="mb-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">7.5 HP</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full ml-2">Most Popular</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mid</h3>
+                        <p class="text-gray-600 text-sm mb-4">Versatile option for automotive shops and racing teams</p>
+                        <div class="text-blue-600 font-bold text-lg mb-6">From $14,500</div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Heavy Card -->
+                    <div class="product-card bg-white rounded-xl shadow-soft p-6 hover-lift">
+                        <div class="mb-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">10 HP</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Heavy</h3>
+                        <p class="text-gray-600 text-sm mb-4">For professional racing teams and large workshops</p>
+                        <div class="text-blue-600 font-bold text-lg mb-6">From $18,500</div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                    
+                    <!-- Super Heavy Card -->
+                    <div class="product-card bg-white rounded-xl shadow-soft p-6 hover-lift">
+                        <div class="mb-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">15 HP</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Super Heavy</h3>
+                        <p class="text-gray-600 text-sm mb-4">Industrial-grade for OEM testing and research facilities</p>
+                        <div class="text-blue-600 font-bold text-lg mb-6">From $24,500</div>
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-medium transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-center text-gray-500 text-sm">
+                    <p>*Smaller load cells are available upon request.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="py-16 bg-[#F5EDED]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2">
+                        <div class="bg-white rounded-2xl shadow-soft p-8">
+                            <div class="flex items-center mb-6">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fas fa-cogs text-blue-600 text-xl"></i>
+                                </div>
+                                <h2 class="text-2xl font-bold text-gray-900">How Does a Suspension Dyno Work?</h2>
+                            </div>
+                            <p class="text-gray-600 mb-6">
+                                A suspension dyno accurately simulates the forces and speeds your shock absorbers and dampers experience during real-world riding or driving conditions. By replicating these movements, the dyno provides precise, repeatable tests that help you identify performance issues and optimize suspension settings.
+                            </p>
+                            <p class="text-gray-600 mb-6">
+                                During testing, the dyno moves the fork or shock absorber up and down at user-selected speeds, closely mimicking actual suspension travel. This controlled motion allows you to diagnose problems such as blocked oil passages, worn components, or cavitation caused by gas pressure loss.
+                            </p>
+                            <div class="bg-blue-50 rounded-xl p-6">
+                                <h4 class="font-bold text-gray-900 mb-2">Real-Time Data Visualization</h4>
+                                <p class="text-gray-600">
+                                    All test data is displayed in clear, real-time graphs including force versus velocity and force versus displacement, making it easy to analyze shock behavior during compression and rebound phases.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="bg-white rounded-2xl shadow-soft p-6">
+                            <div class="bg-gray-900 text-white rounded-xl p-6 mb-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-xl font-bold">Test Results Dashboard</h3>
+                                    <span class="text-sm bg-blue-500 px-3 py-1 rounded-full">Live Data</span>
+                                </div>
+                                <div class="h-64 bg-gray-800 rounded-lg flex items-center justify-center">
+                                    <div class="text-center">
+                                        <i class="fas fa-chart-line text-4xl text-blue-400 mb-4"></i>
+                                        <p class="text-gray-300">Force vs. Velocity Graph</p>
+                                        <p class="text-gray-400 text-sm">Real-time visualization of suspension performance</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-gray-50 rounded-xl p-4 text-center">
+                                    <div class="text-blue-600 text-2xl font-bold mb-1">99.7%</div>
+                                    <div class="text-gray-600 text-sm">Accuracy Rate</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-xl p-4 text-center">
+                                    <div class="text-blue-600 text-2xl font-bold mb-1">1000+</div>
+                                    <div class="text-gray-600 text-sm">Readings/Second</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-xl p-4 text-center">
+                                    <div class="text-blue-600 text-2xl font-bold mb-1">0.01s</div>
+                                    <div class="text-gray-600 text-sm">Response Time</div>
+                                </div>
+                                <div class="bg-gray-50 rounded-xl p-4 text-center">
+                                    <div class="text-blue-600 text-2xl font-bold mb-1">24/7</div>
+                                    <div class="text-gray-600 text-sm">Support Available</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features Section -->
+        <section class="py-16 bg-black text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    <!-- Left Side - Title and Image -->
+                    <div>
+                        <h2 class="text-4xl font-bold mb-4">Key Features of<br><span class="text-5xl">LABA7 Shock Dynos</span></h2>
+                        
+                        <!-- Image Container with Overlay -->
+                        <div class="mt-8 image-container">
+                            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="LABA7 Technology - Circuit Board" class="rounded-lg w-full h-64 object-cover">
+                            <div class="image-overlay">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-400 mt-4 text-sm">Hover over the image to see the plus icon, then click to view in fullscreen</p>
+                    </div>
+                    
+                    <!-- Right Side - Accordion -->
+                    <div class="space-y-4">
+                        <!-- Accuracy Feature -->
+                        <div class="border border-gray-700 rounded-lg overflow-hidden">
+                            <button class="feature-accordion w-full flex justify-between items-center p-6 text-left bg-gray-900 hover:bg-gray-800 transition-colors" data-feature="accuracy">
+                                <h3 class="text-2xl font-bold">Accuracy</h3>
+                                <i class="fas fa-chevron-right text-2xl transition-transform duration-300"></i>
+                            </button>
+                            <div class="feature-content hidden bg-gray-900 p-6 border-t border-gray-700" id="accuracy-content">
+                                <p class="text-gray-300 mb-4">
+                                    In the world of suspension, precision is key. Our in-house data logger reads thousands of times per second with minimal electrical noise, providing data extremely close to the original signal.
+                                </p>
+                                <ul class="text-gray-300 space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                        <span>Scotch-Yoke mechanism for uninterpreted data</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                        <span>Minimized electrical noise and data filtration</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Reliability Feature -->
+                        <div class="border border-gray-700 rounded-lg overflow-hidden">
+                            <button class="feature-accordion w-full flex justify-between items-center p-6 text-left bg-gray-900 hover:bg-gray-800 transition-colors" data-feature="reliability">
+                                <h3 class="text-2xl font-bold">Reliability</h3>
+                                <i class="fas fa-chevron-right text-2xl transition-transform duration-300"></i>
+                            </button>
+                            <div class="feature-content hidden bg-gray-900 p-6 border-t border-gray-700" id="reliability-content">
+                                <p class="text-gray-300 mb-4">
+                                    The reliability of our equipment results from its simple yet robust design. Most components are built to exceed standard durability requirements, ensuring long-lasting performance.
+                                </p>
+                                <p class="text-gray-300 mb-4">
+                                    To guarantee exceptional build quality, we assemble all LABA7 shock absorber dynos at our headquarters. Each unit undergoes rigorous testing and precise calibration before shipment, ensuring our customers receive perfect, ready-to-use products.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Customer-driven Perfection Feature -->
+                        <div class="border border-gray-700 rounded-lg overflow-hidden">
+                            <button class="feature-accordion w-full flex justify-between items-center p-6 text-left bg-gray-900 hover:bg-gray-800 transition-colors" data-feature="perfection">
+                                <h3 class="text-2xl font-bold">Customer Assistance</h3>
+                            <i class="fas fa-chevron-right text-2xl transition-transform duration-300"></i>
+                        </button>
+                        <div class="feature-content hidden bg-gray-900 p-6 border-t border-gray-700" id="assistance-content">
+                            <p class="text-gray-300 mb-4">
+                                Best-in-class, responsive support from setup through daily operation. Our professional team guides you through setup and shares best practices.
+                            </p>
+                            <ul class="text-gray-300 space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                    <span>Guidance through setup and best practices</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                    <span>Prompt assistance and issue resolution</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expand Your Possibilities Section -->
+    <section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-2xl md:text-2xl font-bold text-gray-700 mb-8">
+      Expand your possibilities with shock dyno adapters
+    </h2>
+    <p class="text-md text-gray-600 max-w-4xl mx-auto mb-16 leading-relaxed">
+      LABA7 shock dyno adapters create a seamless link, allowing for the most accurate and insightful tests of your shock absorbers.
+    </p>
+
+    <!-- ==================== ADAPTER GRID ==================== -->
+    <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+      <!-- ==== MTB ==== -->
+      <div class="space-y-6">
+        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block transition duration-300">
+          Adapters for MTB dampers
+        </div>
+        <div class="adapter-box group relative bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center overflow-hidden cursor-pointer"
+             data-img="./assets/shock-dyno.png">
+          <!-- Overlay with + icon -->
+          <div class="absolute inset-0 flex items-center justify-center z-10">
+            <div class="plus">+</div>
+          </div>
+          <img src="./assets/shock-dyno.png"
+               alt="MTB Shock Adapter"
+               class="w-full h-auto object-contain">
+        </div>
+      </div>
+
+      <!-- ==== MOTO ==== -->
+      <div class="space-y-6">
+        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block transition duration-300">
+          Adapters for MOTO dampers
+        </div>
+        <div class="adapter-box group relative bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center overflow-hidden cursor-pointer"
+             data-img="./assets/shock-dyno2.png">
+          <!-- Overlay with + icon -->
+          <div class="absolute inset-0 flex items-center justify-center z-10">
+            <div class="plus">+</div>
+          </div>
+          <img src="./assets/shock-dyno2.png"
+               alt="MOTO Shock Adapter"
+               class="w-full h-auto object-contain">
+        </div>
+      </div>
+
+      <!-- ==== AUTO ==== -->
+      <div class="space-y-6">
+        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block transition duration-300">
+          Adapters for AUTO dampers
+        </div>
+        <div class="adapter-box group relative bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center overflow-hidden cursor-pointer"
+             data-img="./assets/shock-dyno3.png">
+          <!-- Overlay with + icon -->
+          <div class="absolute inset-0 flex items-center justify-center z-10">
+            <div class="plus">+</div>
+          </div>
+          <img src="./assets/shock-dyno3.png"
+               alt="AUTO Shock Adapter"
+               class="w-full h-auto object-contain">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MODAL OVERLAY ==================== -->
+<div id="imageModal" class="fixed inset-0 bg-black/90 hidden items-center justify-center p-4 md:p-8 z-50">
+  <!-- Close button -->
+  <button id="closeModal" class="absolute top-4 right-4 md:top-8 md:right-8 text-white text-3xl z-50 hover:text-gray-300 transition duration-200">
+    ✕
+  </button>
+  
+  <!-- Modal content -->
+  <div class="max-w-5xl w-full mx-auto relative">
+    <img id="modalImage" src="" alt="Enlarged view" class="w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl">
+  </div>
+  
+  <!-- Navigation arrows -->
+  <button id="prevBtn" class="absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 text-white text-3xl bg-black/50 p-2 rounded-full hover:bg-black/70 transition duration-200">
+    ←
+  </button>
+  <button id="nextBtn" class="absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 text-white text-3xl bg-black/50 p-2 rounded-full hover:bg-black/70 transition duration-200">
+    →
+  </button>
+</div>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Benefits of Owning a Shock Dyno</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Discover how a shock dyno can transform your workshop and improve your suspension tuning capabilities.
+                </p>
+            </div>
+            
+            <div class="space-y-24">
+                <!-- Benefit 1 - Image Left, Content Right -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <div class="bg-gray-100 rounded-2xl h-96 flex items-center justify-center">
+                            <i class="fas fa-stethoscope text-8xl text-red-500"></i>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-stethoscope text-red-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900">Diagnose Faulty Shock Absorbers or Forks</h3>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-6">
+                            Quickly identify and diagnose common issues within seconds by examining force vs displacement graphs.
+                        </p>
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h4 class="font-bold text-gray-900 mb-4">Detectable Issues Include:</h4>
+                            <ul class="text-gray-600 space-y-3">
+                                <li class="flex items-center">
+                                    <i class="fas fa-times-circle text-red-500 mr-3 text-xl"></i>
+                                    <span>Blocked oil passages</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-times-circle text-red-500 mr-3 text-xl"></i>
+                                    <span>Broken shims</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-times-circle text-red-500 mr-3 text-xl"></i>
+                                    <span>Cavitation from low gas pressure</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-times-circle text-red-500 mr-3 text-xl"></i>
+                                    <span>Worn components</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Benefit 2 - Content Left, Image Right -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="flex items-center mb-6">
+                            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-bar text-green-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900">Compare Performance</h3>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-6">
+                            Effortlessly visualize and analyze changes made to your shock absorber or fork with advanced comparison features.
+                        </p>
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h4 class="font-bold text-gray-900 mb-4">Comparison Applications:</h4>
+                            <ul class="text-gray-600 space-y-3">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i>
+                                    <span>Left vs right dampers</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i>
+                                    <span>Front vs back dampers</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i>
+                                    <span>Different damper settings</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-3 text-xl"></i>
+                                    <span>Before-and-after tuning effects</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl h-96 flex items-center justify-center">
+                            <i class="fas fa-chart-bar text-8xl text-green-500"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Benefit 3 - Image Left, Content Right -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <div class="bg-gray-100 rounded-2xl h-96 flex items-center justify-center">
+                            <i class="fas fa-sliders-h text-8xl text-purple-500"></i>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-sliders-h text-purple-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900">Navigate Tuning and Adjustment</h3>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-6">
+                            Make data-driven, precise adjustments by analyzing graph curves alongside rider feedback for fine-tuned suspension performance.
+                        </p>
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h4 class="font-bold text-gray-900 mb-4">Tuning Advantages:</h4>
+                            <ul class="text-gray-600 space-y-3">
+                                <li class="flex items-center">
+                                    <i class="fas fa-bullseye text-purple-500 mr-3 text-xl"></i>
+                                    <span>Clear visual feedback on adjustments</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-bullseye text-purple-500 mr-3 text-xl"></i>
+                                    <span>Correlation between adjustments and performance</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-bullseye text-purple-500 mr-3 text-xl"></i>
+                                    <span>Improved track or road performance</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Benefit 4 - Content Left, Image Right -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="flex items-center mb-6">
+                            <div class="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-clipboard-check text-amber-600 text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-gray-900">Quality Control and Warranty</h3>
+                        </div>
+                        <p class="text-gray-600 text-lg mb-6">
+                            Perform quality control testing before returning products to customers and provide solid evidence for warranty claims.
+                        </p>
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <h4 class="font-bold text-gray-900 mb-4">Quality Assurance Benefits:</h4>
+                            <ul class="text-gray-600 space-y-3">
+                                <li class="flex items-center">
+                                    <i class="fas fa-shield-alt text-amber-500 mr-3 text-xl"></i>
+                                    <span>Verify work and eliminate potential errors</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-shield-alt text-amber-500 mr-3 text-xl"></i>
+                                    <span>Reduce risk of dissatisfied customers</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-shield-alt text-amber-500 mr-3 text-xl"></i>
+                                    <span>Evidence for warranty claim situations</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-gray-100 rounded-2xl h-96 flex items-center justify-center">
+                            <i class="fas fa-clipboard-check text-8xl text-amber-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-[#F5EDED]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                <p class="text-gray-600">Find answers to common questions about LABA7 shock dynos.</p>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-xl p-6">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-bold text-gray-900">What is a shock dyno and why do I need one?</h3>
+                        <i class="fas fa-chevron-down text-gray-500"></i>
+                    </button>
+                    <div class="faq-answer mt-4 hidden">
+                        <p class="text-gray-600">
+                            A shock dyno (dynamometer) measures the performance characteristics of suspension dampers (shocks). It helps you analyze compression and rebound forces, identify inconsistencies, and optimize suspension setups for racing or performance applications.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-xl p-6">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-bold text-gray-900">Is the dyno software included and what does it do?</h3>
+                        <i class="fas fa-chevron-down text-gray-500"></i>
+                    </button>
+                    <div class="faq-answer mt-4 hidden">
+                        <p class="text-gray-600">
+                            Yes, the dyno includes intuitive software that records, graphs, and analyzes force vs. velocity and displacement data. It allows you to compare multiple runs, export results, and fine-tune your suspension setup.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-xl p-6">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-bold text-gray-900">What types of shocks can this dyno test?</h3>
+                        <i class="fas fa-chevron-down text-gray-500"></i>
+                    </button>
+                    <div class="faq-answer mt-4 hidden">
+                        <p class="text-gray-600">
+                            Our shock dyno is compatible with a wide range of shocks, including mono-tube, twin-tube, coilover, motorcycle, off-road, and racing dampers. Specific adapter kits may be required for certain models.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="bg-white rounded-xl p-6">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-bold text-gray-900">How accurate are the results?</h3>
+                        <i class="fas fa-chevron-down text-gray-500"></i>
+                    </button>
+                    <div class="faq-answer mt-4 hidden">
+                        <p class="text-gray-600">
+                            Our shock dynamometers are engineered with high-precision sensors and calibrated to ensure industry-leading accuracy. This ensures consistent, repeatable measurements for professional and amateur use alike.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="bg-white rounded-xl p-6">
+                    <button class="faq-toggle w-full flex justify-between items-center text-left">
+                        <h3 class="text-lg font-bold text-gray-900">What are the setup and maintenance requirements?</h3>
+                        <i class="fas fa-chevron-down text-gray-500"></i>
+                    </button>
+                    <div class="faq-answer mt-4 hidden">
+                        <p class="text-gray-600">
+                            The dyno arrives with a detailed setup guide and requires only a standard power outlet and a stable surface. Maintenance is minimal, primarily keeping the sensors and actuator clean and calibrated annually for best results.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">Ready to Elevate Your Suspension Testing?</h2>
+            <p class="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
+                Join hundreds of professional workshops and racing teams worldwide who trust LABA7 shock dynos for precise suspension analysis and tuning.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-white text-blue-600 hover:bg-blue-50 font-bold px-8 py-4 rounded-lg text-lg transition-colors">
+                    Request a Quote
+                </button>
+                <button class="bg-transparent border-2 border-white text-white hover:bg-blue-700 font-bold px-8 py-4 rounded-lg text-lg transition-colors">
+                    Contact Sales Team
+                </button>
+            </div>
+            <p class="text-blue-200 mt-8 text-sm">
+                <i class="fas fa-phone-alt mr-2"></i> Need immediate assistance? Call us at (555) 123-4567
+            </p>
+        </div>
+    </section>
+</main>
+
+<!-- Fullscreen Image Overlay -->
+<div class="fullscreen-overlay" id="fullscreen-overlay">
+    <button class="close-overlay" id="close-overlay">
+        <i class="fas fa-times"></i>
+    </button>
+    <img src="" alt="Fullscreen View" class="fullscreen-image" id="fullscreen-image">
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Company Info -->
+            <div>
+                <h3 class="text-xl font-bold mb-4">LABA7</h3>
+                <p class="text-gray-400 mb-6">
+                    High-precision suspension testing equipment designed for professionals who demand accuracy and reliability.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Products -->
+            <div>
+                <h4 class="text-lg font-bold mb-4">Products</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-white">Shock Dynos</a></li>
+                    <li><a href="#" class="hover:text-white">Adapters</a></li>
+                    <li><a href="#" class="hover:text-white">Accessories</a></li>
+                    <li><a href="#" class="hover:text-white">Software</a></li>
+                </ul>
+            </div>
+            
+            <!-- Support -->
+            <div>
+                <h4 class="text-lg font-bold mb-4">Support</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-white">Documentation</a></li>
+                    <li><a href="#" class="hover:text-white">Software Updates</a></li>
+                    <li><a href="#" class="hover:text-white">FAQ</a></li>
+                    <li><a href="#" class="hover:text-white">Contact Support</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact -->
+            <div>
+                <h4 class="text-lg font-bold mb-4">Contact</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li class="flex items-start">
+                        <i class="fas fa-map-marker-alt mr-3 mt-1"></i>
+                        <span>123 Innovation Drive<br>Tech City, TC 12345</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone-alt mr-3"></i>
+                        <span>(555) 123-4567</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-3"></i>
+                        <span>sales@laba7.com</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm">
+            <p>&copy; 2023 LABA7. All rights reserved. | <a href="#" class="hover:text-white">Privacy Policy</a> | <a href="#" class="hover:text-white">Terms of Service</a></p>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuBtn = document.getElementById('mobileBtn');
+      const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+      const mobileSidebar = document.getElementById('mobileSidebar');
+      const menuOverlay = document.getElementById('menuOverlay');
+      const mobileProductsToggle = document.getElementById('mobileProductsToggle');
+      const mobileProductsMenu = document.getElementById('mobileProductsMenu');
+      const productsArrow = document.getElementById('productsArrow');
+      const cardItems = document.querySelectorAll('.card-item');
+      const container = document.querySelector('.card-grid-container');
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      const closeModal = document.getElementById('closeModal');
+      const adapterBoxes = document.querySelectorAll('.adapter-box');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+   
+
+    // ============================================
+      // IMAGE MODAL FUNCTIONALITY
+      // ============================================
+      let currentImageIndex = 0;
+      const images = Array.from(adapterBoxes).map(box => ({
+        src: box.getAttribute('data-img'),
+        alt: box.querySelector('img').getAttribute('alt')
+      }));
+      
+      // Open modal when clicking on any adapter box
+      adapterBoxes.forEach((box, index) => {
+        box.addEventListener('click', function(e) {
+          currentImageIndex = index;
+          const imgSrc = this.getAttribute('data-img');
+          const imgAlt = this.querySelector('img').getAttribute('alt');
+          
+          modalImage.src = imgSrc;
+          modalImage.alt = imgAlt;
+          
+          // Show modal
+          modal.classList.add('active');
+          modal.style.display = 'flex';
+          
+          // Prevent body scrolling
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      
+      // Close modal
+      function closeImageModal() {
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+      
+      closeModal.addEventListener('click', closeImageModal);
+      
+      // Close modal when clicking outside the image
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeImageModal();
+        }
+      });
+      
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeImageModal();
+        }
+      });
+
+      function showImage(index) {
+        if (index >= 0 && index < images.length) {
+          currentImageIndex = index;
+          modalImage.src = images[currentImageIndex].src;
+          modalImage.alt = images[currentImageIndex].alt;
+        }
+      }
+      
+      // Previous image
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showImage((currentImageIndex - 1 + images.length) % images.length);
+      });
+      
+      // Next image
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showImage((currentImageIndex + 1) % images.length);
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (modal.classList.contains('active')) {
+          if (e.key === 'ArrowLeft') {
+            showImage((currentImageIndex - 1 + images.length) % images.length);
+          } else if (e.key === 'ArrowRight') {
+            showImage((currentImageIndex + 1) % images.length);
+          }
+        }
+      });
+
+    // Mobile Menu Toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        alert('Mobile menu would open here. In a real implementation, this would show a dropdown menu.');
+    });
+    
+    // Feature Accordion Functionality
+    document.querySelectorAll('.feature-accordion').forEach(button => {
+        button.addEventListener('click', () => {
+            const featureName = button.getAttribute('data-feature');
+            const content = document.getElementById(featureName + '-content');
+            const icon = button.querySelector('i');
+            const isOpen = !content.classList.contains('hidden');
+            
+            // Close all accordions
+            document.querySelectorAll('.feature-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.feature-accordion i').forEach(i => {
+                i.style.transform = 'rotate(0deg)';
+            });
+            
+            // If this one wasn't open, open it
+            if (!isOpen) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(90deg)';
+            }
+        });
+    });
+    
+    // Open first accordion by default
+    setTimeout(() => {
+        const firstAccordion = document.querySelector('.feature-accordion');
+        if (firstAccordion) {
+            firstAccordion.click();
+        }
+    }, 100);
+    
+    // FAQ Toggle Functionality
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            // Toggle visibility
+            answer.classList.toggle('hidden');
+            
+            // Rotate icon
+            if (answer.classList.contains('hidden')) {
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+    
+    // Tab functionality for product details
+    document.querySelectorAll('.tab-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-button').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            button.classList.add('active');
+            
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show corresponding content
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+    
+    // Product model hover effects
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.classList.add('shadow-lg');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.classList.remove('shadow-lg');
+        });
+    });
+    
+    // Image Overlay Functionality for all images
+    const imageContainers = document.querySelectorAll('.image-container');
+    const fullscreenOverlay = document.getElementById('fullscreen-overlay');
+    const fullscreenImage = document.getElementById('fullscreen-image');
+    const closeOverlay = document.getElementById('close-overlay');
+    
+    imageContainers.forEach(container => {
+        container.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const imgSrc = container.querySelector('img').src;
+            fullscreenImage.src = imgSrc;
+            fullscreenImage.alt = container.querySelector('img').alt;
+            fullscreenOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    });
+    
+    closeOverlay.addEventListener('click', () => {
+        fullscreenOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    });
+    
+    // Close overlay when clicking outside the image
+    fullscreenOverlay.addEventListener('click', (e) => {
+        if (e.target === fullscreenOverlay) {
+            fullscreenOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Close overlay with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && fullscreenOverlay.classList.contains('active')) {
+            fullscreenOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Contact buttons functionality
+    document.querySelectorAll('button').forEach(button => {
+        if (button.textContent.includes('Request Quote') || button.textContent.includes('Contact Sales')) {
+            button.addEventListener('click', function(e) {
+                if (!this.classList.contains('faq-toggle') && !this.classList.contains('feature-accordion')) {
+                    alert('Thank you for your interest! A sales representative will contact you shortly.');
+                }
+            });
+        }
+        
+        if (button.textContent.includes('View Details')) {
+            button.addEventListener('click', function() {
+                alert('This would navigate to a detailed product page for the selected model.');
+            });
+        }
+        
+        if (button.textContent.includes('See How It Works')) {
+            button.addEventListener('click', function() {
+                alert('This would open a video demonstration of the shock dyno in action.');
+            });
+        }
+        
+        if (button.textContent.includes('Get offer')) {
+            button.addEventListener('click', function() {
+                alert('Thank you for your interest! We will prepare a customized offer for you and contact you shortly.');
+            });
+        }
+        
+        if (button.textContent.includes('Explore All Adapters')) {
+            button.addEventListener('click', function() {
+                alert('This would navigate to the adapters product page.');
+            });
+        }
+    });
+     });
+</script>
+</body>
+</html>
