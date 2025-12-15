@@ -1,0 +1,158 @@
+/* footer.css - Footer Specific Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #dc2626;
+    --primary-dark: #c91621;
+    --gray-900: #111827;
+    --gray-800: #1f2937;
+    --gray-400: #9ca3af;
+    --gray-300: #d1d5db;
+}
+
+.footer-container {
+    background-color: var(--gray-900);
+    color: white;
+    padding: 48px 0;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.gap-8 {
+    gap: 32px;
+}
+
+.mb-8 {
+    margin-bottom: 32px;
+}
+
+/* Footer Sections */
+.footer-section-title {
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: var(--primary);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-description {
+    font-size: 14px;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 16px;
+}
+
+.social-icon {
+    color: var(--gray-400);
+    font-size: 14px;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: var(--primary);
+}
+
+/* Footer Links */
+.footer-link {
+    display: block;
+    color: var(--gray-400);
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: color 0.3s;
+    line-height: 1.5;
+}
+
+.footer-link:hover {
+    color: var(--primary);
+}
+
+.footer-link:last-child {
+    margin-bottom: 0;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    border-top: 1px solid var(--gray-800);
+    padding-top: 32px;
+    text-align: center;
+}
+
+.footer-copyright {
+    font-size: 14px;
+    color: var(--gray-400);
+}
+
+.footer-bottom-link {
+    color: var(--primary);
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.footer-bottom-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .md\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    
+    .md\:grid-cols-4 > div {
+        padding: 0 8px;
+    }
+}
+
+@media (max-width: 767px) {
+    .footer-container {
+        padding: 32px 0;
+    }
+    
+    .grid-cols-1 > div {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .footer-section-title {
+        margin-bottom: 12px;
+    }
+    
+    .footer-link {
+        margin-bottom: 8px;
+    }
+    
+    .footer-bottom {
+        padding-top: 24px;
+    }
+}

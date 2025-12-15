@@ -5,41 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electromagnetic Shock Dyno | Laba7</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="ema.css">
     <script src="../include.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        
-                        'laba-dark': '#003366',
-                        'laba-light': '#e6f2ff'
-                    }
-                }
-            }
-        }
-        
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Header/header.css">
+    <link rel="stylesheet" href="/Footer/footer.css">
+    <link rel="stylesheet" href="ema.css">
+  
+    
     <style>
     body { font-family: 'Inter', sans-serif; }
     .backface-hidden { backface-visibility:hidden; -webkit-backface-visibility:hidden; }
   </style>
-  <script src="../loadComponents.js"></script>
+ 
 </head>
 <body class="bg-[#F5EDED] min-h-screen">
-  <!--  -->
-  <div data-include="../header.html"></div>
+ <!-- Header -->
+    <div data-include="/Header/header.html"></div>
 
-  
 
-  <!-- ==================== Mobile toggle (tiny vanilla JS) ==================== -->
-  <script>
-    document.getElementById('mobileBtn').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
-  </script>
+
 
     <!-- Hero Section -->
     <section class="py-32 md:py-48 text-gray-700">
@@ -1157,7 +1141,7 @@
     </section>
 
    <!-- Include Footer -->
-  <div data-include="../footer.html"></div>
+   <div data-include="../Footer/footer.html"></div>
 
 
   <!-- ==================== SCRIPT ==================== -->

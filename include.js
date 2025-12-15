@@ -1,32 +1,44 @@
-// include.js
-// Function to load HTML content into an element
+// Include HTML components
 async function includeHTML() {
   const elements = document.querySelectorAll('[data-include]');
   
   for (const element of elements) {
     const file = element.getAttribute('data-include');
+    
     try {
       const response = await fetch(file);
       if (response.ok) {
         const html = await response.text();
         element.innerHTML = html;
+        console.log(`✅ Loaded: ${file}`);
         
-        // Reinitialize scripts if needed
-        if (file.includes('header.html')) {
-          initHeaderScripts();
+        // Re-initialize scripts for the included content
+        if (file.includes('header')) {
+          // Header-specific initialization
+          initHeader();
+        }
+        if (file.includes('footer')) {
+          // Footer-specific initialization
+          initFooter();
         }
       } else {
-        element.innerHTML = `<p style="color:red">Error loading ${file}: ${response.status}</p>`;
+        element.innerHTML = `<div style="color:red; padding:10px; border:1px solid red;">
+          Error loading ${file}: ${response.status}
+        </div>`;
       }
     } catch (error) {
-      element.innerHTML = `<p style="color:red">Error loading ${file}: ${error.message}</p>`;
+      element.innerHTML = `<div style="color:red; padding:10px; border:1px solid red;">
+        Failed to load ${file}: ${error.message}
+      </div>`;
     }
   }
 }
 
-// Initialize header-specific scripts
-function initHeaderScripts() {
-  // Mobile sidebar functionality
+// Header initialization function
+function initHeader() {
+  console.log('Initializing header...');
+  
+  // Mobile menu functionality (same as in your header.js)
   const mobileMenuBtn = document.getElementById('mobileBtn');
   const closeSidebarBtn = document.getElementById('closeSidebarBtn');
   const mobileSidebar = document.getElementById('mobileSidebar');
@@ -34,34 +46,20 @@ function initHeaderScripts() {
   const mobileProductsToggle = document.getElementById('mobileProductsToggle');
   const mobileProductsMenu = document.getElementById('mobileProductsMenu');
   const productsArrow = document.getElementById('productsArrow');
+  
+  // ... rest of your header.js code ...
+}
 
-  if (mobileMenuBtn && mobileSidebar && menuOverlay) {
-    // Open sidebar
-    mobileMenuBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      mobileSidebar.classList.add('active');
-      menuOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-
-    // Close sidebar
-    closeSidebarBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      mobileSidebar.classList.remove('active');
-      menuOverlay.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
-
-    // Toggle products submenu
-    if (mobileProductsToggle && mobileProductsMenu && productsArrow) {
-      mobileProductsToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        mobileProductsMenu.classList.toggle('active');
-        productsArrow.style.transform = mobileProductsMenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
-      });
-    }
-  }
+// Footer initialization function
+function initFooter() {
+  console.log('Initializing footer...');
+  
+  // Footer-specific initialization if needed
 }
 
 // Load includes when DOM is ready
-document.addEventListener('DOMContentLoaded', includeHTML);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', includeHTML);
+} else {
+  includeHTML();
+}
