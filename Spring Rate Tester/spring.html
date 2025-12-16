@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LABA7 | Automatic Spring Rate Tester</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../include.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Header/header.css">
+    <link rel="stylesheet" href="/Footer/footer.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+            font-weight: 600;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#f5EDED] text-gray-800 mt-28">
+    <!-- Header / Navigation -->
+    <div data-include="/Header/header.html"></div>
+
+    <!-- Hero Section -->
+    <section class="text-gray-700 py-16 md:py-24 ml-16">
+        <div class="container mx-auto px-4 mb-4">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl md:text-3xl font-semibold mb-6">Automatic Spring Tester for Any Spring</h1>
+                <p class="text-xl text-gray-500 mb-8">Our fully automatic spring rate tester measures fork and shock
+                    absorber spring rates with precision. Monitor test results instantly with wireless data transmission
+                    and real-time performance analytics.</p>
+                <div class="flex flex-wrap gap-4">
+                    <button
+                        class="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-8 rounded-lg transition flex items-center">
+                        <i class="fas fa-play-circle mr-2"></i> Watch Demo
+                    </button>
+                    <button
+                        class="bg-white border-2 border-gray hover:bg-white hover:text-gray-900 text-gray-900 font-medium py-3 px-8 rounded-lg transition">
+                        View Products
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- products -->
+
+        <div class="container mx-auto px-4">
+
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto ml-64">
+                <!-- MINI Product Card -->
+                <div class=" rounded-2xl p-8 border border-gray-200 hover:shadow-xl transition-all duration-300">
+                    <div class="mb-6 flex justify-center">
+                        <img src="../assets/spring1.png" alt="">
+
+                    </div>
+
+                    <div class="text-center">
+                        <button
+                            class="bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            Get offer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DAILY Product Card -->
+                <div
+                    class="rounded-2xl p-8 border-2 border-gray-200 hover:shadow-xl transition-all duration-300 relative">
+
+                    <div class="mb-6 flex justify-center">
+                        <img src="../assets/spring2.png" alt="">
+
+                    </div>
+
+                    <div class="text-center">
+                        <button
+                            class="bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            Get offer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PRO Product Card -->
+                <div class="rounded-2xl p-8 border border-gray-200 hover:shadow-xl transition-all duration-300">
+                    <div class="mb-6 flex justify-center">
+                        <img src="../assets/spring3.png" alt="">
+
+                    </div>
+
+                    <div class="text-center">
+                        <button
+                            class="bg-orange-600 hover:bg-orange-700 text-white font-medium py-2 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            Get offer
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- specs table -->
+
+
+
+        <!-- specs table -->
+        <div class="overflow-x-auto mt-4">
+            <table class="w-full border-collapse border border-gray-400 text-sm">
+                <thead>
+
+                    <!-- Actuator Power -->
+                    <tr class="border-t border-gray-400">
+                        <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Automatic tests</td>
+                        <td colspan="4" class="py-4 px-6 text-center border-gray-400">Yes</td>
+                    </tr>
+                </thead>
+
+                <!-- Peak Force -->
+
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Preload</td>
+                    <td class="py-4 px-6 text-center border-gray-400">Manual or Automatic (force-based)</td>
+
+
+                </tr>
+
+                <!-- Max Velocity -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Dimensions WxDxH</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-r border-gray-400">
+                        Sine, Triangle, Square, Pulse, Pink noise, Sweep, Chirp, and Direct track data import.
+                    </td>
+                </tr>
+
+                <!-- Min Velocity -->
+                <tr class="border-t border-gray-400">
+                    <td class=" py-4 px-6 text-gray-700 border-r border-gray-400">Adjustable crossbar</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-gray-400">0.1 mm/s <span
+                            class="text-gray-500 text-xs">(0.04 in/s)</span></td>
+                </tr>
+
+                <!-- Max Test Frequency -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Maximum allowed force</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-gray-400">150 Hz</td>
+                </tr>
+
+                <!-- Max Acceleration -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Motor</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-gray-400">100 G</td>
+                </tr>
+
+                <!-- Data Sampling -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Reinforced components</td>
+                    <td colspan="4" class="py-4 px-6 text-center text-xs leading-tight border-gray-400">
+                        Digital position sampling 20 kHz.<br>
+                        Synchronized analog load cell sampling 20 kHz, 20-bit resolution.
+                    </td>
+                </tr>
+
+                <!-- Additional ADC -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">EOL testing focused</td>
+                    <td colspan="4" class="py-4 px-6 text-center text-xs border-gray-400">
+                        8 synchronized channels. Up to 10 kHz sampling rate.
+                    </td>
+                </tr>
+
+                <!-- Position Resolution -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Free rear spring length</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-gray-400">50 nanometers</td>
+                </tr>
+
+                <!-- Stroke -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Free front spring length</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-gray-400">250 mm <span
+                            class="text-gray-500 text-xs">(9.85 in)</span></td>
+                </tr>
+
+                <!-- Power Requirement -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Spring length</td>
+                    <td colspan="4" class="py-4 px-6 text-center text-xs leading-tight border-gray-400">
+                        3-phase 380/400 VAC 16 A. Can be optimized for 1-phase 220/240 VAC or other configurations.
+                        Contact us to learn more.
+                    </td>
+                </tr>
+
+                <!-- Cooling -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Required power</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-gray-400">Compressed air</td>
+                </tr>
+
+                <!-- Supported Waveforms -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Dimensions WxDxH</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-gray-400">
+                        Sine, Triangle, Square, Pulse, Pink noise, Sweep, Chirp, and Direct track data import.
+                    </td>
+                </tr>
+                <!--  -->
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Weight</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-gray-400">Compressed air</td>
+
+                </tr>
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Software</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-gray-400">LABA7 Spring dyno software, no extra
+                        cost. 1-on-1 personalized online onboarding and training.</td>
+
+                </tr>
+                <tr class="border-t border-gray-400">
+                    <td class="py-4 px-6 text-gray-700 border-r border-gray-400">Technical support</td>
+                    <td colspan="4" class="py-4 px-6 text-center border-gray-400">Typical resolution time is less than
+                        24 hours. Spare parts are in stock for quick dispatch.</td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+    </section>
+
+
+
+    <!-- Adapters Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-4">No More Limits – Spring Dyno Adapters for Spring Testers
+                </h2>
+                <p class="text-gray-700 text-center mb-12">Focusing on versatility, we supply a range of adapters for
+                    our spring rate testers. Their range covers any type of vehicle from MTBs to 4x4s: motorcycles,
+                    circuit racing, and dirt track racing vehicles.</p>
+
+                      <!-- buttons -->
+
+                <div class="grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto ">
+
+                    <button class="px-8 py-3 rounded-lg bg-orange-500 ml-48">MTB Adapters</button>
+                    <button class="px-8 py-3 rounded-lg bg-orange-500 ml-48">MOTO And AUTO Adapters</button>
+                </div>
+
+                <!-- images -->
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto ">
+                    <div class="w-full h-64 mb-6 flex justify-center mt-8">
+                        <img src="../assets/spring4.png" alt="">
+
+                    </div>
+
+                    <div class="w-full h-64 mb-6 flex justify-center mt-8">
+                        <img src="../assets/spring5.png" alt="">
+
+                    </div>
+
+                    <div class="w-full h-64 mb-6 flex justify-center mt-8">
+                        <img src="../assets/spring6.png" alt="">
+
+                    </div>
+
+                    <div class="w-full h-64 mb-6 flex justify-center mt-8">
+                        <img src="../assets/spring7.png" alt="">
+
+                    </div>
+                </div>
+
+                <div class="text-3xl md:text-3xl text-gray-700">
+                    <h2 class="text-gray-700 text-center mt-8 mb-6">Shock Spring Testers for Workshops</h2>
+                    <p class="text-xl md:text-lg font-semibold text-gray-700 text-center">LABA7 develops professional spring testing machines for workshops, spring manufacturers, and motorsport teams worldwide.</p>
+                    <p class="text-xl md:text-lg font-semibold text-gray-700 text-center">Our equipment makes spring rate testing simple and accurate. Each spring rate tester is designed to be very easy to use and provides the most accurate results immediately on the screen of your device, whether testing fork springs, air springs, bump stops, or gas pressure systems.</p>
+                </div>
+
+
+                    
+
+
+                
+
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white" id="features">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Key Features & Benefits</h2>
+
+            <!-- Tabs -->
+            <div class="flex justify-center border-b mb-12">
+                <button class="tab-btn px-6 py-3 text-lg font-medium" data-tab="technical">Technical Features</button>
+                <button class="tab-btn px-6 py-3 text-lg font-medium" data-tab="benefits">Benefits</button>
+            </div>
+
+            <!-- Technical Features Tab Content -->
+            <div id="technical-tab" class="tab-content fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-2xl">
+                        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-robot text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Fully Automatic</h3>
+                        <p class="text-gray-700">Place a spring, fork, or bump stop into the machine, select the
+                            settings, and the test will run automatically. Analyze performance through the
+                            force-displacement graph.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-2xl">
+                        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-wifi text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Wireless Connectivity</h3>
+                        <p class="text-gray-700">Connect the spring rate tester to your device via local Wi-Fi network
+                            or USB cable. Both options allow you to track performance data in real-time.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-2xl">
+                        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Safety</h3>
+                        <p class="text-gray-700">To protect operators and workshops, LABA7 spring rate dynos feature
+                            Plexiglass shields and steel casings for maximum safety during high-force testing.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-2xl">
+                        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-cogs text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Custom Mounting Solutions</h3>
+                        <p class="text-gray-700">Testing springs, forks, or coils of unconventional sizes? We develop
+                            custom mounts for specialized applications.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-2xl">
+                        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-tachometer-alt text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Seal Drag Testing</h3>
+                        <p class="text-gray-700">Our testers measure the force required to move suspension components
+                            while maintaining proper sealing to prevent contamination.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-2xl">
+                        <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-compress-arrows-alt text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Precise Linear Motion</h3>
+                        <p class="text-gray-700">Our spring testers compress springs vertically at a rate of up to 5 mm
+                            per second for the most reliable data collection.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits Tab Content -->
+            <div id="benefits-tab" class="tab-content hidden fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-search mr-3 text-blue-600"></i>
+                            Know your springs
+                        </h3>
+                        <p class="text-gray-700">Measure the exact force created by the springs, forks, and coils.
+                            Knowing the precise spring rate will help to choose the right spring according to the weight
+                            of the athlete, bike, or car.</p>
+                    </div>
+
+                    <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-chart-line mr-3 text-blue-600"></i>
+                            Test bump stops
+                        </h3>
+                        <p class="text-gray-700">LABA7 spring rate dyno also can measure the force of the bump stops.
+                            Bump stops prevent damage to the suspension system and maintain consistent handling.</p>
+                    </div>
+
+                    <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-wind mr-3 text-blue-600"></i>
+                            Measure air springs
+                        </h3>
+                        <p class="text-gray-700">Test the real force created by air springs of MTB and motorcycle forks
+                            with precise measurement capabilities.</p>
+                    </div>
+
+                    <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-sliders-h mr-3 text-blue-600"></i>
+                            Measure bearing friction
+                        </h3>
+                        <p class="text-gray-700">Measure and evaluate the forces differences between individual
+                            bearings. Select seals that create the least friction and increase the efficiency of your
+                            suspension.</p>
+                    </div>
+
+                    <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-print mr-3 text-blue-600"></i>
+                            Reports and labels
+                        </h3>
+                        <p class="text-gray-700">Print the report label with spring force after the test that includes
+                            force generated in kN. Mark springs quickly when working with many different units.</p>
+                    </div>
+
+                    <div class="bg-blue-50 p-8 rounded-2xl border border-blue-200">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-cogs mr-3 text-blue-600"></i>
+                            Accurate by Design
+                        </h3>
+                        <p class="text-gray-700">Load cell positioned on top of the vertical shaft drastically improves
+                            accuracy by eliminating friction caused by the bushing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Section -->
+    <section class="py-16 bg-gray-100" id="software">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-12">LABA7 Spring Dyno Software</h2>
+
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="mb-8">
+                                <h3 class="text-xl font-bold mb-4 flex items-center">
+                                    <i class="fas fa-chart-line text-blue-600 mr-3"></i>
+                                    Force vs Displacement Graph
+                                </h3>
+                                <p class="text-gray-700">Visualize spring behavior throughout the compression cycle with
+                                    detailed real-time graphs.</p>
+                            </div>
+
+                            <div class="mb-8">
+                                <h3 class="text-xl font-bold mb-4 flex items-center">
+                                    <i class="fas fa-calculator text-blue-600 mr-3"></i>
+                                    Average Spring Rate
+                                </h3>
+                                <p class="text-gray-700">Automatic calculation in N/mm or lbs/in with precision
+                                    algorithms.</p>
+                            </div>
+
+                            <div class="mb-8">
+                                <h3 class="text-xl font-bold mb-4 flex items-center">
+                                    <i class="fas fa-layer-group text-blue-600 mr-3"></i>
+                                    Comparison of Different Runs
+                                </h3>
+                                <p class="text-gray-700">Overlay multiple tests to ensure consistency and identify
+                                    variations.</p>
+                            </div>
+
+                            <div class="mb-8">
+                                <h3 class="text-xl font-bold mb-4 flex items-center">
+                                    <i class="fas fa-print text-blue-600 mr-3"></i>
+                                    Print-ready Reports and Labels
+                                </h3>
+                                <p class="text-gray-700">Generate professional documentation for clients with custom
+                                    branding options.</p>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-bold mb-4 flex items-center">
+                                    <i class="fas fa-wifi text-blue-600 mr-3"></i>
+                                    Simple Wi-Fi Setup
+                                </h3>
+                                <p class="text-gray-700">Connect wirelessly in seconds with intuitive network
+                                    configuration.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:w-1/2">
+                        <div class="bg-gray-800 rounded-2xl p-2 shadow-xl">
+                            <!-- Mock Software UI -->
+                            <div class="bg-gray-900 rounded-xl p-6">
+                                <div class="flex items-center mb-6">
+                                    <div class="flex space-x-2">
+                                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                    </div>
+                                    <div class="text-center flex-grow text-gray-300 font-medium">
+                                        LABA7 Spring Dyno v3.2
+                                    </div>
+                                </div>
+
+                                <div class="mb-6">
+                                    <div
+                                        class="h-64 bg-gray-800 rounded-lg border border-gray-700 flex items-center justify-center">
+                                        <!-- Graph visualization -->
+                                        <div class="relative w-full h-full p-4">
+                                            <div class="absolute bottom-0 left-0 right-0 h-px bg-gray-700"></div>
+                                            <div class="absolute left-0 top-0 bottom-0 w-px bg-gray-700"></div>
+
+                                            <!-- Graph line -->
+                                            <div class="absolute left-4 right-4 bottom-4 top-4">
+                                                <svg viewBox="0 0 100 100" class="w-full h-full">
+                                                    <path d="M0,100 L20,80 L40,60 L60,40 L80,30 L100,20"
+                                                        stroke="#3b82f6" stroke-width="2" fill="none" />
+                                                    <path d="M0,100 L20,70 L40,50 L60,45 L80,35 L100,25"
+                                                        stroke="#10b981" stroke-width="2" fill="none"
+                                                        stroke-dasharray="4" />
+                                                </svg>
+                                            </div>
+
+                                            <div class="absolute top-2 left-2 text-xs text-gray-500">
+                                                Force (kN)
+                                            </div>
+                                            <div class="absolute bottom-2 right-2 text-xs text-gray-500">
+                                                Displacement (mm)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                                        <div class="text-sm text-gray-400">Spring Rate</div>
+                                        <div class="text-2xl font-bold text-white">4.8 <span
+                                                class="text-lg text-gray-400">N/mm</span></div>
+                                    </div>
+                                    <div class="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                                        <div class="text-sm text-gray-400">Max Force</div>
+                                        <div class="text-2xl font-bold text-white">2.3 <span
+                                                class="text-lg text-gray-400">kN</span></div>
+                                    </div>
+                                </div>
+
+                                <div class="flex space-x-4">
+                                    <button
+                                        class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition">
+                                        New Test
+                                    </button>
+                                    <button
+                                        class="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 rounded-lg transition">
+                                        Export Data
+                                    </button>
+                                    <button
+                                        class="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 rounded-lg transition">
+                                        Print Report
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white" id="faq">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-6">
+                    <div class="faq-item border border-gray-200 rounded-2xl p-6">
+                        <div class="flex justify-between items-center cursor-pointer">
+                            <h3 class="text-xl font-bold">Why is it important to test springs?</h3>
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                        <div class="faq-answer mt-4 hidden">
+                            <p class="text-gray-700">Even identically looking springs can perform differently due to
+                                variations in materials and manufacturing processes. Testing ensures you're using the
+                                correct spring rate for your specific application, optimizing suspension performance for
+                                your weight and riding style.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item border border-gray-200 rounded-2xl p-6">
+                        <div class="flex justify-between items-center cursor-pointer">
+                            <h3 class="text-xl font-bold">Can this equipment test coil springs?</h3>
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                        <div class="faq-answer mt-4 hidden">
+                            <p class="text-gray-700">Yes, our spring rate testers function as a comprehensive coil
+                                spring tester, handling all types of automotive and motorcycle coil springs with
+                                precision measurement capabilities.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item border border-gray-200 rounded-2xl p-6">
+                        <div class="flex justify-between items-center cursor-pointer">
+                            <h3 class="text-xl font-bold">Can this equipment perform spring tension testing?</h3>
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                        <div class="faq-answer mt-4 hidden">
+                            <p class="text-gray-700">Yes, our spring rate tester capabilities allow you to measure both
+                                compression and tension forces. As a complete testing machine, it measures seal drag and
+                                the force required to extend springs for comprehensive analysis.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item border border-gray-200 rounded-2xl p-6">
+                        <div class="flex justify-between items-center cursor-pointer">
+                            <h3 class="text-xl font-bold">How are spring rates measured?</h3>
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                        <div class="faq-answer mt-4 hidden">
+                            <p class="text-gray-700">Traditional testing requires manual compression and force
+                                calculations to determine the spring rate. With the LABA7 spring rate tester, simply
+                                insert your spring, press start, and receive instant, accurate measurements on your
+                                screen for professional testing accessible to any workshop.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item border border-gray-200 rounded-2xl p-6">
+                        <div class="flex justify-between items-center cursor-pointer">
+                            <h3 class="text-xl font-bold">Can the tester be used as a spring smasher for heavy-duty
+                                testing?</h3>
+                            <i class="fas fa-chevron-down text-blue-600"></i>
+                        </div>
+                        <div class="faq-answer mt-4 hidden">
+                            <p class="text-gray-700">Yes. The LABA7 tester can apply controlled force to simulate
+                                extreme compressions, effectively working as a spring smasher. This allows workshops and
+                                racing teams to evaluate how springs perform under aggressive loads as well as in
+                                precise, slow-rate testing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-900 to-gray-900 text-white" id="contact">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4">Contact LABA7</h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto">Get in touch with our team for more information about our
+                        spring rate testers, adapters, or custom solutions for your workshop.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-phone text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Call Us</h3>
+                        <p class="text-gray-300">+1 (555) 123-4567</p>
+                        <p class="text-gray-400 text-sm">Mon-Fri, 9am-6pm EST</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-envelope text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Email Us</h3>
+                        <p class="text-gray-300">sales@laba7.com</p>
+                        <p class="text-gray-400 text-sm">Response within 24 hours</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Visit Us</h3>
+                        <p class="text-gray-300">123 Engineering Drive</p>
+                        <p class="text-gray-400 text-sm">Tech Park, Industrial Zone</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Request a Quote</h3>
+                    <form id="contactForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">First Name</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Last Name</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2">Interested In</label>
+                            <select
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>Spring Tester MINI</option>
+                                <option>Spring Tester DAILY</option>
+                                <option>Spring Tester PRO</option>
+                                <option>Adapters</option>
+                                <option>Custom Solution</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2">Message</label>
+                            <textarea rows="4"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg transition w-full">
+                            Send Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div data-include="/Footer/footer.html"></div>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+
+                // Remove active class from all buttons
+                tabBtns.forEach(b => {
+                    b.classList.remove('tab-active');
+                    b.classList.remove('text-blue-600');
+                    b.classList.add('text-gray-600');
+                });
+
+                // Add active class to clicked button
+                btn.classList.add('tab-active');
+                btn.classList.add('text-blue-600');
+                btn.classList.remove('text-gray-600');
+
+                // Hide all tab contents
+                tabContents.forEach(content => {
+                    content.classList.add('hidden');
+                });
+
+                // Show selected tab content
+                const activeTab = document.getElementById(`${tabId}-tab`);
+                activeTab.classList.remove('hidden');
+                activeTab.classList.add('fade-in');
+            });
+        });
+
+        // Set default active tab
+        document.querySelector('[data-tab="technical"]').classList.add('tab-active');
+        document.querySelector('[data-tab="technical"]').classList.add('text-blue-600');
+        document.querySelector('[data-tab="technical"]').classList.remove('text-gray-600');
+
+        // FAQ accordion functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.flex');
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('.fa-chevron-down');
+
+            question.addEventListener('click', () => {
+                // Close all other FAQ items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.querySelector('.faq-answer').classList.add('hidden');
+                        otherItem.querySelector('.fa-chevron-down').classList.remove('fa-chevron-up');
+                        otherItem.querySelector('.fa-chevron-down').classList.add('fa-chevron-down');
+                    }
+                });
+
+                // Toggle current item
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-up');
+                icon.classList.toggle('fa-chevron-down');
+            });
+        });
+
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your request! We will contact you shortly.');
+            contactForm.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Add hover effect to product cards
+        const productCards = document.querySelectorAll('.product-card');
+
+        productCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'all 0.3s ease';
+            });
+        });
+    </script>
+</body>
+
+</html>

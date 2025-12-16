@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shock Dyno - Scotch-Yoke Crank Dynamometers | LABA7</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/include.js"></script>
+    <script src="../include.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,6 +78,8 @@
             padding: 12px 16px;
             border: 1px solid #e2e8f0;
             color: #475569;
+            font-size: large;
+            font-weight: 600;
         }
         
         .spec-table tr:nth-child(even) {
@@ -99,12 +101,7 @@
             border: 1px solid #2563eb;
         }
         
-        .price-table td {
-            padding: 16px;
-            border: 1px solid #e2e8f0;
-            text-align: center;
-            color: #475569;
-        }
+       
         
         .price-table tr:nth-child(even) {
             background-color: #f8fafc;
@@ -267,8 +264,8 @@
         }
         
         .large-image {
-            grid-column: 1 / 3;
-            grid-row: 1 / 2;
+            grid-column: 1 / 4;
+            grid-row: 1 / 4;
         }
         
         .small-image {
@@ -330,7 +327,7 @@
         }
         
         .offer-btn {
-            background: #3b82f6;
+            background: #E37434;
             color: white;
             border: none;
             padding: 0.5rem 1.5rem;
@@ -342,7 +339,7 @@
         }
         
         .offer-btn:hover {
-            background: #2563eb;
+            background: #CC561E;
         }
         
         /* Specifications Table Styles */
@@ -369,7 +366,7 @@
             padding: 16px 20px;
             border: 1px solid #e2e8f0;
             color: #475569;
-            line-height: 1.6;
+            line-height: 1.4;
         }
         
         .specs-full-table tr:nth-child(even) {
@@ -428,25 +425,25 @@
     <!-- Main Content -->
     <main class="pt-20 pb-16">
         <!-- Hero Section -->
-        <section class="bg-white py-12 lg:py-20">
+        <section class="py-12 lg:py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid-layout">
                     <!-- Left side - Text content -->
                     <div class="text-content">
-                        <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                            LABA7 <span class="text-blue-600">Shock Dyno</span>
+                        <h1 class="text-3xl lg:text-4xl font-bold text-gray-700 mb-6 leading-tight">
+                            AP measurements <span class="text-gray-700">Shock Dyno</span>
                         </h1>
-                        <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        <p class="text-xl text-gray-500 mb-8 leading-relaxed">
                             Precision Testing for Maximum Performance
                         </p>
                         <p class="text-gray-600 mb-10">
                             Take your workshop to the next level with the LABA7 shock dynamometer, a high-precision, user-friendly, and reliable shock dyno designed by racers and mechanics to simplify shock absorber and suspension testing.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center">
+                            <button class="bg-orange-500 hover:bg-orange-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center">
                                 <i class="fas fa-shopping-cart mr-2"></i> Get Offer
                             </button>
-                            <button class="bg-white hover:bg-gray-50 text-gray-800 border border-gray-300 px-8 py-4 rounded-lg font-semibold transition-colors flex items-center justify-center">
+                            <button class="hover:bg-gray-50 text-gray-800 border border-gray-300 px-8 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center">
                                 <i class="fas fa-play-circle mr-2"></i> See How It Works
                             </button>
                         </div>
@@ -456,34 +453,22 @@
                     <div class="images-grid">
                         <!-- Large top image -->
                         <div class="image-item large-image">
-                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                            <img src="../assets/Shockk.png" 
                                  alt="LABA7 Shock Dyno in workshop" 
                                  class="w-full h-full object-cover">
                         </div>
                         
-                        <!-- Small bottom left image -->
-                        <div class="image-item small-image">
-                            <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                                 alt="Close-up of shock dyno mechanism" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        
-                        <!-- Small bottom right image -->
-                        <div class="image-item small-image">
-                            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                                 alt="Shock dyno testing interface" 
-                                 class="w-full h-full object-cover">
-                        </div>
+                       
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Scotch-Yoke Crank Shock Dynos Section -->
-        <section class="py-16 bg-white">
+        <section class="py-16 bg-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Scotch-Yoke Crank Shock Dynos</h2>
+                <div class="text-center mb-6">
+                    <h2 class="text-3xl font-semibold text-gray-700 mb-4">Scotch-Yoke Crank Shock Dynos</h2>
                     <p class="text-gray-600 max-w-3xl mx-auto text-lg">
                         We have developed a range of 5 advanced LABA7 shock dynos, tailored to your specific suspension testing needs.
                     </p>
@@ -497,7 +482,7 @@
                              alt="Featherlight Model" 
                              class="model-image">
                         <div class="model-label">Featherlight</div>
-                        <button class="offer-btn">Get offer</button>
+                        <button class="offer-btn mb-1">Get offer</button>
                     </div>
                     
                     <!-- Light -->
@@ -544,16 +529,7 @@
                   
                     <div class="overflow-x-auto">
                         <table class="specs-full-table">
-                            <thead>
-                                <tr>
-                                    <th>Specification</th>
-                                    <th>Featherlight</th>
-                                    <th>Light</th>
-                                    <th>Mid</th>
-                                    <th>Heavy</th>
-                                    <th>Super Heavy</th>
-                                </tr>
-                            </thead>
+                          
                             <tbody>
                                 
                                 <tr>
@@ -654,114 +630,119 @@
         </section>
 
         <!-- How It Works Section -->
-        <section class="py-16 bg-[#F5EDED]">
+       <section class="py-12 lg:py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col lg:flex-row items-center gap-12">
-                    <div class="lg:w-1/2">
-                        <div class="bg-white rounded-2xl shadow-soft p-8">
-                            <div class="flex items-center mb-6">
-                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-cogs text-blue-600 text-xl"></i>
-                                </div>
-                                <h2 class="text-2xl font-bold text-gray-900">How Does a Suspension Dyno Work?</h2>
-                            </div>
-                            <p class="text-gray-600 mb-6">
-                                A suspension dyno accurately simulates the forces and speeds your shock absorbers and dampers experience during real-world riding or driving conditions. By replicating these movements, the dyno provides precise, repeatable tests that help you identify performance issues and optimize suspension settings.
-                            </p>
-                            <p class="text-gray-600 mb-6">
-                                During testing, the dyno moves the fork or shock absorber up and down at user-selected speeds, closely mimicking actual suspension travel. This controlled motion allows you to diagnose problems such as blocked oil passages, worn components, or cavitation caused by gas pressure loss.
-                            </p>
-                            <div class="bg-blue-50 rounded-xl p-6">
-                                <h4 class="font-bold text-gray-900 mb-2">Real-Time Data Visualization</h4>
-                                <p class="text-gray-600">
-                                    All test data is displayed in clear, real-time graphs including force versus velocity and force versus displacement, making it easy to analyze shock behavior during compression and rebound phases.
-                                </p>
-                            </div>
-                        </div>
+                <div class="grid-layout">
+                    <!-- Left side - Text content -->
+                    <div class="text-content">
+                        <h1 class="text-3xl lg:text-3xl font-semibold text-gray-700 mb-6 leading-tight">
+                            How Does a Suspension Dyno Work?
+                        </h1>
+                        <p class="text-gray-600 mb-10">
+                            A suspension dyno accurately simulates the forces and speeds your shock absorbers and dampers experience during real-world riding or driving conditions. By replicating these movements, the dyno provides precise, repeatable tests that help you identify performance issues and optimize suspension settings.
+                        </p>
+                        <p class="text-gray-600 mb-10">
+                            During testing, the dyno moves the fork or shock absorber up and down at user-selected speeds, closely mimicking actual suspension travel. This controlled motion allows you to diagnose problems such as blocked oil passages, worn components, or cavitation caused by gas pressure loss.
+
+
+                        </p>
+                        <p class="text-gray-600 mb-10">
+                           All test data is displayed in clear, real-time graphs including force versus velocity and force versus displacement, making it easy to analyze shock behavior during compression and rebound phases. With this insight, you can make informed adjustments to improve suspension performance, safety, and ride quality.
+
+
+                        </p>
+                        
                     </div>
-                   
+                    
+                    <!-- Right side - Image grid -->
+                    <div class="images-grid">
+                        <!-- Large top image -->
+                        <div class="image-item large-image">
+                            <img src="../assets/Shockk.png" 
+                                 alt="LABA7 Shock Dyno in workshop" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        
+                       
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Key Features Section -->
-        <section class="py-16 text-gray-600 ">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-2  gap-12 items-start">
-                    <!-- Left Side - Title and Image -->
-                    <div>
-                        <h2 class="text-3xl text-gray-700 font-bold mb-4">Key Features of Shock Dyno</h2>
-                        
-                        <!-- Image Container with Overlay -->
-                        <div class="mt-8 image-container w-auto">
-                            <img src="../assets/shock-dyno5.png" alt="LABA7 Technology - Circuit Board" class="rounded-lg w-auto h-auto object-cover relative">
-                           
-                        </div>
-                        
-                     
+        <section class="py-16 bg-gray-100 text-gray-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
+            <!-- Left Side - Title and Image (Takes 1 column out of 3) -->
+            <div class="lg:col-span-1">
+                <h2 class="text-2xl text-gray-700 font-semibold mb-4">Key Features of Shock Dyno</h2>
+                
+                <div class="mt-6">
+                    <img src="../assets/shock-dyno5.png" alt="LABA7 Technology - Circuit Board" 
+                         class="rounded-lg w-full max-h-72 lg:max-h-80 object-contain">
+                </div>
+            </div>
+            
+            <!-- Right Side - Accordion (Takes 2 columns out of 3) -->
+            <div class="lg:col-span-2 space-y-4">
+                <!-- Accuracy Feature -->
+                <div class="border border-gray-700 rounded-lg overflow-hidden">
+                    <button class="feature-accordion w-full flex justify-between items-center p-4 lg:p-3 text-left bg-[#F5E5E1] hover:bg-[#F5E5E1] transition-colors" data-feature="accuracy">
+                        <h3 class="text-xl lg:text-xl font-semibold">Accuracy</h3>
+                        <i class="fas fa-chevron-right text-xl lg:text-2xl transition-transform duration-300"></i>
+                    </button>
+                    <div class="feature-content hidden p-4 lg:p-6 border-t border-gray-700" id="accuracy-content">
+                        <p class="text-gray-700 mb-4">
+                            In the world of suspension, precision is key. Our in-house data logger reads thousands of times per second with minimal electrical noise, providing data extremely close to the original signal.
+                        </p>
+                        <ul class="text-gray-700 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                <span>Scotch-Yoke mechanism for uninterpreted data</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
+                                <span>Minimized electrical noise and data filtration</span>
+                            </li>
+                        </ul>
                     </div>
-                    
-                    <!-- Right Side - Accordion -->
-                    <div class="space-y-4 mt-28 w-250px">
-                        <!-- Accuracy Feature -->
-                        <div class="border border-gray-700 rounded-lg overflow-hidden">
-                            <button class="feature-accordion w-full flex justify-between items-center p-6 text-left bg-blue-100 hover:bg-gray-800 transition-colors" data-feature="accuracy">
-                                <h3 class="text-2xl font-bold">Accuracy</h3>
-                                <i class="fas fa-chevron-right text-2xl transition-transform duration-300"></i>
-                            </button>
-                            <div class="feature-content hidden  p-6 border-t border-gray-700" id="accuracy-content">
-                                <p class="text-gray-700 mb-4">
-                                    In the world of suspension, precision is key. Our in-house data logger reads thousands of times per second with minimal electrical noise, providing data extremely close to the original signal.
-                                </p>
-                                <ul class="text-gray-700 space-y-2">
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
-                                        <span>Scotch-Yoke mechanism for uninterpreted data</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check text-green-500 mr-3 mt-1"></i>
-                                        <span>Minimized electrical noise and data filtration</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <!-- Reliability Feature -->
-                        <div class="border border-gray-700 rounded-lg overflow-hidden">
-                            <button class="feature-accordion w-full flex justify-between items-center p-6 text-left bg-blue-100 hover:bg-gray-800 transition-colors" data-feature="reliability">
-                                <h3 class="text-2xl font-bold">Reliability</h3>
-                                <i class="fas fa-chevron-right text-2xl transition-transform duration-300"></i>
-                            </button>
-                            <div class="feature-content hidden  p-6 border-t border-gray-700" id="reliability-content">
-                                <p class="text-gray-700 mb-4">
-                                    The reliability of our equipment results from its simple yet robust design. Most components are built to exceed standard durability requirements, ensuring long-lasting performance.
-                                </p>
-                                <p class="text-gray-700 mb-4">
-                                    To guarantee exceptional build quality, we assemble all LABA7 shock absorber dynos at our headquarters. Each unit undergoes rigorous testing and precise calibration before shipment, ensuring our customers receive perfect, ready-to-use products.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <!-- Customer-driven Perfection Feature -->
-                        <div class="border border-gray-700 rounded-lg overflow-hidden">
-                            <button class="feature-accordion w-full flex justify-between items-center p-6 text-left bg-blue-100 hover:bg-gray-800 transition-colors" data-feature="perfection">
-                                <h3 class="text-2xl font-bold">Customer Assistance</h3>
-                                <i class="fas fa-chevron-right text-2xl transition-transform duration-300"></i>
-                            </button>
-                             <div class="feature-content hidden  p-6 border-t border-gray-700" id="reliability-content">
-                                <p class="text-gray-700 mb-4">
-                                    The reliability of our equipment results from its simple yet robust design. Most components are built to exceed standard durability requirements, ensuring long-lasting performance.
-                                </p>
-                                <p class="text-gray-700 mb-4">
-                                    To guarantee exceptional build quality, we assemble all LABA7 shock absorber dynos at our headquarters. Each unit undergoes rigorous testing and precise calibration before shipment, ensuring our customers receive perfect, ready-to-use products.
-                                </p>
-                            </div>
-                           
-                        </div>
+                </div>
+                
+                <!-- Reliability Feature -->
+                <div class="border border-gray-700 rounded-lg overflow-hidden">
+                    <button class="feature-accordion w-full flex justify-between items-center p-4 lg:p-3 text-left bg-[#F5E5E1] hover:bg-[#F5E5E1] transition-colors" data-feature="reliability">
+                        <h3 class="text-xl lg:text-xl font-semibold">Reliability</h3>
+                        <i class="fas fa-chevron-right text-xl lg:text-2xl transition-transform duration-300"></i>
+                    </button>
+                    <div class="feature-content hidden p-4 lg:p-6 border-t border-gray-700" id="reliability-content">
+                        <p class="text-gray-700 mb-4">
+                            The reliability of our equipment results from its simple yet robust design. Most components are built to exceed standard durability requirements, ensuring long-lasting performance.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            To guarantee exceptional build quality, we assemble all LABA7 shock absorber dynos at our headquarters. Each unit undergoes rigorous testing and precise calibration before shipment, ensuring our customers receive perfect, ready-to-use products.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Customer-driven Perfection Feature -->
+                <div class="border border-gray-700 rounded-lg overflow-hidden">
+                    <button class="feature-accordion w-full flex justify-between items-center p-4 lg:p-3 text-left bg-[#F5E5E1] hover:bg-[#F5E5E1] transition-colors" data-feature="perfection">
+                        <h3 class="text-xl lg:text-xl font-semibold">Customer Assistance</h3>
+                        <i class="fas fa-chevron-right text-xl lg:text-2xl transition-transform duration-300"></i>
+                    </button>
+                    <div class="feature-content hidden p-4 lg:p-6 border-t border-gray-700" id="perfection-content">
+                        <p class="text-gray-700 mb-4">
+                            The reliability of our equipment results from its simple yet robust design. Most components are built to exceed standard durability requirements, ensuring long-lasting performance.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            To guarantee exceptional build quality, we assemble all LABA7 shock absorber dynos at our headquarters. Each unit undergoes rigorous testing and precise calibration before shipment, ensuring our customers receive perfect, ready-to-use products.
+                        </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
         <!-- Expand Your Possibilities Section -->
         <section class="py-20 bg-white">
@@ -777,15 +758,15 @@
                 <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
                     <!-- ==== MTB ==== -->
                     <div class="space-y-6">
-                        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block transition duration-300">
+                        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-white inline-block transition duration-300">
                             Adapters for MTB dampers
                         </div>
                         <div class="adapter-box group relative bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center overflow-hidden cursor-pointer"
                              data-img="../assets/shock-dyno.png">
                             <!-- Overlay with + icon -->
-                            <div class="absolute inset-0 flex items-center justify-center z-10">
+                            <!-- <div class="absolute inset-0 flex items-center justify-center z-10">
                                 <div class="plus">+</div>
-                            </div>
+                            </div> -->
                             <img src="../assets/shock-dyno.png"
                                  alt="MTB Shock Adapter"
                                  class="w-full h-auto object-contain">
@@ -794,15 +775,15 @@
 
                     <!-- ==== MOTO ==== -->
                     <div class="space-y-6">
-                        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block transition duration-300">
+                        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-white inline-block transition duration-300">
                             Adapters for MOTO dampers
                         </div>
                         <div class="adapter-box group relative bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center overflow-hidden cursor-pointer"
                              data-img="../assets/shock-dyno2.png">
                             <!-- Overlay with + icon -->
-                            <div class="absolute inset-0 flex items-center justify-center z-10">
+                            <!-- <div class="absolute inset-0 flex items-center justify-center z-10">
                                 <div class="plus">+</div>
-                            </div>
+                            </div> -->
                             <img src="../assets/shock-dyno2.png"
                                  alt="MOTO Shock Adapter"
                                  class="w-full h-auto object-contain">
@@ -811,15 +792,15 @@
 
                     <!-- ==== AUTO ==== -->
                     <div class="space-y-6">
-                        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-gray-700 inline-block transition duration-300">
+                        <div class="bg-orange-500 cursor-pointer hover:bg-orange-600 border border-gray-200 rounded-full px-6 py-2 text-sm font-medium text-white inline-block transition duration-300">
                             Adapters for AUTO dampers
                         </div>
                         <div class="adapter-box group relative bg-gray-50 p-8 rounded-2xl shadow-sm h-64 flex items-center justify-center overflow-hidden cursor-pointer"
                              data-img="../assets/shock-dyno3.png">
                             <!-- Overlay with + icon -->
-                            <div class="absolute inset-0 flex items-center justify-center z-10">
+                            <!-- <div class="absolute inset-0 flex items-center justify-center z-10">
                                 <div class="plus">+</div>
-                            </div>
+                            </div> -->
                             <img src="../assets/shock-dyno3.png"
                                  alt="AUTO Shock Adapter"
                                  class="w-full h-auto object-contain">
@@ -854,7 +835,7 @@
         <section class="py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold text-gray-700 mb-4">Benefits of Owning a Shock Dyno</h2>
+                    <h2 class="text-2xl md:text-2xl font-bold text-gray-700 mb-8">Benefits of Owning a Shock Dyno</h2>
                     <p class="text-gray-600 max-w-3xl mx-auto">
                         Discover how a shock dyno can transform your workshop and improve your suspension tuning capabilities.
                     </p>
@@ -863,34 +844,28 @@
                 <div class="space-y-16">
                     <!-- Benefit 1 - Image Left, Content Right -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div class="order-2 lg:order-1">
-                            <div class="bg-gray-100 rounded-2xl h-64 w-80 ml-28 flex items-center justify-center">
-                                <i class="fas fa-stethoscope text-8xl text-red-500"></i>
+                          <div class="order-2 lg:order-1">
+                            <div class="rounded-2xl h-96 flex items-center justify-center">
+                               <img src="../assets/benefit1.png" alt="">
                             </div>
                         </div>
                         <div class="order-1 lg:order-2">
                             <div class="flex items-center mb-6">
-                                <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-stethoscope text-red-600 text-2xl"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold text-gray-900">Diagnose Faulty Shock Absorbers or Forks</h3>
+                                
+                                <h3 class="text-xl font-bold text-gray-900">Diagnose Faulty Shock Absorbers or Forks</h3>
                             </div>
                             <p class="text-gray-600 text-md mb-6">
-                               A shock dyno can quickly identify and diagnose common issues with shock absorbers or forks within seconds. By examining the force vs displacement graph, you can easily understand what is happening with the damper during compression and rebound. Problems such as blocked oil passages, broken shims, cavitation caused by low gas pressure, and more can all be rapidly detected through detailed dyno graph analysis.
-
-
+                              A shock dyno can quickly identify and diagnose common issues with shock absorbers or forks within seconds. By examining the force vs displacement graph, you can easily understand what is happening with the damper during compression and rebound. Problems such as blocked oil passages, broken shims, cavitation caused by low gas pressure, and more can all be rapidly detected through detailed dyno graph analysis.
                             </p>
                         
                         </div>
                     </div>
                     
                     <!-- Benefit 2 - Content Left, Image Right -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 ml-12 items-center">
                         <div>
                             <div class="flex items-center mb-6">
-                                <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-chart-bar text-green-600 text-2xl"></i>
-                                </div>
+                               
                                 <h3 class="text-2xl font-bold text-gray-700">Compare Performance</h3>
                             </div>
                             <p class="text-gray-600 text-md mb-6">
@@ -919,8 +894,8 @@
                             </div>
                         </div>
                         <div>
-                            <div class="bg-gray-100 rounded-2xl h-96 flex items-center justify-center">
-                                <i class="fas fa-chart-bar text-8xl text-green-500"></i>
+                            <div class=" rounded-2xl h-96 flex items-center justify-center">
+                              <img src="../assets/benefit2.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -928,16 +903,14 @@
                     <!-- Benefit 3 - Image Left, Content Right -->
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div class="order-2 lg:order-1">
-                            <div class="bg-gray-100 rounded-2xl h-96 flex items-center justify-center">
-                                <i class="fas fa-sliders-h text-8xl text-purple-500"></i>
+                            <div class="rounded-2xl h-96 flex items-center justify-center">
+                               <img src="../assets/benefit3.png" alt="">
                             </div>
                         </div>
                         <div class="order-1 lg:order-2">
                             <div class="flex items-center mb-6">
-                                <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-sliders-h text-purple-600 text-2xl"></i>
-                                </div>
-                                <h3 class="text-3xl font-bold text-gray-900">Navigate Tuning and Adjustment</h3>
+                               
+                                <h3 class="text-2xl font-bold text-gray-700">Navigate Tuning and Adjustment</h3>
                             </div>
                             <p class="text-gray-600 text-lg mb-6">
                                 Make data-driven, precise adjustments by analyzing graph curves alongside rider feedback for fine-tuned suspension performance.
@@ -963,13 +936,11 @@
                     </div>
                     
                     <!-- Benefit 4 - Content Left, Image Right -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ml-12">
                         <div>
                             <div class="flex items-center mb-6">
-                                <div class="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-clipboard-check text-amber-600 text-2xl"></i>
-                                </div>
-                                <h3 class="text-3xl font-bold text-gray-900">Quality Control and Warranty</h3>
+                               
+                                <h3 class="text-2xl font-bold text-gray-700">Quality Control and Warranty</h3>
                             </div>
                             <p class="text-gray-600 text-lg mb-6">
                                 Perform quality control testing before returning products to customers and provide solid evidence for warranty claims.
@@ -993,8 +964,8 @@
                             </div>
                         </div>
                         <div>
-                            <div class="bg-gray-100 rounded-2xl h-96 flex items-center justify-center">
-                                <i class="fas fa-clipboard-check text-8xl text-amber-500"></i>
+                            <div class="rounded-2xl h-96 flex items-center justify-center">
+                              <img src="../assets/benefit4.png" alt="">
                             </div>
                         </div>
                     </div>
