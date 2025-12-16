@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Hammers | LNS Dynamics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #1a3a5f;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: #4dabf7;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #4dabf7;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(26, 58, 95, 0.9), rgba(26, 58, 95, 0.8)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #1a3a5f;
+            font-size: 36px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #4dabf7;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 3px solid #4dabf7;
+        }
+        
+        .product-content {
+            padding: 25px;
+        }
+        
+        .product-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1a3a5f;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .product-features {
+            margin-bottom: 25px;
+        }
+        
+        .product-features li {
+            margin-bottom: 8px;
+            list-style-type: none;
+            padding-left: 24px;
+            position: relative;
+        }
+        
+        .product-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4dabf7;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #1a3a5f;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #4dabf7;
+        }
+        
+        .btn-view-details {
+            background-color: #4dabf7;
+        }
+        
+        .btn-view-details:hover {
+            background-color: #1a3a5f;
+        }
+        
+        footer {
+            background-color: #1a3a5f;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding-right: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #4dabf7;
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        /* NEW PRODUCT DETAILS PAGE STYLES */
+        .product-details-page {
+            background-color: #fff;
+            min-height: 100vh;
+        }
+
+        .product-details-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eaeaea;
+            padding: 20px 0;
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #1a3a5f;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            margin: 0 8px;
+            color: #999;
+        }
+
+        .product-details-main {
+            padding: 40px 0;
+        }
+
+        .product-details-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .product-image-section {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-image-large {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .product-info-section {
+            padding: 20px 0;
+        }
+
+        .product-category {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .product-model-large {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a3a5f;
+            margin-bottom: 15px;
+        }
+
+        .product-title-large {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .product-specs-summary {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .spec-summary-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .spec-summary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .spec-summary-label {
+            font-weight: 600;
+            min-width: 120px;
+            color: #333;
+        }
+
+        .spec-summary-value {
+            color: #555;
+        }
+
+        .lead-time-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #e6f7ff;
+            color: #0066cc;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .lead-time-badge i {
+            margin-right: 8px;
+        }
+
+        .datasheet-btn {
+            display: inline-flex;
+            align-items: center;
+            background: #0066cc;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            transition: background-color 0.3s;
+        }
+
+        .datasheet-btn:hover {
+            background: #0052a3;
+        }
+
+        .datasheet-btn i {
+            margin-right: 10px;
+        }
+
+        .sku-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .sku-item {
+            display: flex;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .sku-label {
+            font-weight: 600;
+            min-width: 80px;
+            color: #333;
+        }
+
+        .sku-value {
+            color: #555;
+        }
+
+        .product-tabs-section {
+            margin: 60px 0;
+            padding: 40px 0;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .tabs-header {
+            display: flex;
+            border-bottom: 2px solid #eaeaea;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            padding: 15px 40px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            color: #777;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: #0066cc;
+        }
+
+        .tab-btn.active:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #0066cc;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h2 {
+            font-size: 28px;
+            color: #1a3a5f;
+            margin-bottom: 25px;
+        }
+
+        .tab-content h3 {
+            font-size: 22px;
+            color: #333;
+            margin: 25px 0 15px;
+        }
+
+        .description-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .description-content p {
+            margin-bottom: 20px;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .specs-table th, .specs-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .specs-table th {
+            background-color: #f8f9fa;
+            color: #1a3a5f;
+            font-weight: 600;
+            width: 50%;
+        }
+
+        .specs-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .downloads-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .downloads-description {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .downloads-description p {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .downloads-list {
+            list-style: none;
+        }
+
+        .downloads-list li {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .downloads-list li:last-child {
+            border-bottom: none;
+        }
+
+        .downloads-list li a {
+            color: #1a3a5f;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .downloads-list li a:hover {
+            color: #0066cc;
+        }
+
+        .downloads-list li a i {
+            margin-right: 15px;
+            font-size: 22px;
+            color: #0066cc;
+        }
+
+        .related-products-section {
+            margin: 80px 0 40px;
+        }
+
+        .related-products-section h2 {
+            font-size: 32px;
+            color: #1a3a5f;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .related-products-section h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #0066cc;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .related-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eaeaea;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .related-model {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .related-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .related-specs p {
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 15px;
+        }
+
+        .related-link {
+            display: inline-block;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            margin-top: 15px;
+        }
+
+        .related-link:hover {
+            text-decoration: underline;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #1a3a5f;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 992px) {
+            .product-details-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .downloads-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs-header {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                text-align: left;
+                padding: 12px 20px;
+                border-bottom: 1px solid #eaeaea;
+            }
+
+            .tab-btn.active:after {
+                width: 4px;
+                height: 100%;
+                bottom: 0;
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Product Listing Page -->
+    <div id="main-page">
+        <header>
+            <div class="container header-content">
+                <div class="logo">
+                    <i class="fas fa-tools"></i>
+                    LNS Dynamics
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Impact Hammers</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="container">
+                <h1>High-Performance Impact Hammers</h1>
+                <p>Discover our range of precision-engineered impact hammers designed for structural testing, modal analysis, and vibration testing applications. Built for durability and accuracy.</p>
+                <a href="#products" class="btn">View Products</a>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2 class="section-title" id="products">Our Impact Hammers</h2>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1569511163526-0133aaaa7e8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Heavy Duty Impact Hammer" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">NO1B00 - General Purpose IEPE Impact Hammer</h3>
+                        <p class="product-description">Sensitivity: 4.5mV/lbf, Range: 1111 lbf pk, Temp Range: -55~120°C, Connector: BNC</p>
+                        <ul class="product-features">
+                            <li>Sensitivity: 4.5mV/lbf</li>
+                            <li>Range: 1111 lbf pk</li>
+                            <li>Temp Range: -55~120°C</li>
+                            <li>Connector: BNC</li>
+                        </ul>
+                        <a href="javascript:void(0);" onclick="openProductDetails(1)" class="btn btn-view-details">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="NO2B00 Impact Hammer" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">NO2B00 - General Purpose IEPE Impact Hammer</h3>
+                        <p class="product-description">Sensitivity: 11.1mV/lbf, Range: 450 lbf pk, Temp Range: -55~120°C, Connector: BNC</p>
+                        <ul class="product-features">
+                            <li>Sensitivity: 11.1mV/lbf</li>
+                            <li>Range: 450 lbf pk</li>
+                            <li>Temp Range: -55~120°C</li>
+                            <li>Connector: BNC</li>
+                        </ul>
+                        <a href="javascript:void(0);" onclick="openProductDetails(2)" class="btn btn-view-details">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="NO3B00 Impact Hammer" class="product-img">
+                    <div class="product-content">
+                        <h3 class="product-title">NO3B00 - General Purpose IEPE Impact Hammer</h3>
+                        <p class="product-description">Sensitivity: 44.5mV/lbf, Range: 112 lbf pk, Temp Range: -55~120°C, Connector: BNC</p>
+                        <ul class="product-features">
+                            <li>Sensitivity: 44.5mV/lbf</li>
+                            <li>Range: 112 lbf pk</li>
+                            <li>Temp Range: -55~120°C</li>
+                            <li>Connector: BNC</li>
+                        </ul>
+                        <a href="javascript:void(0);" onclick="openProductDetails(3)" class="btn btn-view-details">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>LNS Dynamics</h3>
+                        <p>Leading manufacturer of precision testing equipment for structural analysis, vibration testing, and modal analysis since 1995.</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> info@lnsdynamics.com</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <p><a href="#" style="color: white; text-decoration: none;">Home</a></p>
+                        <p><a href="#" style="color: white; text-decoration: none;">Products</a></p>
+                        <p><a href="#" style="color: white; text-decoration: none;">Services</a></p>
+                        <p><a href="#" style="color: white; text-decoration: none;">Contact Us</a></p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Our Products</h3>
+                        <p>Impact Hammers</p>
+                        <p>Vibration Sensors</p>
+                        <p>Data Acquisition Systems</p>
+                        <p>Modal Analysis Software</p>
+                    </div>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 LNS Dynamics. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Product Details Pages -->
+    <!-- NO2B00 Product Details -->
+    <div id="product2-details" class="product-details-page" style="display: none;">
+        <!-- Header -->
+        <header>
+            <div class="container header-content">
+                <div class="logo">
+                    <i class="fas fa-tools"></i>
+                    LNS Dynamics
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="javascript:void(0);" onclick="closeProductDetails()">Home</a></li>
+                        <li><a href="javascript:void(0);" onclick="closeProductDetails()">Products</a></li>
+                        <li><a href="javascript:void(0);" onclick="closeProductDetails()">Impact Hammers</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Product Details Main Content -->
+        <div class="product-details-main">
+            <div class="container">
+                <!-- Back Button -->
+                <a href="javascript:void(0);" onclick="closeProductDetails()" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Products</a>
+                
+                <div class="product-details-container">
+                    <!-- Product Image -->
+                    <div class="product-image-section">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                             alt="NO2B00 Impact Hammer" 
+                             class="product-image-large">
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="product-info-section">
+                        <div class="product-category">IMPACT HAMMERS</div>
+                        <h1 class="product-model-large">NO2B00</h1>
+                        <h2 class="product-title-large">General Purpose IEPE Impact Hammer</h2>
+                        
+                        <!-- Product Specs Summary -->
+                        <div class="product-specs-summary">
+                            <div class="spec-summary-item">
+                                <div class="spec-summary-label">Sensitivity:</div>
+                                <div class="spec-summary-value">11.1mV/lbf</div>
+                            </div>
+                            <div class="spec-summary-item">
+                                <div class="spec-summary-label">Range:</div>
+                                <div class="spec-summary-value">450 lbf pk</div>
+                            </div>
+                            <div class="spec-summary-item">
+                                <div class="spec-summary-label">Temp Range:</div>
+                                <div class="spec-summary-value">-55~120°C</div>
+                            </div>
+                            <div class="spec-summary-item">
+                                <div class="spec-summary-label">Connector:</div>
+                                <div class="spec-summary-value">BNC</div>
+                            </div>
+                        </div>
+
+                        <!-- Lead Time Badge -->
+                        <div class="lead-time-badge">
+                            <i class="fas fa-shipping-fast"></i> Fast Lead Time
+                        </div>
+
+                        <!-- Datasheet Button -->
+                        <a href="#" class="datasheet-btn">
+                            <i class="fas fa-file-pdf"></i> Datasheet (PDF): NO2B00
+                        </a>
+
+                        <!-- SKU Info -->
+                        <div class="sku-info">
+                            <div class="sku-item">
+                                <div class="sku-label">SKU:</div>
+                                <div class="sku-value">NO2B00</div>
+                            </div>
+                            <div class="sku-item">
+                                <div class="sku-label">Category:</div>
+                                <div class="sku-value">Impact Hammers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs Section -->
+                <div class="product-tabs-section">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" onclick="openDetailTab(event, 'description2')">Description</button>
+                        <button class="tab-btn" onclick="openDetailTab(event, 'specifications2')">Specifications</button>
+                        <button class="tab-btn" onclick="openDetailTab(event, 'downloads2')">Downloads</button>
+                    </div>
+
+                    <!-- Description Tab -->
+                    <div id="description2" class="tab-content active">
+                        <h2>Description</h2>
+                        <div class="description-content">
+                            <p>The NO2B00 General Purpose IEPE Impact Hammer is designed for modal testing and structural analysis applications. With its integrated electronics piezoelectric (IEPE) technology, this hammer eliminates the need for external charge amplifiers, providing a simplified and reliable solution for impact testing.</p>
+                            
+                            <p>Featuring a sensitivity of 11.1mV/lbf and a range of 450 lbf pk, this impact hammer is suitable for a wide range of applications from small components to medium-sized structures. The built-in electronics ensure low-noise performance and excellent signal integrity.</p>
+                            
+                            <h3>Key Features</h3>
+                            <ul>
+                                <li>Integrated IEPE electronics - no external charge amp required</li>
+                                <li>High sensitivity for accurate low-level force measurements</li>
+                                <li>Wide temperature range for various environmental conditions</li>
+                                <li>BNC connector for easy integration with data acquisition systems</li>
+                                <li>Rugged construction for reliable performance in industrial settings</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Specifications Tab -->
+                    <div id="specifications2" class="tab-content">
+                        <h2>Specifications</h2>
+                        <table class="specs-table">
+                            <tr>
+                                <th>Sensitivity (mV/lbf)</th>
+                                <td>11.1</td>
+                            </tr>
+                            <tr>
+                                <th>Range (lbf)</th>
+                                <td>450</td>
+                            </tr>
+                            <tr>
+                                <th>Resolution (lbf)</th>
+                                <td>0.14</td>
+                            </tr>
+                            <tr>
+                                <th>Linearity</th>
+                                <td>±1% FSO</td>
+                            </tr>
+                            <tr>
+                                <th>Resonant Frequency (kHz)</th>
+                                <td>≥40</td>
+                            </tr>
+                            <tr>
+                                <th>Excitation Voltage (Vdc)</th>
+                                <td>20-30 Vdc</td>
+                            </tr>
+                            <tr>
+                                <th>Constant Current Excitation (mA)</th>
+                                <td>2-20 mA</td>
+                            </tr>
+                            <tr>
+                                <th>Output Impedance (Ω)</th>
+                                <td>≤100</td>
+                            </tr>
+                            <tr>
+                                <th>Output Bias Voltage (V)</th>
+                                <td>8-12 Vdc</td>
+                            </tr>
+                            <tr>
+                                <th>Temperature Range (°C)</th>
+                                <td>-55~120</td>
+                            </tr>
+                            <tr>
+                                <th>Min Temperature (°C)</th>
+                                <td>-55</td>
+                            </tr>
+                            <tr>
+                                <th>Max Temperature (°C)</th>
+                                <td>120</td>
+                            </tr>
+                            <tr>
+                                <th>Sealing</th>
+                                <td>IP67</td>
+                            </tr>
+                            <tr>
+                                <th>Housing Material</th>
+                                <td>Stainless Steel</td>
+                            </tr>
+                            <tr>
+                                <th>Output Connector</th>
+                                <td>BNC</td>
+                            </tr>
+                            <tr>
+                                <th>Mounting</th>
+                                <td>Integrated handle with anti-roll design</td>
+                            </tr>
+                            <tr>
+                                <th>Weight (grams)</th>
+                                <td>550</td>
+                            </tr>
+                            <tr>
+                                <th>Output Type</th>
+                                <td>IEPE</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Downloads Tab -->
+                    <div id="downloads2" class="tab-content">
+                        <h2>Downloads</h2>
+                        <div class="downloads-content">
+                            <div class="downloads-description">
+                                <p><strong>General Purpose IEPE Impact Hammer</strong></p>
+                                <p>Sensitivity: 11.1mV/lbf</p>
+                                <p>Range: 450 lbf pk</p>
+                                <p>Temp Range: -55~120°C</p>
+                                <p>Connector: BNC</p>
+                            </div>
+                            <div>
+                                <ul class="downloads-list">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <div>
+                                                <div style="font-weight: 600; margin-bottom: 5px;">Datasheet (PDF): NO2B00</div>
+                                                <div style="font-size: 14px; color: #666;">Complete technical specifications and performance data</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-book"></i>
+                                            <div>
+                                                <div style="font-weight: 600; margin-bottom: 5px;">User Manual & Installation Guide</div>
+                                                <div style="font-size: 14px; color: #666;">Comprehensive guide for setup, operation, and maintenance</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-file-contract"></i>
+                                            <div>
+                                                <div style="font-weight: 600; margin-bottom: 5px;">Calibration Certificate</div>
+                                                <div style="font-size: 14px; color: #666;">ISO 17025 accredited calibration certificate</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Products Section -->
+                <div class="related-products-section">
+                    <h2>RELATED PRODUCTS</h2>
+                    <div class="related-grid">
+                        <div class="related-card">
+                            <div class="related-model">NO1B00</div>
+                            <div class="related-title">General Purpose IEPE Impact Hammer</div>
+                            <div class="related-specs">
+                                <p><strong>Sensitivity:</strong> 4.5mV/lbf</p>
+                                <p><strong>Range:</strong> 1111 lbf pk</p>
+                                <p><strong>Temp Range:</strong> -55~120°C</p>
+                                <p><strong>Connector:</strong> BNC</p>
+                            </div>
+                            <a href="javascript:void(0);" onclick="openProductDetails(1)" class="related-link">View Product Details →</a>
+                        </div>
+                        
+                        <div class="related-card">
+                            <div class="related-model">NO3B00</div>
+                            <div class="related-title">General Purpose IEPE Impact Hammer</div>
+                            <div class="related-specs">
+                                <p><strong>Sensitivity:</strong> 44.5mV/lbf</p>
+                                <p><strong>Range:</strong> 112 lbf pk</p>
+                                <p><strong>Temp Range:</strong> -55~120°C</p>
+                                <p><strong>Connector:</strong> BNC</p>
+                            </div>
+                            <a href="javascript:void(0);" onclick="openProductDetails(3)" class="related-link">View Product Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>LNS Dynamics</h3>
+                        <p>Leading manufacturer of precision testing equipment for structural analysis, vibration testing, and modal analysis since 1995.</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> info@lnsdynamics.com</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <p><a href="javascript:void(0);" onclick="closeProductDetails()" style="color: white; text-decoration: none;">Home</a></p>
+                        <p><a href="javascript:void(0);" onclick="closeProductDetails()" style="color: white; text-decoration: none;">Products</a></p>
+                        <p><a href="#" style="color: white; text-decoration: none;">Services</a></p>
+                        <p><a href="#" style="color: white; text-decoration: none;">Contact Us</a></p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Our Products</h3>
+                        <p>Impact Hammers</p>
+                        <p>Vibration Sensors</p>
+                        <p>Data Acquisition Systems</p>
+                        <p>Modal Analysis Software</p>
+                    </div>
+                </div>
+                <div class="copyright">
+                    &copy; 2023 LNS Dynamics. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- NO1B00 Product Details -->
+    <div id="product1-details" class="product-details-page" style="display: none;">
+        <div class="container">
+            <a href="javascript:void(0);" onclick="closeProductDetails()" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Products</a>
+            <h1>NO1B00 Product Details</h1>
+            <p>This is the NO1B00 product page. Content would be similar to NO2B00.</p>
+        </div>
+    </div>
+
+    <!-- NO3B00 Product Details -->
+    <div id="product3-details" class="product-details-page" style="display: none;">
+        <div class="container">
+            <a href="javascript:void(0);" onclick="closeProductDetails()" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Products</a>
+            <h1>NO3B00 Product Details</h1>
+            <p>This is the NO3B00 product page. Content would be similar to NO2B00.</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to open product details page
+        function openProductDetails(productId) {
+            // Hide the main page
+            document.getElementById('main-page').style.display = 'none';
+            
+            // Show the selected product details page
+            document.getElementById('product' + productId + '-details').style.display = 'block';
+            
+            // Scroll to top of the page
+            window.scrollTo(0, 0);
+        }
+        
+        // Function to close product details and return to main page
+        function closeProductDetails() {
+            // Hide all product details pages
+            const productPages = document.querySelectorAll('.product-details-page');
+            productPages.forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show the main page
+            document.getElementById('main-page').style.display = 'block';
+            
+            // Scroll to top of the page
+            window.scrollTo(0, 0);
+        }
+        
+        // Function to handle tab switching in product details
+        function openDetailTab(evt, tabName) {
+            // Get all tab content elements within the current product details page
+            const currentPage = evt.currentTarget.closest('.product-tabs-section');
+            const tabContents = currentPage.querySelectorAll('.tab-content');
+            
+            // Hide all tab content
+            tabContents.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Get all tab buttons within the current product details page
+            const tabButtons = currentPage.querySelectorAll('.tab-btn');
+            
+            // Remove active class from all tab buttons
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show the current tab and add active class to the button
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+        
+        // Initialize the page by showing only the main page
+        window.onload = function() {
+            // Ensure only the main page is visible on load
+            document.getElementById('main-page').style.display = 'block';
+            
+            // Hide all product details pages
+            const productPages = document.querySelectorAll('.product-details-page');
+            productPages.forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Initialize tabs for product2-details
+            const product2Tabs = document.querySelectorAll('#product2-details .tab-btn');
+            if (product2Tabs.length > 0) {
+                product2Tabs[0].classList.add('active');
+                document.getElementById('description2').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
