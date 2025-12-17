@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AP DYNAMICS - Industrial Solutions</title>
   <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Add include.js FIRST -->
+  <!-- Add include.js FIRST -->
   <script src="./include.js" defer></script>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -53,7 +53,7 @@
       box-sizing: border-box;
     }
 
-    /* Carousel Styles */
+    /* Carousel Styles - FIXED */
     .carousel-slide {
       position: absolute;
       top: 0;
@@ -61,18 +61,14 @@
       width: 100%;
       height: 100%;
       opacity: 0;
-      transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-      transform: translateX(100%);
+      transition: opacity 0.8s ease-in-out;
+      pointer-events: none;
     }
     
     .carousel-slide.active {
       opacity: 1;
-      transform: translateX(0);
+      pointer-events: auto;
       z-index: 1;
-    }
-    
-    .carousel-slide.prev {
-      transform: translateX(-100%);
     }
     
     .carousel-container {
@@ -527,7 +523,7 @@
  
 
  <!-- ==================== HERO CAROUSEL SECTION ==================== -->
-<section class="relative py-10 md:py-20 text-gray-700 min-h-[50vh] flex items-center overflow-hidden ">
+<section class="relative py-10 md:py-20 text-gray-700 min-h-[50vh] flex items-center overflow-hidden">
   <!-- Carousel Container -->
   <div class="carousel-container w-full h-full relative">
     
@@ -664,7 +660,7 @@
     </div>
     
     <!-- Slide 4: Complete Suspension Solutions -->
-    <div class="carousel-slide  ml-4 md:ml-12" data-slide="3">
+    <div class="carousel-slide ml-4 md:ml-12" data-slide="3">
       <div class="w-full h-full flex items-center">
         <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center w-full">
           <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12 ml-6">
@@ -710,10 +706,10 @@
   
   <!-- Carousel Navigation Dots -->
   <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
-    <button class="carousel-dot w-3 h-3 rounded-full bg-white hover:bg-white transition duration-300 active" data-slide="0"></button>
-    <button class="carousel-dot w-3 h-3 rounded-full bg-white hover:bg-white transition duration-300" data-slide="1"></button>
-    <button class="carousel-dot w-3 h-3 rounded-full bg-white hover:bg-white transition duration-300" data-slide="2"></button>
-    <button class="carousel-dot w-3 h-3 rounded-full bg-white hover:bg-white transition duration-300" data-slide="3"></button>
+    <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition duration-300 active" data-slide="0"></button>
+    <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition duration-300" data-slide="1"></button>
+    <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition duration-300" data-slide="2"></button>
+    <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition duration-300" data-slide="3"></button>
   </div>
   
   <!-- Carousel Navigation Arrows -->
@@ -1438,7 +1434,7 @@
       });
 
       // ============================================
-      // AUTO-SLIDING CAROUSEL FUNCTIONALITY
+      // AUTO-SLIDING CAROUSEL FUNCTIONALITY - FIXED
       // ============================================
       class AutoSlidingCarousel {
         constructor() {
@@ -1449,7 +1445,7 @@
           this.currentSlide = 0;
           this.totalSlides = this.slides.length;
           this.autoPlayInterval = null;
-          this.autoPlayDelay = 5000; // 5 seconds between slides
+          this.autoPlayDelay = 5000; // 5 seconds
           this.isAutoPlaying = true;
           
           console.log('🚀 Carousel constructor called');
@@ -1487,14 +1483,16 @@
           }
           
           // Add dot click events
-          this.dots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-              const slideIndex = parseInt(e.target.dataset.slide);
-              console.log(`🔘 Dot ${slideIndex} clicked`);
-              this.goToSlide(slideIndex);
-              this.resetAutoPlay();
+          if (this.dots.length > 0) {
+            this.dots.forEach(dot => {
+              dot.addEventListener('click', (e) => {
+                const slideIndex = parseInt(e.target.dataset.slide);
+                console.log(`🔘 Dot ${slideIndex} clicked`);
+                this.goToSlide(slideIndex);
+                this.resetAutoPlay();
+              });
             });
-          });
+          }
           
           // Start auto-play
           this.startAutoPlay();

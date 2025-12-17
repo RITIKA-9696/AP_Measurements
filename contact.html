@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AP DYNAMICS - Contact Us</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./include.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/Header/header.css">
+  <link rel="stylesheet" href="/Footer/footer.css">
   <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script src="./include.js"></script>
+  
   <script>
     tailwind.config = {
       theme: {
@@ -105,10 +108,10 @@
   </style>
 </head>
 
-<body class="bg-[#F5EDED] min-h-screen font-inter">
+<body class="bg-[#F5EDED] min-h-screen font-inter mt-8">
 
   <!-- ==================== HEADER ==================== -->
-  <div data-include="./header.html"></div>
+  <div data-include="/Header/header.html"></div>
 
   <!-- ==================== CONTACT PAGE CONTENT ==================== -->
   <main class="pt-8">
@@ -318,7 +321,7 @@
   </main>
 
   <!-- ==================== FOOTER ==================== -->
-  <div data-include="./footer.html"></div>
+  <div data-include="/Footer/footer.html"></div>
 
   <!-- JavaScript -->
   <script>
