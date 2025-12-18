@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laba7 Tools - Professional Bike Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../include.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Header/header.css">
+    <link rel="stylesheet" href="/Footer/footer.css">
+
+    <style>
+        :root {
+            --primary-dark: #0A1929;
+            --primary-blue: #1E3A8A;
+            --secondary-blue: #3B82F6;
+            --accent-blue: #60A5FA;
+            --text-primary: #E1E8F0;
+            --text-secondary: #94A3B8;
+            --background-dark: #0A1929;
+            --background-light: rgba(10, 25, 41, 0.7);
+            --border-color: rgba(30, 64, 175, 0.15);
+        }
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes floatSubtle {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes pulseBorder {
+
+            0%,
+            100% {
+                border-color: rgba(30, 64, 175, 0.2);
+            }
+
+            50% {
+                border-color: rgba(30, 64, 175, 0.4);
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-right {
+            animation: fadeInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in-left {
+            animation: fadeInLeft 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-float-subtle {
+            animation: floatSubtle 6s ease-in-out infinite;
+        }
+
+        .animate-pulse-border {
+            animation: pulseBorder 3s ease-in-out infinite;
+        }
+
+        /* Staggered Animation Delays */
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .delay-600 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-700 {
+            animation-delay: 0.7s;
+        }
+
+        .delay-800 {
+            animation-delay: 0.8s;
+        }
+
+        .delay-900 {
+            animation-delay: 0.9s;
+        }
+
+        /* Smaller Components */
+        .glass-card {
+            background: rgba(10, 25, 41, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(30, 64, 175, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .gradient-border {
+            position: relative;
+            background: var(--background-dark);
+            border-radius: 8px;
+            padding: 1px;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue), var(--primary-blue));
+            border-radius: 9px;
+            z-index: -1;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .info-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .info-card:hover::after {
+            left: 100%;
+        }
+
+        .floating-element {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.05;
+        }
+
+        .tech-badge {
+            background: rgba(30, 64, 175, 0.15);
+            padding: 5px 10px;
+            border-radius: 14px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(30, 64, 175, 0.2);
+            color: var(--accent-blue);
+        }
+
+        .data-point {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 14px;
+            background: rgba(30, 64, 175, 0.1);
+            border-radius: 8px;
+            border-left: 2px solid var(--primary-blue);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .data-point:hover {
+            background: rgba(30, 64, 175, 0.15);
+            transform: translateX(3px);
+        }
+
+        /* SMALLER ICONS AND CONTAINERS */
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            border-radius: 8px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.05);
+        }
+
+        /* Category buttons - Smaller */
+        .category-btn {
+            padding: 12px 16px;
+            font-size: 0.95rem;
+        }
+
+        .category-active {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border-left: 4px solid #3B82F6;
+            color: #E1E8F0;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Content cards - Smaller */
+        .content-card {
+            background: linear-gradient(145deg, rgba(10, 25, 41, 0.95) 0%, rgba(15, 30, 50, 0.95) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Buttons - Smaller */
+        .btn-primary {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            padding: 10px 20px;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
+        }
+
+        /* Grid Layout - Adjusted */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            height: 450px;
+        }
+
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 1.5rem;
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 55% 40%;
+            gap: 1rem;
+            height: 450px;
+        }
+
+        .image-item {
+            position: relative;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .large-image {
+            grid-column: 1 / 4;
+            grid-row: 1 / 4;
+        }
+
+        /* Section spacing - Smaller */
+        section {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        /* Feature Accordion - Smaller */
+        .feature-accordion {
+            padding: 12px 16px;
+            font-size: 0.95rem;
+        }
+
+        .feature-content {
+            padding: 16px;
+            font-size: 0.9rem;
+        }
+
+        /* Price badges - Smaller */
+        .price-badge {
+            padding: 8px 16px;
+            font-size: 1rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary-blue), var(--secondary-blue));
+            border-radius: 3px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .text-content {
+                padding-right: 0;
+                padding-bottom: 1.5rem;
+            }
+
+            .images-grid {
+                height: 350px;
+            }
+
+            .feature-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            section {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+        }
+
+        .loading-dots span {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            animation: loadingDot 1.4s ease-in-out infinite;
+        }
+
+        @keyframes loadingDot {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(0.7);
+                opacity: 0.5;
+            }
+        }
+
+        /* Content Styling */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+        }
+
+        p {
+            line-height: 1.6;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .text-primary {
+            color: var(--secondary-blue);
+        }
+
+        .text-secondary {
+            color: var(--accent-blue);
+        }
+
+        /* Sidebar styling */
+        .sidebar-collapsed {
+            width: 70px !important;
+            min-width: 70px !important;
+        }
+
+        .sidebar-expanded {
+            width: 22% !important;
+            min-width: 250px !important;
+        }
+
+        .content-expanded {
+            width: 78% !important;
+        }
+
+        .content-full {
+            width: 100% !important;
+        }
+
+        .sidebar-transition {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+
+        /* Image hover effects */
+        .product-image {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .product-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen mt-20">
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div
+            class="floating-element top-1/4 left-1/4 w-40 h-40 bg-gradient-to-br from-[#1E3A8A] to-transparent rounded-full blur-2xl animate-float-subtle">
+        </div>
+        <div class="floating-element bottom-1/4 right-1/4 w-48 h-48 bg-gradient-to-tr from-[#1E3A8A] to-transparent rounded-full blur-2xl animate-float-subtle"
+            style="animation-delay: 1s;"></div>
+        <div class="absolute inset-0 bg-grid-pattern"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <div data-include="/Header/header.html"></div>
+
+    <!-- Main Content -->
+    <main class="pt-16 pb-16">
+        <!-- Sidebar and Content Container -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Sidebar Categories -->
+                <div id="sidebar" class="lg:sidebar-expanded sidebar-transition">
+                    <div class="content-card rounded-xl p-5 animate-fade-in-left h-full">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-semibold text-white flex items-center sidebar-title">
+                                <i class="fas fa-tools mr-3 text-sm"></i>
+                                <span class="sidebar-text">Tool Categories</span>
+                            </h2>
+                            <div class="lg:hidden">
+                                <button id="mobile-close-sidebar"
+                                    class="w-8 h-8 rounded-full bg-primary-blue border border-accent-blue/30 flex items-center justify-center text-accent-blue hover:bg-accent-blue/10 transition-all">
+                                    <i class="fas fa-times text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 max-h-[500px] overflow-y-auto pr-2">
+                            <button data-category="mtb-shock-tester"
+                                class="category-btn w-full text-left rounded-lg transition-all duration-300 hover:bg-primary-blue hover:text-accent-blue border border-transparent hover:border-accent-blue flex items-center category-active group">
+                                <i class="fas fa-tachometer-alt mr-3 text-sm text-accent-blue sidebar-icon"></i>
+                                <span class="font-medium sidebar-text group-hover:text-accent-blue text-sm">MTB Shock
+                                    Tester</span>
+                            </button>
+
+                            <button data-category="spring-removal-tool"
+                                class="category-btn w-full text-left rounded-lg transition-all duration-300 hover:bg-primary-blue hover:text-accent-blue border border-transparent hover:border-accent-blue flex items-center group">
+                                <i class="fas fa-compress-arrows-alt mr-3 text-sm sidebar-icon"></i>
+                                <span class="font-medium sidebar-text group-hover:text-accent-blue text-sm">Spring
+                                    Removal Tool</span>
+                            </button>
+
+                            <button data-category="shaft-clamp-set"
+                                class="category-btn w-full text-left rounded-lg transition-all duration-300 hover:bg-primary-blue hover:text-accent-blue border border-transparent hover:border-accent-blue flex items-center group">
+                                <i class="fas fa-grip-horizontal mr-3 text-sm sidebar-icon"></i>
+                                <span class="font-medium sidebar-text group-hover:text-accent-blue text-sm">Shaft Clamp
+                                    Set</span>
+                            </button>
+
+                            <button data-category="bushing-sizing-tool"
+                                class="category-btn w-full text-left rounded-lg transition-all duration-300 hover:bg-primary-blue hover:text-accent-blue border border-transparent hover:border-accent-blue flex items-center group">
+                                <i class="fas fa-ruler-combined mr-3 text-sm sidebar-icon"></i>
+                                <span class="font-medium sidebar-text group-hover:text-accent-blue text-sm">Bushing
+                                    Sizing Tool Kit</span>
+                            </button>
+
+                            <button data-category="stretching-measuring-tool"
+                                class="category-btn w-full text-left rounded-lg transition-all duration-300 hover:bg-primary-blue hover:text-accent-blue border border-transparent hover:border-accent-blue flex items-center group">
+                                <i class="fas fa-expand-arrows-alt mr-3 text-sm sidebar-icon"></i>
+                                <span class="font-medium sidebar-text group-hover:text-accent-blue text-sm">Stretching &
+                                    Measuring Tool</span>
+                            </button>
+
+                            <button data-category="runout-measuring-tool"
+                                class="category-btn w-full text-left rounded-lg transition-all duration-300 hover:bg-primary-blue hover:text-accent-blue border border-transparent hover:border-accent-blue flex items-center group">
+                                <i class="fas fa-ruler mr-3 text-sm sidebar-icon"></i>
+                                <span class="font-medium sidebar-text group-hover:text-accent-blue text-sm">Runout
+                                    Measuring Tool</span>
+                            </button>
+
+                            <button data-category="shock-vacuum-bleed-pumps"
+                                class="category-btn w-full text-left rounded-lg transition-all duration-300 hover:bg-primary-blue hover:text-accent-blue border border-transparent hover:border-accent-blue flex items-center group">
+                                <i class="fas fa-pump-soap mr-3 text-sm sidebar-icon"></i>
+                                <span class="font-medium sidebar-text group-hover:text-accent-blue text-sm">Shock Vacuum
+                                    Bleed Pumps</span>
+                            </button>
+                        </div>
+
+                        <div class="mt-8 pt-5 border-t border-accent-blue/20 text-center">
+                            <p class="text-xs text-text-secondary sidebar-text">All tools are professionally crafted for
+                                precision and durability.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div id="content" class="lg:content-expanded content-full sidebar-transition">
+                    <!-- Sidebar Toggle Button -->
+                    <div class="flex justify-start mb-4">
+                        <button id="sidebar-toggle"
+                            class="w-10 h-10 rounded-full bg-primary-blue border border-accent-blue/30 flex items-center justify-center text-accent-blue hover:bg-accent-blue/10 transition-all shadow-lg">
+                            <i class="fas fa-chevron-left text-sm" id="toggle-icon"></i>
+                        </button>
+                    </div>
+
+                    <!-- Content Container -->
+                    <div id="content-container" class="content-card rounded-xl p-6">
+                       
+<!--********************************************  MTB Shock Tester Content  ******************************************* -->
+                       
+                        <div id="mtb-shock-tester" class="category-content">
+                            <div class="text-center mb-8 animate-fade-in-up">
+                                <h1 class="text-2xl font-semibold text-white mb-3">MTB Shock Tester (Hand Shock Dyno) by
+                                    AP Measurements</h1>
+                                <p class="text-gray-400 max-w-3xl mx-auto text-sm">
+                                    LABA7's MTB Shock Tester, also known as the hand shock dyno, delivers precision
+                                    suspension testing for mountain bike shocks, empowering mechanics with basic,
+                                    data-driven insights into compression and rebound performance.
+                                </p>
+                            </div>
+
+                            <!-- Two Models Section -->
+                            <div class="info-card p-5 rounded-lg mb-8 animate-fade-in-up">
+                                <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-layer-group text-accent-blue mr-3 text-sm"></i>
+                                    Two Models: Manual & Digital Mountain Bike Shock Dyno
+                                </h2>
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                    <!-- Both Versions Include -->
+                                    <div class="animate-fade-in-left">
+                                        <h3 class="text-lg font-medium text-white mb-3">Both Versions Include Mountings
+                                            For:</h3>
+                                        <div class="space-y-2">
+                                            <div class="data-point">Trunnion Shocks – 55 mm, M10 x 1,5</div>
+                                            <div class="data-point">Strut Mount – M8</div>
+                                            <div class="data-point">FOX Brain – 81 mm</div>
+                                            <div class="data-point">FOX Brain 2.0 – 73 mm</div>
+                                            <div class="data-point">Eyelet Mounts (Top & Bottom): 8 / 10 / 12 / 12.7 /
+                                                15 mm</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Digital Extras -->
+                                    <div class="animate-fade-in-right">
+                                        <h3 class="text-lg font-medium text-white mb-3">Digital Shock Tester Extras:
+                                        </h3>
+                                        <div class="space-y-2">
+                                            <div class="data-point">Pancake-type load cell for high-precision force
+                                                measurement</div>
+                                            <div class="data-point">Companion app (Android & iOS) for real-time force
+                                                tracking</div>
+                                            <div class="data-point">Automatic max/min force lock, tare, calibration &
+                                                report saving</div>
+                                            <div class="data-point">Powered by 3× AA batteries</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Specifications -->
+                                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Weight</h4>
+                                        <p class="text-gray-400 text-xs">~15 kg</p>
+                                    </div>
+                                    <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Dimensions W×D×H</h4>
+                                        <p class="text-gray-400 text-xs">230 × 700 × 315</p>
+                                    </div>
+                                </div>
+
+                                <!-- Pricing -->
+                                <div class="mt-6 flex flex-wrap justify-center gap-4">
+                                    <div
+                                        class="price-badge bg-gradient-to-r from-primary-blue to-secondary-blue text-white px-4 py-2 rounded-full text-sm font-semibold inline-block">
+                                        <i class="fas fa-tag mr-2 text-xs"></i> Manual: 950 EUR (ex VAT)
+                                    </div>
+                                    <div
+                                        class="price-badge bg-gradient-to-r from-accent-blue to-secondary-blue text-white px-4 py-2 rounded-full text-sm font-semibold inline-block">
+                                        <i class="fas fa-tag mr-2 text-xs"></i> Digital: 1,300 EUR (ex VAT)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- App Features Section -->
+                            <div class="glass-card p-5 rounded-lg mb-8 animate-fade-in-up">
+                                <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-mobile-alt text-accent-blue mr-3 text-sm"></i>
+                                    App Features for MTB Suspension Analysis
+                                </h2>
+                                <p class="text-gray-400 text-sm mb-4">
+                                    The sensor collects data on the force used to test a damper. This information is
+                                    then transmitted to either an Android or iOS device for easy access and display.
+                                </p>
+                                <p class="text-accent-blue font-medium text-sm mb-4">
+                                    This enables technicians to track how much force they use in each of their tests.
+                                </p>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                                    <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Real-Time Force Display</h4>
+                                        <p class="text-gray-400 text-xs">Instantly view compression & rebound forces</p>
+                                    </div>
+                                    <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Peak Force Lock</h4>
+                                        <p class="text-gray-400 text-xs">Auto-capture maximum and minimum force values
+                                        </p>
+                                    </div>
+                                    <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Tare & Calibration</h4>
+                                        <p class="text-gray-400 text-xs">Zero the sensor and perform field calibration
+                                        </p>
+                                    </div>
+                                    <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Report Management</h4>
+                                        <p class="text-gray-400 text-xs">Save and export comprehensive test reports</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Why Choose Section -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <div class="info-card p-5 rounded-lg text-center animate-fade-in-left delay-100">
+                                    <div class="feature-icon mx-auto mb-4">
+                                        <i class="fas fa-search text-white text-sm"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white mb-3">Diagnose Problems Instantly</h3>
+                                    <p class="text-gray-400 text-sm">Quickly pinpoint leaks, gas loss, or worn parts for
+                                        faster, more accurate suspension checks.</p>
+                                </div>
+
+                                <div class="info-card p-5 rounded-lg text-center animate-fade-in-up delay-200">
+                                    <div class="feature-icon mx-auto mb-4">
+                                        <i class="fas fa-check-double text-white text-sm"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white mb-3">Verify Repairs</h3>
+                                    <p class="text-gray-400 text-sm">Confirm rebuild quality and service accuracy by
+                                        testing the damper function in isolation.</p>
+                                </div>
+
+                                <div class="info-card p-5 rounded-lg text-center animate-fade-in-right delay-300">
+                                    <div class="feature-icon mx-auto mb-4">
+                                        <i class="fas fa-chart-line text-white text-sm"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white mb-3">Compare Setups</h3>
+                                    <p class="text-gray-400 text-sm">Benchmark fresh vs. used shocks or different models
+                                        to optimize ride feel and component choice.</p>
+                                </div>
+                            </div>
+
+                            <!-- Detectable Issues Section -->
+                            <div class="glass-card p-5 rounded-lg mb-8 animate-fade-in-up delay-400">
+                                <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-exclamation-triangle text-accent-blue mr-3 text-sm"></i>
+                                    Detectable Suspension Issues Using Hand Shock Dyno
+                                </h2>
+                                <p class="text-gray-400 text-sm mb-4">
+                                    Using our hand shock tester, whether manual or digital, any technician with basic
+                                    skills can analyze MTB dampers through a series of straightforward assessments.
+                                </p>
+                                <p class="text-accent-blue font-medium text-sm mb-4">
+                                    Some examples of issues detectable with this shock absorber tester include, but are
+                                    not limited to:
+                                </p>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="space-y-2">
+                                        <div class="data-point">Low-speed oil leaks in lock-out or high-threshold
+                                            compression circuits</div>
+                                        <div class="data-point">IFP gas loss or under-charging of the internal floating
+                                            piston</div>
+                                        <div class="data-point">Incorrect oil/gas mixtures inside the damper</div>
+                                        <div class="data-point">Misplaced IFP (verify correct piston positioning)</div>
+                                        <div class="data-point">Broken adjuster components (clickers, knobs, etc.)</div>
+                                        <div class="data-point">Loose piston bolts, pistons, or other internal parts
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="data-point">Shim cracks or permanent deformations in shim stacks
+                                        </div>
+                                        <div class="data-point">Oil fill level errors (too low or too high)</div>
+                                        <div class="data-point">Debris in the oil, causing intermittent damping failures
+                                        </div>
+                                        <div class="data-point">Shuttling issues from slow or leaking check valves or
+                                            loose glide rings</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Section -->
+                            <div class="info-card p-5 rounded-lg animate-fade-in-up delay-500">
+                                <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-question-circle text-accent-blue mr-3 text-sm"></i>
+                                    Frequently Asked Questions About MTB Shock Tester
+                                </h2>
+
+                                <div class="space-y-4">
+                                    <div class="border-b border-accent-blue/20 pb-4">
+                                        <h3 class="font-medium text-white text-sm mb-2">What's the difference between
+                                            the manual and digital MTB shock tester?</h3>
+                                        <p class="text-gray-400 text-xs">Both versions test the same shock types and
+                                            mounting options. The digital version includes a precision load cell,
+                                            smartphone app for real-time data, and automatic force tracking features,
+                                            while the manual version provides basic compression/rebound testing without
+                                            electronics.</p>
+                                    </div>
+
+                                    <div class="border-b border-accent-blue/20 pb-4">
+                                        <h3 class="font-medium text-white text-sm mb-2">Can the LABA7 shock tester work
+                                            with all MTB shock brands?</h3>
+                                        <p class="text-gray-400 text-xs">Yes, it's compatible with all major brands
+                                            including FOX, RockShox, and others. It supports trunnion shocks, FOX Brain
+                                            systems, and various eyelet sizes (8-15mm), making it universally compatible
+                                            with modern MTB shocks.</p>
+                                    </div>
+
+                                    <div class="border-b border-accent-blue/20 pb-4">
+                                        <h3 class="font-medium text-white text-sm mb-2">What suspension problems can I
+                                            detect with a hand dyno?</h3>
+                                        <p class="text-gray-400 text-xs">The tester can detect low-speed oil bleeding in
+                                            lock-out or high-threshold compression circuits, identify IFP gas loss or
+                                            undercharging, and evaluate gas mixture within the damper oil, plus broken
+                                            adjusters, loose internal parts, and oil contamination issues.</p>
+                                    </div>
+
+                                    <div class="border-b border-accent-blue/20 pb-4">
+                                        <h3 class="font-medium text-white text-sm mb-2">Do I need technical experience
+                                            to use the shock tester effectively?</h3>
+                                        <p class="text-gray-400 text-xs">Basic mechanical skills are sufficient. The
+                                            tool allows technicians to conduct straightforward assessments, and the
+                                            digital version's app makes data interpretation easier with real-time force
+                                            display and automatic peak force capture.</p>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="font-medium text-white text-sm mb-2">How accurate are the force
+                                            measurements on the digital version?</h3>
+                                        <p class="text-gray-400 text-xs">The digital tester uses a pancake-type load
+                                            cell for high-precision measurements, with automatic tare and calibration
+                                            functions. The smartphone app provides real-time tracking and can save
+                                            comprehensive test reports for comparison analysis.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="text-center mt-8">
+                                <div class="inline-flex flex-wrap gap-3">
+                                    <a href="https://laba7.com/products/shock-tester/" target="_blank"
+                                        class="btn-primary rounded-lg font-medium flex items-center text-sm">
+                                        <i class="fas fa-external-link-alt mr-2 text-xs"></i> View Full Product Page
+                                    </a>
+                                    <button
+                                        class="px-5 py-2.5 rounded-lg font-medium bg-primary-blue text-white border border-accent-blue hover:border-accent-blue hover:text-accent-blue transition-all duration-300 flex items-center text-sm">
+                                        <i class="fas fa-shopping-cart mr-2 text-xs"></i> Request Quote
+                                    </button>
+                                    <button
+                                        class="px-5 py-2.5 rounded-lg font-medium bg-primary-blue/20 text-accent-blue border border-accent-blue/30 hover:border-accent-blue hover:bg-primary-blue/30 transition-all duration-300 flex items-center text-sm">
+                                        <i class="fas fa-download mr-2 text-xs"></i> Download Specs PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- *****************************************************  Spring Removal Tool  ******************************************************** -->
+                        <!-- Spring Removal Tool Content -->
+                        <div id="spring-removal-tool" class="category-content hidden">
+                            <div class="text-center mb-8 animate-fade-in-up">
+                                <h1 class="text-2xl font-semibold text-white mb-3">Spring Removal Tool</h1>
+                                <div
+                                    class="price-badge bg-gradient-to-r from-primary-blue to-secondary-blue text-white px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4">
+                                    <i class="fas fa-tag mr-2 text-xs"></i> Price: 650 EUR (ex VAT)
+                                </div>
+                                <p class="text-gray-400 max-w-3xl mx-auto text-sm">
+                                    The LABA7 spring removal tool is a professional-grade device designed for rear shock
+                                    absorber maintenance. Ideal for MTB, ATV, and motorcycles compatible with certain
+                                    automotive dampers, it provides mechanics with a safe, efficient, and reliable way
+                                    to work on suspension systems.
+                                </p>
+                                <p class="text-gray-400 max-w-3xl mx-auto text-sm mt-2">
+                                    Also referred to as a hydraulic spring compression tool or spring jack, this
+                                    well-built tool provides accurate spring disassembly. A robust insert system locks
+                                    both the shock absorber and spring in place, allowing solo operation with enhanced
+                                    safety by securely blocking both components during use.
+                                </p>
+                            </div>
+
+                            <!-- Specifications & Features -->
+                            <div class="info-card p-5 rounded-lg mb-8 animate-fade-in-up">
+                                <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-list-check text-accent-blue mr-3 text-sm"></i>
+                                    Built for Safer, Smarter Suspension Work
+                                </h2>
+                                <p class="text-gray-400 text-sm mb-4">The LABA7 spring compressor tool includes all the
+                                    essential features needed for efficient and safe suspension service:</p>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <!-- Left Column - Features -->
+                                    <div class="space-y-2">
+                                        <div class="data-point">Compatible with all rear MTB, ATV, motorcycle shocks,
+                                            plus many automotive coilovers and struts</div>
+                                        <div class="data-point">Adapters included: 5 sizes (49 mm, 58 mm, 72 mm, 75 mm,
+                                            78 mm)</div>
+                                        <div class="data-point">7 height settings for accommodating different damper
+                                            sizes</div>
+                                        <div class="data-point">Heavy-duty build using laser-cut or CNC-machined
+                                            components</div>
+                                        <div class="data-point">Hard-anodized columns and a bushing-supported slider for
+                                            smooth operation</div>
+                                    </div>
+                                    <!-- Right Column - Specs -->
+                                    <div class="space-y-3">
+                                        <div
+                                            class="flex justify-between items-center p-3 bg-primary-blue/10 rounded-lg">
+                                            <span class="text-cyan font-medium text-sm">Manual Operation</span>
+                                            <span class="text-slate font-semibold text-sm">Ergonomic handle</span>
+                                        </div>
+                                        <div
+                                            class="flex justify-between items-center p-3 bg-primary-blue/10 rounded-lg">
+                                            <span class="text-cyan font-medium text-sm">Positioning</span>
+                                            <span class="text-slate font-semibold text-sm">Workbench or floor</span>
+                                        </div>
+                                        <div
+                                            class="flex justify-between items-center p-3 bg-primary-blue/10 rounded-lg">
+                                            <span class="text-cyan font-medium text-sm">Dimensions</span>
+                                            <span class="text-slate font-semibold text-sm">885 x 280 x 180 mm</span>
+                                        </div>
+                                        <div
+                                            class="flex justify-between items-center p-3 bg-primary-blue/10 rounded-lg">
+                                            <span class="text-cyan font-medium text-sm">Free mounting length</span>
+                                            <span class="text-slate font-semibold text-sm">Up to 650 mm</span>
+                                        </div>
+                                        <div
+                                            class="flex justify-between items-center p-3 bg-primary-blue/10 rounded-lg">
+                                            <span class="text-cyan font-medium text-sm">Ram travel</span>
+                                            <span class="text-slate font-semibold text-sm">85 mm</span>
+                                        </div>
+                                        <div
+                                            class="flex justify-between items-center p-3 bg-primary-blue/10 rounded-lg">
+                                            <span class="text-cyan font-medium text-sm">Lift capacity</span>
+                                            <span class="text-slate font-semibold text-sm">2 tons</span>
+                                        </div>
+                                        <div
+                                            class="flex justify-between items-center p-3 bg-primary-blue/10 rounded-lg">
+                                            <span class="text-cyan font-medium text-sm">Weight</span>
+                                            <span class="text-slate font-semibold text-sm">17 kg</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Key Benefits Section -->
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <div class="info-card p-5 rounded-lg text-center animate-fade-in-left delay-100">
+                                    <div class="feature-icon mx-auto mb-4">
+                                        <i class="fas fa-bolt text-white text-sm"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white mb-3">High Performance</h3>
+                                    <p class="text-gray-400 text-sm">2-ton hydraulic lift with 85 mm ram travel; removes
+                                        springs in struts up to 650 mm for MTB, motorcycle, and automotive use.</p>
+                                </div>
+
+                                <div class="info-card p-5 rounded-lg text-center animate-fade-in-up delay-200">
+                                    <div class="feature-icon mx-auto mb-4">
+                                        <i class="fas fa-expand-arrows-alt text-white text-sm"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white mb-3">Wide Applications</h3>
+                                    <p class="text-gray-400 text-sm">Seven column height settings fit a wide range of
+                                        damper lengths, MTB, motorcycle, and car coilovers.</p>
+                                </div>
+
+                                <div class="info-card p-5 rounded-lg text-center animate-fade-in-right delay-300">
+                                    <div class="feature-icon mx-auto mb-4">
+                                        <i class="fas fa-universal-access text-white text-sm"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white mb-3">Universality</h3>
+                                    <p class="text-gray-400 text-sm">Safe, efficient assembly and removal of strut-type
+                                        springs across different vehicle types.</p>
+                                </div>
+                            </div>
+
+                            <!-- Why Use Section -->
+                            <div class="glass-card p-5 rounded-lg mb-8 animate-fade-in-up delay-400">
+                                <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-question-circle text-accent-blue mr-3 text-sm"></i>
+                                    Why Use a Spring Removal Tool?
+                                </h2>
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                    <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Safety</h4>
+                                        <p class="text-gray-400 text-xs">Provides controlled decompression,
+                                            significantly reducing the risk of accidents from high-tension springs.</p>
+                                    </div>
+                                    <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Efficiency & Time Savings</h4>
+                                        <p class="text-gray-400 text-xs">Designed for quick, safe removal, saving
+                                            significant time compared to manual methods and boosting workshop
+                                            productivity.</p>
+                                    </div>
+                                    <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Precision</h4>
+                                        <p class="text-gray-400 text-xs">Offers precise control over spring compression
+                                            and decompression, essential for various suspension systems.</p>
+                                    </div>
+                                    <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Versatility</h4>
+                                        <p class="text-gray-400 text-xs">Compatible with a wide variety of spring sizes
+                                            and strut types, saving space, time, and money.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Section -->
+                            <div class="info-card p-5 rounded-lg animate-fade-in-up delay-500">
+                                <h2 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-question text-accent-blue mr-3 text-sm"></i>
+                                    Frequently Asked Questions About Spring Removal Tool
+                                </h2>
+
+                                <div class="space-y-4">
+                                    <div class="border-b border-accent-blue/20 pb-4">
+                                        <h3 class="font-medium text-white text-sm mb-2">Is it safe to compress springs
+                                            manually without a professional tool?</h3>
+                                        <p class="text-gray-400 text-xs">Working with compressed springs is dangerous as
+                                            they store high tension energy, and safety is critical. The LABA7 tool
+                                            provides controlled compression with a 2-ton capacity and secure locking
+                                            mechanisms, eliminating the risks of manual spring removal methods.</p>
+                                    </div>
+
+                                    <div class="border-b border-accent-blue/20 pb-4">
+                                        <h3 class="font-medium text-white text-sm mb-2">What vehicle types can the LABA7
+                                            spring removal tool handle?</h3>
+                                        <p class="text-gray-400 text-xs">The tool works with MTB rear shocks, ATV,
+                                            motorcycle, and many automotive coilovers and struts. It includes 5
+                                            different adapters (49, 58, 72, 75, 78mm) and 7 height settings to
+                                            accommodate dampers up to 650mm in length.</p>
+                                    </div>
+
+                                    <div class="border-b border-accent-blue/20 pb-4">
+                                        <h3 class="font-medium text-white text-sm mb-2">Do I need help from another
+                                            person to operate this spring compressor?</h3>
+                                        <p class="text-gray-400 text-xs">No, the LABA7 is designed for solo operation.
+                                            Professional tools allow one person operation and grips safely &
+                                            controllably through their insert system that securely blocks both the shock
+                                            absorber and spring during compression.</p>
+                                    </div>
+
+                                    <div class="border-b border-accent-blue/20 pb-4">
+                                        <h3 class="font-medium text-white text-sm mb-2">Can this tool damage my shock
+                                            absorber during spring removal?</h3>
+                                        <p class="text-gray-400 text-xs">The tool is built with precision components
+                                            including hard-anodized columns and bushing-supported sliders for smooth
+                                            operation. The hydraulic system provides controlled, precise compression
+                                            that protects both springs and shock bodies from damage during service.</p>
+                                    </div>
+
+                                    <div>
+                                        <h3 class="font-medium text-white text-sm mb-2">How much space do I need in my
+                                            workshop for this spring compressor?</h3>
+                                        <p class="text-gray-400 text-xs">The LABA7 measures 885 x 280 x 180mm and weighs
+                                            17kg. It can be positioned on a workbench or floor and handles shocks up to
+                                            650mm in free mounting length, making it suitable for most professional
+                                            workshop setups.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="text-center mt-8">
+                                <div class="inline-flex flex-wrap gap-3">
+                                    <a href="https://laba7.com/products/spring-removal-tool/" target="_blank"
+                                        class="btn-primary rounded-lg font-medium flex items-center text-sm">
+                                        <i class="fas fa-external-link-alt mr-2 text-xs"></i> View Product Page
+                                    </a>
+                                    <button
+                                        class="px-5 py-2.5 rounded-lg font-medium bg-primary-blue text-white border border-accent-blue hover:border-accent-blue hover:text-accent-blue transition-all duration-300 flex items-center text-sm">
+                                        <i class="fas fa-shopping-cart mr-2 text-xs"></i> Get Quote (650 EUR)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ******************************************************* Shaft Clamp Set **************************************************** -->
+
+                        <!-- Shaft Clamp Set Content -->
+                        <div id="shaft-clamp-set" class="category-content hidden">
+                            <div class="text-center mb-8 animate-fade-in-up">
+                                <div
+                                    class="price-badge bg-gradient-to-r from-primary-blue to-secondary-blue text-white px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4">
+                                    <i class="fas fa-tag mr-2 text-xs"></i> 850 EUR (ex VAT)
+                                </div>
+                                <h1 class="text-2xl font-semibold text-white mb-3">Universal Shaft Clamp Set for MTB
+                                </h1>
+                                <p class="text-gray-400 max-w-3xl mx-auto text-sm">
+                                    LABA7 shaft clamp set is an essential tool for the mounting and dismounting of MTB
+                                    forks and rear shocks. It provides a strong and damage-free clamping of dampers
+                                    while offering a wide range of inserts.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                                <div class="info-card p-5 rounded-lg animate-fade-in-left delay-100">
+                                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                        <i class="fas fa-star text-accent-blue mr-3 text-sm"></i>
+                                        Key Features
+                                    </h3>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">46 different sizes from 6.0mm to 40mm</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Precisely machined from soft 7075 aluminum</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Ergonomic offset design for better clearance</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Six strong neodymium magnets</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Custom-cut foam holder for organization</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="info-card p-5 rounded-lg animate-fade-in-right delay-200">
+                                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                        <i class="fas fa-cogs text-accent-blue mr-3 text-sm"></i>
+                                        Benefits
+                                    </h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                            <h4 class="font-medium text-white text-sm mb-1">Prevents Damage</h4>
+                                            <p class="text-gray-400 text-xs">Prevents cosmetic and structural damage to
+                                                damper body and shaft.</p>
+                                        </div>
+                                        <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                            <h4 class="font-medium text-white text-sm mb-1">Universal Compatibility</h4>
+                                            <p class="text-gray-400 text-xs">Compatible with all current forks and
+                                                shocks of major manufacturers.</p>
+                                        </div>
+                                        <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                            <h4 class="font-medium text-white text-sm mb-1">Premium Quality</h4>
+                                            <p class="text-gray-400 text-xs">Made from premium materials and components
+                                                to ensure longevity.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass-card p-5 rounded-lg mb-8 animate-fade-in-up delay-300">
+                                <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-question-circle text-accent-blue mr-3 text-sm"></i>
+                                    FAQ
+                                </h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <h4 class="font-medium text-white text-sm mb-1">Will it damage my fork or shock
+                                            shaft?</h4>
+                                        <p class="text-gray-400 text-xs">The LABA7 clamps are made from soft 7075
+                                            aluminum with precisely machined surfaces that protect shaft coatings from
+                                            scratches while providing a secure grip without structural damage.</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-white text-sm mb-1">Which brands is it compatible
+                                            with?</h4>
+                                        <p class="text-gray-400 text-xs">With 45 different sizes, the set is compatible
+                                            with all current MTB forks and shocks from major manufacturers, including
+                                            FOX, RockShox, Manitou, and DVO.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <a href="https://laba7.com/products/shaft-clamp-set/" target="_blank"
+                                    class="btn-primary rounded-lg font-medium flex items-center justify-center mx-auto text-sm max-w-xs">
+                                    <i class="fas fa-external-link-alt mr-2 text-xs"></i> View Full Details on Laba7
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Bushing Sizing Tool Kit Content -->
+                        <div id="bushing-sizing-tool" class="category-content hidden">
+                            <div class="text-center mb-8 animate-fade-in-up">
+                                <div class="flex flex-wrap justify-center gap-3 mb-4">
+                                    <div
+                                        class="price-badge bg-gradient-to-r from-primary-blue to-secondary-blue text-white px-4 py-2 rounded-full text-sm font-semibold inline-block">
+                                        <i class="fas fa-tag mr-2 text-xs"></i> FULL Kit: 1,500 EUR
+                                    </div>
+                                    <div
+                                        class="price-badge bg-gradient-to-r from-accent-blue to-secondary-blue text-white px-4 py-2 rounded-full text-sm font-semibold inline-block">
+                                        <i class="fas fa-tag mr-2 text-xs"></i> MINI Kit: 700 EUR
+                                    </div>
+                                </div>
+                                <h1 class="text-2xl font-semibold text-white mb-3">Full Fork Bushing Sizing Tool Kit
+                                </h1>
+                                <p class="text-gray-400 max-w-3xl mx-auto text-sm">
+                                    Improve the performance of your customers' mountain bike suspension with our
+                                    professional bushing sizing toolset. It features a range of sizes to fit all current
+                                    MTB forks and precise increments.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                                <div class="info-card p-5 rounded-lg animate-fade-in-left delay-100">
+                                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                        <i class="fas fa-toolbox text-accent-blue mr-3 text-sm"></i>
+                                        Kit Specifications
+                                    </h3>
+                                    <div class="space-y-4">
+                                        <div>
+                                            <h4 class="font-medium text-white text-sm mb-2">FULL Bushing Sizing Toolset
+                                            </h4>
+                                            <p class="text-gray-400 text-xs mb-2">Each size comes in four precision
+                                                increments* to ensure a perfect fit.</p>
+                                            <div class="flex flex-wrap gap-2">
+                                                <span class="tech-badge text-xs">+0.04mm</span>
+                                                <span class="tech-badge text-xs">+0.07mm</span>
+                                                <span class="tech-badge text-xs">+0.10mm</span>
+                                                <span class="tech-badge text-xs">+0.13mm</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-white text-sm mb-2">MINI Bushing Sizing Toolset
+                                            </h4>
+                                            <p class="text-gray-400 text-xs mb-2">Tool heads come in two precision
+                                                increments.</p>
+                                            <div class="flex flex-wrap gap-2">
+                                                <span class="tech-badge text-xs">+0.04mm</span>
+                                                <span class="tech-badge text-xs">+0.07mm</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="info-card p-5 rounded-lg animate-fade-in-right delay-200">
+                                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                        <i class="fas fa-award text-accent-blue mr-3 text-sm"></i>
+                                        Premium Quality Features
+                                    </h3>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Made of polished stainless steel for long-lasting
+                                                performance</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Ergonomic aluminium T-handle and storage case
+                                                included</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Laser-engraved sizes for quick identification</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Compatible with all major MTB fork
+                                                manufacturers</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="glass-card p-5 rounded-lg mb-8 animate-fade-in-up delay-300">
+                                <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-question text-accent-blue mr-3 text-sm"></i>
+                                    When is Bushing Resizing Needed?
+                                </h3>
+                                <p class="text-gray-400 text-sm mb-3">
+                                    Both brand-new and used MTB forks can suffer from having suboptimal bushing sizes.
+                                    Proper bushing sizing is crucial to maintain a small gap between the bushing and
+                                    stanchion.
+                                </p>
+                                <p class="text-gray-400 text-sm">
+                                    This gap allows oil to create a thin layer that reduces friction and prevents
+                                    excessive wear. Too small gap can obstruct oil flow and compromise the effectiveness
+                                    of the fork.
+                                </p>
+                            </div>
+
+                            <div class="text-center">
+                                <a href="https://laba7.com/products/bushing-sizing-tool/" target="_blank"
+                                    class="btn-primary rounded-lg font-medium flex items-center justify-center mx-auto text-sm max-w-xs">
+                                    <i class="fas fa-external-link-alt mr-2 text-xs"></i> View Kit Details on Laba7
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Stretching and Measuring Tool Content -->
+                        <div id="stretching-measuring-tool" class="category-content hidden">
+                            <div class="text-center mb-8 animate-fade-in-up">
+                                <div class="flex flex-wrap justify-center gap-3 mb-4">
+                                    <div
+                                        class="price-badge bg-gradient-to-r from-primary-blue to-secondary-blue text-white px-4 py-2 rounded-full text-sm font-semibold inline-block">
+                                        <i class="fas fa-tag mr-2 text-xs"></i> 150-500mm: 550 EUR
+                                    </div>
+                                    <div
+                                        class="price-badge bg-gradient-to-r from-accent-blue to-secondary-blue text-white px-4 py-2 rounded-full text-sm font-semibold inline-block">
+                                        <i class="fas fa-tag mr-2 text-xs"></i> 300-1200mm: 750 EUR
+                                    </div>
+                                </div>
+                                <h1 class="text-2xl font-semibold text-white mb-3">Professional Shock Absorber
+                                    Stretching and Measuring Tool</h1>
+                                <p class="text-gray-400 max-w-3xl mx-auto text-sm">
+                                    The LABA7 shock absorber stretching and measuring tool is a must-have in every
+                                    professional shock workshop. No more guesstimates, measure, vacuum, and fill shock
+                                    absorbers with complete certainty.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                                <div class="info-card p-5 rounded-lg animate-fade-in-left delay-100">
+                                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                        <i class="fas fa-ruler-combined text-accent-blue mr-3 text-sm"></i>
+                                        Two Size Ranges Available
+                                    </h3>
+                                    <div class="space-y-4">
+                                        <div class="bg-primary-blue/10 p-4 rounded-lg">
+                                            <h4 class="font-medium text-white text-sm mb-2">150-500 mm Range</h4>
+                                            <p class="text-gray-400 text-xs">Ideal for MTB rear shocks, motorcycle
+                                                shocks, and compact automotive applications.</p>
+                                        </div>
+                                        <div class="bg-primary-blue/10 p-4 rounded-lg">
+                                            <h4 class="font-medium text-white text-sm mb-2">300-1200 mm Range</h4>
+                                            <p class="text-gray-400 text-xs">Accommodates larger automotive coilovers
+                                                and truck shocks.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="info-card p-5 rounded-lg animate-fade-in-right delay-200">
+                                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                        <i class="fas fa-cube text-accent-blue mr-3 text-sm"></i>
+                                        Technical Features
+                                    </h3>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Made from durable, anodized billet aluminium</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Corrosion-resistant chrome-coated calibrated
+                                                shafts</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Can be attached to surfaces for enhanced
+                                                stability</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Multiple mounting diameters included (10, 12,
+                                                13mm)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="glass-card p-5 rounded-lg mb-8 animate-fade-in-up delay-300">
+                                <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-bullseye text-accent-blue mr-3 text-sm"></i>
+                                    Key Benefits
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="bg-primary-blue/5 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Precise Measurement</h4>
+                                        <p class="text-gray-400 text-xs">Accurately measure shock absorber length
+                                            between attachment points.</p>
+                                    </div>
+                                    <div class="bg-primary-blue/5 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Secure Stretching</h4>
+                                        <p class="text-gray-400 text-xs">Keep shock stretched during vacuuming or oil
+                                            filling to prevent shaft sliding.</p>
+                                    </div>
+                                    <div class="bg-primary-blue/5 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Performance Evaluation</h4>
+                                        <p class="text-gray-400 text-xs">Assess extension and compression capabilities
+                                            for optimal performance.</p>
+                                    </div>
+                                    <div class="bg-primary-blue/5 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Cost Savings</h4>
+                                        <p class="text-gray-400 text-xs">Accurate diagnosis helps avoid unnecessary
+                                            replacements.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <a href="https://laba7.com/products/stretching-and-measuring-tool/" target="_blank"
+                                    class="btn-primary rounded-lg font-medium flex items-center justify-center mx-auto text-sm max-w-xs">
+                                    <i class="fas fa-external-link-alt mr-2 text-xs"></i> View Tool Details
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Runout Measuring Tool Content -->
+                        <div id="runout-measuring-tool" class="category-content hidden">
+                            <div class="text-center mb-8 animate-fade-in-up">
+                                <div
+                                    class="price-badge bg-gradient-to-r from-primary-blue to-secondary-blue text-white px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4">
+                                    <i class="fas fa-tag mr-2 text-xs"></i> 1000 EUR (ex VAT)
+                                </div>
+                                <h1 class="text-2xl font-semibold text-white mb-3">Professional Shock Absorber Runout
+                                    Measuring Tool</h1>
+                                <p class="text-gray-400 max-w-3xl mx-auto text-sm">
+                                    LABA7 presents a high-precision shock absorber runout measuring tool. It measures
+                                    whether stanchions and shafts still maintain their proper alignment. Use it with
+                                    both suspension shocks and MTB forks.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                                <div class="info-card p-5 rounded-lg animate-fade-in-left delay-100">
+                                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                        <i class="fas fa-tachometer-alt text-accent-blue mr-3 text-sm"></i>
+                                        Key Features
+                                    </h3>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Precision-calibrated billet aluminum base plate</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Premium high-quality Hiwin rails</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Professional adjustable gauge indicator</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Easy to use - assess deviations in minutes</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="info-card p-5 rounded-lg animate-fade-in-right delay-200">
+                                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                        <i class="fas fa-search text-accent-blue mr-3 text-sm"></i>
+                                        What Can It Measure?
+                                    </h3>
+                                    <div class="space-y-4">
+                                        <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                            <h4 class="font-medium text-white text-sm mb-1">Piston Runout</h4>
+                                            <p class="text-gray-400 text-xs">Ensures smooth rotation within the cylinder
+                                                bore without excessive eccentricity.</p>
+                                        </div>
+                                        <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                            <h4 class="font-medium text-white text-sm mb-1">Shaft Runout</h4>
+                                            <p class="text-gray-400 text-xs">Checks for wobbling or deviation from
+                                                central axis during rotation.</p>
+                                        </div>
+                                        <div class="bg-primary-blue/10 p-3 rounded-lg">
+                                            <h4 class="font-medium text-white text-sm mb-1">Bushing Alignment</h4>
+                                            <p class="text-gray-400 text-xs">Verifies concentricity and alignment of
+                                                bushings with respect to shock body.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass-card p-5 rounded-lg mb-8 animate-fade-in-up delay-300">
+                                <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-shield-alt text-accent-blue mr-3 text-sm"></i>
+                                    Key Benefits
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="bg-primary-blue/5 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Suspension Optimization</h4>
+                                        <p class="text-gray-400 text-xs">Identify suboptimal parts and ensure proper
+                                            alignment.</p>
+                                    </div>
+                                    <div class="bg-primary-blue/5 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Vibration Reduction</h4>
+                                        <p class="text-gray-400 text-xs">Detect components that cause unwanted
+                                            vibrations.</p>
+                                    </div>
+                                    <div class="bg-primary-blue/5 p-3 rounded-lg">
+                                        <h4 class="font-medium text-white text-sm mb-1">Enhanced Durability</h4>
+                                        <p class="text-gray-400 text-xs">Identify misalignment issues that lead to
+                                            premature failure.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <a href="https://laba7.com/products/shock-absorber-runout-measuring-tool/"
+                                    target="_blank"
+                                    class="btn-primary rounded-lg font-medium flex items-center justify-center mx-auto text-sm max-w-xs">
+                                    <i class="fas fa-external-link-alt mr-2 text-xs"></i> View Tool Details
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Shock Vacuum Bleed Pumps Content -->
+                        <div id="shock-vacuum-bleed-pumps" class="category-content hidden">
+                            <div class="text-center mb-8 animate-fade-in-up">
+                                <h1 class="text-2xl font-semibold text-white mb-3">Automatic and Manual Shock Vacuum
+                                    Bleed Pumps</h1>
+                                <p class="text-gray-400 max-w-3xl mx-auto text-sm">
+                                    The Automatic Vacuum Bleed Pump takes care of shock bleeding with the push of a
+                                    button. It runs precise vacuum cycles, prevents foaming, and uses custom presets to
+                                    ensure clean, air-free oil transfer.
+                                </p>
+                                <p class="text-gray-400 max-w-3xl mx-auto text-sm mt-2">
+                                    We also offer a Manual Shock Bleeder, a hands-on, budget-friendly option for those
+                                    who prefer full control.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                                <div class="info-card p-5 rounded-lg animate-fade-in-left delay-100">
+                                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                        <i class="fas fa-pump-soap text-accent-blue mr-3 text-sm"></i>
+                                        Available Models
+                                    </h3>
+                                    <div class="space-y-3">
+                                        <div class="border-l-2 border-primary-blue pl-3 py-2">
+                                            <h4 class="font-medium text-white text-sm mb-1">MANUAL Shock Bleeder</h4>
+                                            <p class="text-gray-400 text-xs">Hands-on control for those who prefer
+                                                manual operation.</p>
+                                        </div>
+                                        <div class="border-l-2 border-secondary-blue pl-3 py-2">
+                                            <h4 class="font-medium text-white text-sm mb-1">Shock Bleeder MODULE</h4>
+                                            <p class="text-gray-400 text-xs">Compact module design for space-constrained
+                                                workshops.</p>
+                                        </div>
+                                        <div class="border-l-2 border-accent-blue pl-3 py-2">
+                                            <h4 class="font-medium text-white text-sm mb-1">Shock Bleeder DAILY</h4>
+                                            <p class="text-gray-400 text-xs">Ideal for daily use in professional
+                                                workshop environments.</p>
+                                        </div>
+                                        <div class="border-l-2 border-green-400 pl-3 py-2">
+                                            <h4 class="font-medium text-white text-sm mb-1">Shock Bleeder PRO</h4>
+                                            <p class="text-gray-400 text-xs">Professional-grade with advanced features
+                                                for high-volume shops.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="info-card p-5 rounded-lg animate-fade-in-right delay-200">
+                                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                        <i class="fas fa-bolt text-accent-blue mr-3 text-sm"></i>
+                                        Key Advantages
+                                    </h3>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Automatic vacuuming and filling with push-button
+                                                operation</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Anti-foaming protection with smart algorithms</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Up to 8 customizable presets for different shock
+                                                types</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">High vacuum down to 2000 microns for air-free
+                                                fills</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Can fill up to 3 shocks simultaneously</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check text-green-400 mr-3 mt-1 text-xs"></i>
+                                            <span class="text-sm">Altitude adjustment for different locations</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="glass-card p-5 rounded-lg mb-8 animate-fade-in-up delay-300">
+                                <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                                    <i class="fas fa-compress-arrows-alt text-accent-blue mr-3 text-sm"></i>
+                                    Perfect for All Shock Types
+                                </h3>
+                                <p class="text-gray-400 text-sm mb-3">
+                                    Our vacuum-bleeder pump models deliver air-free oil fills to shocks of every size.
+                                    You can service anything from the tiniest MTB to the largest off-road vehicles'
+                                    shock absorbers.
+                                </p>
+                                <p class="text-gray-400 text-sm">
+                                    Reinforced vacuum tubes connect different shocks to the system, allowing precise,
+                                    air-free oil transfer during every cycle. All LABA7 bleeder pumps share essential
+                                    features to ensure high vacuum and quality oil fill, but are designed for different
+                                    use cases.
+                                </p>
+                            </div>
+
+                            <div class="text-center">
+                                <a href="https://laba7.com/products/shock-vacuum-bleed-pump/" target="_blank"
+                                    class="btn-primary rounded-lg font-medium flex items-center justify-center mx-auto text-sm max-w-xs">
+                                    <i class="fas fa-external-link-alt mr-2 text-xs"></i> View Pump Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div data-include="/Footer/footer.html"></div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize sidebar state
+            let sidebarCollapsed = false;
+
+            // Product data
+            const products = {
+                'mtb-shock-tester': {
+                    title: 'MTB Shock Tester',
+                    description: 'AP Measurement\'s MTB Shock Tester delivers precision suspension testing for mountain bike shocks, empowering mechanics with data-driven insights into compression and rebound performance.'
+                },
+                'shaft-clamp-set': {
+                    title: 'Shaft Clamp Set',
+                    description: 'LABA7 shaft clamp set is an essential tool for the mounting and dismounting of MTB forks and rear shocks. It provides strong and damage-free clamping with a wide range of inserts.'
+                },
+                'bushing-sizing-tool': {
+                    title: 'Bushing Sizing Tool Kit',
+                    description: 'Improve the performance of your customers\' mountain bike suspension with our professional bushing sizing toolset. It features a range of sizes to fit all current MTB forks and precise increments.'
+                },
+                'stretching-measuring-tool': {
+                    title: 'Stretching & Measuring Tool',
+                    description: 'The LABA7 shock absorber stretching and measuring tool is a must-have in every professional shock workshop. No more guesstimates, measure, vacuum, and fill shock absorbers with complete certainty.'
+                },
+                'runout-measuring-tool': {
+                    title: 'Runout Measuring Tool',
+                    description: 'LABA7 presents a high-precision shock absorber runout measuring tool. It measures whether stanchions and shafts still maintain their proper alignment. Use it with both suspension shocks and MTB forks.'
+                },
+                'shock-vacuum-bleed-pumps': {
+                    title: 'Shock Vacuum Bleed Pumps',
+                    description: 'Automatic and manual shock vacuum bleed pumps for clean, air-free oil transfer. Available in multiple models for different workshop needs with consistent vacuum bleeding results.'
+                }
+            };
+
+            // Toggle sidebar function
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                const content = document.getElementById('content');
+                const toggleIcon = document.getElementById('toggle-icon');
+                const sidebarTexts = document.querySelectorAll('.sidebar-text');
+                const sidebarIcons = document.querySelectorAll('.sidebar-icon');
+
+                if (sidebarCollapsed) {
+                    // Expand sidebar
+                    sidebar.classList.remove('lg:sidebar-collapsed');
+                    sidebar.classList.add('lg:sidebar-expanded');
+                    content.classList.remove('lg:content-full');
+                    content.classList.add('lg:content-expanded');
+                    toggleIcon.classList.remove('rotate-180');
+
+                    // Show text elements
+                    sidebarTexts.forEach(text => {
+                        text.classList.remove('hidden');
+                    });
+
+                    // Reset icon margins
+                    sidebarIcons.forEach(icon => {
+                        icon.classList.remove('mr-0');
+                        icon.classList.add('mr-3');
+                    });
+                } else {
+                    // Collapse sidebar
+                    sidebar.classList.remove('lg:sidebar-expanded');
+                    sidebar.classList.add('lg:sidebar-collapsed');
+                    content.classList.remove('lg:content-expanded');
+                    content.classList.add('lg:content-full');
+                    toggleIcon.classList.add('rotate-180');
+
+                    // Hide text elements
+                    sidebarTexts.forEach(text => {
+                        text.classList.add('hidden');
+                    });
+
+                    // Center icons
+                    sidebarIcons.forEach(icon => {
+                        icon.classList.remove('mr-3');
+                        icon.classList.add('mr-0');
+                    });
+                }
+
+                sidebarCollapsed = !sidebarCollapsed;
+                localStorage.setItem('sidebarCollapsed', sidebarCollapsed);
+            }
+
+            // Load sidebar state
+            const savedState = localStorage.getItem('sidebarCollapsed');
+            if (savedState === 'true') {
+                sidebarCollapsed = true;
+                const sidebar = document.getElementById('sidebar');
+                const content = document.getElementById('content');
+                const toggleIcon = document.getElementById('toggle-icon');
+                const sidebarTexts = document.querySelectorAll('.sidebar-text');
+                const sidebarIcons = document.querySelectorAll('.sidebar-icon');
+
+                sidebar.classList.remove('lg:sidebar-expanded');
+                sidebar.classList.add('lg:sidebar-collapsed');
+                content.classList.remove('lg:content-expanded');
+                content.classList.add('lg:content-full');
+                toggleIcon.classList.add('rotate-180');
+
+                sidebarTexts.forEach(text => {
+                    text.classList.add('hidden');
+                });
+
+                sidebarIcons.forEach(icon => {
+                    icon.classList.remove('mr-3');
+                    icon.classList.add('mr-0');
+                });
+            }
+
+            // Sidebar toggle button
+            document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
+
+            // Mobile sidebar controls
+            document.getElementById('mobile-close-sidebar')?.addEventListener('click', function () {
+                document.getElementById('sidebar').classList.add('hidden');
+            });
+
+            // Get all category buttons
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const categoryContents = document.querySelectorAll('.category-content');
+            const contentContainer = document.getElementById('content-container');
+
+            // Add click event to each category button
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const categoryId = this.getAttribute('data-category');
+
+                    if (this.classList.contains('category-active')) return;
+
+                    // Update active button styling
+                    categoryButtons.forEach(btn => {
+                        btn.classList.remove('category-active');
+                        btn.querySelector('i').classList.remove('text-accent-blue');
+                        btn.querySelector('i').classList.add('text-text-secondary');
+                    });
+
+                    this.classList.add('category-active');
+                    this.querySelector('i').classList.add('text-accent-blue');
+                    this.querySelector('i').classList.remove('text-text-secondary');
+
+                    // Hide all category contents
+                    categoryContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+
+                    // Show selected category content
+                    const selectedContent = document.getElementById(categoryId);
+                    selectedContent.classList.remove('hidden');
+
+                    // Add animation effect
+                    selectedContent.classList.add('animate-fade-in');
+                    setTimeout(() => {
+                        selectedContent.classList.remove('animate-fade-in');
+                    }, 500);
+
+                    // Close sidebar on mobile
+                    if (window.innerWidth < 1024) {
+                        document.getElementById('sidebar').classList.add('hidden');
+                    }
+                });
+            });
+
+            // Initialize animations
+            setTimeout(() => {
+                document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right').forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+            }, 100);
+
+            // Add hover effects
+            document.querySelectorAll('.info-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-4px)';
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Get Offer buttons functionality
+            document.querySelectorAll('.btn-primary').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    if (this.getAttribute('href') && this.getAttribute('href').startsWith('http')) {
+                        return; // Allow link navigation
+                    }
+                    e.preventDefault();
+                    alert('Thank you for your interest! We will prepare a customized offer for you and contact you shortly.');
+                });
+            });
+
+            // Add smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+
+                    if (href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+
+                        if (target) {
+                            window.scrollTo({
+                                top: target.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
