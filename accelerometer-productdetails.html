@@ -146,49 +146,410 @@
     <script>
         // Import the product data from the index page structure
         // This is the same data structure used in index.html
-        const productData = {
-            "general-purpose": [
-                { code: "B02BG2", name: "Base-Isolated IEPE Accelerometer", type: "Uniaxial", category: "General Purpose", img: "./assets/accelerometer/B02BG2.png.png"},
-                { code: "B06BG2", name: "General Purpose Sensor", type: "Standard Model", category: "General Purpose", img: "./assets/accelerometer/B06BG2.png.webp"},
-                { code: "B02A00", name: "Advanced General Sensor", type: "Enhanced Model", category: "General Purpose", img: "./assets/accelerometer/B02A00.png.webp" },
-                { code: "B06A00", name: "Basic General Sensor", type: "Entry Level", category: "General Purpose", img: "./assets/accelerometer/B06A00.png" },
-                { code: "B02B00", name: "Industrial General Sensor", type: "Rugged Design", category: "General Purpose", img: "./assets/accelerometer/B02B00.png" },
-                { code: "B06B00", name: "Professional General Sensor", type: "Commercial Grade", category: "General Purpose", img: "./assets/accelerometer/B06B00.png.webp" }
-            ],
-            "miniature": [
-                { code: "B02A01", name: "Miniature Sensor", type: "Compact Design", category: "Miniature", img: "./assets/accelerometer/B01A01.png.webp" },
-                { code: "B06A01", name: "Advanced Miniature Sensor", type: "High Precision", category: "Miniature", img: "./assets/accelerometer/B06A00.png" },
-                { code: "B02B01", name: "Micro Sensor", type: "Ultra Compact", category: "Miniature", img: "./assets/accelerometer/B02B01.png" },
-                { code: "B06A14", name: "Nano Sensor", type: "Microscopic Design", category: "Miniature", img: "./assets/accelerometer/B06A14.png.webp" },
-                { code: "B06B14", name: "Pico Sensor", type: "Extreme Miniature", category: "Miniature", img: "./assets/accelerometer/B06B14.png.webp" }
-            ],
-            "triaxial": [
-                { code: "B02Y31", name: "Triaxial Sensor", type: "3-Axis Model", category: "Triaxial", img: "./assets/accelerometer/B02Y31.png.webp" },
-                { code: "B06Y31", name: "Advanced Triaxial Sensor", type: "High Sensitivity", category: "Triaxial", img: "./assets/accelerometer/B06Y31-Triaxial.png.webp" },
-                { code: "B02Y32", name: "Precision Triaxial Sensor", type: "Calibrated", category: "Triaxial", img: "./assets/accelerometer/B02Y32.png.webp" },
-                { code: "B06Y32", name: "Industrial Triaxial Sensor", type: "Rugged 3-Axis", category: "Triaxial", img: "./assets/accelerometer/B06Y32.png.webp" },
-                { code: "B02Y36", name: "Professional Triaxial Sensor", type: "Laboratory Grade", category: "Triaxial", img: "./assets/accelerometer/B02Y36.png.webp" }
-            ],
-            "teardrop": [
-                { code: "B02BM1", name: "Teardrop Sensor", type: "Aerodynamic Design", category: "Teardrop" , img: "./assets/accelerometer/B05BM1.png.webp"},
-                { code: "B06BM1", name: "Advanced Teardrop Sensor", type: "High Flow", category: "Teardrop" , img: "./assets/accelerometer/B06BM1.png.webp"},
-                { code: "B06CM1", name: "Precision Teardrop Sensor", type: "Calibrated", category: "Teardrop", img: "./assets/accelerometer/B06CM1.png" },
-                { code: "B01CM5", name: "Industrial Teardrop Sensor", type: "Heavy Duty", category: "Teardrop", img: "./assets/accelerometer/B01CM5.png" }
-            ],
-            "low-frequency": [
-                { code: "B12A00", name: "Low-Frequency Sensor", type: "Sub-Hz Range", category: "Low-Frequency" , img: "./assets/accelerometer/B12A00.png.webp"},
-                { code: "B10Y35", name: "Advanced Low-Frequency Sensor", type: "Ultra Low Noise", category: "Low-Frequency", img: "./assets/accelerometer/B10Y35.png.webp" },
-                { code: "B12A53", name: "Precision Low-Frequency Sensor", type: "High Stability", category: "Low-Frequency" , img: "./assets/accelerometer/B12A53.png"}
-            ],
-            "high-temperature": [
-                { code: "B02A90", name: "High-Temperature Sensor", type: "Up to 200°C", category: "High-Temperature" , img: "./assets/accelerometer/B03A90.png.webp"},
-                { code: "B06A90", name: "Advanced High-Temp Sensor", type: "Up to 300°C", category: "High-Temperature", img: "./assets/accelerometer/B05A90.png.webp" },
-                { code: "B02B90", name: "Extreme High-Temp Sensor", type: "Up to 500°C", category: "High-Temperature", img: "./assets/accelerometer/B06B90.png" },
-                { code: "B06B90", name: "Ultra High-Temp Sensor", type: "Up to 800°C", category: "High-Temperature" , img: "./assets/accelerometer/B06B90.png"},
-                { code: "B02Y91", name: "Industrial High-Temp Sensor", type: "Rugged Design", category: "High-Temperature", img: "./assets/accelerometer/B06Y91.png.webp" },
-                { code: "B06Y91", name: "Professional High-Temp Sensor", type: "Laboratory Grade", category: "High-Temperature",img: "./assets/accelerometer/B06Y91.png.webp"}
-            ]
-        };
+       const productData = {
+    "general-purpose": [
+        { 
+            code: "B02BG2", 
+            name: "Base-Isolated IEPE Accelerometer", 
+            type: "Uniaxial", 
+            category: "General Purpose", 
+            img: "./assets/accelerometer/B02BG2.png.png", 
+            sensitivity: "10mV/g", 
+            range: "±500g",
+            frequency: "1-8k Hz",
+            tempRange: "-50~120°C",
+            connector: "Side",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B06BG2", 
+            name: "General Purpose Sensor", 
+            type: "Standard Model", 
+            category: "General Purpose", 
+            img: "./assets/accelerometer/B06BG2.png.webp", 
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-7k Hz",
+            tempRange: "-50~120°C",
+            connector: "Side",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B01BG2", 
+            name: "Premium General Sensor", 
+            type: "High-End Model", 
+            category: "General Purpose", 
+            img: "./assets/accelerometer/B01BG2.png.webp", 
+            sensitivity: "5mV/g",
+            range: "",
+            frequency: "",
+            tempRange: "",
+            connector: "",
+            mount: ""
+        },
+        { 
+            code: "B02A00", 
+            name: "Advanced General Sensor", 
+            type: "Enhanced Model", 
+            category: "General Purpose", 
+            img: "./assets/accelerometer/B02A00.png.webp", 
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "2-10kHz",
+            tempRange: "-40~120°C",
+            connector: "Top",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B06A00", 
+            name: "Basic General Sensor", 
+            type: "Entry Level", 
+            category: "General Purpose", 
+            img: "./assets/accelerometer/B06A00.png", 
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-8kHz",
+            tempRange: "-40~120°C",
+            connector: "Top",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B02B00", 
+            name: "Industrial General Sensor", 
+            type: "Rugged Design", 
+            category: "General Purpose", 
+            img: "./assets/accelerometer/B02B00.png", 
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "2-10kHz",
+            tempRange: "-40~120°C",
+            connector: "Side",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B06B00", 
+            name: "Professional General Sensor", 
+            type: "Commercial Grade", 
+            category: "General Purpose", 
+            img: "./assets/accelerometer/B06B00.png.webp", 
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-8kHz",
+            tempRange: "-40~120°C",
+            connector: "Side",
+            mount: "10-32/M5 Female"
+        }
+    ],
+    "miniature": [
+        { 
+            code: "B02A01", 
+            name: "Miniature Sensor", 
+            type: "Compact Design", 
+            category: "Miniature", 
+            img: "./assets/accelerometer/B01A01.png.webp",
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "1-10kHz",
+            tempRange: "-40~120°C",
+            connector: "Top",
+            mount: "M3 Female"
+        },
+        { 
+            code: "B06A01", 
+            name: "Advanced Miniature Sensor", 
+            type: "High Precision", 
+            category: "Miniature", 
+            img: "./assets/accelerometer/B06A00.png",
+            sensitivity: "",
+            range: "",
+            frequency: "",
+            tempRange: "",
+            connector: "",
+            mount: ""
+        },
+        { 
+            code: "B02B01", 
+            name: "Micro Sensor", 
+            type: "Ultra Compact", 
+            category: "Miniature", 
+            img: "./assets/accelerometer/B02B01.png",
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "1-10kHz",
+            tempRange: "-40~120°C",
+            connector: "Side (M3)",
+            mount: "M3 Female"
+        },
+        { 
+            code: "B06A14", 
+            name: "Nano Sensor", 
+            type: "Microscopic Design", 
+            category: "Miniature", 
+            img: "./assets/accelerometer/B06A14.png.webp",
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-10kHz",
+            tempRange: "-40~120°C",
+            connector: "Top",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B06B14", 
+            name: "Pico Sensor", 
+            type: "Extreme Miniature", 
+            category: "Miniature", 
+            img: "./assets/accelerometer/B06B14.png.webp",
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-10kHz",
+            tempRange: "-40~120°C",
+            connector: "Top",
+            mount: "10-32/M5 Female"
+        }
+    ],
+    "triaxial": [
+        { 
+            code: "B02Y31", 
+            name: "Triaxial Sensor", 
+            type: "3-Axis Model", 
+            category: "Triaxial", 
+            img: "./assets/accelerometer/B02Y31.png.webp",
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "1-8kHz",
+            tempRange: "-40~120°C",
+            connector: "1/4-28 4pin",
+            mount: "M2.5 Female/Adhesive"
+        },
+        { 
+            code: "B06Y31", 
+            name: "Advanced Triaxial Sensor", 
+            type: "High Sensitivity", 
+            category: "Triaxial", 
+            img: "./assets/accelerometer/B06Y31-Triaxial.png.webp",
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-7kHz",
+            tempRange: "-40~120°C",
+            connector: "1/4-28 4pin",
+            mount: "M2.5 Female/Adhesive"
+        },
+        { 
+            code: "B02Y32", 
+            name: "Precision Triaxial Sensor", 
+            type: "Calibrated", 
+            category: "Triaxial", 
+            img: "./assets/accelerometer/B02Y32.png.webp",
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "1-10kHz",
+            tempRange: "-50~120°C",
+            connector: "1/4-28 4pin",
+            mount: "M2.5 Female/Adhesive"
+        },
+        { 
+            code: "B06Y32", 
+            name: "Industrial Triaxial Sensor", 
+            type: "Rugged 3-Axis", 
+            category: "Triaxial", 
+            img: "./assets/accelerometer/B06Y32.png.webp",
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-8kHz",
+            tempRange: "-50~120°C",
+            connector: "1/4-28 4pin",
+            mount: "M2.5 Female/Adhesive"
+        },
+        { 
+            code: "B02Y36", 
+            name: "Professional Triaxial Sensor", 
+            type: "Laboratory Grade", 
+            category: "Triaxial", 
+            img: "./assets/accelerometer/B02Y36.png.webp",
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "5-8kHz",
+            tempRange: "-50~100°C",
+            connector: "Integral Cable",
+            mount: "Adhesive"
+        }
+    ],
+    "teardrop": [
+        { 
+            code: "B02BM1", 
+            name: "Teardrop Sensor", 
+            type: "Aerodynamic Design", 
+            category: "Teardrop", 
+            img: "./assets/accelerometer/B05BM1.png.webp",
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "1-10kHz",
+            tempRange: "-50~120°C",
+            connector: "Side (M3)",
+            mount: "Adhesive"
+        },
+        { 
+            code: "B06BM1", 
+            name: "Advanced Teardrop Sensor", 
+            type: "High Flow", 
+            category: "Teardrop", 
+            img: "./assets/accelerometer/B06BM1.png.webp",
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-10kHz",
+            tempRange: "-50~120°C",
+            connector: "Side (M3)",
+            mount: "Adhesive"
+        },
+        { 
+            code: "B06CM1", 
+            name: "Precision Teardrop Sensor", 
+            type: "Calibrated", 
+            category: "Teardrop", 
+            img: "./assets/accelerometer/B06CM1.png",
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-10kHz",
+            tempRange: "-50~120°C",
+            connector: "Integral",
+            mount: "Adhesive"
+        },
+        { 
+            code: "B01CM5", 
+            name: "Industrial Teardrop Sensor", 
+            type: "Heavy Duty", 
+            category: "Teardrop", 
+            img: "./assets/accelerometer/B01CM5.png",
+            sensitivity: "4mV/g",
+            range: "±1250g",
+            frequency: "3-10kHz",
+            tempRange: "-50~120°C",
+            connector: "Integral",
+            mount: "Adhesive"
+        }
+    ],
+    "low-frequency": [
+        { 
+            code: "B12A00", 
+            name: "Low-Frequency Sensor", 
+            type: "Sub-Hz Range", 
+            category: "Low-Frequency", 
+            img: "./assets/accelerometer/B12A00.png.webp",
+            sensitivity: "10000mV/g",
+            range: "±0.5g",
+            frequency: "0.5-1kHz",
+            tempRange: "-40~120°C",
+            connector: "Top",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B10Y35", 
+            name: "Advanced Low-Frequency Sensor", 
+            type: "Ultra Low Noise", 
+            category: "Low-Frequency", 
+            img: "./assets/accelerometer/B10Y35.png.webp",
+            sensitivity: "1000mV/g",
+            range: "±5g",
+            frequency: "0.5-5kHz",
+            tempRange: "-40~120°C",
+            connector: "1/4-28 4pin",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B12A53", 
+            name: "Precision Low-Frequency Sensor", 
+            type: "High Stability", 
+            category: "Low-Frequency", 
+            img: "./assets/accelerometer/B12A53.png",
+            sensitivity: "10000mV/g",
+            range: "±0.5g",
+            frequency: "0.15-1k Hz",
+            tempRange: "-40~85°C",
+            connector: "Top",
+            mount: "1/4-28 Female"
+        }
+    ],
+    "high-temperature": [
+        { 
+            code: "B02A90", 
+            name: "High-Temperature Sensor", 
+            type: "Up to 200°C", 
+            category: "High-Temperature", 
+            img: "./assets/accelerometer/B03A90.png.webp",
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "1-10kHz",
+            tempRange: "-50~160°C",
+            connector: "Top",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B06A90", 
+            name: "Advanced High-Temp Sensor", 
+            type: "Up to 300°C", 
+            category: "High-Temperature", 
+            img: "./assets/accelerometer/B05A90.png.webp",
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-9kHz",
+            tempRange: "-50~160°C",
+            connector: "Top",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B02B90", 
+            name: "Extreme High-Temp Sensor", 
+            type: "Up to 500°C", 
+            category: "High-Temperature", 
+            img: "./assets/accelerometer/B06B90.png",
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "1-10kHz",
+            tempRange: "-50~160°C",
+            connector: "Side",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B06B90", 
+            name: "Ultra High-Temp Sensor", 
+            type: "Up to 800°C", 
+            category: "High-Temperature", 
+            img: "./assets/accelerometer/B06B90.png",
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-9kHz",
+            tempRange: "-50~160°C",
+            connector: "Side",
+            mount: "10-32/M5 Female"
+        },
+        { 
+            code: "B02Y91", 
+            name: "Industrial High-Temp Sensor", 
+            type: "Rugged Design", 
+            category: "High-Temperature", 
+            img: "./assets/accelerometer/B06Y91.png.webp",
+            sensitivity: "10mV/g",
+            range: "±500g",
+            frequency: "1-8kHz",
+            tempRange: "-50~160°C",
+            connector: "1/4-28 4pin",
+            mount: "M2.5 Female"
+        },
+        { 
+            code: "B06Y91", 
+            name: "Professional High-Temp Sensor", 
+            type: "Laboratory Grade", 
+            category: "High-Temperature", 
+            img: "./assets/accelerometer/B06Y91.png.webp",
+            sensitivity: "100mV/g",
+            range: "±50g",
+            frequency: "1-8kHz",
+            tempRange: "-50~160°C",
+            connector: "1/4-28 4pin",
+            mount: "M2.5 Female"
+        }
+    ]
+};
 
         // Product specifications data (based on your image content)
         // Product specifications data (based on your image content)
@@ -416,78 +777,128 @@ const defaultSpecs = {
             return null;
         }
 
+        // Dynamic specifications generation from productData
+function generateProductSpecs(product) {
+    const baseSpecs = {
+        description: `${product.name} is a ${product.type} sensor designed for ${product.category} applications.`,
+        specifications: {
+            "Sensitivity": product.sensitivity || "10mV/g",
+            "Range": product.range || "±500g",
+            "Frequency Range (5%)": product.frequency || "1-8k Hz",
+            "Temperature Range": product.tempRange || "-50~120°C",
+            "Connector": product.connector || "Side",
+            "Mounting": product.mount || "10-32/M5 Female",
+            "Broadband Resolution (g rms)": "0.002",
+            "Linearity": "1%",
+            "Excitation Voltage": "20-30 Vdc",
+            "Constant Current Excitation": "2-20 mA",
+            "Output Impedance": "≤100 Ω",
+            "Max Acceleration": "2500 g",
+            "Max Shock": "8000 g",
+            "Sealing": "Laser Welding IP68",
+            "Housing Material": "Titanium Alloy",
+            "Weight": "7.5 grams",
+            "Sensor Type": "IEPE",
+            "Axis": product.type.includes("Triaxial") ? "3-Axis" : "Uniaxial",
+            "TEDS Optional": "No"
+        },
+        highlights: [
+            { icon: "fa-bullseye", label: "Sensitivity", value: product.sensitivity || "10mV/g" },
+            { icon: "fa-arrows-alt-h", label: "Range", value: product.range || "±500g" },
+            { icon: "fa-wave-square", label: "Frequency (5%)", value: product.frequency || "1-8k Hz" },
+            { icon: "fa-thermometer-half", label: "Temp Range", value: product.tempRange || "-50~120°C" },
+            { icon: "fa-plug", label: "Connector", value: product.connector || "Side" },
+            { icon: "fa-tools", label: "Mount", value: product.mount || "10-32/M5 Female" },
+            { icon: "fa-shipping-fast", label: "Fast Lead Time", value: "Available" }
+        ]
+    };
+    
+    return baseSpecs;
+}
+
         // Load product data
-        function loadProductData() {
-            const product = findProduct(productCode, category);
-            
-            if (!product) {
-                // Product not found, show error
-                productName.textContent = "Product Not Found";
-                productCodeElement.textContent = productCode;
-                productCategory.textContent = "ERROR";
-                productSku.textContent = productCode;
-                return;
-            }
-            
-            // Update product info
-            productCategory.textContent = product.category.toUpperCase();
-            productCodeElement.textContent = productCode;
-            productName.textContent = product.name;
-            productSku.textContent = productCode;
-            
-            // Load image
-            if (product.img) {
-                productImageContainer.innerHTML = `<img src="${product.img}" alt="${product.name}" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop';" />`;
-            } else {
-                productImageContainer.innerHTML = `<img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop" alt="${product.name}" class="max-h-full max-w-full object-contain" />`;
-            }
-            
-            // Get product specifications (use specific or default)
-            const specs = productSpecs[productCode] || defaultSpecs;
-            
-            // Update highlights
-            productHighlights.innerHTML = '';
-            specs.highlights.forEach(highlight => {
-                const highlightItem = document.createElement('div');
-                highlightItem.className = 'flex items-center mb-3';
-                highlightItem.innerHTML = `
-                    <div class="text-blue-500 mr-3 w-5">
-                        <i class="fas ${highlight.icon}"></i>
-                    </div>
-                    <div class="text-gray-600">
-                        <strong>${highlight.label}:</strong> ${highlight.value}
-                    </div>
-                `;
-                productHighlights.appendChild(highlightItem);
-            });
-            
-            // Update description
-            descriptionText.innerHTML = `
-                <p class="mb-3"><strong>${product.name}, ${product.type}</strong></p>
-                <p class="mb-3">${specs.description}</p>
-                <p>This sensor features ${product.type.toLowerCase()} design with reliable performance for ${product.category.toLowerCase()} applications. It offers excellent stability and accuracy in various operating conditions.</p>
-            `;
-            
-            // Update specifications table
-            specificationsTable.innerHTML = '';
-            for (const [key, value] of Object.entries(specs.specifications)) {
-                const row = document.createElement('tr');
-                row.className = 'border-b border-gray-200';
-                row.innerHTML = `
-                    <td class="py-3 pr-4 font-semibold text-gray-800 w-2/5">${key}</td>
-                    <td class="py-3 text-gray-600">${value}</td>
-                `;
-                specificationsTable.appendChild(row);
-            }
-            
-            // Update downloads section
-            datasheetName.textContent = `Datasheet: ${productCode}.pdf`;
-            manufacturerLink.href = `https://example.com/${productCode}`;
-            manufacturerLink.textContent = "Additional Information on Manufacturer Website";
-            
-            // Load related products
-            loadRelatedProducts(category, productCode);
-        }
+function loadProductData() {
+    const product = findProduct(productCode, category);
+    
+    if (!product) {
+        // Product not found, show error
+        productName.textContent = "Product Not Found";
+        productCodeElement.textContent = productCode;
+        productCategory.textContent = "ERROR";
+        productSku.textContent = productCode;
+        return;
+    }
+    
+    // Update basic product info
+    productCategory.textContent = product.category.toUpperCase();
+    productCodeElement.textContent = productCode;
+    productName.textContent = product.name;
+    productSku.textContent = productCode;
+    
+    // Load image
+    if (product.img) {
+        productImageContainer.innerHTML = `<img src="${product.img}" alt="${product.name}" class="max-h-full max-w-full object-contain" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop';" />`;
+    } else {
+        productImageContainer.innerHTML = `<img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=300&fit=crop" alt="${product.name}" class="max-h-full max-w-full object-contain" />`;
+    }
+    
+    // Generate specifications from productData
+    const specs = generateProductSpecs(product);
+    
+    // Update highlights
+    productHighlights.innerHTML = '';
+    specs.highlights.forEach(highlight => {
+        const highlightItem = document.createElement('div');
+        highlightItem.className = 'flex items-center mb-3';
+        highlightItem.innerHTML = `
+            <div class="text-blue-500 mr-3 w-5">
+                <i class="fas ${highlight.icon}"></i>
+            </div>
+            <div class="text-gray-600">
+                <strong>${highlight.label}:</strong> ${highlight.value}
+            </div>
+        `;
+        productHighlights.appendChild(highlightItem);
+    });
+    
+    // Update description with productData fields
+descriptionText.innerHTML = `
+    <p class="mb-3"><strong>${product.name} (${product.code})</strong></p>
+    <p class="mb-3">${specs.description}</p>
+    <p>This ${product.type} sensor is designed for ${product.category.toLowerCase()} applications with ${product.sensitivity} sensitivity and ${product.range} range. It operates in ${product.tempRange} temperature range with ${product.frequency} frequency response.</p>
+    <p class="mt-3"><strong>Technical Specifications:</strong></p>
+    <ul class="list-disc pl-5 mt-2">
+        <li><strong>Model:</strong> ${product.code}</li>
+        <li><strong>Type:</strong> ${product.type}</li>
+        <li><strong>Sensitivity:</strong> ${product.sensitivity}</li>
+        <li><strong>Range:</strong> ${product.range}</li>
+        <li><strong>Frequency Response:</strong> ${product.frequency}</li>
+        <li><strong>Temperature Range:</strong> ${product.tempRange}</li>
+        <li><strong>Connector:</strong> ${product.connector}</li>
+        <li><strong>Mounting:</strong> ${product.mount}</li>
+    </ul>
+`;
+    
+    // Update specifications table
+    specificationsTable.innerHTML = '';
+    for (const [key, value] of Object.entries(specs.specifications)) {
+        const row = document.createElement('tr');
+        row.className = 'border-b border-gray-200';
+        row.innerHTML = `
+            <td class="py-3 pr-4 font-semibold text-gray-800 w-2/5">${key}</td>
+            <td class="py-3 text-gray-600">${value}</td>
+        `;
+        specificationsTable.appendChild(row);
+    }
+    
+    // Update downloads section
+    datasheetName.textContent = `Datasheet: ${productCode}_specifications.pdf`;
+    manufacturerLink.href = `#`;
+    manufacturerLink.textContent = "Contact for detailed datasheet";
+    
+    // Load related products
+    loadRelatedProducts(category, productCode);
+}
 
         // Tab switching functionality
         tabButtons.forEach(tab => {

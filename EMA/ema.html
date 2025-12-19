@@ -16,14 +16,14 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
     :root {
-      --primary-dark: #0A1929;
+      --primary-dark: #F5EDED;
       --primary-blue: #1E3A8A;
       --secondary-blue: #3B82F6;
       --accent-blue: #60A5FA;
       --text-primary: #E1E8F0;
       --text-secondary: #94A3B8;
-      --background-dark: #0A1929;
-      --background-light: rgba(10, 25, 41, 0.7);
+      --background-dark: #F5EDED;
+      --background-light: rgba(5, 5, 5, 0.7);
       --border-color: rgba(30, 64, 175, 0.15);
     }
 
@@ -480,21 +480,21 @@
     <div class="container mx-auto px-4 relative z-10">
       <div class="flex flex-col md:flex-row items-center min-h-[60vh]">
         <!-- Left Column - Content -->
-        <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+        <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12 ml-8">
           <div class="animate-fade-in-up">
             <div class="tech-badge inline-flex items-center mb-6">
-              <span class="loading-dots mr-2">
+              <span class="loading-dots mr-2 mt-4">
                 <span></span><span></span><span></span>
               </span>
               Advanced Testing Technology
             </div>
             
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 leading-snug">
-              <span class="block mb-2 text-white">Electromagnetic</span>
-              <span class="block text-primary wave">Shock Dyno</span>
+              <span class="block mb-2 text-gray-700">Electromagnetic</span>
+              <span class="block text-primary wave mb-8">Shock Dyno</span>
             </h1>
             
-            <p class="text-gray-400 mb-8 leading-relaxed">
+            <p class="text-gray-500 mb-10 leading-relaxed">
               High-precision suspension analysis through cutting-edge electromagnetic actuation technology.
               Experience unparalleled accuracy in damper testing and performance validation.
             </p>
@@ -520,15 +520,15 @@
             <div class="flex flex-wrap gap-3 pt-6">
               <div class="data-point animate-fade-in-up delay-400">
                 <i class="fas fa-bolt text-primary text-sm mr-2"></i>
-                <span class="text-sm">20 kHz Sampling Rate</span>
+                <span class="text-sm text-gray-500">20 kHz Sampling Rate</span>
               </div>
               <div class="data-point animate-fade-in-up delay-500">
                 <i class="fas fa-ruler-combined text-primary text-sm mr-2"></i>
-                <span class="text-sm">50 nm Resolution</span>
+                <span class="text-sm text-gray-500">50 nm Resolution</span>
               </div>
               <div class="data-point animate-fade-in-up delay-600">
                 <i class="fas fa-tachometer-alt text-primary text-sm mr-2"></i>
-                <span class="text-sm">150 Hz Max Frequency</span>
+                <span class="text-sm text-gray-500">150 Hz Max Frequency</span>
               </div>
             </div>
           </div>
@@ -577,7 +577,7 @@
       <!-- Section Header -->
       <div class="text-center mb-12 animate-fade-in-up">
         <h2 class="text-2xl md:text-3xl font-semibold mb-4">
-          <span class="text-white">Power & Performance</span>
+          <span class="text-gray-700">Power & Performance</span>
           <span class="block text-primary mt-1">Specifications</span>
         </h2>
         <p class="text-gray-500 max-w-3xl mx-auto text-sm">
@@ -587,8 +587,8 @@
       </div>
 
       <!-- Power Selection -->
-      <div class="ml-96 grid md:grid-cols-4 gap-4 mb-12 animate-fade-in-up delay-200">
-        <div class="text-center info-card glass-card p-4 rounded-lg">
+      <div class="ml-96 grid md:grid-cols-4 bg-[#E6E6E6] gap-4 mb-12 animate-fade-in-up delay-200">
+        <div class="text-center  p-4 rounded-lg">
           <div class="text-xl font-semibold text-primary mb-1">30 kW</div>
           <p class="text-xs text-gray-500 mb-3">Entry Level</p>
           <a href="#contact" class="px-4 py-1.5 bg-[#1E3A8A] text-white rounded text-xs hover:bg-[#3B82F6] transition-colors inline-block">
@@ -596,7 +596,7 @@
           </a>
         </div>
 
-        <div class="text-center info-card glass-card p-4 rounded-lg">
+        <div class="text-center  p-4 rounded-lg">
           <div class="text-xl font-semibold text-primary mb-1">60 kW</div>
           <p class="text-xs text-gray-500 mb-3">Standard</p>
           <a href="#contact" class="px-4 py-1.5 bg-[#1E3A8A] text-white rounded text-xs hover:bg-[#3B82F6] transition-colors inline-block">
@@ -604,7 +604,7 @@
           </a>
         </div>
 
-        <div class="text-center info-card glass-card p-4 rounded-lg">
+        <div class="text-center  p-4 rounded-lg">
           <div class="text-xl font-semibold text-primary mb-1">90 kW</div>
           <p class="text-xs text-gray-500 mb-3">Professional</p>
           <a href="#contact" class="px-4 py-1.5 bg-[#1E3A8A] text-white rounded text-xs hover:bg-[#3B82F6] transition-colors inline-block">
@@ -612,7 +612,7 @@
           </a>
         </div>
 
-        <div class="text-center info-card glass-card p-4 rounded-lg">
+        <div class="text-center p-4 rounded-lg">
           <div class="text-xl font-semibold text-primary mb-1">120 kW</div>
           <p class="text-xs text-gray-500 mb-3">Industrial</p>
           <a href="#contact" class="px-4 py-1.5 bg-[#1E3A8A] text-white rounded text-xs hover:bg-[#3B82F6] transition-colors inline-block">
@@ -622,81 +622,81 @@
       </div>
 
       <!-- Specifications Table -->
-      <div class="overflow-x-auto rounded-lg border border-[#1E3A8A]/30 bg-[#0A1929]/80 backdrop-blur-sm">
+      <div class="overflow-x-auto rounded-lg ml-8 border border-[#1E3A8A]/30 bg-[#FCF8F8] backdrop-blur-sm">
         <table class="specs-table w-full">
           <thead>
             <tr class="bg-gradient-to-r from-[#1E3A8A]/20 to-[#3B82F6]/20">
-              <th class="text-left py-4 px-6 text-white font-semibold">Specification</th>
-              <th class="text-center py-4 px-6 font-semibold">30 kW</th>
-              <th class="text-center py-4 px-6 font-semibold highlight">60 kW</th>
-              <th class="text-center py-4 px-6 font-semibold">90 kW</th>
-              <th class="text-center py-4 px-6 font-semibold highlight">120 kW</th>
+              <th class="text-left py-4 px-6 text-gray-600 font-semibold">Specification</th>
+              <th class="text-center py-4 px-6 text-gray-600 font-semibold">30 kW</th>
+              <th class="text-center py-4 px-6 text-gray-600 font-semibold highlight">60 kW</th>
+              <th class="text-center py-4 px-6 text-gray-600 font-semibold">90 kW</th>
+              <th class="text-center py-4 px-6 text-gray-600 font-semibold highlight">120 kW</th>
             </tr>
           </thead>
           <tbody>
             <tr class="animate-fade-in-up delay-100">
-              <td class="py-4 px-6 text-gray-400">Actuator Power</td>
-              <td class="py-4 px-6 text-center">30 kW</td>
-              <td class="py-4 px-6 text-center highlight">60 kW</td>
-              <td class="py-4 px-6 text-center">90 kW</td>
-              <td class="py-4 px-6 text-center highlight">120 kW</td>
+              <td class="py-4 px-6 text-gray-600">Actuator Power</td>
+              <td class="py-4 px-6 text-center text-gray-600">30 kW</td>
+              <td class="py-4 px-6 text-center highlight text-gray-600">60 kW</td>
+              <td class="py-4 px-6 text-center text-gray-600">90 kW</td>
+              <td class="py-4 px-6 text-center highlight text-gray-600">120 kW</td>
             </tr>
             <tr class="animate-fade-in-up delay-150">
-              <td class="py-4 px-6 text-gray-400">Peak Force @ 2 m/s</td>
-              <td class="py-4 px-6 text-center">10 kN <span class="text-gray-500 text-xs">(2248 lbf)</span></td>
-              <td class="py-4 px-6 text-center highlight">20 kN <span class="text-gray-500 text-xs">(4496 lbf)</span></td>
-              <td class="py-4 px-6 text-center">30 kN <span class="text-gray-500 text-xs">(6744 lbf)</span></td>
-              <td class="py-4 px-6 text-center highlight">40 kN <span class="text-gray-500 text-xs">(8992 lbf)</span></td>
+              <td class="py-4 px-6 text-gray-400 text-gray-600">Peak Force @ 2 m/s</td>
+              <td class="py-4 px-6 text-center text-gray-600">10 kN <span class="text-gray-500 text-xs">(2248 lbf)</span></td>
+              <td class="py-4 px-6 text-center highlight text-gray-600">20 kN <span class="text-gray-500 text-xs">(4496 lbf)</span></td>
+              <td class="py-4 px-6 text-center text-gray-600">30 kN <span class="text-gray-500 text-xs">(6744 lbf)</span></td>
+              <td class="py-4 px-6 text-center highlight text-gray-600">40 kN <span class="text-gray-500 text-xs">(8992 lbf)</span></td>
             </tr>
             <tr class="animate-fade-in-up delay-200">
-              <td class="py-4 px-6 text-gray-400">Max Velocity</td>
-              <td colspan="4" class="py-4 px-6 text-center">7,000 mm/s <span class="text-gray-500 text-xs">(276 in/s)</span></td>
+              <td class="py-4 px-6 text-gray-400 text-gray-600">Max Velocity</td>
+              <td colspan="4" class="py-4 px-6 text-center text-gray-600">7,000 mm/s <span class="text-gray-500 text-xs">(276 in/s)</span></td>
             </tr>
             <tr class="animate-fade-in-up delay-250">
-              <td class="py-4 px-6 text-gray-400">Min Velocity</td>
-              <td colspan="4" class="py-4 px-6 text-center">0.1 mm/s <span class="text-gray-500 text-xs">(0.04 in/s)</span></td>
+              <td class="py-4 px-6 text-gray-400 text-gray-600">Min Velocity</td>
+              <td colspan="4" class="py-4 px-6 text-center text-gray-600">0.1 mm/s <span class="text-gray-500 text-xs">(0.04 in/s)</span></td>
             </tr>
             <tr class="animate-fade-in-up delay-300">
-              <td class="py-4 px-6 text-gray-400">Max Test Frequency</td>
-              <td colspan="4" class="py-4 px-6 text-center">150 Hz</td>
+              <td class="py-4 px-6 text-gray-400 text-gray-600">Max Test Frequency</td>
+              <td colspan="4" class="py-4 px-6 text-center text-gray-600">150 Hz</td>
             </tr>
             <tr class="animate-fade-in-up delay-350">
-              <td class="py-4 px-6 text-gray-400">Max Acceleration</td>
-              <td colspan="4" class="py-4 px-6 text-center">100 G</td>
+              <td class="py-4 px-6 text-gray-400 text-gray-600">Max Acceleration</td>
+              <td colspan="4" class="py-4 px-6 text-center text-gray-600">100 G</td>
             </tr>
             <tr class="animate-fade-in-up delay-400">
-              <td class="py-4 px-6 text-gray-400">Data Sampling Frequency</td>
-              <td colspan="4" class="py-4 px-6 text-center text-xs">
+              <td class="py-4 px-6 text-gray-400 text-gray-600">Data Sampling Frequency</td>
+              <td colspan="4" class="py-4 px-6 text-center text-gray-600 text-xs">
                 Digital position sampling 20 kHz<br>
                 Synchronized analog load cell sampling 20 kHz, 20-bit resolution
               </td>
             </tr>
             <tr class="animate-fade-in-up delay-450">
-              <td class="py-4 px-6 text-gray-400">Additional ADC Channels</td>
-              <td colspan="4" class="py-4 px-6 text-center">8 synchronized channels, up to 10 kHz sampling rate</td>
+              <td class="py-4 px-6 text-gray-600">Additional ADC Channels</td>
+              <td colspan="4" class="py-4 px-6 text-center text-gray-600">8 synchronized channels, up to 10 kHz sampling rate</td>
             </tr>
             <tr class="animate-fade-in-up delay-500">
-              <td class="py-4 px-6 text-gray-400">Position Resolution</td>
-              <td colspan="4" class="py-4 px-6 text-center">50 nanometers</td>
+              <td class="py-4 px-6 text-gray-600">Position Resolution</td>
+              <td colspan="4" class="py-4 px-6 text-center text-gray-600">50 nanometers</td>
             </tr>
             <tr class="animate-fade-in-up delay-550">
-              <td class="py-4 px-6 text-gray-400">Stroke</td>
-              <td colspan="4" class="py-4 px-6 text-center">250 mm <span class="text-gray-500 text-xs">(9.85 in)</span></td>
+              <td class="py-4 px-6 text-gray-400 text-gray-600">Stroke</td>
+              <td colspan="4" class="py-4 px-6 text-center text-gray-600">250 mm <span class="text-gray-500 text-xs">(9.85 in)</span></td>
             </tr>
             <tr class="animate-fade-in-up delay-600">
-              <td class="py-4 px-6 text-gray-400">Power Requirement</td>
-              <td colspan="4" class="py-4 px-6 text-center text-xs">
+              <td class="py-4 px-6 text-gray-400 text-gray-600">Power Requirement</td>
+              <td colspan="4" class="py-4 px-6 text-center text-gray-600 text-xs">
                 3-phase 380/400 VAC 16 A<br>
                 Configurable for 1-phase 220/240 VAC
               </td>
             </tr>
             <tr class="animate-fade-in-up delay-650">
-              <td class="py-4 px-6 text-gray-400">Cooling System</td>
-              <td colspan="4" class="py-4 px-6 text-center">Compressed Air</td>
+              <td class="py-4 px-6 text-gray-600">Cooling System</td>
+              <td colspan="4" class="py-4 px-6 text-center text-gray-600">Compressed Air</td>
             </tr>
             <tr class="animate-fade-in-up delay-700">
-              <td class="py-4 px-6 text-gray-400">Supported Waveforms</td>
-              <td colspan="4" class="py-4 px-6 text-center text-sm">
+              <td class="py-4 px-6 text-gray-600">Supported Waveforms</td>
+              <td colspan="4" class="py-4 px-6 text-gray-600 text-center text-sm">
                 Sine, Triangle, Square, Pulse, Pink noise, Sweep, Chirp, Track data import
               </td>
             </tr>
@@ -717,7 +717,7 @@
       <!-- Section Header -->
       <div class="text-center mb-16 animate-fade-in-up">
         <h2 class="text-2xl md:text-3xl font-semibold mb-4">
-          <span class="text-white">Standard Features</span>
+          <span class="text-gray-700">Standard Features</span>
           <span class="block text-primary mt-1">of All EMA's</span>
         </h2>
         <p class="text-gray-500 max-w-3xl mx-auto text-sm">
@@ -726,11 +726,11 @@
       </div>
 
       <!-- Feature 1: Sampling Rate -->
-      <div class="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in-right">
+      <div class="grid md:grid-cols-2 ml-8 gap-12 items-center mb-20 animate-fade-in-right mr-6">
         <!-- Text Content -->
         <div>
           <div class="tech-badge mb-6">Ultimate Precision</div>
-          <h3 class="text-xl md:text-2xl font-semibold mb-6 text-white">Sampling rate and Accuracy</h3>
+          <h3 class="text-xl md:text-2xl font-semibold mb-6 text-gray-600">Sampling rate and Accuracy</h3>
           <p class="text-gray-400 leading-relaxed mb-8">
             Our digital position sensor operates at 20 kHz with 50 nm accuracy, ensuring no phase shift in data collection.
             Simultaneous force measurement at identical frequency guarantees perfectly synchronized datasets.
@@ -738,15 +738,15 @@
           <div class="space-y-4">
             <div class="flex items-center">
               <i class="fas fa-check-circle text-primary mr-3 text-sm"></i>
-              <span class="text-sm">20 kHz sampling rate for position and force</span>
+              <span class="text-sm text-gray-600">20 kHz sampling rate for position and force</span>
             </div>
             <div class="flex items-center">
               <i class="fas fa-check-circle text-primary mr-3 text-sm"></i>
-              <span class="text-sm">50 nanometer resolution accuracy</span>
+              <span class="text-sm text-gray-600">50 nanometer resolution accuracy</span>
             </div>
             <div class="flex items-center">
               <i class="fas fa-check-circle text-primary mr-3 text-sm"></i>
-              <span class="text-sm">Synchronized data collection without phase lag</span>
+              <span class="text-sm text-gray-600">Synchronized data collection without phase lag</span>
             </div>
           </div>
         </div>
@@ -757,7 +757,7 @@
             <div class="gradient-border p-4">
               <img src="../assets/sampling-removebg-preview.png" 
                    alt="Sampling Visualization" 
-                   class="w-full h-auto animate-float-subtle">
+                   class="w-full h-auto ">
             </div>
             <div class="absolute -top-3 -right-3 w-12 h-12 bg-[#1E3A8A] rounded-full flex items-center justify-center">
               <i class="fas fa-bolt text-white text-sm"></i>
@@ -767,14 +767,14 @@
       </div>
 
       <!-- Feature 2: Analog Inputs -->
-      <div class="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in-left delay-200">
+      <div class="grid md:grid-cols-2 gap-12 items-center mb-20 animate-fade-in-left delay-200 ml-8 mr-6">
         <!-- Graphic -->
         <div class="flex justify-center order-2 md:order-1">
           <div class="relative">
             <div class="gradient-border p-4">
               <img src="../assets/products12.png" 
                    alt="Analog Inputs" 
-                   class="w-full h-auto animate-float-subtle" style="animation-delay: 1s;">
+                   class="w-full h-auto " style="animation-delay: 1s;">
             </div>
             <div class="absolute -bottom-3 -left-3 w-12 h-12 bg-[#1E3A8A] rounded-full flex items-center justify-center">
               <i class="fas fa-microchip text-white text-sm"></i>
@@ -785,53 +785,53 @@
         <!-- Text Content -->
         <div class="order-1 md:order-2">
           <div class="tech-badge mb-6">Multi-Channel Input</div>
-          <h3 class="text-xl md:text-2xl font-semibold mb-6 text-white">Comprehensive Sensor Integration</h3>
+          <h3 class="text-xl md:text-2xl font-semibold mb-6 text-gray-600">Comprehensive Sensor Integration</h3>
           <p class="text-gray-400 leading-relaxed mb-8">
             Three additional analog inputs enable simultaneous monitoring of pressure, temperature, acceleration, 
             and other critical parameters at 20 kHz sampling rate for complete testing analysis.
           </p>
           <div class="grid grid-cols-2 gap-4">
-            <div class="info-card glass-card p-4 rounded-lg">
+            <div class="p-4 rounded-lg">
               <i class="fas fa-thermometer-half text-primary text-sm mb-2"></i>
-              <p class="font-medium text-sm">Temperature Monitoring</p>
+              <p class="font-medium text-sm text-gray-500">Temperature Monitoring</p>
             </div>
-            <div class="info-card glass-card p-4 rounded-lg">
+            <div class="p-4 rounded-lg">
               <i class="fas fa-tachometer-alt text-primary text-sm mb-2"></i>
-              <p class="font-medium text-sm">Acceleration Data</p>
+              <p class="font-medium text-sm text-gray-500">Acceleration Data</p>
             </div>
-            <div class="info-card glass-card p-4 rounded-lg">
+            <div class="p-4 rounded-lg">
               <i class="fas fa-compress-arrows-alt text-primary text-sm mb-2"></i>
-              <p class="font-medium text-sm">Pressure Sensing</p>
+              <p class="font-medium text-sm text-gray-500">Pressure Sensing</p>
             </div>
-            <div class="info-card glass-card p-4 rounded-lg">
+            <div class="p-4 rounded-lg">
               <i class="fas fa-wave-square text-primary text-sm mb-2"></i>
-              <p class="font-medium text-sm">Noise Analysis</p>
+              <p class="font-medium text-sm text-gray-500">Noise Analysis</p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Feature 3: Noise Levels -->
-      <div class="grid md:grid-cols-2 gap-12 items-center animate-fade-in-right delay-400">
+      <div class="grid md:grid-cols-2 gap-12 items-center animate-fade-in-right delay-400 ml-8 mr-6">
         <!-- Text Content -->
         <div>
           <div class="tech-badge mb-6">Silent Operation</div>
-          <h3 class="text-xl md:text-2xl font-semibold mb-6 text-white">Minimal Acoustic Footprint</h3>
+          <h3 class="text-xl md:text-2xl font-semibold mb-6 text-gray-600">Minimal Acoustic Footprint</h3>
           <p class="text-gray-400 leading-relaxed mb-8">
             Operating at just 55 dB on standby and as low as 60 dB during active testing, our EMA systems 
             provide the quietest testing environment available, ideal for EV and sensitive applications.
           </p>
           <div class="space-y-6">
-            <div class="flex items-center justify-between bg-[#0A1929] p-4 rounded-lg border border-[#1E3A8A]">
-              <span class="text-sm">Standby Noise Level</span>
+            <div class="flex items-center justify-between p-4 rounded-lg border border-[#1E3A8A]">
+              <span class="text-sm text-gray-500">Standby Noise Level</span>
               <span class="text-primary font-semibold text-sm">55 dB</span>
             </div>
-            <div class="flex items-center justify-between bg-[#0A1929] p-4 rounded-lg border border-[#1E3A8A]">
-              <span class="text-sm">Active Testing Range</span>
+            <div class="flex items-center justify-between p-4 rounded-lg border border-[#1E3A8A]">
+              <span class="text-sm text-gray-500">Active Testing Range</span>
               <span class="text-primary font-semibold text-sm">60-75 dB</span>
             </div>
-            <div class="flex items-center justify-between bg-[#0A1929] p-4 rounded-lg border border-[#1E3A8A]">
-              <span class="text-sm">EV Compatibility</span>
+            <div class="flex items-center justify-between p-4 rounded-lg border border-[#1E3A8A]">
+              <span class="text-sm text-gray-500">EV Compatibility</span>
               <span class="text-primary font-semibold text-sm"><i class="fas fa-check"></i> Certified</span>
             </div>
           </div>
@@ -843,7 +843,7 @@
             <div class="gradient-border p-4">
               <img src="../assets/Automaticproduct.jpg" 
                    alt="Noise Level Visualization" 
-                   class="w-full h-auto animate-float-subtle" style="animation-delay: 2s;">
+                   class="w-full h-auto " style="animation-delay: 2s;">
             </div>
             <div class="absolute -top-3 -right-3 w-12 h-12 bg-[#1E3A8A] rounded-full flex items-center justify-center">
               <i class="fas fa-volume-down text-white text-sm"></i>
@@ -855,12 +855,12 @@
   </section>
 
   <!-- MAIN SECTION: Components Developed In-House -->
-  <section class="relative py-20 bg-gradient-to-b from-[#0A1929] to-[#1E3A8A]/10">
+  <section class="relative py-20 bg-gradient-to-b">
     <div class="max-w-7xl mx-auto px-4 relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-16 animate-fade-in-up">
         <h2 class="text-2xl md:text-3xl font-semibold mb-4">
-          <span class="text-white">Proprietary Technology</span>
+          <span class="text-gray-700">Proprietary Technology</span>
           <span class="block text-primary mt-1">In-House Development</span>
         </h2>
         <p class="text-gray-500 max-w-3xl mx-auto text-sm">
@@ -874,46 +874,46 @@
           <div class="inline-block tech-badge mb-4">
             <i class="fas fa-database mr-2"></i>Data Acquisition System
           </div>
-          <h3 class="text-xl md:text-2xl font-semibold mb-8 text-white">Precision Data Logger</h3>
+          <h3 class="text-xl md:text-2xl font-semibold mb-8 text-gray-500">Data Logger</h3>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 mb-12">
-          <div class="info-card glass-card p-6 rounded-xl text-center">
+          <div class="p-6 rounded-xl text-center bg-gray-200">
             <div class="text-2xl font-semibold text-primary mb-2">50 nm</div>
-            <p class="text-gray-400 text-sm">Position Resolution</p>
+            <p class="text-gray-500 text-sm">Position Resolution</p>
             <div class="mt-4 text-xs text-gray-500">
               <i class="fas fa-ruler-combined mr-2"></i>Ultra-fine measurement
             </div>
           </div>
-          <div class="info-card glass-card p-6 rounded-xl text-center">
-            <div class="text-2xl font-semibold text-primary mb-2">20 kHz</div>
-            <p class="text-gray-400 text-sm">Sampling Rate</p>
+          <div class="p-6 rounded-xl text-center bg-gray-200">
+            <div class="text-2xl font-semibold text-primary mb-2 ">20 kHz</div>
+            <p class="text-gray-500 text-sm">Sampling Rate</p>
             <div class="mt-4 text-xs text-gray-500">
               <i class="fas fa-tachometer-alt mr-2"></i>High-speed data capture
             </div>
           </div>
-          <div class="info-card glass-card p-6 rounded-xl text-center">
-            <div class="text-2xl font-semibold text-primary mb-2">20-bit</div>
-            <p class="text-gray-400 text-sm">Load Cell Resolution</p>
+          <div class="p-6 rounded-xl text-center bg-gray-200">
+            <div class="text-2xl font-semibold text-primary mb-2 ">20-bit</div>
+            <p class="text-gray-500 text-sm">Load Cell Resolution</p>
             <div class="mt-4 text-xs text-gray-500">
               <i class="fas fa-weight mr-2"></i>Precision force measurement
             </div>
           </div>
         </div>
 
-        <p class="text-gray-400 text-sm text-center max-w-3xl mx-auto leading-relaxed">
+        <p class="text-gray-500 text-sm text-center max-w-3xl mx-auto leading-relaxed">
           Engineered to detect the most minute force variations in damper performance, our data logger represents 
           the pinnacle of measurement technology with multi-channel analog support for maximum versatility.
         </p>
       </div>
 
       <!-- Control Unit -->
-      <div class="mb-20 animate-fade-in-up delay-400">
+      <div class="mb-20 animate-fade-in-up delay-400 ml-6 mr-6">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div class="tech-badge mb-6">Integrated Control</div>
-            <h3 class="text-xl md:text-2xl font-semibold mb-6 text-white">Unified Control System</h3>
-            <p class="text-gray-400 leading-relaxed mb-8 text-sm">
+            <h3 class="text-xl md:text-2xl font-semibold mb-6 text-gray-700">Control Unit</h3>
+            <p class="text-gray-500 leading-relaxed mb-8 text-sm">
               Our integrated control unit combines data logging and system control on a single board, 
               featuring state-of-the-art silicon carbide (SiC) MOSFET technology for enhanced power efficiency 
               and reduced operational costs.
@@ -923,19 +923,19 @@
                 <div class="w-6 h-6 bg-[#1E3A8A] rounded-full flex items-center justify-center mr-3">
                   <i class="fas fa-check text-white text-xs"></i>
                 </div>
-                <span class="text-sm">Single-board integration</span>
+                <span class="text-sm text-gray-500">Single-board integration</span>
               </div>
               <div class="flex items-center">
                 <div class="w-6 h-6 bg-[#1E3A8A] rounded-full flex items-center justify-center mr-3">
                   <i class="fas fa-check text-white text-xs"></i>
                 </div>
-                <span class="text-sm">SiC MOSFET technology</span>
+                <span class="text-sm text-gray-500">SiC MOSFET technology</span>
               </div>
               <div class="flex items-center">
                 <div class="w-6 h-6 bg-[#1E3A8A] rounded-full flex items-center justify-center mr-3">
                   <i class="fas fa-check text-white text-xs"></i>
                 </div>
-                <span class="text-sm">Real-time processing</span>
+                <span class="text-sm text-gray-500">Real-time processing</span>
               </div>
             </div>
           </div>
@@ -950,7 +950,7 @@
       </div>
 
       <!-- Power Unit -->
-      <div class="mb-20 animate-fade-in-up delay-600">
+      <div class="mb-20 animate-fade-in-up delay-600 mr-6">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="flex justify-center order-2 md:order-1">
             <div class="gradient-border p-4 max-w-md">
@@ -961,27 +961,27 @@
           </div>
           <div class="order-1 md:order-2">
             <div class="tech-badge mb-6">Smart Power Management</div>
-            <h3 class="text-xl md:text-2xl font-semibold mb-6 text-white">Advanced Power Supply</h3>
-            <p class="text-gray-400 leading-relaxed mb-8 text-sm">
+            <h3 class="text-xl md:text-2xl font-semibold mb-6 text-gray-700">Power Unit</h3>
+            <p class="text-gray-500 leading-relaxed mb-8 text-sm">
               Our revolutionary power supply utilizes supercapacitor technology to eliminate dependency on 
               high-voltage inputs, making professional testing accessible in any environment including trackside applications.
             </p>
             <div class="space-y-6">
-              <div class="bg-[#0A1929] border border-[#1E3A8A] p-4 rounded-lg">
+              <div class="bg-gray-200 border border-[#1E3A8A] p-4 rounded-lg">
                 <div class="flex justify-between items-center">
-                  <span class="font-medium text-sm">Standard Configuration</span>
+                  <span class="font-medium text-sm text-gray-600">Standard Configuration</span>
                   <span class="text-primary text-sm">3-phase 380/400 VAC 16 A</span>
                 </div>
               </div>
-              <div class="bg-[#0A1929] border border-[#1E3A8A] p-4 rounded-lg">
+              <div class="bg-gray-200 border border-[#1E3A8A] p-4 rounded-lg">
                 <div class="flex justify-between items-center">
-                  <span class="font-medium text-sm">Optional Configuration</span>
+                  <span class="font-medium text-sm text-gray-600">Optional Configuration</span>
                   <span class="text-primary text-sm">1-phase 220/240 VAC</span>
                 </div>
               </div>
-              <div class="bg-[#0A1929] border border-[#1E3A8A] p-4 rounded-lg">
+              <div class="bg-gray-200 border border-[#1E3A8A] p-4 rounded-lg">
                 <div class="flex justify-between items-center">
-                  <span class="font-medium text-sm">Power Reserve</span>
+                  <span class="font-medium text-sm text-gray-600">Power Reserve</span>
                   <span class="text-primary text-sm">Supercapacitor backup system</span>
                 </div>
               </div>
@@ -991,12 +991,12 @@
       </div>
 
       <!-- Software -->
-      <div class="animate-fade-in-up delay-800">
+      <div class="animate-fade-in-up delay-800 ml-8">
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div class="tech-badge mb-6">Intuitive Interface</div>
-            <h3 class="text-xl md:text-2xl font-semibold mb-6 text-white">Advanced Software Suite</h3>
-            <p class="text-gray-400 leading-relaxed mb-8 text-sm">
+            <h3 class="text-xl md:text-2xl font-semibold mb-6 text-gray-700">Software</h3>
+            <p class="text-gray-500 leading-relaxed mb-8 text-sm">
               Designed for exceptional user experience with minimal learning curve. Our software enables 
               comprehensive data analysis, track data trimming, and seamless integration with additional 
               testing equipment.
@@ -1005,21 +1005,21 @@
               <div class="flex items-start">
                 <i class="fas fa-sliders-h text-primary text-sm mt-1 mr-4"></i>
                 <div>
-                  <h4 class="font-medium mb-2 text-sm">Pre/Post-Test Editing</h4>
+                  <h4 class="font-medium mb-2 text-sm text-gray-600">Pre/Post-Test Editing</h4>
                   <p class="text-gray-500 text-xs">Modify data before and after analysis for optimal results</p>
                 </div>
               </div>
               <div class="flex items-start">
                 <i class="fas fa-cut text-primary text-sm mt-1 mr-4"></i>
                 <div>
-                  <h4 class="font-medium mb-2 text-sm">Track Data Trimming</h4>
+                  <h4 class="font-medium mb-2 text-sm text-gray-600">Track Data Trimming</h4>
                   <p class="text-gray-500 text-xs">Focus analysis on specific course segments</p>
                 </div>
               </div>
               <div class="flex items-start">
                 <i class="fas fa-chart-line text-primary text-sm mt-1 mr-4"></i>
                 <div>
-                  <h4 class="font-medium mb-2 text-sm">Advanced Visualization</h4>
+                  <h4 class="font-medium mb-2 text-sm text-gray-600">Advanced Visualization</h4>
                   <p class="text-gray-500 text-xs">Overlay cycles and compare performance metrics</p>
                 </div>
               </div>
@@ -1042,8 +1042,8 @@
     <div class="max-w-7xl mx-auto px-4 relative z-10">
       <div class="text-center mb-16 animate-fade-in-up">
         <h2 class="text-2xl md:text-3xl font-semibold mb-4">
-          <span class="text-white">Universal Compatibility</span>
-          <span class="block text-primary mt-1">Shock Dyno Adapters</span>
+          <span class="text-gray-700">Expand Your Possibilities</span>
+          <span class="block text-primary mt-1">With Shock Dyno Adapters</span>
         </h2>
         <p class="text-gray-500 max-w-3xl mx-auto text-sm">
           Our comprehensive range of adapters ensures seamless integration with any suspension system, 
@@ -1053,7 +1053,7 @@
 
       <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         <!-- MTB Adapters -->
-        <div class="info-card glass-card rounded-xl overflow-hidden animate-fade-in-up delay-200">
+        <div class="bg-gray-200 rounded-xl overflow-hidden animate-fade-in-up delay-200">
           <div class="p-8">
             <div class="tech-badge mb-6 w-full text-center">Mountain Bike Systems</div>
             <div class="gradient-border mb-6">
@@ -1063,29 +1063,29 @@
                      class="w-full h-48 object-contain transform transition-transform duration-500 hover:scale-[1.05]">
               </div>
             </div>
-            <h3 class="text-lg font-semibold mb-4 text-white">MTB Damper Adapters</h3>
-            <p class="text-gray-400 mb-6 text-sm">
+            <h3 class="text-lg font-semibold mb-4 text-gray-600">MTB Damper Adapters</h3>
+            <p class="text-gray-500 mb-6 text-sm">
               Precision adapters for mountain bike suspension systems with specialized mounting solutions.
             </p>
             <div class="space-y-2">
               <div class="flex items-center text-xs">
                 <i class="fas fa-check text-primary mr-2"></i>
-                <span>Lightweight construction</span>
+                <span class="text-gray-500">Lightweight construction</span>
               </div>
               <div class="flex items-center text-xs">
                 <i class="fas fa-check text-primary mr-2"></i>
-                <span>Quick-change compatibility</span>
+                <span class="text-gray-500">Quick-change compatibility</span>
               </div>
               <div class="flex items-center text-xs">
                 <i class="fas fa-check text-primary mr-2"></i>
-                <span>All standard MTB sizes</span>
+                <span class="text-gray-500">All standard MTB sizes</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- MOTO Adapters -->
-        <div class="info-card glass-card rounded-xl overflow-hidden animate-fade-in-up delay-400">
+        <div class="bg-gray-200 rounded-xl overflow-hidden animate-fade-in-up delay-400">
           <div class="p-8">
             <div class="tech-badge mb-6 w-full text-center">Motorcycle Systems</div>
             <div class="gradient-border mb-6">
@@ -1095,29 +1095,29 @@
                      class="w-full h-48 object-contain transform transition-transform duration-500 hover:scale-[1.05]">
               </div>
             </div>
-            <h3 class="text-lg font-semibold mb-4 text-white">Motorcycle Damper Adapters</h3>
-            <p class="text-gray-400 mb-6 text-sm">
+            <h3 class="text-lg font-semibold mb-4 text-gray-600">Motorcycle Damper Adapters</h3>
+            <p class="text-gray-500 mb-6 text-sm">
               Heavy-duty adapters for motorcycle and off-road vehicle suspension testing requirements.
             </p>
             <div class="space-y-2">
               <div class="flex items-center text-xs">
                 <i class="fas fa-check text-primary mr-2"></i>
-                <span>High-load capacity</span>
+                <span class="text-gray-500">High-load capacity</span>
               </div>
               <div class="flex items-center text-xs">
                 <i class="fas fa-check text-primary mr-2"></i>
-                <span>Universal motorcycle fit</span>
+                <span class="text-gray-500">Universal motorcycle fit</span>
               </div>
               <div class="flex items-center text-xs">
                 <i class="fas fa-check text-primary mr-2"></i>
-                <span>Competition-grade precision</span>
+                <span class="text-gray-500">Competition-grade precision</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- AUTO Adapters -->
-        <div class="info-card glass-card rounded-xl overflow-hidden animate-fade-in-up delay-600">
+        <div class="bg-gray-200 rounded-xl overflow-hidden animate-fade-in-up delay-600">
           <div class="p-8">
             <div class="tech-badge mb-6 w-full text-center">Automotive Systems</div>
             <div class="gradient-border mb-6">
@@ -1127,22 +1127,22 @@
                      class="w-full h-48 object-contain transform transition-transform duration-500 hover:scale-[1.05]">
               </div>
             </div>
-            <h3 class="text-lg font-semibold mb-4 text-white">Automotive Damper Adapters</h3>
-            <p class="text-gray-400 mb-6 text-sm">
+            <h3 class="text-lg font-semibold mb-4 text-gray-600">Automotive Damper Adapters</h3>
+            <p class="text-gray-500 mb-6 text-sm">
               Professional-grade adapters for automotive suspension systems from passenger cars to race vehicles.
             </p>
             <div class="space-y-2">
               <div class="flex items-center text-xs">
                 <i class="fas fa-check text-primary mr-2"></i>
-                <span>OEM and aftermarket fit</span>
+                <span class="text-gray-500">OEM and aftermarket fit</span>
               </div>
               <div class="flex items-center text-xs">
                 <i class="fas fa-check text-primary mr-2"></i>
-                <span>Racing team compatible</span>
+                <span class="text-gray-500">Racing team compatible</span>
               </div>
               <div class="flex items-center text-xs">
                 <i class="fas fa-check text-primary mr-2"></i>
-                <span>High-torque securement</span>
+                <span class="text-gray-500">High-torque securement</span>
               </div>
             </div>
           </div>
@@ -1163,11 +1163,11 @@
   </section>
 
   <!-- Comparison Section -->
-  <section class="relative py-20 bg-gradient-to-b from-[#0A1929] to-[#1E3A8A]/10">
+  <section class="relative py-20 ">
     <div class="max-w-7xl mx-auto px-4 relative z-10">
       <div class="text-center mb-16 animate-fade-in-up">
         <h2 class="text-2xl md:text-3xl font-semibold mb-4">
-          <span class="text-white">Technology Comparison</span>
+          <span class="text-gray-700">Technology Comparison</span>
           <span class="block text-primary mt-1">EMA vs Hydraulic Systems</span>
         </h2>
         <p class="text-gray-500 max-w-3xl mx-auto text-sm">
@@ -1175,7 +1175,7 @@
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-12 items-center animate-fade-in-up delay-200">
+      <div class="grid md:grid-cols-2 gap-12 items-center animate-fade-in-up delay-200 ml-8">
         <!-- Text Content -->
         <div>
           <div class="space-y-8">
@@ -1184,9 +1184,9 @@
                 <div class="w-8 h-8 rounded-full bg-[#1E3A8A] flex items-center justify-center mr-4">
                   <i class="fas fa-bolt text-white text-sm"></i>
                 </div>
-                <h3 class="text-lg font-semibold text-white">Electromagnetic Actuators</h3>
+                <h3 class="text-lg font-semibold text-gray-600">Electromagnetic Actuators</h3>
               </div>
-              <p class="text-gray-400 text-sm leading-relaxed">
+              <p class="text-gray-500 text-sm leading-relaxed">
                 Provide exceptional precision in force control with rapid response times. Excel across wide frequency 
                 ranges with quiet operation and minimal mechanical complexity. Require less maintenance with 
                 significantly reduced operational downtime.
@@ -1198,9 +1198,9 @@
                 <div class="w-8 h-8 rounded-full bg-[#3B82F6] flex items-center justify-center mr-4">
                   <i class="fas fa-oil-can text-white text-sm"></i>
                 </div>
-                <h3 class="text-lg font-semibold text-white">Hydraulic Systems</h3>
+                <h3 class="text-lg font-semibold text-gray-600">Hydraulic Systems</h3>
               </div>
-              <p class="text-gray-400 text-sm leading-relaxed">
+              <p class="text-gray-500 text-sm leading-relaxed">
                 Designed for higher force requirements in industrial applications, particularly at lower frequencies. 
                 Require regular maintenance due to fluid dynamics, potential leaks, and mechanical wear. Operate under 
                 more stringent safety requirements.
@@ -1209,12 +1209,12 @@
           </div>
 
           <div class="mt-12 grid grid-cols-2 gap-6">
-            <div class="info-card glass-card p-6 rounded-xl">
+            <div class="bg-gray-200 p-6 rounded-xl">
               <div class="text-xl font-semibold text-primary mb-2">95%</div>
               <p class="text-gray-400 text-sm">Less Downtime</p>
               <p class="text-gray-500 text-xs mt-2">EMA vs Hydraulic</p>
             </div>
-            <div class="info-card glass-card p-6 rounded-xl">
+            <div class="bg-gray-200 p-6 rounded-xl">
               <div class="text-xl font-semibold text-primary mb-2">70%</div>
               <p class="text-gray-400 text-sm">Quieter Operation</p>
               <p class="text-gray-500 text-xs mt-2">Noise reduction</p>
@@ -1257,19 +1257,19 @@
     <div class="max-w-7xl mx-auto px-4 relative z-10">
       <div class="text-center mb-16 animate-fade-in-up">
         <h2 class="text-2xl md:text-3xl font-semibold mb-4">
-          <span class="text-white">System Features</span>
+          <span class="text-gray-700">System Features</span>
           <span class="block text-primary mt-1">Core Capabilities</span>
         </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Feature 1 -->
-        <div class="info-card glass-card p-8 rounded-xl animate-fade-in-up delay-100">
+        <div class="bg-gray-200 p-8 rounded-xl animate-fade-in-up delay-100">
           <div class="feature-icon">
             <i class="fas fa-bolt text-white text-lg"></i>
           </div>
-          <h3 class="text-lg font-semibold mb-4 text-white">Electromagnetic Actuation</h3>
-          <p class="text-gray-400 text-sm">
+          <h3 class="text-lg font-semibold mb-4 text-gray-600">Electromagnetic Actuation</h3>
+          <p class="text-gray-500 text-sm">
             Advanced electromagnetic technology enables precise control and high-frequency testing capabilities 
             with exceptional repeatability.
           </p>
@@ -1282,12 +1282,12 @@
         </div>
 
         <!-- Feature 2 -->
-        <div class="info-card glass-card p-8 rounded-xl animate-fade-in-up delay-200">
+        <div class="bg-gray-200 p-8 rounded-xl animate-fade-in-up delay-200">
           <div class="feature-icon">
             <i class="fas fa-tachometer-alt text-white text-lg"></i>
           </div>
-          <h3 class="text-lg font-semibold mb-4 text-white">High-Speed Data Acquisition</h3>
-          <p class="text-gray-400 text-sm">
+          <h3 class="text-lg font-semibold mb-4 text-gray-600">High-Speed Data Acquisition</h3>
+          <p class="text-gray-500 text-sm">
             Real-time data collection and analysis with sampling rates up to 100kHz for accurate performance 
             measurement and validation.
           </p>
@@ -1300,12 +1300,12 @@
         </div>
 
         <!-- Feature 3 -->
-        <div class="info-card glass-card p-8 rounded-xl animate-fade-in-up delay-300">
+        <div class="bg-gray-200 p-8 rounded-xl animate-fade-in-up delay-300">
           <div class="feature-icon">
             <i class="fas fa-sliders-h text-white text-lg"></i>
           </div>
-          <h3 class="text-lg font-semibold mb-4 text-white">Advanced Control System</h3>
-          <p class="text-gray-400 text-sm">
+          <h3 class="text-lg font-semibold mb-4 text-gray-600">Advanced Control System</h3>
+          <p class="text-gray-500 text-sm">
             Intuitive user interface with programmable test sequences and automated analysis routines for 
             efficient workflow.
           </p>
@@ -1318,12 +1318,12 @@
         </div>
 
         <!-- Feature 4 -->
-        <div class="info-card glass-card p-8 rounded-xl animate-fade-in-up delay-400">
+        <div class="bg-gray-200 p-8 rounded-xl animate-fade-in-up delay-400">
           <div class="feature-icon">
             <i class="fas fa-wave-square text-white text-lg"></i>
           </div>
-          <h3 class="text-lg font-semibold mb-4 text-white">Wide Frequency Range</h3>
-          <p class="text-gray-400 text-sm">
+          <h3 class="text-lg font-semibold mb-4 text-gray-600">Wide Frequency Range</h3>
+          <p class="text-gray-500 text-sm">
             Comprehensive testing capabilities from ultra-low to high frequencies, simulating diverse road 
             conditions and driving scenarios.
           </p>
@@ -1336,12 +1336,12 @@
         </div>
 
         <!-- Feature 5 -->
-        <div class="info-card glass-card p-8 rounded-xl animate-fade-in-up delay-500">
+        <div class="bg-gray-200 p-8 rounded-xl animate-fade-in-up delay-500">
           <div class="feature-icon">
             <i class="fas fa-chart-line text-white text-lg"></i>
           </div>
-          <h3 class="text-lg font-semibold mb-4 text-white">Comprehensive Analysis</h3>
-          <p class="text-gray-400 text-sm">
+          <h3 class="text-lg font-semibold mb-4 text-gray-600">Comprehensive Analysis</h3>
+          <p class="text-gray-500 text-sm">
             Detailed performance metrics including force-velocity analysis, force-displacement mapping, and 
             hysteresis evaluation.
           </p>
@@ -1354,12 +1354,12 @@
         </div>
 
         <!-- Feature 6 -->
-        <div class="info-card glass-card p-8 rounded-xl animate-fade-in-up delay-600">
+        <div class="bg-gray-200 p-8 rounded-xl animate-fade-in-up delay-600">
           <div class="feature-icon">
             <i class="fas fa-cube text-white text-lg"></i>
           </div>
-          <h3 class="text-lg font-semibold mb-4 text-white">Modular Design</h3>
-          <p class="text-gray-400 text-sm">
+          <h3 class="text-lg font-semibold mb-4 text-gray-600">Modular Design</h3>
+          <p class="text-gray-500 text-sm">
             Flexible configuration options to accommodate various shock absorber sizes and specialized mounting 
             requirements.
           </p>
@@ -1374,240 +1374,7 @@
     </div>
   </section>
 
-  <!-- Applications Section -->
-  <section class="relative py-20 bg-gradient-to-b from-[#0A1929] to-[#1E3A8A]/10">
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
-      <div class="text-center mb-16 animate-fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold mb-4">
-          <span class="text-white">Industry Applications</span>
-          <span class="block text-primary mt-1">Where We Excel</span>
-        </h2>
-        <p class="text-gray-500 max-w-3xl mx-auto text-sm">
-          Our electromagnetic shock dyno systems serve diverse industries with precision testing solutions.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="info-card glass-card p-6 rounded-xl animate-fade-in-up delay-100">
-          <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center mr-4">
-              <i class="fas fa-car text-white text-sm"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-white">Automotive Industry</h3>
-          </div>
-          <p class="text-gray-400 text-sm">
-            OEM testing, quality control, and R&D for passenger vehicles, trucks, and commercial transportation.
-          </p>
-        </div>
-
-        <div class="info-card glass-card p-6 rounded-xl animate-fade-in-up delay-200">
-          <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center mr-4">
-              <i class="fas fa-flag-checkered text-white text-sm"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-white">MotorSport</h3>
-          </div>
-          <p class="text-gray-400 text-sm">
-            Professional racing teams, performance tuning, and competition vehicle development and validation.
-          </p>
-        </div>
-
-        <div class="info-card glass-card p-6 rounded-xl animate-fade-in-up delay-300">
-          <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center mr-4">
-              <i class="fas fa-graduation-cap text-white text-sm"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-white">Research & Education</h3>
-          </div>
-          <p class="text-gray-400 text-sm">
-            Academic institutions, research laboratories, and technical training facilities.
-          </p>
-        </div>
-
-        <div class="info-card glass-card p-6 rounded-xl animate-fade-in-up delay-400">
-          <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center mr-4">
-              <i class="fas fa-industry text-white text-sm"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-white">Industrial Applications</h3>
-          </div>
-          <p class="text-gray-400 text-sm">
-            Heavy equipment, agricultural machinery, and industrial vehicle suspension testing.
-          </p>
-        </div>
-
-        <div class="info-card glass-card p-6 rounded-xl animate-fade-in-up delay-500">
-          <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center mr-4">
-              <i class="fas fa-hammer text-white text-sm"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-white">Durability & Fatigue</h3>
-          </div>
-          <p class="text-gray-400 text-sm">
-            Long-term durability testing, fatigue analysis, and lifecycle validation studies.
-          </p>
-        </div>
-
-        <div class="info-card glass-card p-6 rounded-xl animate-fade-in-up delay-600">
-          <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center mr-4">
-              <i class="fas fa-cube text-white text-sm"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-white">Structural Analysis</h3>
-          </div>
-          <p class="text-gray-400 text-sm">
-            Component testing, material analysis, and structural integrity validation.
-          </p>
-        </div>
-
-        <div class="info-card glass-card p-6 rounded-xl animate-fade-in-up delay-700">
-          <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center mr-4">
-              <i class="fas fa-vial text-white text-sm"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-white">Modal Testing</h3>
-          </div>
-          <p class="text-gray-400 text-sm">
-            Vibration analysis, resonance testing, and modal parameter identification.
-          </p>
-        </div>
-
-        <div class="info-card glass-card p-6 rounded-xl animate-fade-in-up delay-800">
-          <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center mr-4">
-              <i class="fas fa-bolt text-white text-sm"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-white">Shock & Impact</h3>
-          </div>
-          <p class="text-gray-400 text-sm">
-            Impact resistance testing, shock absorption analysis, and dynamic loading studies.
-          </p>
-        </div>
-
-        <div class="info-card glass-card p-6 rounded-xl animate-fade-in-up delay-900">
-          <div class="flex items-center mb-4">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] flex items-center justify-center mr-4">
-              <i class="fas fa-volume-up text-white text-sm"></i>
-            </div>
-            <h3 class="text-lg font-semibold text-white">NVH Analysis</h3>
-          </div>
-          <p class="text-gray-400 text-sm">
-            Noise, vibration, and harshness testing for ride quality and acoustic performance.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery Section -->
-  <section class="relative py-20">
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
-      <div class="text-center mb-16 animate-fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold mb-4">
-          <span class="text-white">Visual Showcase</span>
-          <span class="block text-primary mt-1">Product Gallery</span>
-        </h2>
-        <p class="text-gray-500 max-w-3xl mx-auto text-sm">
-          Explore our electromagnetic shock dyno systems through detailed visual documentation.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="info-card glass-card rounded-xl overflow-hidden animate-fade-in-up delay-100">
-          <div class="h-48 bg-gradient-to-r from-[#0A1929] to-[#1E3A8A] flex items-center justify-center">
-            <i class="fas fa-image text-3xl text-gray-600"></i>
-          </div>
-          <div class="p-6">
-            <h3 class="text-base font-semibold mb-2 text-white">System Overview</h3>
-            <p class="text-gray-500 text-xs">Complete electromagnetic shock dyno testing setup</p>
-          </div>
-        </div>
-
-        <div class="info-card glass-card rounded-xl overflow-hidden animate-fade-in-up delay-200">
-          <div class="h-48 bg-gradient-to-r from-[#0A1929] to-[#1E3A8A] flex items-center justify-center">
-            <i class="fas fa-image text-3xl text-gray-600"></i>
-          </div>
-          <div class="p-6">
-            <h3 class="text-base font-semibold mb-2 text-white">Control Interface</h3>
-            <p class="text-gray-500 text-xs">Advanced software and touchscreen control panel</p>
-          </div>
-        </div>
-
-        <div class="info-card glass-card rounded-xl overflow-hidden animate-fade-in-up delay-300">
-          <div class="h-48 bg-gradient-to-r from-[#0A1929] to-[#1E3A8A] flex items-center justify-center">
-            <i class="fas fa-image text-3xl text-gray-600"></i>
-          </div>
-          <div class="p-6">
-            <h3 class="text-base font-semibold mb-2 text-white">Testing Setup</h3>
-            <p class="text-gray-500 text-xs">Shock absorber mounted for performance analysis</p>
-          </div>
-        </div>
-
-        <div class="info-card glass-card rounded-xl overflow-hidden animate-fade-in-up delay-400">
-          <div class="h-48 bg-gradient-to-r from-[#0A1929] to-[#1E3A8A] flex items-center justify-center">
-            <i class="fas fa-image text-3xl text-gray-600"></i>
-          </div>
-          <div class="p-6">
-            <h3 class="text-base font-semibold mb-2 text-white">Data Analysis</h3>
-            <p class="text-gray-500 text-xs">Sample performance graphs and analysis metrics</p>
-          </div>
-        </div>
-
-        <div class="info-card glass-card rounded-xl overflow-hidden animate-fade-in-up delay-500">
-          <div class="h-48 bg-gradient-to-r from-[#0A1929] to-[#1E3A8A] flex items-center justify-center">
-            <i class="fas fa-image text-3xl text-gray-600"></i>
-          </div>
-          <div class="p-6">
-            <h3 class="text-base font-semibold mb-2 text-white">Component Details</h3>
-            <p class="text-gray-500 text-xs">Close-up view of electromagnetic actuator assembly</p>
-          </div>
-        </div>
-
-        <div class="info-card glass-card rounded-xl overflow-hidden animate-fade-in-up delay-600">
-          <div class="h-48 bg-gradient-to-r from-[#0A1929] to-[#1E3A8A] flex items-center justify-center">
-            <i class="fas fa-image text-3xl text-gray-600"></i>
-          </div>
-          <div class="p-6">
-            <h3 class="text-base font-semibold mb-2 text-white">Installation</h3>
-            <p class="text-gray-500 text-xs">Laboratory setup and system installation</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="relative py-20 bg-gradient-to-r from-[#0A1929] via-[#1E3A8A]/20 to-[#0A1929]">
-    <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-      <div class="animate-fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-white">
-          Ready to Transform Your Testing Capabilities?
-        </h2>
-        <p class="text-gray-400 text-sm mb-8 leading-relaxed">
-          Contact our engineering team to discuss your specific requirements, schedule a demonstration, 
-          or request detailed technical documentation for our electromagnetic shock dyno systems.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-6 justify-center">
-          <a href="#contact" 
-             class="px-8 py-3 bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] text-white font-medium rounded-lg
-                    hover:from-[#3B82F6] hover:to-[#60A5FA] transition-all duration-300 transform hover:scale-[1.02] animate-shimmer">
-            <i class="fas fa-envelope mr-3"></i>
-            Request Consultation
-          </a>
-          <a href="#specifications" 
-             class="px-8 py-3 border border-[#1E3A8A] text-white font-medium rounded-lg
-                    hover:bg-[#1E3A8A]/10 transition-all duration-300 transform hover:scale-[1.02] animate-pulse-border">
-            <i class="fas fa-download mr-3"></i>
-            Download Datasheet
-          </a>
-        </div>
-        <p class="text-gray-500 text-xs mt-8">
-          <i class="fas fa-clock mr-2"></i>
-          Average response time: <span class="text-primary">2 business hours</span>
-        </p>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- Footer -->
   <div data-include="../Footer/footer.html"></div>
