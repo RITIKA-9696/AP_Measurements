@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LABA7 Data Acquisition System - External DAQ Unit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+        .feature-gradient {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        .spec-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+        .price-gradient {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+        }
+        .section-divider {
+            border-bottom: 3px solid #f97316;
+            width: 80px;
+            margin: 1rem auto;
+        }
+        .highlight-text {
+            background: linear-gradient(90deg, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        .sensor-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e2e8f0;
+        }
+        .sensor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: #f97316;
+        }
+        .tech-spec {
+            transition: all 0.2s ease;
+        }
+        .tech-spec:hover {
+            background-color: #fef3c7;
+        }
+        .compatibility-badge {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: inline-block;
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f97316;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
+            }
+        }
+        /* Added new styles */
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin: 0 auto 1.5rem;
+        }
+        .connector-type {
+            display: inline-block;
+            background-color: #f3f4f6;
+            border-radius: 6px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            margin: 0.25rem;
+            border: 1px solid #e5e7eb;
+        }
+        .benefit-highlight {
+            border-left: 4px solid #f97316;
+            background: linear-gradient(90deg, #fffbeb, #fff7ed);
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 1000;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-microchip text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">LABA7</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#overview" class="nav-link font-medium text-gray-700 hover:text-orange-600">Overview</a>
+                    <a href="#features" class="nav-link font-medium text-gray-700 hover:text-orange-600">Features</a>
+                    <a href="#specs" class="nav-link font-medium text-gray-700 hover:text-orange-600">Specifications</a>
+                    <a href="#benefits" class="nav-link font-medium text-gray-700 hover:text-orange-600">Why Use It</a>
+                    <a href="#ecosystem" class="nav-link font-medium text-gray-700 hover:text-orange-600">Ecosystem</a>
+                    <a href="#faq" class="nav-link font-medium text-gray-700 hover:text-orange-600">FAQ</a>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div>
+    <div id="mobileMenu" class="mobile-menu">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-microchip text-white"></i>
+                    </div>
+                    <span class="text-lg font-bold">LABA7</span>
+                </div>
+                <button id="closeMobileMenu" class="text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <nav class="space-y-4">
+                <a href="#overview" class="block py-3 border-b border-gray-100 text-gray-700 hover:text-orange-600">Overview</a>
+                <a href="#features" class="block py-3 border-b border-gray-100 text-gray-700 hover:text-orange-600">Features</a>
+                <a href="#specs" class="block py-3 border-b border-gray-100 text-gray-700 hover:text-orange-600">Specifications</a>
+                <a href="#benefits" class="block py-3 border-b border-gray-100 text-gray-700 hover:text-orange-600">Why Use It</a>
+                <a href="#ecosystem" class="block py-3 border-b border-gray-100 text-gray-700 hover:text-orange-600">Ecosystem</a>
+                <a href="#faq" class="block py-3 border-b border-gray-100 text-gray-700 hover:text-orange-600">FAQ</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="overview" class="hero-gradient text-white py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="animate__animated animate__fadeInLeft">
+                        <div class="inline-flex items-center space-x-2 mb-6">
+                            <span class="px-3 py-1 bg-orange-500 rounded-full text-sm font-semibold">NEW</span>
+                            <span class="px-3 py-1 bg-blue-500 rounded-full text-sm font-semibold">EXTERNAL DAQ</span>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                            LABA7 Data Acquisition System
+                            <span class="block text-orange-400 mt-2">External DAQ for Scotch-Yoke Shock Dynos and EMAs</span>
+                        </h1>
+                        <p class="text-xl text-gray-300 mb-8">
+                            The LABA7 designed this compact Ethernet-based data acquisition (DAQ) system to enhance the functionality of your LABA7 shock dynos. Whether you operate a Scotch-Yoke Dyno (SYD) or an EMA, this system significantly expands your testing capabilities.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#pricing" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-center pulse-animation">
+                                <i class="fas fa-tags mr-2"></i>View Pricing
+                            </a>
+                            <a href="#specs" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-center">
+                                <i class="fas fa-cogs mr-2"></i>Technical Specs
+                            </a>
+                        </div>
+                    </div>
+                    <div class="animate__animated animate__fadeInRight">
+                        <div class="bg-gray-800/50 p-8 rounded-2xl border border-gray-700">
+                            <div class="flex items-center justify-center mb-6">
+                                <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center">
+                                    <i class="fas fa-server text-white text-3xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4 text-center">How It Works</h3>
+                            <p class="text-gray-300 mb-6 text-center">
+                                With the LABA7 software, every signal is time-synchronized, providing a comprehensive view of damper behavior.
+                            </p>
+                            <div class="bg-gray-900 p-6 rounded-xl mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mr-4">
+                                        <i class="fas fa-link text-green-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-lg">Need more channels?</h4>
+                                        <p class="text-gray-400">Add more units! Daisy-chain DAQ systems to connect an infinite number of sensors without losing time alignment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section id="features" class="py-20 feature-gradient">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Key Features of LABA7's Ethernet DAQ for Suspension Testing</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                        Take your damper testing beyond force-displacement curves. Connect any sensor, expand without limits, and unlock synchronized high-speed data.
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-white rounded-xl p-8 shadow-lg sensor-card scroll-animate">
+                        <div class="feature-icon bg-orange-100">
+                            <i class="fas fa-tachometer-alt text-orange-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-center">High-Speed Performance</h3>
+                        <p class="text-gray-600 text-center mb-4">16-bit resolution with up to 125 kHz sampling rate for precise data capture</p>
+                        <ul class="text-sm text-gray-500 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Up to 125 kHz sampling</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>16-bit resolution</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Low-latency acquisition</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="bg-white rounded-xl p-8 shadow-lg sensor-card scroll-animate" style="animation-delay: 0.1s;">
+                        <div class="feature-icon bg-blue-100">
+                            <i class="fas fa-ethernet text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-center">Ethernet Connectivity</h3>
+                        <p class="text-gray-600 text-center mb-4">Remote logging and configuration with 10/100BASE-T Ethernet connectivity</p>
+                        <ul class="text-sm text-gray-500 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Remote data logging</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Network configuration</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Real-time monitoring</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="bg-white rounded-xl p-8 shadow-lg sensor-card scroll-animate" style="animation-delay: 0.2s;">
+                        <div class="feature-icon bg-green-100">
+                            <i class="fas fa-bolt text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-center">Integrated Power Supply</h3>
+                        <p class="text-gray-600 text-center mb-4">45 W AC/DC power supply integrated – no external adapters required</p>
+                        <ul class="text-sm text-gray-500 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>45W integrated supply</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>No external adapters</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Clean power delivery</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="bg-white rounded-xl p-8 shadow-lg sensor-card scroll-animate" style="animation-delay: 0.3s;">
+                        <div class="feature-icon bg-purple-100">
+                            <i class="fas fa-plug text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-center">Sensor Power Outputs</h3>
+                        <p class="text-gray-600 text-center mb-4">5 × 12 V (500 mA each) + 3 × 5 V (500 mA each) regulated power outputs</p>
+                        <ul class="text-sm text-gray-500 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>8 total power outputs</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>500mA per channel</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Regulated voltage</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature 5 -->
+                    <div class="bg-white rounded-xl p-8 shadow-lg sensor-card scroll-animate" style="animation-delay: 0.4s;">
+                        <div class="feature-icon bg-red-100">
+                            <i class="fas fa-wave-square text-red-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-center">Differential Input Reading</h3>
+                        <p class="text-gray-600 text-center mb-4">Noise-free, high-accuracy signals with differential input capability</p>
+                        <ul class="text-sm text-gray-500 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Noise cancellation</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>High accuracy signals</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>EMI protection</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Feature 6 -->
+                    <div class="bg-white rounded-xl p-8 shadow-lg sensor-card scroll-animate" style="animation-delay: 0.5s;">
+                        <div class="feature-icon bg-cyan-100">
+                            <i class="fas fa-sync-alt text-cyan-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-center">RS-485 Synchronization</h3>
+                        <p class="text-gray-600 text-center mb-4">Multi-system integration with RS-485 synchronization capability</p>
+                        <ul class="text-sm text-gray-500 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Multi-system sync</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Long-distance communication</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Daisy-chain capability</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Additional Feature Highlights -->
+                <div class="mt-16 scroll-animate" style="animation-delay: 0.6s;">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Additional Capabilities</h3>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-plug text-orange-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold mb-2">Dedicated Connectors</h4>
+                                <p class="text-gray-600 text-sm">Separate connector for each input/output channel</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-shield-alt text-blue-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold mb-2">Compact & Rugged Design</h4>
+                                <p class="text-gray-600 text-sm">Built for both lab and motorsport environments</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-expand-arrows-alt text-green-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold mb-2">Scalable Architecture</h4>
+                                <p class="text-gray-600 text-sm">Connect multiple units for unlimited expansion</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Pricing Options</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Choose the right DAQ system for your testing needs</p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- SYD Model -->
+                    <div class="price-gradient rounded-2xl p-8 border-2 border-amber-200 shadow-xl scroll-animate">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-cogs text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">SYD Model</h3>
+                            <p class="text-gray-600 mb-4">For Scotch-Yoke Dyno Systems</p>
+                            <div class="text-4xl font-bold mb-2">3,000 EUR</div>
+                            <p class="text-gray-500 text-sm">ex VAT</p>
+                        </div>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Compatible with all SYD models</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Full feature set included</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Optimized for shock dyno testing</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>Includes all connectors and cables</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                                <span>1-year warranty included</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 pulse-animation">
+                            <i class="fas fa-shopping-cart mr-2"></i>Add to Quote
+                        </button>
+                    </div>
+                    
+                    <!-- EMA Model -->
+                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-2xl p-8 border-2 border-gray-700 shadow-xl scroll-animate" style="animation-delay: 0.2s;">
+                        <div class="text-center mb-8">
+                            <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-bolt text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">EMA Model</h3>
+                            <p class="text-gray-300 mb-4">For Electromagnetic Actuator Systems</p>
+                            <div class="text-4xl font-bold mb-2">5,000 EUR</div>
+                            <p class="text-gray-400 text-sm">ex VAT</p>
+                        </div>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                                <span>Enhanced for EMA systems</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                                <span>Premium performance features</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                                <span>Higher channel capacity</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                                <span>Extended temperature range</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-400 mr-3"></i>
+                                <span>Enhanced synchronization</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-shopping-cart mr-2"></i>Add to Quote
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-12 scroll-animate" style="animation-delay: 0.4s;">
+                    <div class="bg-blue-50 border border-blue-200 rounded-xl p-8">
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-shield-alt text-blue-600"></i>
+                                </div>
+                                <h4 class="font-bold mb-2">1-Year Warranty</h4>
+                                <p class="text-gray-600 text-sm">Comprehensive coverage for all components</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-headset text-green-600"></i>
+                                </div>
+                                <h4 class="font-bold mb-2">Technical Support</h4>
+                                <p class="text-gray-600 text-sm">Dedicated support for setup and integration</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-sync-alt text-orange-600"></i>
+                                </div>
+                                <h4 class="font-bold mb-2">Software Updates</h4>
+                                <p class="text-gray-600 text-sm">Regular updates to LABA7 software</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section id="specs" class="py-20 spec-gradient">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Technical Specifications</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Complete technical details of the LABA7 Data Acquisition System</p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Column 1 -->
+                    <div class="space-y-8">
+                        <!-- Analog Inputs -->
+                        <div class="bg-white rounded-xl p-6 shadow-md tech-spec scroll-animate">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-signal-in text-blue-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Analog Inputs</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Channels:</span>
+                                    <span class="font-semibold">8 single-ended or 4 differential</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Resolution:</span>
+                                    <span class="font-semibold">16 bits</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Input Ranges:</span>
+                                    <span class="font-semibold">±10 V, ±5 V, ±2 V, ±1 V</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Max Throughput:</span>
+                                    <span class="font-semibold">125 kS/s (aggregate)</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">Input Impedance:</span>
+                                    <span class="font-semibold">>1 MΩ</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Analog Outputs -->
+                        <div class="bg-white rounded-xl p-6 shadow-md tech-spec scroll-animate" style="animation-delay: 0.1s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-signal-out text-green-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Analog Outputs</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Channels:</span>
+                                    <span class="font-semibold">2</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Resolution:</span>
+                                    <span class="font-semibold">16 bits</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">Output Range:</span>
+                                    <span class="font-semibold">0-5 V</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">Update Rate:</span>
+                                    <span class="font-semibold">500 kS/s per channel</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Counter -->
+                        <div class="bg-white rounded-xl p-6 shadow-md tech-spec scroll-animate" style="animation-delay: 0.2s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-calculator text-purple-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Counter</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Channels:</span>
+                                    <span class="font-semibold">1, 32-bit resolution</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">Input Frequency:</span>
+                                    <span class="font-semibold">up to 10 MHz (TTL-level)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 2 -->
+                    <div class="space-y-8">
+                        <!-- Digital I/O -->
+                        <div class="bg-white rounded-xl p-6 shadow-md tech-spec scroll-animate" style="animation-delay: 0.3s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-exchange-alt text-orange-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Digital I/O</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Channels:</span>
+                                    <span class="font-semibold">8 bidirectional</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Logic Levels:</span>
+                                    <span class="font-semibold">3.3 V / 5 V compatible</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">Configuration:</span>
+                                    <span class="font-semibold">Individually configurable</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Triggering & Synchronization -->
+                        <div class="bg-white rounded-xl p-6 shadow-md tech-spec scroll-animate" style="animation-delay: 0.4s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-clock text-red-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Triggering & Synchronization</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">External Trigger Input:</span>
+                                    <span class="font-semibold">Differential (RS485)</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">External Clock I/O:</span>
+                                    <span class="font-semibold">TTL compatible</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Communication -->
+                        <div class="bg-white rounded-xl p-6 shadow-md tech-spec scroll-animate" style="animation-delay: 0.5s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-network-wired text-cyan-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Communication</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Interface:</span>
+                                    <span class="font-semibold">Ethernet 10/100BASE-T</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Protocols:</span>
+                                    <span class="font-semibold">TCP/IP & UDP</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">Software Compatibility:</span>
+                                    <span class="font-semibold">Fully compatible with LABA7 software</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 3 -->
+                    <div class="space-y-8">
+                        <!-- Sensor Power Outputs -->
+                        <div class="bg-white rounded-xl p-6 shadow-md tech-spec scroll-animate" style="animation-delay: 0.6s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-plug text-amber-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Sensor Power Outputs</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">12 V Outputs:</span>
+                                    <span class="font-semibold">5 × 12 V regulated (500 mA each)</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">5 V Outputs:</span>
+                                    <span class="font-semibold">3 × 5 V regulated (500 mA each)</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">Protection:</span>
+                                    <span class="font-semibold">500 mA PTC fuse per channel</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Power Supply -->
+                        <div class="bg-white rounded-xl p-6 shadow-md tech-spec scroll-animate" style="animation-delay: 0.7s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-lime-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-bolt text-lime-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Power Supply</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Integrated AC/DC:</span>
+                                    <span class="font-semibold">45 W, 12 V output</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Input Voltage:</span>
+                                    <span class="font-semibold">85–264 VAC, 47–63 Hz</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">DC Option:</span>
+                                    <span class="font-semibold">8–16 V external supply</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- General -->
+                        <div class="bg-white rounded-xl p-6 shadow-md tech-spec scroll-animate" style="animation-delay: 0.8s;">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-info-circle text-gray-600"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">General</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Dimensions:</span>
+                                    <span class="font-semibold">191 × 161 × 66 mm</span>
+                                </div>
+                                <div class="flex justify-between py-2 border-b border-gray-100">
+                                    <span class="text-gray-600">Weight:</span>
+                                    <span class="font-semibold">~500 g</span>
+                                </div>
+                                <div class="flex justify-between py-2">
+                                    <span class="text-gray-600">Operating Temp:</span>
+                                    <span class="font-semibold">0 °C to +30 °C</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector Information -->
+                <div class="mt-16 scroll-animate" style="animation-delay: 0.9s;">
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Connector Information</h3>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-plug text-blue-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold mb-3">Analog Inputs</h4>
+                                <div class="space-y-2">
+                                    <span class="connector-type">8× D-Sub 9-pin female</span>
+                                    <p class="text-gray-600 text-sm mt-2">Individually shielded for noise reduction</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-bolt text-green-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold mb-3">Power Outputs</h4>
+                                <div class="space-y-2">
+                                    <span class="connector-type">8× 4-pin Molex</span>
+                                    <p class="text-gray-600 text-sm mt-2">Regulated power for sensors</p>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-network-wired text-orange-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold mb-3">Communication</h4>
+                                <div class="space-y-2">
+                                    <span class="connector-type">RJ45 Ethernet</span>
+                                    <span class="connector-type">RS-485 Terminal Block</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Use Section -->
+    <section id="benefits" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Why Use the Data Acquisition System?</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Standard dynos capture force vs. displacement, but damper development requires more insight.
+                    </p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="scroll-animate">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl">
+                            <h3 class="text-2xl font-bold mb-6">Expand Your Testing Capabilities</h3>
+                            <p class="text-gray-700 mb-6">
+                                The LABA7 External DAQ System expands your testing by synchronizing additional signals, providing a complete dynamic profile of damper performance under real-world conditions.
+                            </p>
+                            <div class="bg-white p-6 rounded-xl border border-blue-200">
+                                <p class="text-gray-800 font-medium">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    Data from all sensors is aggregated and consolidated within the LABA7 software
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="scroll-animate" style="animation-delay: 0.2s;">
+                        <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-2xl">
+                            <h3 class="text-2xl font-bold mb-6">Time-Synchronized Data</h3>
+                            <p class="text-gray-700 mb-6">
+                                All sensor data is aligned in time with force, displacement, and other "native" curves from your dyno system.
+                            </p>
+                            <div class="bg-white p-6 rounded-xl border border-orange-200">
+                                <p class="text-gray-800 font-medium">
+                                    <i class="fas fa-sync-alt text-orange-500 mr-2"></i>
+                                    Perfect time alignment across all connected sensors and systems
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sensor Types -->
+                <div class="scroll-animate" style="animation-delay: 0.4s;">
+                    <h3 class="text-2xl font-bold mb-8 text-center">Connect Any Sensor Type</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div class="bg-gray-50 p-6 rounded-xl text-center sensor-card">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-vibration text-blue-600"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">Accelerometers</h4>
+                            <p class="text-sm text-gray-600">Vibration analysis on damper housing or test rig</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-xl text-center sensor-card">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-tachometer-alt text-green-600"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">Pressure Sensors</h4>
+                            <p class="text-sm text-gray-600">Real-time oil chamber pressure for flow studies</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-xl text-center sensor-card">
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-magnet text-purple-600"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">Hall-effect Sensors</h4>
+                            <p class="text-sm text-gray-600">Piston position and shaft speed tracking</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-xl text-center sensor-card">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-ruler-combined text-red-600"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">LVDTs / Potentiometers</h4>
+                            <p class="text-sm text-gray-600">Precise displacement and stroke measurement</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-xl text-center sensor-card">
+                            <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-thermometer-half text-amber-600"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">Temperature Sensors</h4>
+                            <p class="text-sm text-gray-600">Track oil and component heat for fade analysis</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-xl text-center sensor-card">
+                            <div class="w-12 h-12 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-volume-up text-cyan-600"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">Noise Sensors</h4>
+                            <p class="text-sm text-gray-600">NVH testing and analysis</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-xl text-center sensor-card">
+                            <div class="w-12 h-12 bg-lime-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-wave-square text-lime-600"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">Strain Gauges</h4>
+                            <p class="text-sm text-gray-600">Structural stress and load measurement</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-xl text-center sensor-card">
+                            <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-plus-circle text-pink-600"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">And Any Other Sensor</h4>
+                            <p class="text-sm text-gray-600">Custom sensor integration supported</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Summary -->
+                <div class="mt-16 scroll-animate" style="animation-delay: 0.6s;">
+                    <div class="benefit-highlight p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold mb-6">Key Benefits Summary</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span><strong>Comprehensive Testing:</strong> Go beyond basic force-displacement curves</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span><strong>Time Synchronization:</strong> All data perfectly aligned with dyno measurements</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span><strong>Easy Integration:</strong> Plug-and-play with existing LABA7 systems</span>
+                                </li>
+                            </ul>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span><strong>Scalable Architecture:</strong> Add more units as your needs grow</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span><strong>Professional Results:</strong> Lab-grade data quality for R&D applications</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span><strong>Future-Proof:</strong> Compatible with all current and future LABA7 systems</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Integration -->
+    <section id="ecosystem" class="py-20 feature-gradient">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Ecosystem Integration</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Seamlessly integrated with the complete LABA7 testing ecosystem</p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="scroll-animate">
+                        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+                            <h3 class="text-2xl font-bold mb-6">Scotch-Yoke Shock Dynos</h3>
+                            <p class="text-gray-700 mb-6">Works with all LABA7 Scotch-Yoke Shock Dynos:</p>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <span class="compatibility-badge mr-4">Featherlight</span>
+                                    <span class="text-gray-600">Compact testing solution</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="compatibility-badge mr-4">Light</span>
+                                    <span class="text-gray-600">Standard testing capability</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="compatibility-badge mr-4">Mid</span>
+                                    <span class="text-gray-600">Enhanced performance testing</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="compatibility-badge mr-4">Heavy</span>
+                                    <span class="text-gray-600">Heavy-duty applications</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="compatibility-badge mr-4">Super Heavy</span>
+                                    <span class="text-gray-600">Maximum capacity testing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="scroll-animate" style="animation-delay: 0.2s;">
+                        <div class="bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8 rounded-2xl shadow-lg">
+                            <h3 class="text-2xl font-bold mb-6">EMA Integration</h3>
+                            <p class="text-gray-300 mb-6">Fully compatible with the LABA7 EMA Electromagnetic Damper Test System</p>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-bolt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-2">High-Power Compatibility</h4>
+                                        <p class="text-gray-400">From compact dynos to high-power EMA rigs, every sensor channel is synchronized in the same LABA7 software environment</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                        <i class="fas fa-expand-arrows-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-2">Scalable Architecture</h4>
+                                        <p class="text-gray-400">Multiple DAQ Systems can be connected to scale your setup to an unlimited, lab-grade test system</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Who Benefits Section -->
+                <div class="scroll-animate" style="animation-delay: 0.4s;">
+                    <div class="bg-gradient-to-r from-orange-500 to-red-500 text-white p-10 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-8 text-center">Who Benefits Most from the Damper Data Acquisition System?</h3>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-industry text-2xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3">OEM Engineers</h4>
+                                <p class="text-white/90 mb-3">Validate prototypes with multi-sensor correlation and comprehensive data analysis</p>
+                                <ul class="text-sm text-white/80 space-y-1">
+                                    <li>• Multi-sensor correlation for validation</li>
+                                    <li>• Compliance and performance verification</li>
+                                    <li>• Pre-production testing and refinement</li>
+                                </ul>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-flag-checkered text-2xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3">Motorsport Teams</h4>
+                                <p class="text-white/90 mb-3">Advance tuning and setup optimization with expanded sensor data for competitive advantage</p>
+                                <ul class="text-sm text-white/80 space-y-1">
+                                    <li>• Real-time tuning data for race setup</li>
+                                    <li>• Performance optimization under dynamic conditions</li>
+                                    <li>• Post-session analysis for continuous improvement</li>
+                                </ul>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-cogs text-2xl"></i>
+                                </div>
+                                <h4 class="text-xl font-bold mb-3">Damper Manufacturers</h4>
+                                <p class="text-white/90 mb-3">Develop shock absorbers with deeper insights into internal dynamics and performance characteristics</p>
+                                <ul class="text-sm text-white/80 space-y-1">
+                                    <li>• Internal fluid dynamics analysis</li>
+                                    <li>• Component stress and fatigue testing</li>
+                                    <li>• Quality assurance and batch testing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Software Integration -->
+                <div class="mt-16 scroll-animate" style="animation-delay: 0.6s;">
+                    <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-10 rounded-2xl">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-6">Unified Software Environment</h3>
+                                <p class="text-white/90 mb-6">
+                                    All data from connected sensors, dynos, and EMA systems is aggregated into a single, powerful LABA7 software interface. This unified approach eliminates data silos and provides a comprehensive view of damper performance.
+                                </p>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-300 mr-3"></i>
+                                        <span>Single interface for all test data</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-300 mr-3"></i>
+                                        <span>Advanced analysis and reporting tools</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-300 mr-3"></i>
+                                        <span>Export to common formats (CSV, MATLAB, etc.)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-40 h-40 bg-white/10 rounded-2xl flex items-center justify-center mx-auto">
+                                    <i class="fas fa-desktop text-white text-6xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16 scroll-animate">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions About DAQ System</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Find answers to common questions about the LABA7 Data Acquisition System</p>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="space-y-6">
+                    <!-- FAQ 1 -->
+                    <div class="bg-gray-50 rounded-xl p-8 scroll-animate">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fas fa-question-circle text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">What is the LABA7 DAQ System used for?</h3>
+                                <p class="text-gray-700">
+                                    DAQ system stands for data acquisition system. It connects external sensors (such as pressure, temperature, displacement, or accelerometers) to LABA7 Scotch-Yoke shock dynos or EMAs. They help collect much more data about the damper performance which is synchronized in the LABA7 software for advanced analysis.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 2 -->
+                    <div class="bg-gray-50 rounded-xl p-8 scroll-animate" style="animation-delay: 0.1s;">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fas fa-cogs text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Which LABA7 machines are compatible with the Data Acquisition System?</h3>
+                                <p class="text-gray-700">
+                                    The system works with all LABA7 Scotch-Yoke Shock Dynos (Featherlight, Light, Mid, Heavy, Super Heavy) and the EMA Electromagnetic Damper Test System.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 3 -->
+                    <div class="bg-gray-50 rounded-xl p-8 scroll-animate" style="animation-delay: 0.2s;">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fas fa-link text-orange-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">Can I connect multiple DAQ units at the same time?</h3>
+                                <p class="text-gray-700">
+                                    Yes. Multiple Data Acquisition Systems can be daisy-chained, allowing virtually unlimited sensors while keeping all data perfectly time-synchronized in LABA7 software.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 4 -->
+                    <div class="bg-gray-50 rounded-xl p-8 scroll-animate" style="animation-delay: 0.3s;">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fas fa-star text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">What makes the LABA7 Data Acquisition System different from generic DAQs?</h3>
+                                <p class="text-gray-700">
+                                    Unlike off-the-shelf DAQs, the LABA7 system is designed specifically for damper testing. It provides integrated sensor power outputs, Ethernet connectivity, and differential input reading for noise-free high-accuracy signals, all synchronized with LABA7 shock dynos and EMA systems. This specialized design ensures optimal performance for suspension testing applications.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="bg-gray-50 rounded-xl p-8 scroll-animate" style="animation-delay: 0.4s;">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fas fa-bolt text-red-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">What sensors can I connect to the DAQ system?</h3>
+                                <p class="text-gray-700">
+                                    The system supports a wide range of sensors including accelerometers, pressure sensors, Hall-effect sensors, LVDTs, potentiometers, temperature sensors, noise sensors, strain gauges, and any other analog sensor with voltage output. The system provides regulated power outputs for many common sensor types.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="bg-gray-50 rounded-xl p-8 scroll-animate" style="animation-delay: 0.5s;">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mr-6 flex-shrink-0">
+                                <i class="fas fa-wrench text-cyan-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-4">What's included with the DAQ system purchase?</h3>
+                                <p class="text-gray-700">
+                                    Each system includes the DAQ unit, power cable, Ethernet cable, all necessary connectors, and comprehensive software license for LABA7 data acquisition software. Detailed documentation and setup guides are also provided. Technical support is available for setup and integration.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-16 text-center scroll-animate" style="animation-delay: 0.6s;">
+                    <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-8 rounded-2xl border border-blue-200">
+                        <h3 class="text-2xl font-bold mb-4">Still Have Questions?</h3>
+                        <p class="text-gray-700 mb-6 max-w-2xl mx-auto">Contact our technical support team for detailed information about integrating the DAQ system with your testing setup.</p>
+                        <a href="#" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-envelope mr-2"></i> Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div>
+                        <div class="flex items-center space-x-2 mb-6">
+                            <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-microchip text-white text-xl"></i>
+                            </div>
+                            <span class="text-xl font-bold">LABA7</span>
+                        </div>
+                        <p class="text-gray-400 mb-6">
+                            Professional data acquisition systems for advanced damper testing and suspension analysis.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-orange-600 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-orange-600 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-orange-600 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#overview" class="text-gray-400 hover:text-orange-400 transition-colors">Overview</a></li>
+                            <li><a href="#features" class="text-gray-400 hover:text-orange-400 transition-colors">Features</a></li>
+                            <li><a href="#specs" class="text-gray-400 hover:text-orange-400 transition-colors">Specifications</a></li>
+                            <li><a href="#benefits" class="text-gray-400 hover:text-orange-400 transition-colors">Why Use It</a></li>
+                            <li><a href="#faq" class="text-gray-400 hover:text-orange-400 transition-colors">FAQ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold mb-6">Contact Information</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope text-orange-500 mr-3"></i>
+                                <span class="text-gray-400">support@laba7.com</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-phone text-orange-500 mr-3"></i>
+                                <span class="text-gray-400">+1 (800) LABA7-DAQ</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-orange-500 mr-3"></i>
+                                <span class="text-gray-400">Technical Innovation Center, EU</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                    <p class="text-gray-500">
+                        © 2024 LABA7 Data Acquisition System. All specifications subject to change without notice.
+                    </p>
+                    <p class="text-gray-500 text-sm mt-2">
+                        All trademarks are property of their respective owners.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.scroll-animate');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // Initialize scroll animations
+        window.addEventListener('scroll', animateOnScroll);
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    closeMobileMenu();
+                }
+            });
+        });
+        
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', openMobileMenu);
+        }
+        
+        if(closeMobileMenuBtn) {
+            closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+        }
+        
+        if(mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        }
+        
+        // Add pulse animation to call-to-action buttons on hover
+        document.querySelectorAll('.pulse-animation').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.classList.add('pulse-animation');
+            });
+            button.addEventListener('mouseleave', function() {
+                this.classList.remove('pulse-animation');
+            });
+        });
+
+        // Handle button clicks
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if(this.textContent.includes('Add to Quote')) {
+                    e.preventDefault();
+                    alert('Quote request added! Our sales team will contact you shortly.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

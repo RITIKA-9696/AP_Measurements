@@ -338,6 +338,74 @@
       background: linear-gradient(to bottom, var(--secondary-blue), var(--accent-blue));
     }
 
+    /* Adapter Box */
+    .adapter-box {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.5s ease;
+    }
+    .adapter-box img {
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .adapter-box:hover img {
+      transform: scale(1.2);
+    }
+    .adapter-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      border-radius: 1.5rem;
+    }
+    .adapter-box:hover::before {
+      opacity: 1;
+    }
+    .adapter-box .plus {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 4.5rem;
+      color: white;
+      opacity: 0;
+      transition: all 0.5s ease;
+      z-index: 10;
+    }
+    .adapter-box:hover .plus {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    /* Modal */
+    #imageModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    #imageModal.active {
+      display: flex;
+      opacity: 1;
+    }
+    #modalImage {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 16px;
+      transform: scale(0.9);
+      transition: transform 0.4s ease;
+    }
+    #imageModal.active #modalImage {
+      transform: scale(1);
+    }
+
     /* Grid Pattern */
     .grid-pattern {
       background-image: 
@@ -1037,127 +1105,48 @@
     </div>
   </section>
 
-  <!-- Expand Your Possibilities -->
-  <section class="relative py-20">
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
-      <div class="text-center mb-16 animate-fade-in-up">
-        <h2 class="text-2xl md:text-3xl font-semibold mb-4">
-          <span class="text-gray-700">Expand Your Possibilities</span>
-          <span class="block text-primary mt-1">With Shock Dyno Adapters</span>
-        </h2>
-        <p class="text-gray-500 max-w-3xl mx-auto text-sm">
-          Our comprehensive range of adapters ensures seamless integration with any suspension system, 
-          providing accurate testing across all vehicle types.
-        </p>
+   <!-- Adapters Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6 max-w-7xl text-center">
+      <h2 class="text-3xl md:text-3xl text-gray-700 font-semibold mb-8 animate-fade-in-up">Expand Possibilities with Shock Dyno Adapters</h2>
+      <p class="text-lg text-gray-600 max-w-4xl mx-auto mb-14 animate-fade-in-up animation-delay-200">
+       AP Measurements shock dyno adapters create a seamless link, allowing for the most accurate and insightful tests of your shock absorbers. The result – enhanced performance, efficiency, and a deeper understanding of your equipment’s capabilities.
+      </p>
+      <div class="grid grid-cols-3 ml-16">
+        <button class="bg-orange-500 rounded-xl p-2 text-white w-64 py-2">Adapter for MTB dampers</button>
+        <button class="bg-orange-500 rounded-xl p-2 text-white w-64 py-2">Adapter for Moto dampers</button>
+        <button class="bg-orange-500 rounded-xl p-2 text-white w-64 py-2">Adapter for Auto dampers</button>
       </div>
-
-      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <!-- MTB Adapters -->
-        <div class="bg-gray-200 rounded-xl overflow-hidden animate-fade-in-up delay-200">
-          <div class="p-8">
-            <div class="tech-badge mb-6 w-full text-center">Mountain Bike Systems</div>
-            <div class="gradient-border mb-6">
-              <div class="p-4">
-                <img src="../assets/shock-dyno.png" 
-                     alt="MTB Shock Adapter" 
-                     class="w-full h-48 object-contain transform transition-transform duration-500 hover:scale-[1.05]">
-              </div>
-            </div>
-            <h3 class="text-lg font-semibold mb-4 text-gray-600">MTB Damper Adapters</h3>
-            <p class="text-gray-500 mb-6 text-sm">
-              Precision adapters for mountain bike suspension systems with specialized mounting solutions.
-            </p>
-            <div class="space-y-2">
-              <div class="flex items-center text-xs">
-                <i class="fas fa-check text-primary mr-2"></i>
-                <span class="text-gray-500">Lightweight construction</span>
-              </div>
-              <div class="flex items-center text-xs">
-                <i class="fas fa-check text-primary mr-2"></i>
-                <span class="text-gray-500">Quick-change compatibility</span>
-              </div>
-              <div class="flex items-center text-xs">
-                <i class="fas fa-check text-primary mr-2"></i>
-                <span class="text-gray-500">All standard MTB sizes</span>
-              </div>
-            </div>
+      <div class="grid md:grid-cols-4 gap-10">
+         <div class="space-y-5 animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="bg-orange text-white rounded-full px-7 py-2.5 text-base font-semibold inline-block">MTB Dampers</div>
+          <div class="adapter-box bg-gray-50 rounded-3xl p-10 shadow-lg h-72 flex items-center justify-center">
+            <div class="plus">+</div>
+            <img src="../assets/adapter1.png" alt="MTB Adapter" class="w-full h-full object-contain">
           </div>
         </div>
-
-        <!-- MOTO Adapters -->
-        <div class="bg-gray-200 rounded-xl overflow-hidden animate-fade-in-up delay-400">
-          <div class="p-8">
-            <div class="tech-badge mb-6 w-full text-center">Motorcycle Systems</div>
-            <div class="gradient-border mb-6">
-              <div class="p-4">
-                <img src="../assets/shock-dyno2.png" 
-                     alt="MOTO Shock Adapter" 
-                     class="w-full h-48 object-contain transform transition-transform duration-500 hover:scale-[1.05]">
-              </div>
-            </div>
-            <h3 class="text-lg font-semibold mb-4 text-gray-600">Motorcycle Damper Adapters</h3>
-            <p class="text-gray-500 mb-6 text-sm">
-              Heavy-duty adapters for motorcycle and off-road vehicle suspension testing requirements.
-            </p>
-            <div class="space-y-2">
-              <div class="flex items-center text-xs">
-                <i class="fas fa-check text-primary mr-2"></i>
-                <span class="text-gray-500">High-load capacity</span>
-              </div>
-              <div class="flex items-center text-xs">
-                <i class="fas fa-check text-primary mr-2"></i>
-                <span class="text-gray-500">Universal motorcycle fit</span>
-              </div>
-              <div class="flex items-center text-xs">
-                <i class="fas fa-check text-primary mr-2"></i>
-                <span class="text-gray-500">Competition-grade precision</span>
-              </div>
-            </div>
+       
+        <div class="space-y-5 animate-fade-in-up" style="animation-delay: 0.3s;">
+          <div class="bg-orange text-white rounded-full px-7 py-2.5 text-base font-semibold inline-block">Moto Dampers</div>
+          <div class="adapter-box bg-gray-50 rounded-3xl p-10 shadow-lg h-72 flex items-center justify-center">
+            <div class="plus">+</div>
+            <img src="../assets/shock-dyno2.png" alt="Moto Adapter" class="w-full h-full object-contain">
           </div>
         </div>
-
-        <!-- AUTO Adapters -->
-        <div class="bg-gray-200 rounded-xl overflow-hidden animate-fade-in-up delay-600">
-          <div class="p-8">
-            <div class="tech-badge mb-6 w-full text-center">Automotive Systems</div>
-            <div class="gradient-border mb-6">
-              <div class="p-4">
-                <img src="../assets/shock-dyno3.png" 
-                     alt="AUTO Shock Adapter" 
-                     class="w-full h-48 object-contain transform transition-transform duration-500 hover:scale-[1.05]">
-              </div>
-            </div>
-            <h3 class="text-lg font-semibold mb-4 text-gray-600">Automotive Damper Adapters</h3>
-            <p class="text-gray-500 mb-6 text-sm">
-              Professional-grade adapters for automotive suspension systems from passenger cars to race vehicles.
-            </p>
-            <div class="space-y-2">
-              <div class="flex items-center text-xs">
-                <i class="fas fa-check text-primary mr-2"></i>
-                <span class="text-gray-500">OEM and aftermarket fit</span>
-              </div>
-              <div class="flex items-center text-xs">
-                <i class="fas fa-check text-primary mr-2"></i>
-                <span class="text-gray-500">Racing team compatible</span>
-              </div>
-              <div class="flex items-center text-xs">
-                <i class="fas fa-check text-primary mr-2"></i>
-                <span class="text-gray-500">High-torque securement</span>
-              </div>
-            </div>
+        <div class="space-y-5 animate-fade-in-up" style="animation-delay: 0.5s;">
+          <div class="bg-orange text-white rounded-full px-7 py-2.5 text-base font-semibold inline-block">Auto Dampers</div>
+          <div class="adapter-box bg-gray-50 rounded-3xl p-10 shadow-lg h-72 flex items-center justify-center">
+            <div class="plus">+</div>
+            <img src="../assets/shock-dyno3.png" alt="Auto Adapter" class="w-full h-full object-contain">
           </div>
         </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="text-center mt-12 animate-fade-in-up delay-800">
-        <a href="#contact" 
-           class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-[#1E3A8A] to-[#3B82F6] text-white font-medium rounded-lg
-                  hover:from-[#3B82F6] hover:to-[#60A5FA] transition-all duration-300 transform hover:scale-[1.02] animate-shimmer">
-          <i class="fas fa-tools mr-3"></i>
-          Request Custom Adapter Solutions
-          <i class="fas fa-arrow-right ml-3"></i>
-        </a>
+         <div class="space-y-5 animate-fade-in-up" style="animation-delay: 0.1s;">
+          <div class="bg-orange text-white rounded-full px-7 py-2.5 text-base font-semibold inline-block">MTB Dampers</div>
+          <div class="adapter-box bg-gray-50 rounded-3xl p-10 shadow-lg h-72 flex items-center justify-center">
+            <div class="plus">+</div>
+            <img src="../assets/shock-dyno.png" alt="MTB Adapter" class="w-full h-full object-contain">
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1167,11 +1156,11 @@
     <div class="max-w-7xl mx-auto px-4 relative z-10">
       <div class="text-center mb-16 animate-fade-in-up">
         <h2 class="text-2xl md:text-3xl font-semibold mb-4">
-          <span class="text-gray-700">Technology Comparison</span>
+          <span class="text-gray-700"> Damper Testing Systems</span>
           <span class="block text-primary mt-1">EMA vs Hydraulic Systems</span>
         </h2>
         <p class="text-gray-500 max-w-3xl mx-auto text-sm">
-          Understanding the fundamental differences between electromagnetic and hydraulic damper testing technologies.
+         Electromagnetic and hydraulic damper test systems are two distinct technologies used to evaluate and test dampers in various applications.
         </p>
       </div>
 
@@ -1187,9 +1176,7 @@
                 <h3 class="text-lg font-semibold text-gray-600">Electromagnetic Actuators</h3>
               </div>
               <p class="text-gray-500 text-sm leading-relaxed">
-                Provide exceptional precision in force control with rapid response times. Excel across wide frequency 
-                ranges with quiet operation and minimal mechanical complexity. Require less maintenance with 
-                significantly reduced operational downtime.
+               Electromagnetic actuators provide high precision in force control with quick response times. They excel in handling a wide range of frequencies and operate quietly, thanks to fewer moving parts and the absence of fluid dynamics. Additionally, these systems require less maintenance and experience minimal downtime, making them highly efficient.
               </p>
             </div>
 
@@ -1201,25 +1188,12 @@
                 <h3 class="text-lg font-semibold text-gray-600">Hydraulic Systems</h3>
               </div>
               <p class="text-gray-500 text-sm leading-relaxed">
-                Designed for higher force requirements in industrial applications, particularly at lower frequencies. 
-                Require regular maintenance due to fluid dynamics, potential leaks, and mechanical wear. Operate under 
-                more stringent safety requirements.
+                On the other hand, hydraulic damper testing systems are designed to generate the higher forces needed for testing large or industrial dampers. Especially in lower-frequency testing. However, hydraulic systems demand regular maintenance due to potential leaks, fluid replacement needs, and the wear and tear of mechanical components. Moreover, they have more stringent health and safety requirements for operators compared to electromagnetic test systems.
               </p>
             </div>
           </div>
 
-          <div class="mt-12 grid grid-cols-2 gap-6">
-            <div class="bg-gray-200 p-6 rounded-xl">
-              <div class="text-xl font-semibold text-primary mb-2">95%</div>
-              <p class="text-gray-400 text-sm">Less Downtime</p>
-              <p class="text-gray-500 text-xs mt-2">EMA vs Hydraulic</p>
-            </div>
-            <div class="bg-gray-200 p-6 rounded-xl">
-              <div class="text-xl font-semibold text-primary mb-2">70%</div>
-              <p class="text-gray-400 text-sm">Quieter Operation</p>
-              <p class="text-gray-500 text-xs mt-2">Noise reduction</p>
-            </div>
-          </div>
+         
         </div>
 
         <!-- Image -->
@@ -1239,21 +1213,12 @@
         </div>
       </div>
 
-      <!-- Learn More -->
-      <div class="text-center mt-16 animate-fade-in-up delay-400">
-        <a href="#" 
-           class="inline-flex items-center px-8 py-3 border border-[#1E3A8A] text-white font-medium rounded-lg
-                  hover:bg-[#1E3A8A]/10 transition-all duration-300 transform hover:scale-[1.02] animate-pulse-border">
-          <i class="fas fa-book-open mr-3"></i>
-          Download Technology Comparison Whitepaper
-          <i class="fas fa-download ml-3"></i>
-        </a>
-      </div>
+     
     </div>
   </section>
 
   <!-- Features Grid -->
-  <section class="relative py-20">
+  <section class="relative py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 relative z-10">
       <div class="text-center mb-16 animate-fade-in-up">
         <h2 class="text-2xl md:text-3xl font-semibold mb-4">
@@ -1378,6 +1343,14 @@
 
   <!-- Footer -->
   <div data-include="../Footer/footer.html"></div>
+
+   <!-- Image Modal -->
+  <div id="imageModal" class="fixed inset-0 z-50 items-center justify-center hidden">
+    <button id="closeModal" class="absolute top-8 right-8 text-white text-4xl z-50 hover:scale-110 transition">✕</button>
+    <img id="modalImage" src="" alt="Enlarged Image" class="shadow-2xl">
+    <button id="prevBtn" class="absolute left-8 top-1/2 -translate-y-1/2 text-white text-4xl bg-black/50 p-4 rounded-full hover:bg-black/70">←</button>
+    <button id="nextBtn" class="absolute right-8 top-1/2 -translate-y-1/2 text-white text-4xl bg-black/50 p-4 rounded-full hover:bg-black/70">→</button>
+  </div>
 
   <!-- JavaScript -->
   <script>
@@ -1545,6 +1518,56 @@
         }, index * 100);
       });
     });
+
+    
+      // Image Modal for Adapters
+      const modal = document.getElementById('imageModal');
+      const modalImage = document.getElementById('modalImage');
+      const closeModal = document.getElementById('closeModal');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const adapterBoxes = document.querySelectorAll('.adapter-box');
+      let currentIndex = 0;
+      const images = Array.from(adapterBoxes).map(box => box.querySelector('img').src);
+
+      adapterBoxes.forEach((box, i) => {
+        box.addEventListener('click', () => {
+          currentIndex = i;
+          modalImage.src = images[i];
+          modal.classList.add('active');
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      closeModal.addEventListener('click', () => {
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        modalImage.src = images[currentIndex];
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        modalImage.src = images[currentIndex];
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal.click();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (modal.classList.contains('active')) {
+          if (e.key === 'Escape') closeModal.click();
+          if (e.key === 'ArrowLeft') prevBtn.click();
+          if (e.key === 'ArrowRight') nextBtn.click();
+        }
+      });
+    
   </script>
 
 </body>

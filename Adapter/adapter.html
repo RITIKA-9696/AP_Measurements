@@ -20,9 +20,15 @@
 
         .category-tab {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(0);
             opacity: 0;
             animation: slideUpFade 0.6s ease forwards;
+            width: 100%;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-left: 4px solid transparent;
+            background: white;
         }
 
         .category-tab:nth-child(1) { animation-delay: 0.1s; }
@@ -30,17 +36,18 @@
         .category-tab:nth-child(3) { animation-delay: 0.3s; }
 
         .category-tab.active {
-            background-color: #f97316;
-            color: white;
-            border-color: #f97316;
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.3);
+            background-color: #fef3c7;
+            color: #f97316;
+            border-left-color: #f97316;
+            transform: translateX(5px);
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.15);
         }
 
         .category-tab:hover:not(.active) {
-            transform: translateY(-5px) scale(1.02);
-            border-color: #f97316;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateX(5px);
+            background-color: #f9fafb;
+            border-left-color: #d1d5db;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .adapter-card {
@@ -49,21 +56,25 @@
             opacity: 0;
             transform: translateY(30px);
             animation: slideUpFade 0.8s ease forwards;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
 
         .adapter-card:hover {
-            transform: translateY(-15px) scale(1.02);
+            transform: translateY(-10px) scale(1.02);
             border-color: #f97316;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
 
         .adapter-card img {
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: scale(0.9);
+            transform: scale(0.95);
         }
 
         .adapter-card:hover img {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.05) rotate(3deg);
         }
 
         .category-content {
@@ -104,38 +115,21 @@
                 transform: translateY(0px);
             }
             50% {
-                transform: translateY(-20px);
+                transform: translateY(-15px);
             }
         }
 
         @keyframes pulseGlow {
             0%, 100% {
-                box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+                box-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
             }
             50% {
-                box-shadow: 0 0 40px rgba(249, 115, 22, 0.6);
-            }
-        }
-
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0.3);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            70% {
-                transform: scale(0.9);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
+                box-shadow: 0 0 25px rgba(249, 115, 22, 0.5);
             }
         }
 
         .specs-table td {
-            padding: 16px 20px;
+            padding: 14px 18px;
             border-bottom: 1px solid #e5e7eb;
             transition: all 0.3s ease;
             opacity: 0;
@@ -195,8 +189,8 @@
         .feature-card:nth-child(3) { animation-delay: 1s; }
 
         .feature-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
         }
 
         .section-title {
@@ -210,11 +204,11 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: linear-gradient(90deg, #f97316, #fb923c);
             border-radius: 2px;
             animation: expandWidth 0.8s ease 0.5s forwards;
@@ -222,7 +216,7 @@
 
         @keyframes expandWidth {
             from { width: 0; }
-            to { width: 80px; }
+            to { width: 60px; }
         }
 
         .floating-element {
@@ -233,33 +227,16 @@
             animation: pulseGlow 2s infinite;
         }
 
-        .bounce-in {
-            animation: bounceIn 0.8s ease forwards;
-        }
-
         /* Scroll animations */
         .scroll-animate {
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .scroll-animate.animate {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        /* Gradient backgrounds */
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         /* Button animations */
@@ -282,30 +259,8 @@
         }
 
         .btn-animate:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Loading animation for images */
-        .img-loading {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .img-loading::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: loadingShimmer 2s infinite;
-        }
-
-        @keyframes loadingShimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
+            width: 250px;
+            height: 250px;
         }
 
         /* Hover effects for icons */
@@ -314,25 +269,14 @@
         }
 
         .icon-hover:hover {
-            transform: rotate(360deg) scale(1.2);
-        }
-
-        /* Price tag animation */
-        .price-tag {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .price-tag:hover {
-            transform: scale(1.1) rotate(-5deg);
-            color: #dc2626;
+            transform: rotate(360deg) scale(1.1);
         }
 
         /* Ribbon effect */
         .ribbon {
             position: absolute;
-            top: 10px;
-            right: -30px;
+            top: 15px;
+            right: -35px;
             background: #ef4444;
             color: white;
             padding: 5px 30px;
@@ -340,6 +284,8 @@
             font-weight: bold;
             font-size: 0.8rem;
             animation: ribbonPulse 2s infinite;
+            z-index: 10;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
 
         @keyframes ribbonPulse {
@@ -347,21 +293,281 @@
             50% { background: #f87171; }
         }
 
-        /* Counter animation */
-        .counter {
-            opacity: 0;
-            transform: translateY(20px);
+        /* Side by side layout */
+        .content-container {
+            display: grid;
+            grid-template-columns: 0.8fr 3fr;
+            gap: 2.5rem;
         }
 
-        .counter.animate {
-            animation: countUp 1s ease forwards;
-        }
-
-        @keyframes countUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @media (max-width: 1024px) {
+            .content-container {
+                grid-template-columns: 1fr;
             }
+            
+            .category-sidebar {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Product grid layout */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        /* Category sidebar */
+        .category-sidebar {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 140px;
+            height: fit-content;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .category-tab.active .category-icon {
+            background: white;
+            box-shadow: 0 5px 15px rgba(249, 115, 22, 0.2);
+        }
+
+        /* Price tag */
+        .price-tag {
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            font-size: 1.25rem;
+            display: inline-block;
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(249, 115, 22, 0.3);
+        }
+
+        /* Benefit list */
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .benefit-icon {
+            width: 24px;
+            height: 24px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Stats counter */
+        .stat-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        /* Main title styling */
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* Product title styling */
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Product description */
+        .product-description {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Button styling */
+        .action-button {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+        }
+
+        /* Info badge */
+        .info-badge {
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* Why Use Section Styling */
+        .why-use-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-use-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #f97316, #fb923c);
+        }
+
+        .why-use-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .why-use-content {
+            color: #4b5563;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .why-use-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .why-use-highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid #f97316;
+            margin: 2rem 0;
+        }
+
+        .why-use-highlight p {
+            margin: 0;
+            font-style: italic;
+            color: #7c2d12;
+            font-weight: 500;
+        }
+
+        .why-use-cta {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .why-use-cta-button {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            box-shadow: 0 10px 25px rgba(249, 115, 22, 0.3);
+        }
+
+        .why-use-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(249, 115, 22, 0.4);
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
         }
     </style>
 </head>
@@ -371,27 +577,25 @@
     <div data-include="/Header/header.html"></div>
 
     <!-- Hero Section -->
-    <section class="py-16 text-gray-700 overflow-hidden">
+    <section class="py-12 text-gray-700 overflow-hidden">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto text-center relative">
                 <!-- Floating elements -->
-                <div class="absolute top-0 left-10 w-20 h-20 bg-orange-200 rounded-full opacity-20 floating-element"></div>
-                <div class="absolute top-10 right-20 w-16 h-16 bg-blue-200 rounded-full opacity-20 floating-element" style="animation-delay: 1s;"></div>
-                <div class="absolute bottom-20 left-1/4 w-24 h-24 bg-purple-200 rounded-full opacity-20 floating-element" style="animation-delay: 2s;"></div>
+                <div class="absolute top-0 left-10 w-16 h-16 bg-orange-200 rounded-full opacity-20 floating-element"></div>
+                <div class="absolute top-10 right-20 w-12 h-12 bg-blue-200 rounded-full opacity-20 floating-element" style="animation-delay: 1s;"></div>
+                <div class="absolute bottom-20 left-1/4 w-20 h-20 bg-purple-200 rounded-full opacity-20 floating-element" style="animation-delay: 2s;"></div>
                 
-                <h1 class="text-4xl md:text-5xl font-bold mb-6 hero-text">
-                    <span class="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-                        Spring Dyno Adapters
-                    </span>
+                <h1 class="main-title hero-text">
+                    LABA7 Shock Dyno Adapters
                 </h1>
-                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto hero-description">
-                    Universal adapters for testing any type of spring. From MTB to 4x4 vehicles, our adapters cover motorcycles, circuit racing, and dirt track racing vehicles.
+                <p class="text-lg text-gray-600 mb-6 max-w-3xl mx-auto hero-description">
+                    Professional adapters for testing any type of shock absorber. From automotive to motorsports, our adapters deliver precision and reliability.
                 </p>
-                <div class="flex flex-wrap gap-4 justify-center hero-buttons">
-                    <button class="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate pulse-button">
-                        <i class="fas fa-play-circle mr-2 icon-hover"></i> Watch Installation Video
+                <div class="flex flex-wrap gap-3 justify-center hero-buttons">
+                    <button class="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2.5 px-6 rounded-lg transition-all transform hover:scale-105 btn-animate pulse-button">
+                        <i class="fas fa-play-circle mr-2 icon-hover"></i> Installation Video
                     </button>
-                    <button class="bg-transparent border-2 border-gray-300 hover:bg-white hover:text-gray-900 text-gray-800 font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate">
+                    <button class="bg-transparent border-2 border-gray-300 hover:bg-white hover:text-gray-900 text-gray-800 font-medium py-2.5 px-6 rounded-lg transition-all transform hover:scale-105 btn-animate">
                         <i class="fas fa-quote-right mr-2 icon-hover"></i> Request Quote
                     </button>
                 </div>
@@ -399,576 +603,761 @@
         </div>
     </section>
 
-    <!-- Category Tabs Section -->
-    <section class="py-12 bg-white">
+    <!-- Main Content Section -->
+    <section class="py-10 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
-                
-                <!-- Category Tabs -->
-                <div class="flex flex-col md:flex-row justify-center gap-8 mb-16">
-                    <button class="category-tab active flex-1 max-w-sm py-6 px-8 rounded-xl border-2 border-gray-200 text-center relative overflow-hidden group" data-category="auto">
-                        <div class="relative z-10 flex flex-col items-center">
-                            <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-white transition-all duration-500">
-                                <i class="fas fa-car text-3xl text-orange-600 group-hover:text-orange-500 icon-hover"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-3">Auto Adapters</h3>
-                            <p class="text-gray-600 text-sm">For cars, trucks, and 4x4 vehicles</p>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </button>
-
-                    <button class="category-tab flex-1 max-w-sm py-6 px-8 rounded-xl border-2 border-gray-200 text-center relative overflow-hidden group" data-category="moto">
-                        <div class="relative z-10 flex flex-col items-center">
-                            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-white transition-all duration-500">
-                                <i class="fas fa-motorcycle text-3xl text-blue-600 group-hover:text-blue-500 icon-hover"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-3">Moto Adapters</h3>
-                            <p class="text-gray-600 text-sm">For motorcycles and dirt bikes</p>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </button>
-
-                    <button class="category-tab flex-1 max-w-sm py-6 px-8 rounded-xl border-2 border-gray-200 text-center relative overflow-hidden group" data-category="mtb">
-                        <div class="relative z-10 flex flex-col items-center">
-                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-white transition-all duration-500">
-                                <i class="fas fa-bicycle text-3xl text-green-600 group-hover:text-green-500 icon-hover"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-3">MTB Adapters</h3>
-                            <p class="text-gray-600 text-sm">For mountain bikes and bicycles</p>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-br from-green-500 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-                <!-- Auto Category Content -->
-                <div id="auto-content" class="category-content active scroll-animate">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl font-bold mb-6 section-title">Auto Adapters</h2>
-                        <p class="text-gray-600 max-w-3xl mx-auto text-lg">Professional adapters designed for automotive applications including cars, trucks, SUVs, and 4x4 vehicles. Test coil springs, shock absorbers, and suspension components with precision.</p>
-                    </div>
-
-                    <!-- Adapter Products Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
-                        <!-- Adapter 1 -->
-                        <div class="adapter-card bg-white rounded-2xl p-8 shadow-lg relative overflow-hidden group">
-                            <div class="ribbon">BEST SELLER</div>
-                            <div class="mb-6">
-                                <div class="w-full h-52 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl flex items-center justify-center mb-6 overflow-hidden">
-                                    <img src="../assets/auto.png" alt="Universal Coil Spring Adapter" 
-                                         class="h-44 object-contain transition-all duration-700 group-hover:scale-110 img-loading">
+                <div class="content-container">
+                    <!-- Left Side: Category Navigation -->
+                    <div class="category-sidebar scroll-animate">
+                        <h3 class="text-xl font-bold mb-6 text-gray-800 pb-3 border-b border-gray-200">Product Categories</h3>
+                        <div class="space-y-2">
+                            <button class="category-tab active flex items-center w-full" data-category="auto">
+                                <div class="category-icon bg-orange-100">
+                                    <i class="fas fa-car text-orange-600 text-xl"></i>
                                 </div>
-                                <h3 class="text-2xl font-bold mb-4">Self-preload clevis</h3>
-                                <div class="space-y-3 mb-6">
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                                        This adapter streamlines shock absorber testing.
-                                    </p>
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                                        Quick and easy mounting/dismounting of dampers.
-                                    </p>
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                                        Especially convenient for shocks with expansion tanks.
-                                    </p>
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                                        Can be mounted both at the top and bottom.
-                                    </p>
+                                <div class="text-left">
+                                    <h4 class="font-bold text-lg">Auto Adapters</h4>
+                                    <p class="text-sm text-gray-500">For shock absorbers</p>
                                 </div>
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star-half-alt text-yellow-400 mr-2"></i>
-                                        <span class="text-sm text-gray-500">(42)</span>
+                            </button>
+
+                            <button class="category-tab flex items-center w-full" data-category="moto">
+                                <div class="category-icon bg-blue-100">
+                                    <i class="fas fa-motorcycle text-blue-600 text-xl"></i>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="font-bold text-lg">Moto Adapters</h4>
+                                    <p class="text-sm text-gray-500">Motorcycle dampers</p>
+                                </div>
+                            </button>
+
+                            <button class="category-tab flex items-center w-full" data-category="mtb">
+                                <div class="category-icon bg-green-100">
+                                    <i class="fas fa-bicycle text-green-600 text-xl"></i>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="font-bold text-lg">MTB Adapters</h4>
+                                    <p class="text-sm text-gray-500">Mountain bike shocks</p>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div class="mt-10 pt-6 border-t border-gray-200">
+                            <h4 class="font-bold mb-4 text-gray-800">Quick Stats</h4>
+                            <div class="space-y-3">
+                                <div class="stat-item">
+                                    <div class="stat-icon bg-orange-100">
+                                        <i class="fas fa-shipping-fast text-orange-600"></i>
                                     </div>
-                                    <button class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate">
-                                        <i class="fas fa-eye mr-2"></i> Details
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Adapter 2 -->
-                        <div class="adapter-card bg-white rounded-2xl p-8 shadow-lg relative overflow-hidden group">
-                            <div class="mb-6">
-                                <div class="w-full h-52 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center mb-6 overflow-hidden">
-                                    <img src="../assets/auto2.png" alt="Shock Absorber Mount" 
-                                         class="h-44 object-contain transition-all duration-700 group-hover:scale-110 img-loading">
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4">Auto adapter</h3>
-                                <div class="space-y-3 mb-6">
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-bolt text-blue-500 mt-1 mr-3"></i>
-                                        Rod-end adapter with 6 possible threads.
-                                    </p>
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-cog text-blue-500 mt-1 mr-3"></i>
-                                        Threads are individually made for each customer.
-                                    </p>
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-tools text-blue-500 mt-1 mr-3"></i>
-                                        Customizable for specific requirements.
-                                    </p>
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-shield-alt text-blue-500 mt-1 mr-3"></i>
-                                        High-strength construction for durability.
-                                    </p>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star text-yellow-400 mr-2"></i>
-                                        <span class="text-sm text-gray-500">(38)</span>
-                                    </div>
-                                    <button class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate">
-                                        <i class="fas fa-eye mr-2"></i> Details
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Adapter 3 -->
-                        <div class="adapter-card bg-white rounded-2xl p-8 shadow-lg relative overflow-hidden group">
-                            <div class="mb-6">
-                                <div class="w-full h-52 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl flex items-center justify-center mb-6 overflow-hidden">
-                                    <img src="../assets/auto3.png" alt="4x4 Heavy Duty Kit" 
-                                         class="h-44 object-contain transition-all duration-700 group-hover:scale-110 img-loading">
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4">Auto adapter</h3>
-                                <div class="space-y-3 mb-6">
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-expand-alt text-purple-500 mt-1 mr-3"></i>
-                                        MacPherson strut holder (54 mm diameter).
-                                    </p>
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-protective-equipment text-purple-500 mt-1 mr-3"></i>
-                                        Ensures damage-free mounting and dismounting.
-                                    </p>
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-sliders-h text-purple-500 mt-1 mr-3"></i>
-                                        Different sizes available on request.
-                                    </p>
-                                    <p class="text-gray-600 flex items-start">
-                                        <i class="fas fa-car-crash text-purple-500 mt-1 mr-3"></i>
-                                        Ideal for high-performance testing.
-                                    </p>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                        <i class="fas fa-star-half-alt text-yellow-400 mr-2"></i>
-                                        <span class="text-sm text-gray-500">(29)</span>
-                                    </div>
-                                    <button class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate">
-                                        <i class="fas fa-eye mr-2"></i> Details
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Specifications -->
-                    <div class="bg-white rounded-2xl p-10 shadow-lg mb-16 scroll-animate">
-                        <h3 class="text-3xl font-bold mb-8 section-title">Auto Adapter Specifications</h3>
-                        <div class="overflow-x-auto">
-                            <table class="w-full specs-table">
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Compatible Vehicles</td>
-                                    <td class="text-gray-600 text-lg">Cars, Trucks, SUVs, 4x4, Commercial Vehicles</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Max Spring Diameter</td>
-                                    <td class="text-gray-600 text-lg">Up to 250mm (10 inches)</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Load Capacity</td>
-                                    <td class="text-gray-600 text-lg">15,000 N (3,372 lbs) per adapter</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Material</td>
-                                    <td class="text-gray-600 text-lg">Heat-treated 4140 Steel with corrosion-resistant coating</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Temperature Range</td>
-                                    <td class="text-gray-600 text-lg">-40°C to +120°C (-40°F to +248°F)</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Warranty</td>
-                                    <td class="text-gray-600 text-lg">5 Years Limited Warranty</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Features -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
-                        <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 feature-card hover:shadow-2xl">
-                            <div class="flex items-center gap-6 mb-6">
-                                <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                                    <i class="fas fa-bolt text-orange-600 text-2xl"></i>
-                                </div>
-                                <h4 class="text-2xl font-bold">Quick Installation</h4>
-                            </div>
-                            <p class="text-gray-700 text-lg leading-relaxed">Patented quick-release mechanism allows installation in under 2 minutes without special tools. Reduces setup time by 70% compared to traditional methods.</p>
-                            <div class="mt-6 pt-6 border-t border-orange-200">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm text-gray-600">Average Setup Time</span>
-                                    <span class="font-bold text-orange-600">1:45 min</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 feature-card hover:shadow-2xl">
-                            <div class="flex items-center gap-6 mb-6">
-                                <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                                    <i class="fas fa-microscope text-blue-600 text-2xl"></i>
-                                </div>
-                                <h4 class="text-2xl font-bold">Precision Engineering</h4>
-                            </div>
-                            <p class="text-gray-700 text-lg leading-relaxed">CNC machined to within 0.01mm tolerance. Laser-aligned mounting surfaces ensure perfect force distribution and measurement accuracy of 99.8%.</p>
-                            <div class="mt-6 pt-6 border-t border-blue-200">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm text-gray-600">Measurement Accuracy</span>
-                                    <span class="font-bold text-blue-600">99.8%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Moto Category Content -->
-                <div id="moto-content" class="category-content scroll-animate">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl font-bold mb-6 section-title">Moto Adapters</h2>
-                        <p class="text-gray-600 max-w-3xl mx-auto text-lg">Specialized adapters for motorcycle and dirt bike suspension testing. Perfect for motocross, street bikes, and racing applications.</p>
-                    </div>
-
-                    <!-- Adapter Products Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
-                        <!-- Adapter 1 -->
-                        <div class="adapter-card bg-white rounded-2xl p-8 shadow-lg relative overflow-hidden group">
-                            <div class="ribbon">NEW</div>
-                            <div class="mb-6">
-                                <div class="w-full h-52 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl flex items-center justify-center mb-6 overflow-hidden">
-                                    <img src="../assets/moto-adapter-1.png" alt="Motorcycle Fork Adapter" 
-                                         class="h-44 object-contain transition-all duration-700 group-hover:scale-110 img-loading">
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4">Motorcycle Fork Adapter</h3>
-                                <p class="text-gray-600 mb-6">Universal adapter for testing front fork springs on all motorcycle types. Features quick-clamp design and anti-slip surface.</p>
-                                <div class="flex justify-between items-center">
                                     <div>
-                                        <span class="text-2xl font-bold text-orange-600 price-tag">$179.99</span>
-                                        <span class="text-sm text-gray-500 line-through ml-2">$199.99</span>
+                                        <p class="text-sm text-gray-500">Orders Shipped</p>
+                                        <p class="text-xl font-bold text-gray-800">1,250+</p>
                                     </div>
-                                    <button class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate">
-                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                                    </button>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Adapter 2 -->
-                        <div class="adapter-card bg-white rounded-2xl p-8 shadow-lg relative overflow-hidden group">
-                            <div class="mb-6">
-                                <div class="w-full h-52 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl flex items-center justify-center mb-6 overflow-hidden">
-                                    <img src="../assets/moto-adapter-2.png" alt="Shock Linkage Kit" 
-                                         class="h-44 object-contain transition-all duration-700 group-hover:scale-110 img-loading">
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4">Shock Linkage Kit</h3>
-                                <p class="text-gray-600 mb-6">Complete kit for testing rear shock springs and linkages. Includes all necessary bushings and mounting hardware.</p>
-                                <div class="flex justify-between items-center">
+                                <div class="stat-item">
+                                    <div class="stat-icon bg-blue-100">
+                                        <i class="fas fa-award text-blue-600"></i>
+                                    </div>
                                     <div>
-                                        <span class="text-2xl font-bold text-orange-600 price-tag">$229.99</span>
+                                        <p class="text-sm text-gray-500">Customer Rating</p>
+                                        <p class="text-xl font-bold text-gray-800">4.8/5.0</p>
                                     </div>
-                                    <button class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate">
-                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                                    </button>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Adapter 3 -->
-                        <div class="adapter-card bg-white rounded-2xl p-8 shadow-lg relative overflow-hidden group">
-                            <div class="mb-6">
-                                <div class="w-full h-52 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl flex items-center justify-center mb-6 overflow-hidden">
-                                    <img src="../assets/moto-adapter-3.png" alt="Motocross Pro Kit" 
-                                         class="h-44 object-contain transition-all duration-700 group-hover:scale-110 img-loading">
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4">Motocross Pro Kit</h3>
-                                <p class="text-gray-600 mb-6">Specialized adapters for motocross and enduro bike suspension systems. Heavy-duty construction for professional use.</p>
-                                <div class="flex justify-between items-center">
+                                <div class="stat-item">
+                                    <div class="stat-icon bg-green-100">
+                                        <i class="fas fa-globe text-green-600"></i>
+                                    </div>
                                     <div>
-                                        <span class="text-2xl font-bold text-orange-600 price-tag">$299.99</span>
+                                        <p class="text-sm text-gray-500">Countries Served</p>
+                                        <p class="text-xl font-bold text-gray-800">45+</p>
                                     </div>
-                                    <button class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate">
-                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Category Content -->
+                    <div class="category-content-wrapper">
+                        <!-- Auto Category Content -->
+                        <div id="auto-content" class="category-content active scroll-animate">
+                            <div class="mb-10">
+                                <h2 class="text-3xl font-bold mb-4 section-title">Auto Adapters for Shock Absorbers</h2>
+                                <p class="text-gray-600 max-w-3xl text-lg">Professional adapters designed for automotive shock absorber testing. Test coil springs, shock absorbers, and suspension components with precision and efficiency.</p>
+                            </div>
+
+                            <!-- Three Products Grid -->
+                            <div class="products-grid mb-16">
+                                <!-- Product 1: Self-preload Clevis -->
+                                <div class="adapter-card">
+                                    <div class="product-image-container">
+                                        <div class="ribbon">BEST SELLER</div>
+                                        <img src="../assets/auto.png" alt="Self-preload Clevis" 
+                                             class="h-52 object-contain transition-all duration-500">
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="info-badge">AUTO SHOCK ADAPTERS</div>
+                                        <h3 class="product-title">Self-preload Clevis</h3>
+                                        <p class="product-description">
+                                            This adapter streamlines shock absorber testing. It enables quick and easy mounting/dismounting of dampers and ensures efficiency in testing.
+                                        </p>
+                                        <div class="space-y-2 mb-4">
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Quick and easy mounting/dismounting of dampers</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Ensures efficiency in testing</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Convenient for shocks with expansion tanks</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Can be mounted both at the top and bottom</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-6">
+                                            <div class="price-tag">
+                                                200 EUR ex VAT
+                                            </div>
+                                            <button class="action-button">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Product 2: Rod-end Adapter -->
+                                <div class="adapter-card">
+                                    <div class="product-image-container">
+                                        <img src="../assets/auto2.png" alt="Rod-end Adapter" 
+                                             class="h-52 object-contain transition-all duration-500">
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="info-badge">AUTO SHOCK ADAPTERS</div>
+                                        <h3 class="product-title">Rod-end Adapter</h3>
+                                        <p class="product-description">
+                                            Universal rod-end adapter with multiple thread options for comprehensive shock testing. Customizable for specific vehicle requirements and testing protocols.
+                                        </p>
+                                        <div class="space-y-2 mb-4">
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">6 possible thread configurations</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Threads made individually for each customer</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Customizable for specific requirements</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">High-strength construction for durability</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-6">
+                                            <div class="price-tag">
+                                                180 EUR ex VAT
+                                            </div>
+                                            <button class="action-button">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Product 3: MacPherson Strut Holder -->
+                                <div class="adapter-card">
+                                    <div class="product-image-container">
+                                        <div class="ribbon">NEW</div>
+                                        <img src="../assets/auto3.png" alt="MacPherson Strut Holder" 
+                                             class="h-52 object-contain transition-all duration-500">
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="info-badge">AUTO SHOCK ADAPTERS</div>
+                                        <h3 class="product-title">MacPherson Strut Holder</h3>
+                                        <p class="product-description">
+                                            Specialized holder for MacPherson strut testing with 54 mm diameter. Ensures secure and damage-free mounting for accurate suspension testing results.
+                                        </p>
+                                        <div class="space-y-2 mb-4">
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">54 mm diameter for MacPherson struts</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Damage-free mounting and dismounting</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Different sizes available on request</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Ideal for high-performance testing</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-6">
+                                            <div class="price-tag">
+                                                220 EUR ex VAT
+                                            </div>
+                                            <button class="action-button">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Why Use Section for Auto -->
+                            <div class="why-use-section scroll-animate">
+                                <h2 class="why-use-title">Why Use Shock Dyno Adapters for AUTO Dampers?</h2>
+                                
+                                <div class="why-use-content">
+                                    <p>
+                                        Adapters play a critical role as connectors, establishing a standardized interface between the shock dyno and the intricate geometry of auto components. This standardized connection is essential for ensuring that testing conditions faithfully replicate real-world driving scenarios, fostering increased accuracy and repeatability in results.
+                                    </p>
+                                    
+                                    <p>
+                                        Precision in testing is particularly crucial for statistical analysis, as it allows for the generation of reliable data sets that can be statistically validated and analyzed.
+                                    </p>
+                                    
+                                    <div class="why-use-highlight">
+                                        <p>
+                                            The LABA7 shock dyno adapters for auto shock absorbers exemplify a commitment to precision testing, providing a solid foundation for achieving the highest level of accuracy in the evaluation of automotive suspension systems. This commitment is vital for statisticians and researchers who rely on robust and repeatable data for in-depth statistical analysis, ultimately contributing to advancements in automotive suspension technology.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="why-use-cta">
+                                    <button class="why-use-cta-button">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Place an order now
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- Specifications -->
-                    <div class="bg-white rounded-2xl p-10 shadow-lg mb-16 scroll-animate">
-                        <h3 class="text-3xl font-bold mb-8 section-title">Moto Adapter Specifications</h3>
-                        <div class="overflow-x-auto">
-                            <table class="w-full specs-table">
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Compatible Bikes</td>
-                                    <td class="text-gray-600 text-lg">Street Bikes, Motocross, Enduro, Dirt Bikes, Scooters</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Fork Tube Diameter</td>
-                                    <td class="text-gray-600 text-lg">35mm - 55mm (1.38" - 2.17")</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Shock Eyelet Sizes</td>
-                                    <td class="text-gray-600 text-lg">10mm, 12mm, 14mm, 16mm standard</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Max Load Capacity</td>
-                                    <td class="text-gray-600 text-lg">5,000 N (1,124 lbs)</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Material</td>
-                                    <td class="text-gray-600 text-lg">Aircraft-grade Aluminum Alloy</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Weight</td>
-                                    <td class="text-gray-600 text-lg">2.5 kg (5.5 lbs) per adapter set</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Features -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 feature-card hover:shadow-2xl">
-                            <div class="flex items-center gap-6 mb-6">
-                                <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                                    <i class="fas fa-tools text-blue-600 text-2xl"></i>
-                                </div>
-                                <h4 class="text-2xl font-bold">Quick Change System</h4>
-                            </div>
-                            <p class="text-gray-700 text-lg leading-relaxed">Tool-free quick change system allows switching between different motorcycle models in seconds. No special tools required for most configurations.</p>
-                            <div class="mt-6 pt-6 border-t border-blue-200">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm text-gray-600">Change Time</span>
-                                    <span class="font-bold text-blue-600">Under 30s</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 feature-card hover:shadow-2xl">
-                            <div class="flex items-center gap-6 mb-6">
-                                <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                                    <i class="fas fa-compress-arrows-alt text-green-600 text-2xl"></i>
-                                </div>
-                                <h4 class="text-2xl font-bold">Precision Alignment</h4>
-                            </div>
-                            <p class="text-gray-700 text-lg leading-relaxed">Laser-cut alignment guides ensure perfect centering for accurate force measurement. Micro-adjustment screws allow for fine-tuning to 0.1mm precision.</p>
-                            <div class="mt-6 pt-6 border-t border-green-200">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm text-gray-600">Alignment Precision</span>
-                                    <span class="font-bold text-green-600">±0.1mm</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MTB Category Content -->
-                <div id="mtb-content" class="category-content scroll-animate">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl font-bold mb-6 section-title">MTB Adapters</h2>
-                        <p class="text-gray-600 max-w-3xl mx-auto text-lg">Lightweight adapters designed specifically for mountain bike suspension testing. Compatible with all fork types and rear shock configurations.</p>
-                    </div>
-
-                    <!-- Adapter Products Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
-                        <!-- Adapter 1 -->
-                        <div class="adapter-card bg-white rounded-2xl p-8 shadow-lg relative overflow-hidden group">
-                            <div class="ribbon">POPULAR</div>
-                            <div class="mb-6">
-                                <div class="w-full h-52 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl flex items-center justify-center mb-6 overflow-hidden">
-                                    <img src="../assets/mtb-adapter-1.png" alt="MTB Fork Adapter Set" 
-                                         class="h-44 object-contain transition-all duration-700 group-hover:scale-110 img-loading">
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4">MTB Fork Adapter Set</h3>
-                                <p class="text-gray-600 mb-6">Complete set for testing air and coil sprung mountain bike forks. Includes adapter for all standard steerer tube sizes.</p>
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <span class="text-2xl font-bold text-orange-600 price-tag">$149.99</span>
-                                        <span class="text-sm text-gray-500 line-through ml-2">$179.99</span>
+                            <!-- Features Section -->
+                            <div class="mt-16 pt-10 border-t border-gray-200 scroll-animate">
+                                <h3 class="text-2xl font-bold mb-8 text-center">Why Choose Our Auto Adapters?</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 feature-card">
+                                        <div class="flex items-center gap-4 mb-4">
+                                            <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow">
+                                                <i class="fas fa-bolt text-orange-600"></i>
+                                            </div>
+                                            <h4 class="text-xl font-bold">Quick Installation</h4>
+                                        </div>
+                                        <p class="text-gray-700">Patented quick-release mechanism allows installation in under 2 minutes without special tools. Reduces setup time by 70% compared to traditional methods.</p>
+                                        <div class="mt-4 pt-4 border-t border-orange-200">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-600">Average Setup Time</span>
+                                                <span class="font-bold text-orange-600">1:45 min</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <button class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate">
-                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                    
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 feature-card">
+                                        <div class="flex items-center gap-4 mb-4">
+                                            <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow">
+                                                <i class="fas fa-microscope text-blue-600"></i>
+                                            </div>
+                                            <h4 class="text-xl font-bold">Precision Engineering</h4>
+                                        </div>
+                                        <p class="text-gray-700">CNC machined to within 0.01mm tolerance. Laser-aligned mounting surfaces ensure perfect force distribution and measurement accuracy of 99.8%.</p>
+                                        <div class="mt-4 pt-4 border-t border-blue-200">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-600">Measurement Accuracy</span>
+                                                <span class="font-bold text-blue-600">99.8%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Specifications Table -->
+                            <div class="mt-16 bg-white rounded-2xl p-8 shadow-lg scroll-animate">
+                                <h3 class="text-2xl font-bold mb-6">Auto Adapter Specifications</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full specs-table">
+                                        <tr>
+                                            <td class="font-semibold text-gray-700">Compatible Vehicles</td>
+                                            <td class="text-gray-600">Cars, Trucks, SUVs, 4x4, Commercial Vehicles</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-semibold text-gray-700">Max Spring Diameter</td>
+                                            <td class="text-gray-600">Up to 250mm (10 inches)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-semibold text-gray-700">Load Capacity</td>
+                                            <td class="text-gray-600">15,000 N (3,372 lbs) per adapter</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-semibold text-gray-700">Material</td>
+                                            <td class="text-gray-600">Heat-treated 4140 Steel with corrosion-resistant coating</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-semibold text-gray-700">Temperature Range</td>
+                                            <td class="text-gray-600">-40°C to +120°C (-40°F to +248°F)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-semibold text-gray-700">Warranty</td>
+                                            <td class="text-gray-600">5 Years Limited Warranty</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Moto Category Content -->
+                        <div id="moto-content" class="category-content scroll-animate">
+                            <div class="mb-10">
+                                <h2 class="text-3xl font-bold mb-4 section-title">Moto Adapters for Motorcycle Dampers</h2>
+                                <p class="text-gray-600 max-w-3xl text-lg">Specialized adapters for motorcycle and dirt bike suspension testing. Perfect for motocross, street bikes, and racing applications.</p>
+                            </div>
+
+                            <!-- Three Products Grid -->
+                            <div class="products-grid mb-16">
+                                <!-- Product 1 -->
+                                <div class="adapter-card">
+                                    <div class="product-image-container">
+                                        <div class="ribbon">NEW</div>
+                                        <img src="../assets/moto-adapter-1.png" alt="Motorcycle Fork Adapter" 
+                                             class="h-52 object-contain transition-all duration-500">
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="info-badge">MOTO ADAPTERS</div>
+                                        <h3 class="product-title">Motorcycle Fork Adapter</h3>
+                                        <p class="product-description">
+                                            Universal adapter for testing front fork springs on all motorcycle types. Features quick-clamp design and anti-slip surface.
+                                        </p>
+                                        <div class="space-y-2 mb-4">
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Universal design fits all motorcycle types</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Quick-clamp design for fast installation</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Anti-slip surface for secure mounting</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-6">
+                                            <div class="price-tag">
+                                                179 EUR ex VAT
+                                            </div>
+                                            <button class="action-button">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Product 2 -->
+                                <div class="adapter-card">
+                                    <div class="product-image-container">
+                                        <img src="../assets/moto-adapter-2.png" alt="Shock Linkage Kit" 
+                                             class="h-52 object-contain transition-all duration-500">
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="info-badge">MOTO ADAPTERS</div>
+                                        <h3 class="product-title">Shock Linkage Kit</h3>
+                                        <p class="product-description">
+                                            Complete kit for testing rear shock springs and linkages. Includes all necessary bushings and mounting hardware.
+                                        </p>
+                                        <div class="space-y-2 mb-4">
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Complete kit with all necessary components</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Includes multiple bushing sizes</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Professional-grade mounting hardware</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-6">
+                                            <div class="price-tag">
+                                                229 EUR ex VAT
+                                            </div>
+                                            <button class="action-button">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Product 3 -->
+                                <div class="adapter-card">
+                                    <div class="product-image-container">
+                                        <img src="../assets/moto-adapter-3.png" alt="Motocross Pro Kit" 
+                                             class="h-52 object-contain transition-all duration-500">
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="info-badge">MOTO ADAPTERS</div>
+                                        <h3 class="product-title">Motocross Pro Kit</h3>
+                                        <p class="product-description">
+                                            Specialized adapters for motocross and enduro bike suspension systems. Heavy-duty construction for professional use.
+                                        </p>
+                                        <div class="space-y-2 mb-4">
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Heavy-duty construction for professional use</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Designed for motocross and enduro bikes</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Corrosion-resistant finish for outdoor use</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-6">
+                                            <div class="price-tag">
+                                                299 EUR ex VAT
+                                            </div>
+                                            <button class="action-button">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Why Use Section for Moto -->
+                            <div class="why-use-section scroll-animate">
+                                <h2 class="why-use-title">Why Use Shock Dyno Adapters for MOTO Dampers?</h2>
+                                
+                                <div class="why-use-content">
+                                    <p>
+                                        Adapters play a critical role as connectors, establishing a standardized interface between the shock dyno and the intricate geometry of motorcycle components. This standardized connection is essential for ensuring that testing conditions faithfully replicate real-world riding scenarios, fostering increased accuracy and repeatability in results.
+                                    </p>
+                                    
+                                    <p>
+                                        Precision in testing is particularly crucial for statistical analysis, as it allows for the generation of reliable data sets that can be statistically validated and analyzed. This is especially important for motorcycle suspension systems where small variations can significantly affect handling and performance.
+                                    </p>
+                                    
+                                    <div class="why-use-highlight">
+                                        <p>
+                                            The LABA7 shock dyno adapters for motorcycle shock absorbers exemplify a commitment to precision testing, providing a solid foundation for achieving the highest level of accuracy in the evaluation of motorcycle suspension systems. This commitment is vital for statisticians, researchers, and professional tuners who rely on robust and repeatable data for in-depth statistical analysis, ultimately contributing to advancements in motorcycle suspension technology and rider safety.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="why-use-cta">
+                                    <button class="why-use-cta-button">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Place an order now
                                     </button>
                                 </div>
                             </div>
+
+                            <!-- Features Section -->
+                            <div class="mt-16 pt-10 border-t border-gray-200 scroll-animate">
+                                <h3 class="text-2xl font-bold mb-8 text-center">Why Choose Our Moto Adapters?</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 feature-card">
+                                        <div class="flex items-center gap-4 mb-4">
+                                            <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow">
+                                                <i class="fas fa-tools text-blue-600"></i>
+                                            </div>
+                                            <h4 class="text-xl font-bold">Quick Change System</h4>
+                                        </div>
+                                        <p class="text-gray-700">Tool-free quick change system allows switching between different motorcycle models in seconds. No special tools required for most configurations.</p>
+                                        <div class="mt-4 pt-4 border-t border-blue-200">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-600">Change Time</span>
+                                                <span class="font-bold text-blue-600">Under 30s</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 feature-card">
+                                        <div class="flex items-center gap-4 mb-4">
+                                            <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow">
+                                                <i class="fas fa-compress-arrows-alt text-green-600"></i>
+                                            </div>
+                                            <h4 class="text-xl font-bold">Precision Alignment</h4>
+                                        </div>
+                                        <p class="text-gray-700">Laser-cut alignment guides ensure perfect centering for accurate force measurement. Micro-adjustment screws allow for fine-tuning to 0.1mm precision.</p>
+                                        <div class="mt-4 pt-4 border-t border-green-200">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-600">Alignment Precision</span>
+                                                <span class="font-bold text-green-600">±0.1mm</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Adapter 2 -->
-                        <div class="adapter-card bg-white rounded-2xl p-8 shadow-lg relative overflow-hidden group">
-                            <div class="mb-6">
-                                <div class="w-full h-52 bg-gradient-to-br from-green-50 to-green-100 rounded-xl flex items-center justify-center mb-6 overflow-hidden">
-                                    <img src="../assets/mtb-adapter-2.png" alt="Rear Shock Adapter" 
-                                         class="h-44 object-contain transition-all duration-700 group-hover:scale-110 img-loading">
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4">Rear Shock Adapter</h3>
-                                <p class="text-gray-600 mb-6">Universal adapter for testing all mountain bike rear shock designs. Compatible with trunnion and standard mounts.</p>
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <span class="text-2xl font-bold text-orange-600 price-tag">$129.99</span>
+                        <!-- MTB Category Content -->
+                        <div id="mtb-content" class="category-content scroll-animate">
+                            <div class="mb-10">
+                                <h2 class="text-3xl font-bold mb-4 section-title">MTB Adapters for Mountain Bike Shocks</h2>
+                                <p class="text-gray-600 max-w-3xl text-lg">Lightweight adapters designed specifically for mountain bike suspension testing. Compatible with all fork types and rear shock configurations.</p>
+                            </div>
+
+                            <!-- Three Products Grid -->
+                            <div class="products-grid mb-16">
+                                <!-- Product 1 -->
+                                <div class="adapter-card">
+                                    <div class="product-image-container">
+                                        <div class="ribbon">POPULAR</div>
+                                        <img src="../assets/mtb-adapter-1.png" alt="MTB Fork Adapter Set" 
+                                             class="h-52 object-contain transition-all duration-500">
                                     </div>
-                                    <button class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate">
-                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
+                                    <div class="product-content">
+                                        <div class="info-badge">MTB ADAPTERS</div>
+                                        <h3 class="product-title">MTB Fork Adapter Set</h3>
+                                        <p class="product-description">
+                                            Complete set for testing air and coil sprung mountain bike forks. Includes adapter for all standard steerer tube sizes.
+                                        </p>
+                                        <div class="space-y-2 mb-4">
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Complete set for air and coil sprung forks</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">All standard steerer tube sizes included</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Lightweight design for easy handling</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-6">
+                                            <div class="price-tag">
+                                                149 EUR ex VAT
+                                            </div>
+                                            <button class="action-button">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Product 2 -->
+                                <div class="adapter-card">
+                                    <div class="product-image-container">
+                                        <img src="../assets/mtb-adapter-2.png" alt="Rear Shock Adapter" 
+                                             class="h-52 object-contain transition-all duration-500">
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="info-badge">MTB ADAPTERS</div>
+                                        <h3 class="product-title">Rear Shock Adapter</h3>
+                                        <p class="product-description">
+                                            Universal adapter for testing all mountain bike rear shock designs. Compatible with trunnion and standard mounts.
+                                        </p>
+                                        <div class="space-y-2 mb-4">
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Universal design for all rear shock types</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Compatible with trunnion and standard mounts</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Quick-release mechanism for fast setup</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-6">
+                                            <div class="price-tag">
+                                                129 EUR ex VAT
+                                            </div>
+                                            <button class="action-button">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Product 3 -->
+                                <div class="adapter-card">
+                                    <div class="product-image-container">
+                                        <img src="../assets/mtb-adapter-3.png" alt="E-Bike Special Kit" 
+                                             class="h-52 object-contain transition-all duration-500">
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="info-badge">MTB ADAPTERS</div>
+                                        <h3 class="product-title">E-Bike Special Kit</h3>
+                                        <p class="product-description">
+                                            Enhanced adapters for heavy-duty e-MTB suspension systems. Reinforced design for higher loads and longer service life.
+                                        </p>
+                                        <div class="space-y-2 mb-4">
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Reinforced design for higher loads</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Specifically designed for e-MTB applications</span>
+                                            </div>
+                                            <div class="benefit-item">
+                                                <div class="benefit-icon">
+                                                    <i class="fas fa-check text-xs"></i>
+                                                </div>
+                                                <span class="text-sm text-gray-700">Extended service life for professional use</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between mt-6">
+                                            <div class="price-tag">
+                                                199 EUR ex VAT
+                                            </div>
+                                            <button class="action-button">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Why Use Section for MTB -->
+                            <div class="why-use-section scroll-animate">
+                                <h2 class="why-use-title">Why Use Shock Dyno Adapters for MTB Dampers?</h2>
+                                
+                                <div class="why-use-content">
+                                    <p>
+                                        Adapters play a critical role as connectors, establishing a standardized interface between the shock dyno and the intricate geometry of mountain bike components. This standardized connection is essential for ensuring that testing conditions faithfully replicate real-world trail riding scenarios, fostering increased accuracy and repeatability in results.
+                                    </p>
+                                    
+                                    <p>
+                                        Precision in testing is particularly crucial for statistical analysis, as it allows for the generation of reliable data sets that can be statistically validated and analyzed. This is especially important for mountain bike suspension where performance affects both rider comfort and control on challenging terrain.
+                                    </p>
+                                    
+                                    <div class="why-use-highlight">
+                                        <p>
+                                            The LABA7 shock dyno adapters for mountain bike shock absorbers exemplify a commitment to precision testing, providing a solid foundation for achieving the highest level of accuracy in the evaluation of mountain bike suspension systems. This commitment is vital for statisticians, researchers, and professional bike fitters who rely on robust and repeatable data for in-depth statistical analysis, ultimately contributing to advancements in mountain bike suspension technology and rider performance.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="why-use-cta">
+                                    <button class="why-use-cta-button">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Place an order now
                                     </button>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Adapter 3 -->
-                        <div class="adapter-card bg-white rounded-2xl p-8 shadow-lg relative overflow-hidden group">
-                            <div class="mb-6">
-                                <div class="w-full h-52 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl flex items-center justify-center mb-6 overflow-hidden">
-                                    <img src="../assets/mtb-adapter-3.png" alt="E-Bike Special Kit" 
-                                         class="h-44 object-contain transition-all duration-700 group-hover:scale-110 img-loading">
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4">E-Bike Special Kit</h3>
-                                <p class="text-gray-600 mb-6">Enhanced adapters for heavy-duty e-MTB suspension systems. Reinforced design for higher loads and longer service life.</p>
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <span class="text-2xl font-bold text-orange-600 price-tag">$199.99</span>
+                            <!-- Features Section -->
+                            <div class="mt-16 pt-10 border-t border-gray-200 scroll-animate">
+                                <h3 class="text-2xl font-bold mb-8 text-center">Why Choose Our MTB Adapters?</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 feature-card">
+                                        <div class="flex items-center gap-4 mb-4">
+                                            <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow">
+                                                <i class="fas fa-weight text-orange-600"></i>
+                                            </div>
+                                            <h4 class="text-xl font-bold">Ultra-Light Design</h4>
+                                        </div>
+                                        <p class="text-gray-700">Optimized for weight savings while maintaining maximum strength and durability. 40% lighter than conventional adapters without compromising structural integrity.</p>
+                                        <div class="mt-4 pt-4 border-t border-orange-200">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-600">Weight Reduction</span>
+                                                <span class="font-bold text-orange-600">40%</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <button class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105 btn-animate">
-                                        <i class="fas fa-shopping-cart mr-2"></i> Add to Cart
-                                    </button>
+                                    
+                                    <div class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl p-6 feature-card">
+                                        <div class="flex items-center gap-4 mb-4">
+                                            <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow">
+                                                <i class="fas fa-bolt text-teal-600"></i>
+                                            </div>
+                                            <h4 class="text-xl font-bold">Quick Setup</h4>
+                                        </div>
+                                        <p class="text-gray-700">One-minute setup time for most mountain bike fork and shock configurations. Color-coded components make assembly intuitive even for beginners.</p>
+                                        <div class="mt-4 pt-4 border-t border-teal-200">
+                                            <div class="flex items-center justify-between">
+                                                <span class="text-sm text-gray-600">Average Setup Time</span>
+                                                <span class="font-bold text-teal-600">1:15 min</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Specifications -->
-                    <div class="bg-white rounded-2xl p-10 shadow-lg mb-16 scroll-animate">
-                        <h3 class="text-3xl font-bold mb-8 section-title">MTB Adapter Specifications</h3>
-                        <div class="overflow-x-auto">
-                            <table class="w-full specs-table">
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Compatible Forks</td>
-                                    <td class="text-gray-600 text-lg">Air, Coil, Dual Crown, Single Crown, All Travel Lengths</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Steerer Tube Sizes</td>
-                                    <td class="text-gray-600 text-lg">1-1/8", 1.5", Tapered, All Standard Sizes</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Shock Mount Standards</td>
-                                    <td class="text-gray-600 text-lg">Trunnion, Standard, Metric, All Common Sizes</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Max Load Capacity</td>
-                                    <td class="text-gray-600 text-lg">3,000 N (674 lbs)</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Material</td>
-                                    <td class="text-gray-600 text-lg">7075 Aluminum with Hard Anodized Finish</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold text-gray-700 text-lg">Weight</td>
-                                    <td class="text-gray-600 text-lg">1.2 kg (2.6 lbs) per adapter set</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Features -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                        <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 feature-card hover:shadow-2xl">
-                            <div class="flex items-center gap-6 mb-6">
-                                <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                                    <i class="fas fa-weight text-orange-600 text-2xl"></i>
-                                </div>
-                                <h4 class="text-2xl font-bold">Ultra-Light Design</h4>
-                            </div>
-                            <p class="text-gray-700 text-lg leading-relaxed">Optimized for weight savings while maintaining maximum strength and durability. 40% lighter than conventional adapters without compromising structural integrity.</p>
-                            <div class="mt-6 pt-6 border-t border-orange-200">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm text-gray-600">Weight Reduction</span>
-                                    <span class="font-bold text-orange-600">40%</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl p-8 feature-card hover:shadow-2xl">
-                            <div class="flex items-center gap-6 mb-6">
-                                <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center shadow-lg">
-                                    <i class="fas fa-bolt text-teal-600 text-2xl"></i>
-                                </div>
-                                <h4 class="text-2xl font-bold">Quick Setup</h4>
-                            </div>
-                            <p class="text-gray-700 text-lg leading-relaxed">One-minute setup time for most mountain bike fork and shock configurations. Color-coded components make assembly intuitive even for beginners.</p>
-                            <div class="mt-6 pt-6 border-t border-teal-200">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm text-gray-600">Average Setup Time</span>
-                                    <span class="font-bold text-teal-600">1:15 min</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Universal Features -->
-                <div class="mt-20 pt-16 border-t border-gray-200 scroll-animate">
-                    <h3 class="text-3xl font-bold text-center mb-12 section-title">Universal Features Across All Adapters</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 text-center feature-card hover:shadow-2xl border border-gray-100">
-                            <div class="w-20 h-20 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                <i class="fas fa-award text-green-600 text-3xl icon-hover"></i>
-                            </div>
-                            <h4 class="text-2xl font-bold mb-4">Premium Quality</h4>
-                            <p class="text-gray-600 leading-relaxed">All adapters are CNC machined from high-grade materials for precision and durability. Each unit undergoes 17-point quality inspection.</p>
-                            <div class="mt-6 inline-flex items-center text-green-600 font-semibold">
-                                <i class="fas fa-check-circle mr-2"></i> ISO 9001 Certified
-                            </div>
-                        </div>
-
-                        <div class="bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 text-center feature-card hover:shadow-2xl border border-gray-100">
-                            <div class="w-20 h-20 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                <i class="fas fa-sync-alt text-purple-600 text-3xl icon-hover"></i>
-                            </div>
-                            <h4 class="text-2xl font-bold mb-4">Easy Returns</h4>
-                            <p class="text-gray-600 leading-relaxed">30-day money-back guarantee if you're not completely satisfied. No questions asked return policy for complete peace of mind.</p>
-                            <div class="mt-6 inline-flex items-center text-purple-600 font-semibold">
-                                <i class="fas fa-shield-alt mr-2"></i> 100% Satisfaction
-                            </div>
-                        </div>
-
-                        <div class="bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 text-center feature-card hover:shadow-2xl border border-gray-100">
-                            <div class="w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                                <i class="fas fa-shipping-fast text-red-600 text-3xl icon-hover"></i>
-                            </div>
-                            <h4 class="text-2xl font-bold mb-4">Fast Shipping</h4>
-                            <p class="text-gray-600 leading-relaxed">Orders ship within 24 hours with worldwide delivery options. Free express shipping on orders over $500. Track your order in real-time.</p>
-                            <div class="mt-6 inline-flex items-center text-red-600 font-semibold">
-                                <i class="fas fa-clock mr-2"></i> 24-Hour Dispatch
                             </div>
                         </div>
                     </div>
@@ -978,27 +1367,26 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 text-white overflow-hidden">
+    <section class="py-16 bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 text-white overflow-hidden">
         <div class="container mx-auto px-4 relative">
             <!-- Animated background elements -->
-            <div class="absolute top-10 left-10 w-32 h-32 bg-white opacity-10 rounded-full floating-element"></div>
-            <div class="absolute bottom-10 right-10 w-40 h-40 bg-white opacity-5 rounded-full floating-element" style="animation-delay: 1s;"></div>
-            <div class="absolute top-1/2 left-1/4 w-24 h-24 bg-white opacity-10 rounded-full floating-element" style="animation-delay: 2s;"></div>
+            <div class="absolute top-10 left-10 w-24 h-24 bg-white opacity-10 rounded-full floating-element"></div>
+            <div class="absolute bottom-10 right-10 w-32 h-32 bg-white opacity-5 rounded-full floating-element" style="animation-delay: 1s;"></div>
             
             <div class="max-w-4xl mx-auto text-center relative z-10">
-                <h2 class="text-4xl md:text-5xl font-bold mb-8 animate__animated animate__pulse animate__infinite">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 animate__animated animate__pulse animate__infinite">
                     Ready to Enhance Your Testing Capabilities?
                 </h2>
-                <p class="text-xl mb-10 opacity-90">Get the right adapter for your specific needs and take your spring testing to the next level.</p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                    <button class="bg-white text-orange-600 hover:bg-gray-100 font-bold py-4 px-10 rounded-xl transition-all transform hover:scale-105 btn-animate bounce-in">
+                <p class="text-lg mb-8 opacity-90">Get the right adapter for your specific needs and take your shock absorber testing to the next level.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-white text-orange-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 btn-animate">
                         <i class="fas fa-shopping-cart mr-3 icon-hover"></i> Shop All Adapters
                     </button>
-                    <button class="bg-transparent border-2 border-white hover:bg-white hover:text-orange-600 font-bold py-4 px-10 rounded-xl transition-all transform hover:scale-105 btn-animate bounce-in" style="animation-delay: 0.2s;">
+                    <button class="bg-transparent border-2 border-white hover:bg-white hover:text-orange-600 font-bold py-3 px-8 rounded-xl transition-all transform hover:scale-105 btn-animate">
                         <i class="fas fa-question-circle mr-3 icon-hover"></i> Need Help Choosing?
                     </button>
                 </div>
-                <p class="mt-10 text-sm opacity-80">
+                <p class="mt-8 text-sm opacity-80">
                     <i class="fas fa-phone-alt mr-2"></i> Call us: 1-800-ADAPTERS | 
                     <i class="fas fa-envelope ml-4 mr-2"></i> Email: support@lab7.com
                 </p>
@@ -1048,60 +1436,46 @@
                 tab.addEventListener('click', function() {
                     const category = this.getAttribute('data-category');
                     
-                    // Animation for tab switching
+                    // Remove active class from all tabs
                     categoryTabs.forEach(t => {
-                        t.style.transform = 'scale(0.95)';
-                        t.style.opacity = '0.7';
-                        setTimeout(() => {
-                            t.classList.remove('active');
-                            t.querySelector('i').classList.remove('text-orange-600');
-                            t.querySelector('i').classList.add('text-gray-600');
-                            t.style.transform = '';
-                            t.style.opacity = '';
-                        }, 200);
+                        t.classList.remove('active');
+                        t.querySelector('.category-icon').style.background = '';
                     });
                     
-                    // Add active class with animation
-                    setTimeout(() => {
-                        this.classList.add('active');
-                        this.querySelector('i').classList.remove('text-gray-600');
-                        this.querySelector('i').classList.add('text-orange-600');
-                        this.style.transform = 'scale(1.05)';
-                        
-                        // Show corresponding content
-                        showCategory(category);
-                        
-                        // Trigger scroll animations for new content
-                        setTimeout(initScrollAnimations, 300);
-                    }, 250);
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    const icon = this.querySelector('.category-icon');
+                    if (category === 'auto') {
+                        icon.style.background = 'white';
+                    } else if (category === 'moto') {
+                        icon.style.background = 'white';
+                    } else if (category === 'mtb') {
+                        icon.style.background = 'white';
+                    }
+                    
+                    // Show corresponding content
+                    showCategory(category);
+                    
+                    // Trigger scroll animations for new content
+                    setTimeout(initScrollAnimations, 300);
                 });
             });
             
             function showCategory(category) {
-                // Hide all category contents with animation
+                // Hide all category contents
                 categoryContents.forEach(content => {
-                    content.style.opacity = '0';
-                    content.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        content.classList.remove('active');
-                    }, 300);
+                    content.classList.remove('active');
                 });
                 
-                // Show selected category content with animation
+                // Show selected category content
                 const activeContent = document.getElementById(`${category}-content`);
                 if (activeContent) {
-                    setTimeout(() => {
-                        activeContent.classList.add('active');
-                        setTimeout(() => {
-                            activeContent.style.opacity = '1';
-                            activeContent.style.transform = 'translateY(0)';
-                        }, 10);
-                    }, 350);
+                    activeContent.classList.add('active');
                 }
             }
             
             // Button hover effects
-            const buttons = document.querySelectorAll('.btn-animate');
+            const buttons = document.querySelectorAll('.btn-animate, .action-button, .why-use-cta-button');
             buttons.forEach(button => {
                 button.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateY(-3px)';
@@ -1112,56 +1486,20 @@
                 });
             });
             
-            // Image loading animation
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.addEventListener('load', function() {
-                    this.parentElement.classList.remove('img-loading');
+            // Card hover effects
+            const cards = document.querySelectorAll('.adapter-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
                 });
-            });
-            
-            // Counter animations
-            function animateCounters() {
-                const counters = document.querySelectorAll('.counter');
-                counters.forEach(counter => {
-                    const target = parseInt(counter.getAttribute('data-target'));
-                    const duration = 2000;
-                    const step = target / (duration / 16);
-                    let current = 0;
-                    
-                    const timer = setInterval(() => {
-                        current += step;
-                        if (current >= target) {
-                            counter.textContent = target;
-                            clearInterval(timer);
-                        } else {
-                            counter.textContent = Math.floor(current);
-                        }
-                    }, 16);
-                    
-                    counter.classList.add('animate');
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
                 });
-            }
-            
-            // Initialize everything
-            initScrollAnimations();
-            
-            // Trigger counters when they come into view
-            const counterObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        counterObserver.unobserve(entry.target);
-                    }
-                });
-            });
-            
-            document.querySelectorAll('.counter').forEach(counter => {
-                counterObserver.observe(counter);
             });
             
             // Add ripple effect to buttons
-            document.querySelectorAll('.btn-animate').forEach(button => {
+            document.querySelectorAll('.action-button, .btn-animate, .why-use-cta-button').forEach(button => {
                 button.addEventListener('click', function(e) {
                     const rect = this.getBoundingClientRect();
                     const x = e.clientX - rect.left;
@@ -1175,12 +1513,15 @@
                         transform: scale(0);
                         animation: ripple-animation 0.6s linear;
                         pointer-events: none;
+                        z-index: 1;
                     `;
                     
                     ripple.style.left = x + 'px';
                     ripple.style.top = y + 'px';
                     ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
                     
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
                     this.appendChild(ripple);
                     
                     setTimeout(() => {
@@ -1200,6 +1541,9 @@
                 }
             `;
             document.head.appendChild(style);
+            
+            // Initialize everything
+            initScrollAnimations();
         });
     </script>
 </body>
