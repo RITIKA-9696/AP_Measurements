@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LABA7 Racing Scales - Wireless Corner Weight Measurement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../include.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="../Header/header.css">
+    <link rel="stylesheet" href="../Footer/footer.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            color: #1f2937;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        .section-padding {
+            padding: 3rem 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 4rem 1.5rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .section-padding {
+                padding: 5rem 2rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-float-up {
+            animation: floatUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-slide-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-slide-right {
+            animation: slideInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s infinite ease-in-out;
+        }
+        
+        .animate-bounce-slow {
+            animation: bounce 3s infinite ease-in-out;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ef4444, #f59e0b);
+            background-size: 300% 300%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        
+        /* Card hover effects */
+        .feature-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        .feature-card:hover::before {
+            left: 100%;
+        }
+        
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        /* Staggered animation delays */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-800 { animation-delay: 800ms; }
+        
+        /* Button animations */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Table row hover effect */
+        .specs-table tbody tr {
+            transition: all 0.3s ease;
+        }
+        
+        .specs-table tbody tr:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        /* Image hover effects */
+        .image-hover {
+            transition: all 0.4s ease;
+        }
+        
+        .image-hover:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Navigation */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Section backgrounds */
+        .section-bg-1 {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+        
+        .section-bg-2 {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+        
+        .section-bg-3 {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        /* Page load animation */
+        .page-load {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Highlight text */
+        .highlight-text {
+            background: linear-gradient(120deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="page-load">
+    <!-- Animated background elements -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="floating-element top-20 left-10 w-6 h-6 bg-blue-400/20 rounded-full animate-bounce-slow"></div>
+        <div class="floating-element top-40 right-20 w-4 h-4 bg-purple-400/20 rounded-full animate-bounce-slow" style="animation-delay: 1s;"></div>
+        <div class="floating-element bottom-40 left-1/4 w-8 h-8 bg-red-400/20 rounded-full animate-bounce-slow" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- header -->
+    <div data-include="/Header/header.html" class="relative z-10"></div>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 px-4 section-bg-1 relative overflow-hidden">
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-3xl md:text-3xl font-bold mb-4 animate-float-up mt-6">
+                    Racing Scales for <span class="text-blue-600">Accurate Corner Weight Measurement</span>
+                </h1>
+               
+                <p class="text-base mb-8 max-w-3xl mx-auto animate-float-up delay-200">
+                    When every gram counts, trust the LABA7 racing scales. Designed for professional racing, our corner weight scales deliver exceptional accuracy with seamless wireless performance.
+                </p>
+
+                <div class="animate-float-up delay-300">
+                    <img src="../assets/scale.webp" alt="" class="rounded-lg shadow-lg mx-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specifications Section -->
+    <section class="section-padding section-bg-2">
+        <div class="container mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 animate-fade-in">
+                    AP Measurements Racing Scales <span class="text-orange-500">LITE & PRO Specifications</span>
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-sm animate-fade-in delay-200">
+                    Precision-engineered for professional motorsport
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 mb-12 ml-96">
+                <!-- Motorcycle Scales LITE -->
+                <div class="bg-white rounded-xl p-6 feature-card animate-slide-left delay-300 w-64 h-72">
+                    <img src="../assets/scale1.webp" alt="" class="mb-4 ">
+                    <h2 class="text-lg font-semibold text-center text-gray-700 ">Motorcycle Scales LITE</h2>
+                </div>
+                
+                <!-- Racing Scales LITE -->
+                <div class="bg-white rounded-xl p-6 feature-card animate-slide-left delay-400 w-64 h-72">
+                    <img src="../assets/scale2.webp" alt="" class="mb-4">
+                    <h2 class="text-lg font-semibold text-center text-gray-700">Racing Scales LITE</h2>
+                </div>
+                
+                <!-- Racing Scales PRO -->
+                <div class="bg-white rounded-xl p-6 feature-card animate-slide-left delay-500 w-64 h-72">
+                    <img src="../assets/scale3.webp" alt="" class="mb-4">
+                    <h2 class="text-lg font-semibold text-center text-gray-700">Racing Scales PRO</h2>
+                </div>
+            </div>
+
+             <!-- Specs Table -->
+            <section class="relative py-8">
+                <div class="max-w-7xl mx-auto px-2">
+                    <div class="overflow-x-auto rounded-lg border border-gray-200 bg-white">
+                        <table class="specs-table w-full">
+                            <tbody>
+                                <tr class="bg-gradient-to-r from-blue-50 to-blue-100">
+                                    <th class="text-left py-3 px-4 text-gray-700 font-semibold border">Number of Pads</th>
+                                    <th class="text-center py-3 px-2 text-gray-700 font-semibold border">2</th>
+                                    <th class="text-center py-3 px-4 text-gray-700 font-semibold border bg-blue-100">4</th>
+                                    <th class="text-center py-3 px-4 text-gray-700 font-semibold border">4</th>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-150 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Accuracy</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        ±0.1% <span class="text-gray-500 text-xs">FS (C3)</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-200 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Resolution</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        >10 <span class="text-gray-500 text-xs">g</span>
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-250 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Repeatability</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        ≤0.05% of applied load
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-300 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Off-center load error</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        ≤0.15%
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-350 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Long-term drift</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        ≤0.02% FS (1 h @ 20-25 °C)
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-400 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Creep</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        ≤0.03% FS (10 min @ 50% FS)
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-450 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Refresh rate</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        10 Hz Pit mode, 2 Hz Precision/Cal mode
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-500 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Pad deflection</td>
+                                    <td class="py-3 px-4 text-center text-gray-700 border">0.53 mm @ 500 kg</td>
+                                    <td colspan="4" class="py-3 px-4 text-center text-gray-700 border">0.42 mm @ 500 kg</td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-550 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Pad stiffness</td>
+                                    <td class="py-3 px-4 text-center text-gray-700 border">k = 9,532 N/mm @ 500 kg</td>
+                                    <td colspan="4" class="py-3 px-4 text-center text-gray-700 border">k = 11,902 N/mm @ 500 kg</td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-600 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Load sensors</td>
+                                    <td class="py-3 px-4 text-center text-gray-700 border">3 per pad</td>
+                                    <td colspan="4" class="py-3 px-4 text-center text-gray-700 border">4 per pad</td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-650 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Max weight per pad</td>
+                                    <td class="py-3 px-4 text-center text-gray-700 border">600 kg</td>
+                                    <td colspan="4" class="py-3 px-4 text-center text-gray-700 border">1,200 kg</td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-700 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Safe overload limit</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        150% of maximum load
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-750 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">System capacity</td>
+                                    <td class="py-3 px-4 text-center text-gray-700 border">1,200 kg (2 pads)</td>
+                                    <td colspan="4" class="py-3 px-4 text-center text-gray-700 border">2,400 kg (4 pads)</td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-800 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Materials</td>
+                                    <td class="py-3 px-4 text-center text-gray-700 border">Low-deflection billet aluminum and steel</td>
+                                    <td colspan="4" class="py-3 px-4 text-center text-gray-700 border">Billet aluminum, anodized</td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-850 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Leveling</td>
+                                    <td class="py-3 px-4 text-center text-gray-700 border">Three-point leveling</td>
+                                    <td colspan="4" class="py-3 px-4 text-center text-gray-700 border">Five-point leveling</td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-900 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Dimensions (mm)</td>
+                                    <td class="py-3 px-4 text-center text-gray-700 border">320 x 360 x 70-100</td>
+                                    <td colspan="4" class="py-3 px-4 text-center text-gray-700 border">400 x 450 x 59</td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-950 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Connectivity</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        Wireless, Bluetooth 5.1 LE
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-1000 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Power</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        3 x AA batteries per pad
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-1050 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Software</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        LABA7 Car Scales on App Store & Google Play
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-1100 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Software features</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        Total, axle, and corner weights<br>
+                                        Cross-weight % and targets<br>
+                                        2D Center of Gravity analysis<br>
+                                        Fuel & driver weight customization<br>
+                                        2- or 4-wheel weighing<br>
+                                        Vehicle notes and setup memory<br>
+                                        Automatic software updates
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-1150 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Environmental</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        IP54 // -10…+50 °C // 10-90% RH
+                                    </td>
+                                </tr>
+                                
+                                <tr class="animate-fade-in delay-1200 border-b">
+                                    <td class="py-3 px-4 text-gray-600 border">Calibration</td>
+                                    <td colspan="8" class="py-3 px-4 text-center text-gray-700 border">
+                                        Factory 5-point calibration
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-6 text-center text-gray-500 text-xs animate-fade-in delay-1250">
+                        <p><i class="fas fa-info-circle mr-1"></i>All specs subject to manufacturing tolerances.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- Product Description -->
+    <section class="section-padding section-bg-3">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 animate-fade-in">
+                    Corner Weight Scales: <span class="text-blue-600">Digital. Portable. Accurate.</span>
+                </h2>
+                <p class="text-sm text-gray-700 animate-fade-in delay-200">
+                    AP Measurement weighing technology helps you measure weight distribution and achieve ideal setup.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                <div class="animate-slide-left delay-300">
+                   <img src="../assets/scale6.webp" alt="" class="rounded-lg shadow-lg border border-gray-200 image-hover">
+                </div>
+                
+                <div class="animate-slide-left delay-500">
+                    <img src="../assets/scale7.webp" alt="" class="rounded-lg shadow-lg border border-gray-200 image-hover">
+                </div>
+
+                <div class="animate-slide-left delay-700">
+                   <img src="../assets/scale6.webp" alt="" class="rounded-lg shadow-lg border border-gray-200 image-hover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section-padding bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 animate-fade-in">
+                    Why Choose AP Measurements <span class="text-orange-500">Wireless Racing Scales?</span>
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-sm animate-fade-in delay-200">
+                    Engineered for professional racing with innovative features
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 rounded-xl p-6 feature-card animate-float-up delay-300">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-bullseye text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Maximum Accuracy</h3>
+                    <p class="text-gray-600 text-sm">
+                        We developed one of the most accurate motorsport scale systems. Each weigh pad has multiple load sensors delivering highly precise weighing results with an accuracy of 0.1%. Additionally, weight pads exhibit a deflection of 0,53 mm or less at 500 kg.
+                    </p>
+                </div>
+                <div class="bg-blue-50 rounded-xl p-6 feature-card animate-float-up delay-400">
+                    <img src="../assets/max1.webp" alt="" class="rounded-lg shadow-md image-hover">
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-blue-50 rounded-xl p-6 feature-card animate-float-up delay-500">
+                    <img src="../assets/max2.webp" alt="" class="rounded-lg shadow-md image-hover">
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6 feature-card animate-float-up delay-600">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-400 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-car text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Race Scales for All Vehicle Types</h3>
+                    <p class="text-gray-600 text-sm">
+                        Whether you have a motorcycle, the lightest kit car, or an off-road truck, scale your vehicle confidently. The load capacity of each corner weight scale pad is up to 1200 kg without sacrificing weighing accuracy.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 rounded-xl p-6 feature-card animate-float-up delay-700">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-400 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-level-up-alt text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Levelling Has Never Been Easier</h3>
+                    <p class="text-gray-600 text-sm">
+                     We solved one of the trickiest parts of the car’s weighing and leveling. Each pad has 5 leveling screwable legs and a built-in level. With these features, you can ensure accurate weighing results without worrying about leveling the scales.
+                    </p>
+                </div>
+                <div class="bg-blue-50 rounded-xl p-6 feature-card animate-float-up delay-800">
+                    <img src="../assets/max3.webp" alt="" class="rounded-lg shadow-md image-hover">
+                </div>
+
+                 <!-- Feature 4 -->
+                <div class="bg-blue-50 rounded-xl p-6 feature-card animate-float-up delay-900">
+                    <img src="../assets/max4.webp" alt="" class="rounded-lg shadow-md image-hover">
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6 feature-card animate-float-up delay-1000">
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-400 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-sync-alt text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Continuous Updates</h3>
+                    <p class="text-gray-600 text-sm">
+                        We listen to our customers’ feedback and continuously update our racing equipment. You’ll automatically get all new app features as we release them.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-gray-50 rounded-xl p-6 feature-card animate-float-up delay-1100">
+                    <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-400 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-mobile-alt text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">No Unnecessary Devices</h3>
+                    <p class="text-gray-600 text-sm">
+                        No hassle with proprietary devices that have no other purpose. Access LABA7 wireless racing scales via your device. Compatible with iOS and Android. Simply install the AP Measurement app and connect to the scale pads via Bluetooth 5.1.
+                    </p>
+                </div>
+                <div class="bg-blue-50 rounded-xl p-6 feature-card animate-float-up delay-1200">
+                    <img src="../assets/max5.webp" alt="" class="rounded-lg shadow-md image-hover">
+                </div>
+            </div>
+
+            <!-- award section -->
+            <div class="mt-12 text-center">
+                <h2 class="text-2xl font-bold mb-4 animate-fade-in">Award-winning Design</h2>
+                <p class="text-gray-700 text-sm mb-4 animate-fade-in delay-200">
+                    AP Measurements Racing scales design secured first place in the 12th Annual Design Awards.
+                </p>
+                <p class="text-gray-700 text-sm mb-6 animate-fade-in delay-300">
+                    Our victory underscores commitment to pushing design boundaries and delivering exceptional products.
+                </p>
+                <div class="mt-6 animate-fade-in delay-400">
+                    <img src="../assets/award.webp" alt="" class="rounded-lg shadow-lg mx-auto image-hover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How-to Section -->
+    <section class="section-padding bg-blue-50 text-gray-700">
+        <div class="container mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 animate-fade-in">
+                    How to <span class="text-blue-600">Accurately</span> Weigh Your Racing Vehicle
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-sm animate-fade-in delay-200">
+                    Simple steps to achieve perfect balance and optimal performance
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <!-- Step 1 -->
+                <div class="text-center animate-float-up delay-300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xl font-bold text-white">1</span>
+                    </div>
+                    <h3 class="text-base font-bold mb-2">Balance Scales</h3>
+                    <p class="text-gray-600 text-xs">
+                        Use LABA7 laser leveling or built-in bubble leveler.
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="text-center animate-float-up delay-400">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xl font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-base font-bold mb-2">Measure Distances</h3>
+                    <p class="text-gray-600 text-xs">
+                       Measure distances between wheels and axles.
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="text-center animate-float-up delay-500">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xl font-bold text-white">3</span>
+                    </div>
+                    <h3 class="text-base font-bold mb-2">Position Vehicle</h3>
+                    <p class="text-gray-600 text-xs">
+                        Lift car and slide pads under wheels.
+                    </p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="text-center animate-float-up delay-600">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xl font-bold text-white">4</span>
+                    </div>
+                    <h3 class="text-base font-bold mb-2">Put On Scales</h3>
+                    <p class="text-gray-600 text-xs">
+                        Place vehicle onto scales or use drive-on accessory.
+                    </p>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="text-center animate-float-up delay-700">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="text-xl font-bold text-white">5</span>
+                    </div>
+                    <h3 class="text-base font-bold mb-2">Connect & Analyze</h3>
+                    <p class="text-gray-600 text-xs">
+                        Open app on iOS or Android device and connect.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 px-4 bg-gray-100 text-gray-700">
+        <div class="container mx-auto">
+            <div class="max-w-5xl mx-auto text-center">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 animate-fade-in">
+                   Accessories for <span class="text-blue-600">AP Measurement Scales</span>
+                </h2>
+                <p class="text-sm mb-8 max-w-3xl mx-auto animate-fade-in delay-200">
+                  Every detail counts. Purpose-built accessories add extra features and functionality for different setups.
+                </p>
+
+                <button class="btn-glow bg-blue-600 text-white px-6 py-3 rounded-lg font-bold mb-8 animate-fade-in delay-300">
+                    Accessories for All Scales
+                </button>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                    <div class="animate-float-up delay-400">
+                        <img src="../assets/accessories1.webp" alt="" class="rounded-lg shadow-md image-hover">
+                    </div>
+                    <div class="animate-float-up delay-500">
+                        <img src="../assets/accessories2.webp" alt="" class="rounded-lg shadow-md image-hover">
+                    </div>
+                    <div class="animate-float-up delay-600">
+                        <img src="../assets/accessories3.webp" alt="" class="rounded-lg shadow-md image-hover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div data-include="/Footer/footer.html" class="relative z-10"></div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 w-10 h-10 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 transition-all duration-300 hover:bg-blue-700 z-50">
+        <i class="fas fa-chevron-up text-sm"></i>
+    </button>
+
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize animations on scroll
+            function initScrollAnimations() {
+                const animatedElements = document.querySelectorAll('.animate-float-up, .animate-fade-in, .animate-slide-left, .animate-slide-right');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const delay = Math.min(entry.boundingClientRect.top / 100, 1) * 300;
+                            
+                            setTimeout(() => {
+                                entry.target.style.opacity = '1';
+                                if (entry.target.classList.contains('animate-float-up')) {
+                                    entry.target.style.transform = 'translateY(0)';
+                                }
+                                if (entry.target.classList.contains('animate-slide-left')) {
+                                    entry.target.style.transform = 'translateX(0)';
+                                }
+                                if (entry.target.classList.contains('animate-slide-right')) {
+                                    entry.target.style.transform = 'translateX(0)';
+                                }
+                            }, delay);
+                            
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+                
+                animatedElements.forEach(el => {
+                    observer.observe(el);
+                });
+            }
+            
+            // Back to top button
+            function initBackToTop() {
+                const backToTopBtn = document.getElementById('backToTop');
+                
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.style.opacity = '1';
+                        backToTopBtn.style.pointerEvents = 'auto';
+                    } else {
+                        backToTopBtn.style.opacity = '0';
+                        backToTopBtn.style.pointerEvents = 'none';
+                    }
+                });
+                
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Initialize floating elements animation
+            function initFloatingElements() {
+                const floatingElements = document.querySelectorAll('.floating-element');
+                floatingElements.forEach((el, index) => {
+                    el.style.animationDelay = `${index * 0.5}s`;
+                });
+            }
+            
+            // Add hover effects to cards
+            function initCardEffects() {
+                const cards = document.querySelectorAll('.feature-card');
+                cards.forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        this.style.transition = 'all 0.3s ease';
+                    });
+                });
+            }
+            
+            // Initialize everything
+            initScrollAnimations();
+            initBackToTop();
+            initFloatingElements();
+            initCardEffects();
+            
+            // Add click effect to buttons
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('mousedown', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+                
+                button.addEventListener('mouseup', function() {
+                    this.style.transform = '';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+            
+            // Image hover effects
+            const images = document.querySelectorAll('.image-hover');
+            images.forEach(img => {
+                img.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.4s ease';
+                });
+            });
+            
+            // Table row hover effects
+            const tableRows = document.querySelectorAll('.specs-table tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s ease';
+                });
+            });
+        });
+        
+        // Simple parallax effect for floating elements
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const floatingElements = document.querySelectorAll('.floating-element');
+            
+            floatingElements.forEach((el, index) => {
+                const speed = 0.1 + (index * 0.05);
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
