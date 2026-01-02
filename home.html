@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="/favicon_io/site.webmanifest">
+  <title>AP MEASUREMENTS - Precision Suspension Testing Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./include.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./Header/header.css">
+  <link rel="stylesheet" href="./Footer/footer.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#dc2626',
+            'primary-dark': '#c91621',
+            
+            dark: '#1f2937',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+          animation: {
+            'fade-in': 'fadeIn 1.2s ease-out forwards',
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'fade-in-down': 'fadeInDown 0.8s ease-out forwards',
+            'slide-in-left': 'slideInLeft 1s ease-out forwards',
+            'scale-in': 'scaleIn 0.8s ease-out forwards',
+            'float': 'float 6s ease-in-out infinite',
+            'float1': 'float1 20s infinite ease-in-out',
+            'float2': 'float2 25s infinite ease-in-out',
+            'float3': 'float3 18s infinite ease-in-out',
+            'float4': 'float4 22s infinite ease-in-out',
+            'float5': 'float5 30s infinite ease-in-out',
+            'pulse-custom': 'pulseCustom 8s infinite',
+            'bounce-slow': 'bounceSlow 2s ease-in-out infinite',
+            'bounce-horizontal': 'bounceHorizontal 1s ease-in-out infinite',
+            'spin-slow': 'spinSlow 4s linear infinite',
+            'gradient-x': 'gradientX 3s ease infinite',
+            'border-pulse': 'borderPulse 3s ease-in-out infinite',
+            'pulse-slow': 'pulseSlow 2s ease-in-out infinite',
+            'ripple': 'ripple 0.6s linear',
+            'running-time': 'runningTime 7s linear forwards',
+            'carousel-animate': 'carouselAnimate 1s ease-in-out',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeInDown: {
+              '0%': { opacity: '0', transform: 'translateY(-30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            slideInLeft: {
+              '0%': { opacity: '0', transform: 'translateX(-80px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.9)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            float1: {
+              '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+              '50%': { transform: 'translate(30px, -30px) rotate(180deg)' },
+            },
+            float2: {
+              '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+              '50%': { transform: 'translate(-40px, 20px) rotate(-180deg)' },
+            },
+            float3: {
+              '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+              '50%': { transform: 'translate(20px, 40px) scale(1.2)' },
+            },
+            float4: {
+              '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+              '50%': { transform: 'translate(-30px, -40px) rotate(90deg)' },
+            },
+            float5: {
+              '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+              '50%': { transform: 'translate(40px, -20px) scale(0.8)' },
+            },
+            pulseCustom: {
+              '0%, 100%': { opacity: '0.1' },
+              '50%': { opacity: '0.4' },
+            },
+            bounceSlow: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-5px)' },
+            },
+            bounceHorizontal: {
+              '0%, 100%': { transform: 'translateX(0)' },
+              '50%': { transform: 'translateX(5px)' },
+            },
+            spinSlow: {
+              from: { transform: 'rotate(0deg)' },
+              to: { transform: 'rotate(360deg)' },
+            },
+            pulseSlow: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.5' },
+            },
+            gradientX: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            },
+            borderPulse: {
+              '0%, 100%': { opacity: '0.8', transform: 'scaleY(1)' },
+              '50%': { opacity: '1', transform: 'scaleY(1.05)', boxShadow: '0 0 15px rgba(249, 115, 22, 0.5)' },
+            },
+            ripple: {
+              to: { transform: 'scale(4)', opacity: '0' },
+            },
+            runningTime: {
+              from: { width: '0%' },
+              to: { width: '100%' },
+            },
+            carouselAnimate: {
+              from: { opacity: '0', transform: 'translate(0, 100px)', filter: 'blur(33px)' },
+              to: { opacity: '1', transform: 'translate(0)', filter: 'blur(0)' },
+            },
+          },
+          backgroundSize: {
+            '200': '200% 200%',
+          },
+        },
+      },
+    }
+  </script>
+
+<style>
+        /* Custom animations for carousel */
+        @keyframes carouselAnimate {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+        
+        @keyframes runningTime {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+        
+        /* Animation utility classes */
+        .animate-carousel {
+            animation: carouselAnimate 1s ease-in-out forwards;
+        }
+        
+        .animate-running-time {
+            animation: runningTime 7s linear forwards;
+        }
+        
+        /* Ensure proper stacking */
+        .carousel-item {
+            z-index: 1;
+        }
+        
+        .carousel-item.active {
+            z-index: 10;
+            opacity: 1 !important;
+        }
+        
+        .carousel-content {
+            z-index: 20;
+        }
+        
+        /* Thumbnail active state */
+        .thumbnail-item.active {
+            border-color: #34D399;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-inter min-h-screen overflow-x-hidden">
+
+<!-- Animated Background Boxes -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+  <div class="absolute w-20 h-20 top-[10%] left-[5%] border-2 border-orange-500/50 rounded animate-float1" style="animation: float1 20s infinite ease-in-out, pulseCustom 8s infinite;"></div>
+  <div class="absolute w-30 h-30 top-[30%] right-[10%] border-2 border-orange-500/50 rounded animate-float2" style="animation: float2 25s infinite ease-in-out, pulseCustom 10s infinite 1s;"></div>
+  <div class="absolute w-15 h-15 bottom-[20%] left-[15%] border-2 border-orange-500/50 rounded animate-float3" style="animation: float3 18s infinite ease-in-out, pulseCustom 7s infinite 2s;"></div>
+  <div class="absolute w-25 h-25 top-[15%] right-[20%] border-2 border-orange-500/50 rounded animate-float4" style="animation: float4 22s infinite ease-in-out, pulseCustom 9s infinite 0.5s;"></div>
+  <div class="absolute w-[70px] h-[70px] bottom-[30%] right-[5%] border-2 border-orange-500/50 rounded animate-float5" style="animation: float5 30s infinite ease-in-out, pulseCustom 12s infinite 1.5s;"></div>
+  <div class="absolute w-[90px] h-[90px] top-[60%] left-[5%] border-2 border-orange-500/50 rounded" style="animation: float1 24s infinite ease-in-out reverse, pulseCustom 11s infinite 0.8s;"></div>
+  <div class="absolute w-[110px] h-[110px] bottom-[10%] right-[20%] border-2 border-orange-500/50 rounded" style="animation: float2 28s infinite ease-in-out, pulseCustom 13s infinite 2.5s;"></div>
+  <div class="absolute w-[50px] h-[50px] top-[40%] left-[20%] border-2 border-orange-500/50 rounded" style="animation: float3 16s infinite ease-in-out, pulseCustom 6s infinite 3s;"></div>
+  <div class="absolute w-[130px] h-[130px] bottom-[40%] left-[30%] border-2 border-orange-500/50 rounded" style="animation: float4 32s infinite ease-in-out, pulseCustom 14s infinite 0.3s;"></div>
+  <div class="absolute w-[85px] h-[85px] top-[70%] right-[15%] border-2 border-orange-500/50 rounded" style="animation: float5 26s infinite ease-in-out, pulseCustom 15s infinite 1.8s;"></div>
+</div>
+
+<!-- Header -->
+<div data-include="/Header/header.html"></div>
+
+<!-- Hero Carousel Section -->
+<div class="relative w-full h-screen overflow-hidden">
+  <div class="carousel-list relative w-full h-full">
+    <!-- Slide 1 - Active -->
+    <div class="carousel-item active absolute inset-0 bg-cover bg-center transition-all duration-1000" style="background-image: url(https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=1920);">
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="carousel-content absolute top-1/2 left-8 md:left-24 transform -translate-y-1/2 w-11/12 md:w-96 text-left text-white z-10">
+        <div class="title text-3xl md:text-4xl text-white font-bold opacity-0 animate-carousel" style="animation-delay: 0.3s;">Precision Testing</div>
+        <div class="name text-2xl md:text-2xl text-blue-500 mt-6 md:mt-8 opacity-0 animate-carousel" style="animation-delay: 0.6s;">for Vehicle Dynamics and Performance</div>
+        <div class="des mt-6 md:mt-8 text-lg md:text-base opacity-0 animate-carousel" style="animation-delay: 0.9s;">AP Measurements designs, develops, and manufactures high-performance solutions for testing and measuring vehicle components and assemblies.</div>
+        <div class="btn mt-6 flex gap-3 md:gap-4 opacity-0 animate-carousel" style="animation-delay: 1.2s;">
+          <button class="px-4 md:px-5 py-2 md:py-2.5 border-none cursor-pointer text-sm md:text-base bg-blue-500 text-white rounded hover:bg-blue-600 transition">See More</button>
+          <button class="px-4 md:px-5 py-2 md:py-2.5 cursor-pointer text-sm md:text-base bg-transparent text-green-400 border-2 border-white rounded transition-all duration-300 hover:bg-green-400 hover:text-white">Subscribe</button>
+        </div>
+      </div>
+      
+     
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item active absolute inset-0 bg-cover bg-center transition-all duration-1000" style="background-image: url(https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=1920);">
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="carousel-content absolute top-1/2 left-8 md:left-24 transform -translate-y-1/2 w-11/12 md:w-96 text-left text-white z-10">
+        <div class="title text-3xl md:text-4xl text-white font-bold opacity-0 animate-carousel" style="animation-delay: 0.3s;">Advanced Technology</div>
+        <div class="name text-2xl text-blue-500 md:text-2xl mt-6 md:mt-8 opacity-0 animate-carousel" style="animation-delay: 0.6s;">Engineering Excellence</div>
+        <div class="des mt-6 md:mt-8 text-white text-lg md:text-base opacity-0 animate-carousel" style="animation-delay: 0.9s;">Cutting-edge solutions for professional motorsport teams and manufacturers worldwide.</div>
+        <div class="btn mt-6 flex gap-3 md:gap-4 opacity-0 animate-carousel" style="animation-delay: 1.2s;">
+          <button class="px-4 md:px-5 py-2 md:py-2.5 border-none cursor-pointer text-sm md:text-base bg-blue-500 text-white rounded hover:bg-blue-600 transition">See More</button>
+          <button class="px-4 md:px-5 py-2 md:py-2.5 cursor-pointer text-sm md:text-base bg-transparent text-green-400 border-2 border-white rounded transition-all duration-300 hover:bg-green-400 hover:text-white">Subscribe</button>
+        </div>
+      </div>
+      
+      
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item active absolute inset-0 bg-cover bg-center transition-all duration-1000" style="background-image: url(https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=1920);">
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="carousel-content absolute top-1/2 left-8 md:left-24 transform -translate-y-1/2 w-11/12 md:w-96 text-left text-white z-10">
+        <div class="title text-3xl md:text-4xl text-white font-bold opacity-0 animate-carousel" style="animation-delay: 0.3s;">Performance Testing</div>
+        <div class="name text-2xl md:text-2xl text-blue-500 mt-6 md:mt-8 opacity-0 animate-carousel" style="animation-delay: 0.6s;">Industry Leaders</div>
+        <div class="des mt-6 md:mt-8 text-lg md:text-base opacity-0 animate-carousel" style="animation-delay: 0.9s;">Trusted by F1, LMDh, and Dakar Rally teams for precision suspension testing.</div>
+        <div class="btn mt-6 flex gap-3 md:gap-4 opacity-0 animate-carousel" style="animation-delay: 1.2s;">
+          <button class="px-4 md:px-5 py-2 md:py-2.5 border-none cursor-pointer text-sm md:text-base bg-blue-500 text-white rounded hover:bg-blue-600 transition">See More</button>
+          <button class="px-4 md:px-5 py-2 md:py-2.5 cursor-pointer text-sm md:text-base bg-transparent text-green-400 border-2 border-white rounded transition-all duration-300 hover:bg-green-400 hover:text-white">Subscribe</button>
+        </div>
+      </div>
+      
+      
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="carousel-item active absolute inset-0 bg-cover bg-center transition-all duration-1000" style="background-image: url(https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg?auto=compress&cs=tinysrgb&w=1920);">
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="carousel-content absolute top-1/2 left-8 md:left-24 transform -translate-y-1/2 w-11/12 md:w-96 text-left text-white z-10">
+        <div class="title text-2xl md:text-3xl text-blue-400 font-bold opacity-0 animate-carousel" style="animation-delay: 0.3s;">Innovation Driven</div>
+        <div class="name text-lg md:text-xl mt-6 md:mt-8 opacity-0 animate-carousel" style="animation-delay: 0.6s;">Global Solutions</div>
+        <div class="des mt-6 md:mt-8 text-sm md:text-base opacity-0 animate-carousel" style="animation-delay: 0.9s;">Delivering reliability and innovation for motorsports, manufacturing, and R&D testing.</div>
+        <div class="btn mt-6 flex gap-3 md:gap-4 opacity-0 animate-carousel" style="animation-delay: 1.2s;">
+          <button class="px-4 md:px-5 py-2 md:py-2.5 border-none cursor-pointer text-sm md:text-base bg-white text-gray-900 rounded hover:bg-gray-100 transition">See More</button>
+          <button class="px-4 md:px-5 py-2 md:py-2.5 cursor-pointer text-sm md:text-base bg-transparent text-green-400 border-2 border-white rounded transition-all duration-300 hover:bg-green-400 hover:text-white">Subscribe</button>
+        </div>
+      </div>
+      
+      <!-- Right side image for slide 4 -->
+      <div class="absolute right-8 md:right-24 top-1/2 transform -translate-y-1/2 w-1/3 md:w-1/4 lg:w-1/5 h-3/5 hidden md:flex items-center justify-center z-20">
+        <img src="https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Innovation Driven" class="w-full h-full object-cover rounded-2xl shadow-2xl border-4 border-white/10">
+      </div>
+    </div>
+
+    <!-- Thumbnail Items -->
+    <div class="hidden lg:flex absolute bottom-20 right-[15%] gap-4 z-30">
+      <div class="thumbnail-item w-32 h-40 rounded-xl bg-cover bg-center cursor-pointer hover:scale-105 transition-transform duration-300 border-2 border-white/50" style="background-image: url(https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=400);" data-index="1"></div>
+      <div class="thumbnail-item w-32 h-40 rounded-xl bg-cover bg-center cursor-pointer hover:scale-105 transition-transform duration-300 border-2 border-white/50" style="background-image: url(https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=400);" data-index="2"></div>
+      <div class="thumbnail-item w-32 h-40 rounded-xl bg-cover bg-center cursor-pointer hover:scale-105 transition-transform duration-300 border-2 border-white/50" style="background-image: url(https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg?auto=compress&cs=tinysrgb&w=400);" data-index="3"></div>
+    </div>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <div class="absolute bottom-20 left-8 md:left-24 z-30 flex gap-3">
+    <button class="carousel-prev w-12 h-12 rounded-full bg-green-400 text-white border-none outline-none text-base font-bold transition-all duration-500 cursor-pointer hover:bg-white hover:text-gray-900 shadow-lg flex items-center justify-center">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="carousel-next w-12 h-12 rounded-full bg-green-400 text-white border-none outline-none text-base font-bold transition-all duration-500 cursor-pointer hover:bg-white hover:text-gray-900 shadow-lg flex items-center justify-center">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="carousel-time-running absolute z-40 w-0 h-1 bg-green-400 left-0 top-0 animate-running-time"></div>
+</div>
+
+<!-- About Section -->
+<section id="about" class="py-12 lg:py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="space-y-6 opacity-0 animate-fade-in-up">
+        <h2 class="text-2xl lg:text-3xl font-bold text-blue-500">About AP Measurements</h2>
+        <p class="text-base lg:text-lg leading-relaxed text-gray-600">
+          We are a leading manufacturer of precision suspension testing equipment with a global presence spanning decades. Our commitment to innovation, quality, and reliability has made us the trusted choice for professional motorsport teams worldwide.
+        </p>
+        <p class="text-base lg:text-lg leading-relaxed text-gray-600">
+          From F1 to Dakar Rally, our state-of-the-art tools empower engineers to push the limits of vehicle performance.
+        </p>
+        <a href="./about.html" class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-6 lg:px-8 py-1 lg:py-2 rounded-xl font-bold text-base lg:text-lg transition transform hover:scale-105 shadow-lg">
+          Learn More About Us <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+      <div class="opacity-0 animate-scale-in mt-8 md:mt-0">
+        <img src="./assets/IMAGES/about.png" alt="Company Facility" class=" shadow-2xl w-full h-64 lg:h-96 object-cover">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Suspension Tools Intro -->
+<section class="py-8 lg:py-12 bg-[#0B192C] mb-16">
+  <div class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-12">
+    <!-- Title Card -->
+    <div class="mb-6 lg:mb-8 text-center opacity-0 animate-fade-in-up">
+      <div class="text-white p-4 lg:p-6 rounded-xl lg:rounded-2xl shadow-lg transform transition-all duration-500 hover:scale-[1.02] border border-white hover:shadow-xl cursor-default">
+        <h2 class="text-lg lg:text-2xl font-bold animate-pulse">Suspension Testing Equipment & Tools</h2>
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
+      <!-- Card 1 -->
+      <div class="opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
+        <div class="h-64 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-lg p-5 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-xl border border-gray-200 hover:border-orange-500 group relative overflow-hidden cursor-pointer">
+          <!-- Animated left border -->
+          <div class="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-orange-400 to-orange-600 group-hover:w-2 transition-all duration-300"></div>
+          
+          <!-- Floating icon -->
+          <div class="flex items-center justify-center mb-3 animate-bounce" style="animation-delay: 0.3s;">
+            <div class="bg-gradient-to-r from-orange-100 to-orange-50 p-3 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-md">
+              <i class="fas fa-chart-line text-orange-500 text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-base lg:text-lg font-bold text-gray-900 mb-2 text-center group-hover:text-orange-600 transition-colors duration-300">Superior Performance Results</h3>
+          
+          <!-- Animated underline -->
+          <div class="w-12 h-0.5 bg-gradient-to-r from-orange-400 to-orange-600 mx-auto mb-3 rounded-full group-hover:w-20 transition-all duration-300"></div>
+          
+          <p class="text-xs lg:text-sm text-gray-600 leading-relaxed text-center line-clamp-3 group-hover:text-gray-800 transition-colors duration-300">
+            Achieve superior results with advanced suspension testing tools. Our equipment helps enhance vehicle performance.
+          </p>
+          
+          <!-- Background circles animation -->
+          <div class="absolute -top-3 -right-3 w-12 h-12 bg-orange-100 rounded-full opacity-50 group-hover:opacity-70 group-hover:scale-150 transition-all duration-700"></div>
+          <div class="absolute -bottom-3 -left-3 w-10 h-10 bg-blue-100 rounded-full opacity-50 group-hover:opacity-70 group-hover:scale-150 transition-all duration-700" style="animation-delay: 0.2s;"></div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="opacity-0 animate-fade-in-up" style="animation-delay: 0.4s;">
+        <div class="h-64 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-lg p-5 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-xl border border-gray-200 hover:border-orange-500 group relative overflow-hidden cursor-pointer">
+          <!-- Animated left border -->
+          <div class="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-orange-400 to-orange-600 group-hover:w-2 transition-all duration-300"></div>
+          
+          <!-- Bouncing icon -->
+          <div class="flex items-center justify-center mb-3 animate-bounce" style="animation-delay: 0.5s;">
+            <div class="bg-gradient-to-r from-orange-100 to-orange-50 p-3 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-md">
+              <i class="fas fa-car text-orange-500 text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-base lg:text-lg font-bold text-gray-900 mb-2 text-center group-hover:text-orange-600 transition-colors duration-300">Multi-Vehicle Applications</h3>
+          
+          <!-- Animated underline -->
+          <div class="w-12 h-0.5 bg-gradient-to-r from-orange-400 to-orange-600 mx-auto mb-3 rounded-full group-hover:w-20 transition-all duration-300"></div>
+          
+          <p class="text-xs lg:text-sm text-gray-600 leading-relaxed text-center line-clamp-3 group-hover:text-gray-800 transition-colors duration-300">
+            From mountain bikes to F1 race cars. Our tools are engineered for diverse applications.
+          </p>
+          
+          <!-- Background circles animation -->
+          <div class="absolute -top-3 -left-3 w-12 h-12 bg-orange-100 rounded-full opacity-50 group-hover:opacity-70 group-hover:scale-150 transition-all duration-700"></div>
+          <div class="absolute bottom-2 right-2 w-6 h-6 bg-blue-100 rounded-full opacity-70 animate-pulse"></div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="opacity-0 animate-fade-in-up" style="animation-delay: 0.6s;">
+        <div class="h-64 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-lg p-5 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-xl border border-gray-200 hover:border-orange-500 group relative overflow-hidden cursor-pointer">
+          <!-- Animated left border -->
+          <div class="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-orange-400 to-orange-600 group-hover:w-2 transition-all duration-300"></div>
+          
+          <!-- Bouncing icon -->
+          <div class="flex items-center justify-center mb-3 animate-bounce" style="animation-delay: 0.7s;">
+            <div class="bg-gradient-to-r from-orange-100 to-orange-50 p-3 rounded-lg group-hover:scale-110 transition-transform duration-300 shadow-md">
+              <i class="fas fa-tools text-orange-500 text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+            </div>
+          </div>
+          
+          <h3 class="text-base lg:text-lg font-bold text-gray-900 mb-2 text-center group-hover:text-orange-600 transition-colors duration-300">Professional Grade Design</h3>
+          
+          <!-- Animated underline -->
+          <div class="w-12 h-0.5 bg-gradient-to-r from-orange-400 to-orange-600 mx-auto mb-3 rounded-full group-hover:w-20 transition-all duration-300"></div>
+          
+          <p class="text-xs lg:text-sm text-gray-600 leading-relaxed text-center line-clamp-3 group-hover:text-gray-800 transition-colors duration-300">
+            Designed for accuracy, durability, and ease of use. Test, tune, and maintain with confidence.
+          </p>
+          
+          <!-- Background circles animation -->
+          <div class="absolute -bottom-3 -right-3 w-12 h-12 bg-orange-100 rounded-full opacity-50 group-hover:opacity-70 group-hover:scale-150 transition-all duration-700"></div>
+          <div class="absolute top-2 left-2 w-4 h-4 bg-orange-200 rounded-full animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Animated indicator dots -->
+    <div class="flex justify-center mt-6 lg:mt-8 space-x-2 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s;">
+      <div class="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+      <div class="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+      <div class="w-2 h-2 bg-orange-400 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+    </div>
+  </div>
+</section>
+
+
+
+
+   <!-- Products Grid -->
+<section class="">
+  <div class="border border-blue-500 p-6 mb-8 mx-24 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-500 bg-white opacity-0 animate-fade-in-up">
+  <h2 class="text-center text-2xl lg:text-3xl font-bold text-blue-500  ">Our Products</h2>
+  </div>
+  <div class="ml-24 grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-8">
+
+    <!-- Product Card 1 -->
+    <div
+      class="product-card bg-gray-200 relative h-72 w-72 group overflow-hidden cursor-pointer opacity-0 animate-fade-in-up"
+      style="animation-delay: 0.1s;">
+      <!-- Image Container -->
+      <div class="absolute inset-0 w-full h-full">
+        <img src="./assets/electromagnetic shock dyno(product).jpg" alt="Electromagnetic Shock Dyno"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+      </div>
+
+      <!-- Overlay with Info (Hidden by default, shows on hover) -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 lg:p-6">
+        <!-- Top accent bar -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600"></div>
+
+        <!-- Icon -->
+        <div class="absolute top-4 right-4 bg-white p-2 rounded-full shadow-lg">
+          <i class="fas fa-tachometer-alt text-blue-500"></i>
+        </div>
+
+        <!-- Content -->
+        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+          <h3 class="text-lg lg:text-xl font-bold text-white mb-2">Electromagnetic Shock Dyno</h3>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600 mb-3"></div>
+          <p class="text-sm text-gray-200">
+            Professional-grade dynos for comprehensive shock performance testing and validation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Card 2 -->
+    <div
+      class="product-card bg-gray-200 relative h-72 w-72 group overflow-hidden cursor-pointer opacity-0 animate-fade-in-up"
+      style="animation-delay: 0.2s;">
+      <div class="absolute inset-0 w-full h-full">
+        <img src="./assets/Shockk.png" alt="Shock Dynos"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+      </div>
+
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 lg:p-6">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600"></div>
+
+        <div class="absolute top-4 right-4 bg-white p-2 rounded-full shadow-lg">
+          <i class="fas fa-gauge-high text-blue-500"></i>
+        </div>
+
+        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+          <h3 class="text-lg lg:text-xl font-bold text-white mb-2">Shock Dynos</h3>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-blue-400 to-blue-600 mb-3"></div>
+          <p class="text-sm text-gray-200">
+            Professional testing equipment for shock absorber performance analysis.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Card 3 -->
+    <div
+      class="product-card bg-gray-200 relative h-72 w-72 group  overflow-hidden cursor-pointer opacity-0 animate-fade-in-up"
+      style="animation-delay: 0.3s;">
+      <div class="absolute inset-0 w-full h-full">
+        <img src="./assets/Spring Rate Tester(product2).jpg" alt="Spring Rate Testers"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+      </div>
+
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 lg:p-6">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 via-green-500 to-green-600"></div>
+
+        <div class="absolute top-4 right-4 bg-white p-2 rounded-full shadow-lg">
+          <i class="fas fa-weight-hanging text-green-500"></i>
+        </div>
+
+        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+          <h3 class="text-lg lg:text-xl font-bold text-white mb-2">Spring Rate Testers</h3>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-green-400 to-green-600 mb-3"></div>
+          <p class="text-sm text-gray-200">
+            High-accuracy measurement tools for spring stiffness analysis.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Card 4 -->
+    <div
+      class="product-card bg-gray-200 relative h-72 w-72 group  overflow-hidden cursor-pointer opacity-0 animate-fade-in-up"
+      style="animation-delay: 0.4s;">
+      <div class="absolute inset-0 w-full h-full">
+        <img src="./assets/Automaticproduct.jpg" alt="Automatic Shock Bleeders"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+      </div>
+
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 lg:p-6">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600">
+        </div>
+
+        <div class="absolute top-4 right-4 bg-white p-2 rounded-full shadow-lg">
+          <i class="fas fa-wind text-purple-500"></i>
+        </div>
+
+        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+          <h3 class="text-lg lg:text-xl font-bold text-white mb-2">Automatic Shock Bleeders</h3>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-purple-400 to-purple-600 mb-3"></div>
+          <p class="text-sm text-gray-200">
+            Efficient automated systems for complete air removal from suspensions.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Card 5 -->
+    <div
+      class="product-card bg-gray-200 relative h-72 w-72 group overflow-hidden cursor-pointer opacity-0 animate-fade-in-up"
+      style="animation-delay: 0.5s;">
+      <div class="absolute inset-0 w-full h-full">
+        <img src="./assets/corner weight scale(product4).jpg" alt="Corner Weight Scales"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+      </div>
+
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 lg:p-6">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-400 via-red-500 to-red-600"></div>
+
+        <div class="absolute top-4 right-4 bg-white p-2 rounded-full shadow-lg">
+          <i class="fas fa-balance-scale text-red-500"></i>
+        </div>
+
+        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+          <h3 class="text-lg lg:text-xl font-bold text-white mb-2">Corner Weight Scales</h3>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-red-400 to-red-600 mb-3"></div>
+          <p class="text-sm text-gray-200">
+            Precision scales for accurate vehicle weight distribution analysis.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Card 6 -->
+    <div
+      class="product-card bg-gray-200 relative h-72 w-72 group overflow-hidden cursor-pointer opacity-0 animate-fade-in-up"
+      style="animation-delay: 0.6s;">
+      <div class="absolute inset-0 w-full h-full">
+        <img src="./assets/suspension tool(product5).jpg" alt="Suspension Tools"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+      </div>
+
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-4 lg:p-6">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600"></div>
+
+        <div class="absolute top-4 right-4 bg-white p-2 rounded-full shadow-lg">
+          <i class="fas fa-tools text-amber-500"></i>
+        </div>
+
+        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+          <h3 class="text-lg lg:text-xl font-bold text-white mb-2">Suspension Tools</h3>
+          <div class="w-12 h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 mb-3"></div>
+          <p class="text-sm text-gray-200">
+            Specialized professional tools for suspension system maintenance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+  
+
+<!-- EMA Section -->
+<section class="py-12 lg:py-20 bg-[#0B192C] relative overflow-hidden">
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-0 left-0 w-32 h-32 bg-orange-500 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="container mx-auto max-w-7xl relative z-10 px-4 sm:px-6 lg:px-12">
+    <div class="text-center mb-8 lg:mb-12 border border-white/20 p-6 rounded-xl shadow-lg">
+      <h2 class="text-2xl lg:text-4xl font-bold text-white mb-3">
+        EMA: <span class="text-orange-600">Most Advanced</span> Testing Solution
+      </h2>
+      <p class="text-base lg:text-lg text-gray-300 max-w-2xl mx-auto">
+        AP Measurement's Electromagnetic Damper Test System
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8 items-center">
+      <!-- Left Image Placeholder -->
+      <div class="flex justify-center">
+        <div class="relative group w-full max-w-sm">
+         <img src="./assets/electromagnetic shock dyno(product).jpg" alt="" class="rounded-xl lg:rounded-2xl shadow-lg">
+        </div>
+      </div>
+
+      <!-- Middle Content - Shortened Container -->
+      <div class="space-y-4">
+        <div class="space-y-3 max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
+         
+          <!-- Feature 1 -->
+          <div class="bg-white rounded-xl p-3 lg:p-4 shadow-lg border-l-4 border-blue-500 transform hover:scale-[1.02] transition-all duration-200">
+            <div class="flex items-start gap-2 lg:gap-3">
+              <div class="bg-purple-100 p-2 rounded-lg flex-shrink-0">
+                <i class="fas fa-bolt text-base lg:text-lg text-purple-600"></i>
+              </div>
+              <div>
+                <h3 class="text-sm lg:text-base font-bold text-gray-900 mb-1">Electromagnetic Precision</h3>
+                <p class="text-xs lg:text-sm text-gray-600">
+                  <span class="text-purple-600 font-semibold">Linear actuation</span> for unmatched control.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="bg-white rounded-xl p-3 lg:p-4 shadow-lg border-l-4 border-blue-500 transform hover:scale-[1.02] transition-all duration-200">
+            <div class="flex items-start gap-2 lg:gap-3">
+              <div class="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+                <i class="fas fa-cogs text-base lg:text-lg text-blue-600"></i>
+              </div>
+              <div>
+                <h3 class="text-sm lg:text-base font-bold text-gray-900 mb-1">Efficient Operation</h3>
+                <p class="text-xs lg:text-sm text-gray-600">
+                  <span class="text-blue-600 font-semibold">Silent</span> with <span class="text-blue-600 font-semibold">minimal maintenance</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="bg-white rounded-xl p-3 lg:p-4 shadow-lg border-l-4 border-emerald-500 transform hover:scale-[1.02] transition-all duration-200">
+            <div class="flex items-start gap-2 lg:gap-3">
+              <div class="bg-emerald-100 p-2 rounded-lg flex-shrink-0">
+                <i class="fas fa-flag-checkered text-base lg:text-lg text-emerald-600"></i>
+              </div>
+              <div>
+                <h3 class="text-sm lg:text-base font-bold text-gray-900 mb-1">Professional Grade</h3>
+                <p class="text-xs lg:text-sm text-gray-600">
+                  For <span class="text-emerald-600 font-semibold">high-end motorsports</span> teams.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Features Grid -->
+          <div class="bg-orange-600 rounded-xl p-4 shadow-xl mt-2">
+            <h3 class="text-sm lg:text-base font-bold text-white mb-3 text-center">Key Advantages</h3>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="flex items-center gap-2 p-2 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors duration-200 group">
+                <span class="text-orange-400 text-sm">⚡</span>
+                <span class="text-white text-xs group-hover:text-white">Linear actuation</span>
+              </div>
+              <div class="flex items-center gap-2 p-2 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors duration-200 group">
+                <span class="text-blue-400 text-sm">🔬</span>
+                <span class="text-white text-xs group-hover:text-white">HIL compatible</span>
+              </div>
+              <div class="flex items-center gap-2 p-2 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors duration-200 group">
+                <span class="text-emerald-400 text-sm">🎯</span>
+                <span class="text-white text-xs group-hover:text-white">High accuracy</span>
+              </div>
+              <div class="flex items-center gap-2 p-2 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors duration-200 group">
+                <span class="text-purple-400 text-sm">📊</span>
+                <span class="text-white text-xs group-hover:text-white">High resolution</span>
+              </div>
+              <div class="flex items-center gap-2 p-2 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors duration-200 group">
+                <span class="text-red-400 text-sm">🚀</span>
+                <span class="text-white text-xs group-hover:text-white">High-speed testing</span>
+              </div>
+              <div class="flex items-center gap-2 p-2 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors duration-200 group">
+                <span class="text-yellow-400 text-sm">🔋</span>
+                <span class="text-white text-xs group-hover:text-white">Low power input</span>
+              </div>
+              <div class="flex items-center gap-2 p-2 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors duration-200 group">
+                <span class="text-indigo-400 text-sm">🔇</span>
+                <span class="text-white text-xs group-hover:text-white">Low noise levels</span>
+              </div>
+              <div class="flex items-center gap-2 p-2 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors duration-200 group">
+                <span class="text-green-400 text-sm">💰</span>
+                <span class="text-white text-xs group-hover:text-white">Low maintenance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Optional: Show scroll hint on desktop -->
+        <div class="hidden lg:flex items-center justify-center pt-2">
+          <div class="text-xs text-gray-500 flex items-center gap-1">
+            <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+            <span>Scroll for more</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Image Placeholder -->
+      <div class="flex justify-center mt-6 lg:mt-0">
+        <div class="relative group w-full max-w-sm">
+         <img src="./assets/EMA-power-supply-unit-LABA7.webp" alt="" class="rounded-xl lg:rounded-2xl shadow-lg">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA -->
+<section id="contact" class="py-8 lg:py-12 bg-gradient-to-br from-white to-blue-50/30 relative overflow-hidden">
+  <!-- Animated background elements -->
+  <div class="absolute inset-0 overflow-hidden opacity-10">
+    <div class="absolute -top-20 -left-20 w-40 h-40 bg-blue-400 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute -bottom-20 -right-20 w-40 h-40 bg-orange-400 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+    <div class="absolute top-1/2 left-1/3 w-32 h-32 bg-purple-300 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+  </div>
+
+  <div class="container mx-auto text-center max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Animated floating text -->
+    <h2 class="text-xl lg:text-3xl text-blue-500 font-bold mb-4 lg:mb-6 opacity-0 animate-fade-in-up transform hover:scale-105 transition-transform duration-300 cursor-default">
+      Let's <span class="text-orange-500 animate-pulse">Connect</span>
+    </h2>
+    
+    <!-- Typing text animation -->
+    <div class="mb-6 lg:mb-8 min-h-[3rem]">
+      <p class="text-sm lg:text-base text-gray-600 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
+        Questions about our products? Need a custom solution?
+      </p>
+      <p class="text-sm lg:text-base text-gray-600 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s;">
+        We're here to help!
+      </p>
+    </div>
+    
+    <!-- Animated button with hover effects -->
+    <div class="relative inline-block group opacity-0 animate-fade-in-up" style="animation-delay: 0.6s;">
+      <!-- Button background effect -->
+      <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-orange-500 rounded-2xl blur opacity-30 group-hover:opacity-70 transition duration-500 group-hover:duration-200 animate-pulse"></div>
+      
+      <!-- Main button -->
+      <button class="relative bg-gradient-to-r from-blue-500 to-blue-600 group-hover:from-blue-600 group-hover:to-blue-700 text-white text-sm lg:text-base font-semibold py-2 lg:py-3 px-8 lg:px-12 rounded-xl lg:rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-95">
+  <a href="./contact.html" class="flex items-center justify-center gap-2 no-underline w-full h-full text-inherit">
+    <span class="relative">
+      Contact Us
+      <!-- Underline animation -->
+      <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
+    </span>
+    <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+  </a>
+</button>
+      
+      <!-- Floating icons around button -->
+      <div class="absolute -top-3 -right-3 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-md animate-bounce" style="animation-delay: 0.1s;">
+        <i class="fas fa-comment text-blue-500 text-xs"></i>
+      </div>
+      <div class="absolute -bottom-2 -left-3 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-md animate-bounce" style="animation-delay: 0.3s;">
+        <i class="fas fa-phone text-orange-500 text-xs"></i>
+      </div>
+    </div>
+    
+    <!-- Quick contact info with hover animation -->
+    <div class="mt-6 lg:mt-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.8s;">
+      <p class="text-xs lg:text-sm text-gray-500">
+        Or reach us directly: 
+        <a href="mailto:info@example.com" class="text-blue-500 font-medium hover:text-blue-600 transition-colors duration-300 hover:underline ml-1">
+          info@apdynamics.com
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div data-include="/Footer/footer.html"></div>
+
+<!-- JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const nextBtn = document.querySelector('.carousel-next');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const items = document.querySelectorAll('.carousel-item');
+    const runningTime = document.querySelector('.carousel-time-running');
+
+    let currentIndex = 0;
+    const totalItems = items.length;
+    let timeAutoNext = 7000;
+    let runNextAuto;
+
+    function showSlide(index) {
+      items.forEach((item, i) => {
+        if (i === index) {
+          item.style.opacity = '1';
+          item.style.zIndex = '1';
+          const content = item.querySelector('.carousel-content');
+          if (content) {
+            content.classList.remove('hidden');
+            const elements = content.querySelectorAll('.title, .name, .des, .btn');
+            elements.forEach((el, idx) => {
+              el.style.opacity = '0';
+              el.style.animation = `carouselAnimate 1s ease-in-out ${0.3 + idx * 0.3}s 1 forwards`;
+            });
+          }
+        } else {
+          item.style.opacity = '0';
+          item.style.zIndex = '0';
+          const content = item.querySelector('.carousel-content');
+          if (content) content.classList.add('hidden');
+        }
+      });
+      currentIndex = index;
+    }
+
+    function nextSlide() {
+      showSlide((currentIndex + 1) % totalItems);
+      resetTimeAnimation();
+    }
+
+    function prevSlide() {
+      showSlide((currentIndex - 1 + totalItems) % totalItems);
+      resetTimeAnimation();
+    }
+
+    function resetTimeAnimation() {
+      clearTimeout(runNextAuto);
+      runningTime.style.animation = 'none';
+      runningTime.offsetHeight;
+      runningTime.style.animation = 'runningTime 7s linear forwards';
+      runNextAuto = setTimeout(nextSlide, timeAutoNext);
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    showSlide(0);
+    resetTimeAnimation();
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-down, .animate-scale-in, .product-card');
+    animatedElements.forEach(el => observer.observe(el));
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

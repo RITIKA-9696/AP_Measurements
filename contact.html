@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AP DYNAMICS - Contact Us</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="/favicon_io/site.webmanifest">
+  <title>Contact - AP Measurements</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="./include.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/Header/header.css">
   <link rel="stylesheet" href="/Footer/footer.css">
-  <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   
   <script>
@@ -18,302 +21,258 @@
       theme: {
         extend: {
           colors: {
-            primary: '#dc2626',
-            'primary-dark': '#c91621',
-            dark: '#1f2937',
-            'gray-600': '#4b5563',
             'blue-primary': '#155379',
-            'blue-light': '#67B2D8',
             'laba-blue': '#155379',
-            'laba-dark': '#1f2937',
-            'laba-light': '#f3f4f6'
+            'orange-500': '#f97316',
           },
-          fontFamily: {
-            'inter': ['Inter', 'sans-serif']
+          animation: {
+            'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+            'float': 'float 3s ease-in-out infinite',
+            'pulse-slow': 'pulse 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2s linear infinite',
+            'slide-in': 'slideIn 0.5s ease-out forwards',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% center' },
+              '100%': { backgroundPosition: '200% center' },
+            },
+            slideIn: {
+              '0%': { opacity: '0', transform: 'translateX(-20px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
           }
         }
       }
     }
   </script>
+  
   <style>
-    html, body {
-      overflow-x: hidden;
-      width: 100%;
-      max-width: 100%;
-      font-family: 'Inter', sans-serif;
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    
+    .animate-gradient-shift {
+      background-size: 200% 200%;
+      animation: gradient-shift 3s ease infinite;
     }
-
-    /* Form styling */
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      ring: 2px;
+    
+    .card-hover {
+      transition: all 0.3s ease;
     }
-
-    /* Success/Error message animations */
-    .alert-message {
-      animation: slideDown 0.3s ease-out;
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    
+    .input-focus {
+      transition: all 0.3s ease;
     }
-
-    /* Form validation styles */
-    input:invalid, textarea:invalid {
-      border-color: #f87171;
+    
+    .input-focus:focus {
+      transform: scale(1.02);
     }
-
-    input:valid, textarea:valid {
-      border-color: #10b981;
+    
+    .success-bounce {
+      animation: bounce 0.5s ease;
     }
-
-    /* Make form scrollable */
-    .form-container {
-      max-height: 650px;
-      overflow-y: auto;
-      padding-right: 8px;
-    }
-
-    /* Custom scrollbar for form */
-    .form-container::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .form-container::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
-    }
-
-    .form-container::-webkit-scrollbar-thumb {
-      background: #c1c1c1;
-      border-radius: 10px;
-    }
-
-    .form-container::-webkit-scrollbar-thumb:hover {
-      background: #a1a1a1;
+    
+    @keyframes bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
   </style>
 </head>
 
-<body class="bg-[#F5EDED] min-h-screen font-inter mt-8">
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen font-inter">
 
   <!-- ==================== HEADER ==================== -->
   <div data-include="/Header/header.html"></div>
 
-  <!-- ==================== CONTACT PAGE CONTENT ==================== -->
-  <main class="pt-8">
-    <!-- Contact Section -->
-    <section id="contact" class="py-8 mt-4">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-8 text-gray-700">Contact Us</h2>
+  <!-- ==================== CONTACT PAGE ==================== -->
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="py-8 md:py-12">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-10 opacity-0 animate-fade-in-up">
+          <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent animate-gradient-shift">
+            Contact AP MEASUREMENTS
+          </h1>
+          <p class="text-gray-600 mt-3 max-w-xl mx-auto text-sm">
+            Get in touch for precision suspension solutions
+          </p>
+          
+          <!-- Animated dots -->
+          <div class="flex justify-center gap-1 mt-4">
+            <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+            <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+            <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+          </div>
+        </div>
         
-        <div class="flex flex-col lg:flex-row gap-6 w-full max-w-6xl mx-auto">
-          <!-- Left Column: Contact Info & Map -->
-          <div class="lg:w-1/2 flex flex-col gap-6">
-            <!-- Contact Info Card -->
-            <div class="bg-gray-100 p-6 rounded-xl shadow-lg h-auto">
-              <h3 class="text-xl font-semibold mb-4 text-gray-700 text-center">Get In Touch</h3>
-              <p class="mb-5 text-gray-600 text-base">
-                Interested in our industrial solutions? Contact our sales team for pricing, technical specifications, 
-                or to schedule a demonstration of our products.
-              </p>
+        <!-- Main Content -->
+        <div class="flex flex-col lg:flex-row gap-6 max-w-5xl mx-auto">
+          
+          <!-- Left Column - Contact Info -->
+          <div class="lg:w-2/5 space-y-5">
+            <!-- Contact Card -->
+            <div class="bg-white rounded-xl shadow-lg p-6 card-hover opacity-0 animate-fade-in-up" style="animation-delay: 0.2s">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-8 h-1 bg-orange-500 rounded-full"></div>
+                <h3 class="text-lg font-semibold text-gray-800">Quick Contact</h3>
+              </div>
               
-              <div class="space-y-5">
-                <div class="flex items-start">
-                  <div class="bg-blue-100 p-2 rounded-full mr-3 flex-shrink-0">
-                    <i class="fas fa-envelope text-laba-blue text-base"></i>
+              <div class="space-y-4">
+                <!-- Email -->
+                <div class="flex items-start gap-3 group">
+                  <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                    <i class="fas fa-envelope text-blue-600 text-sm"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-base">Email</h4>
-                    <p class="text-gray-700 text-sm">ashish@apmeasurements.com</p>
+                    <p class="text-xs text-gray-500">Email</p>
+                    <p class="text-sm font-medium text-gray-800">ashish@apmeasurements.com</p>
                   </div>
                 </div>
                 
-                <div class="flex items-start">
-                  <div class="bg-blue-100 p-2 rounded-full mr-3 flex-shrink-0">
-                    <i class="fas fa-phone text-laba-blue text-base"></i>
+                <!-- Phone -->
+                <div class="flex items-start gap-3 group">
+                  <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                    <i class="fas fa-phone text-green-600 text-sm"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-base">Phone</h4>
-                    <p class="text-gray-700 text-sm">+91 8793505677</p>
+                    <p class="text-xs text-gray-500">Phone</p>
+                    <p class="text-sm font-medium text-gray-800">+91 8793505677</p>
                   </div>
                 </div>
                 
-                <div class="flex items-start">
-                  <div class="bg-blue-100 p-2 rounded-full mr-3 flex-shrink-0">
-                    <i class="fas fa-map-marker-alt text-laba-blue text-base"></i>
+                <!-- Address -->
+                <div class="flex items-start gap-3 group">
+                  <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
+                    <i class="fas fa-map-marker-alt text-orange-600 text-sm"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-base">Address</h4>
-                    <p class="text-gray-700 text-sm">Sr. No. - 40/1/4/4, FL No - C-504, Lotus Laxmi-2</p>
-                    <p class="text-gray-700 text-sm">Pimpri Chinchwad, Ravet, Pune, Maharashtra, 411035</p>
-                    <p class="text-gray-700 text-sm">India</p>
+                    <p class="text-xs text-gray-500">Location</p>
+                    <p class="text-sm font-medium text-gray-800">Pune, Maharashtra</p>
+                    <p class="text-xs text-gray-500 mt-1">India 411035</p>
                   </div>
                 </div>
+              </div>
+              
+              <!-- Hours -->
+              <div class="mt-6 pt-5 border-t border-gray-100">
+                <p class="text-xs text-gray-500 mb-2">Response Time</p>
+                <p class="text-sm font-medium text-gray-800">Within 24 hours</p>
               </div>
             </div>
-
-            <!-- Map Card -->
-            <div class="bg-laba-light p-6 rounded-xl shadow-lg h-auto">
-              <h3 class="text-xl font-semibold mb-4 text-laba-blue">Our Location</h3>
-              <div class="bg-gray-200 h-56 rounded-lg overflow-hidden">
-                <!-- Updated Google Maps Embed with exact address -->
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.265588856342!2d73.91456!3d18.562695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c147b8b3a3bf%3A0x6f7fdcc8e4d6c77e!2sLotus%20Laxmi-2%2C%20Sr.%20No.%2040%2F1%2F4%2F4%2C%20FL%20No%20C-504%2C%20Ravet%2C%20Pimpri-Chinchwad%2C%20Maharashtra%20411035%2C%20India!5e0!3m2!1sen!2sus!4v1647857293159" 
-                  width="100%" 
-                  height="100%" 
-                  style="border:0;" 
-                  allowfullscreen="" 
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+            
+            <!-- Map -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover opacity-0 animate-fade-in-up" style="animation-delay: 0.3s">
+              <div class="p-5">
+                <h4 class="font-semibold text-gray-800 mb-3">Our Location</h4>
+                <div class="h-48 rounded-lg overflow-hidden">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.265588856342!2d73.91456!3d18.562695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c147b8b3a3bf%3A0x6f7fdcc8e4d6c77e!2sLotus%20Laxmi-2%2C%20Sr.%20No.%2040%2F1%2F4%2F4%2C%20FL%20No%20C-504%2C%20Ravet%2C%20Pimpri-Chinchwad%2C%20Maharashtra%20411035%2C%20India!5e0!3m2!1sen!2sus!4v1647857293159" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                </div>
               </div>
-              <p class="text-sm text-gray-600 mt-3 text-center">
-                Lotus Laxmi-2, Ravet, Pimpri-Chinchwad, Maharashtra
-              </p>
             </div>
           </div>
           
-          <!-- Right Column: Contact Form -->
-          <div class="lg:w-1/2">
-            <div class="bg-white border border-gray-200 p-6 rounded-xl shadow-lg h-full">
-              <h3 class="text-xl font-semibold mb-5 text-gray-700 text-center">Send a Message</h3>
+          <!-- Right Column - Form -->
+          <div class="lg:w-3/5">
+            <div class="bg-white rounded-xl shadow-lg p-6 card-hover opacity-0 animate-fade-in-up" style="animation-delay: 0.4s">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-8 h-1 bg-blue-600 rounded-full"></div>
+                <h3 class="text-lg font-semibold text-gray-800">Send Message</h3>
+              </div>
               
-              <!-- Scrollable form container -->
-              <div class="form-container">
-                <form id="contact-form">
-                  <!-- Name and Email -->
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
-                        Name <span class="text-red-500">*</span>
-                      </label>
-                      <input 
-                        type="text" 
-                        id="name" 
-                        name="name"
-                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                        placeholder="Your full name"
-                        required
-                      >
-                      <div class="text-xs text-red-500 mt-1 hidden" id="name-error">Please enter your name</div>
-                    </div>
-                    <div>
-                      <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
-                        Email <span class="text-red-500">*</span>
-                      </label>
-                      <input 
-                        type="email" 
-                        id="email" 
-                        name="email"
-                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                        placeholder="your.email@example.com"
-                        required
-                      >
-                      <div class="text-xs text-red-500 mt-1 hidden" id="email-error">Please enter a valid email address</div>
-                    </div>
+              <form id="contact-form" class="space-y-4">
+                <!-- Name & Email -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Name *</label>
+                    <input type="text" name="name" required
+                      class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
                   </div>
-                  
-                  <!-- Company -->
-                  <div class="mb-4">
-                    <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company</label>
-                    <input 
-                      type="text" 
-                      id="company" 
-                      name="company"
-                      class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                      placeholder="Your company name"
-                    >
+                  <div>
+                    <label class="block text-xs font-medium text-gray-700 mb-1">Email *</label>
+                    <input type="email" name="email" required
+                      class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
                   </div>
-                  
-                  <!-- Phone -->
-                  <div class="mb-4">
-                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
-                      Phone Number <span class="text-red-500">*</span>
-                    </label>
-                    <input 
-                      type="tel" 
-                      id="phone" 
-                      name="phone"
-                      class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                      placeholder="+91 1234567890"
-                      required
-                    >
-                    <div class="text-xs text-red-500 mt-1 hidden" id="phone-error">Please enter a valid phone number</div>
-                  </div>
-                  
-                  <!-- Subject -->
-                  <div class="mb-4">
-                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                    <input 
-                      type="text" 
-                      id="subject" 
-                      name="subject"
-                      class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                      placeholder="Brief subject of your inquiry"
-                    >
-                  </div>
-                  
-                  <!-- Message -->
-                  <div class="mb-5">
-                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
-                      Message <span class="text-red-500">*</span>
-                    </label>
-                    <textarea 
-                      id="message" 
-                      name="message"
-                      rows="4" 
-                      class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                      placeholder="Please provide details about your inquiry..."
-                      required
-                    ></textarea>
-                    <div class="text-xs text-red-500 mt-1 hidden" id="message-error">Please enter your message</div>
-                  </div>
-                  
-                  <!-- File Upload (Optional) -->
-                  <div class="mb-5">
-                    <label for="attachment" class="block text-sm font-medium text-gray-700 mb-1">Attachment (Optional)</label>
-                    <input 
-                      type="file" 
-                      id="attachment" 
-                      name="attachment"
-                      class="w-full px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-laba-blue focus:border-laba-blue transition"
-                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-                    >
-                    <p class="text-xs text-gray-500 mt-1">Max file size: 5MB. Allowed formats: PDF, DOC, JPG, PNG</p>
-                  </div>
-                  
-                  <!-- Submit Button -->
-                  <button 
-                    type="submit" 
-                    id="submit-btn"
-                    class="w-full bg-laba-blue text-white py-2.5 rounded-lg font-semibold text-sm hover:bg-blue-700 transition duration-300 flex items-center justify-center"
-                  >
-                    <span id="submit-text">Send Message</span>
-                    <svg id="loading-spinner" class="hidden w-4 h-4 ml-2 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                  </button>
-                  
-                  <!-- Success/Error Message -->
-                  <div id="form-message" class="mt-4 hidden p-3 rounded-lg text-sm"></div>
-                </form>
+                </div>
+                
+                <!-- Phone -->
+                <div>
+                  <label class="block text-xs font-medium text-gray-700 mb-1">Phone *</label>
+                  <input type="tel" name="phone" required
+                    class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                </div>
+                
+                <!-- Company -->
+                <div>
+                  <label class="block text-xs font-medium text-gray-700 mb-1">Company</label>
+                  <input type="text" name="company"
+                    class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                </div>
+                
+                <!-- Message -->
+                <div>
+                  <label class="block text-xs font-medium text-gray-700 mb-1">Message *</label>
+                  <textarea name="message" rows="3" required
+                    class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg input-focus focus:border-blue-500 focus:ring-1 focus:ring-blue-500"></textarea>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" id="submit-btn"
+                  class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 rounded-lg font-semibold text-sm hover:from-blue-700 hover:to-blue-900 transition-all duration-300 transform hover:scale-[1.02] active:scale-95 mt-6 flex items-center justify-center">
+                  <span id="submit-text">Send Message</span>
+                  <svg id="loading-spinner" class="hidden w-4 h-4 ml-2 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </button>
+                
+                <!-- Success/Error Message -->
+                <div id="form-message" class="mt-4 hidden animate-slide-in"></div>
+              </form>
+              
+              <!-- Quick Note -->
+              <div class="mt-6 pt-5 border-t border-gray-100">
+                <p class="text-xs text-gray-500">
+                  <i class="fas fa-info-circle text-blue-500 mr-1"></i>
+                  We respond within 24 hours. For urgent queries, call +91 8793505677
+                </p>
               </div>
             </div>
+          </div>
+        </div>
+        
+        <!-- Floating Icons -->
+        <div class="fixed right-6 bottom-6 flex flex-col gap-3 z-10">
+          <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white shadow-lg animate-float cursor-pointer" 
+               onclick="window.location.href='tel:+918793505677'">
+            <i class="fas fa-phone text-sm"></i>
+          </div>
+          <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg animate-float" 
+               style="animation-delay: 0.5s" 
+               onclick="window.location.href='mailto:ashish@apmeasurements.com'">
+            <i class="fas fa-envelope text-sm"></i>
           </div>
         </div>
       </div>
@@ -325,213 +284,131 @@
 
   <!-- JavaScript -->
   <script>
-    // Initialize EmailJS with your public key
+    // Initialize EmailJS
     (function() {
-      // Replace with your EmailJS Public Key
       emailjs.init("TgaIf0ESXRV4KNMfK");
     })();
 
-    // Form submission handling
+    // Form handling
     document.addEventListener('DOMContentLoaded', function() {
-      const contactForm = document.getElementById('contact-form');
+      const form = document.getElementById('contact-form');
       const submitBtn = document.getElementById('submit-btn');
       const submitText = document.getElementById('submit-text');
       const loadingSpinner = document.getElementById('loading-spinner');
       const formMessage = document.getElementById('form-message');
-
-      // Form validation
-      function validateForm() {
-        let isValid = true;
-        
-        // Reset errors
-        document.querySelectorAll('[id$="-error"]').forEach(error => {
-          error.classList.add('hidden');
-        });
-        
-        // Name validation
-        const name = document.getElementById('name');
-        if (!name.value.trim()) {
-          document.getElementById('name-error').classList.remove('hidden');
-          name.classList.add('border-red-500');
-          isValid = false;
-        } else {
-          name.classList.remove('border-red-500');
-        }
-        
-        // Email validation
-        const email = document.getElementById('email');
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email.value.trim() || !emailRegex.test(email.value)) {
-          document.getElementById('email-error').classList.remove('hidden');
-          email.classList.add('border-red-500');
-          isValid = false;
-        } else {
-          email.classList.remove('border-red-500');
-        }
-        
-        // Phone validation
-        const phone = document.getElementById('phone');
-        const phoneRegex = /^[+\d\s\-()]{10,}$/;
-        if (!phone.value.trim() || !phoneRegex.test(phone.value)) {
-          document.getElementById('phone-error').classList.remove('hidden');
-          phone.classList.add('border-red-500');
-          isValid = false;
-        } else {
-          phone.classList.remove('border-red-500');
-        }
-        
-        // Message validation
-        const message = document.getElementById('message');
-        if (!message.value.trim()) {
-          document.getElementById('message-error').classList.remove('hidden');
-          message.classList.add('border-red-500');
-          isValid = false;
-        } else {
-          message.classList.remove('border-red-500');
-        }
-        
-        return isValid;
-      }
       
-      // File validation
-      const attachment = document.getElementById('attachment');
-      if (attachment) {
-        attachment.addEventListener('change', function() {
-          const file = this.files[0];
-          if (file) {
-            const maxSize = 5 * 1024 * 1024; // 5MB
-            const allowedTypes = ['application/pdf', 'application/msword', 
-                                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                                 'image/jpeg', 'image/jpg', 'image/png'];
-            
-            if (file.size > maxSize) {
-              alert('File size exceeds 5MB limit. Please choose a smaller file.');
-              this.value = '';
-            } else if (!allowedTypes.includes(file.type)) {
-              alert('Please select a valid file type (PDF, DOC, JPG, PNG).');
-              this.value = '';
-            }
-          }
+      // Input animations
+      const inputs = document.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+          input.classList.add('ring-2', 'ring-blue-200');
         });
-      }
+        input.addEventListener('blur', () => {
+          input.classList.remove('ring-2', 'ring-blue-200');
+        });
+      });
       
       // Form submission
-      contactForm.addEventListener('submit', async function(e) {
+      form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        if (!validateForm()) {
-          return;
-        }
-        
-        // Show loading state
+        // Show loading
         submitText.textContent = 'Sending...';
         loadingSpinner.classList.remove('hidden');
         submitBtn.disabled = true;
         
         try {
-          // Collect form data
+          // Collect data
           const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            company: document.getElementById('company').value || 'Not provided',
-            phone: document.getElementById('phone').value,
-            subject: document.getElementById('subject').value || 'No subject',
-            message: document.getElementById('message').value,
-            timestamp: new Date().toLocaleString(),
-            page_url: window.location.href
+            name: form.name.value,
+            email: form.email.value,
+            phone: form.phone.value,
+            company: form.company.value || 'Not provided',
+            message: form.message.value,
+            timestamp: new Date().toLocaleString()
           };
           
-          // Send email using EmailJS
-          // Replace these values with your actual EmailJS Service ID and Template ID
+          // Send email
           const response = await emailjs.send(
-            'service_yybe2rq',      // Replace with your EmailJS Service ID
-            'template_yavp5wa',     // Replace with your EmailJS Template ID
+            'service_yybe2rq',
+            'template_yavp5wa',
             formData
           );
           
           if (response.status === 200) {
-            // Show success message
+            // Success animation
             formMessage.innerHTML = `
-              <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded alert-message">
+              <div class="bg-green-50 border border-green-200 rounded-lg p-4 success-bounce">
                 <div class="flex items-center">
-                  <i class="fas fa-check-circle mr-2"></i>
-                  <span class="font-medium">Message sent successfully!</span>
+                  <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-check text-green-600"></i>
+                  </div>
+                  <div>
+                    <p class="font-medium text-green-800">Message Sent!</p>
+                    <p class="text-xs text-green-600 mt-1">We'll reply within 24 hours.</p>
+                  </div>
                 </div>
-                <p class="mt-1 text-sm">Thank you for contacting AP DYNAMICS. We'll get back to you within 24 hours.</p>
-                <p class="mt-1 text-xs">A confirmation email has been sent to ${formData.email}</p>
               </div>
             `;
             
-            // Reset form
-            contactForm.reset();
+            // Clear form
+            form.reset();
             
-            // Also send a confirmation email to the user
-            try {
-              await emailjs.send(
-                'service_yybe2rq',      // Replace with your EmailJS Service ID
-                'template_wang3qs', // Replace with your user confirmation template ID
-                {
-                  to_name: formData.name,
-                  to_email: formData.email,
-                  company: formData.company,
-                  message: formData.message,
-                  reply_time: '24 hours'
-                }
-              );
-            } catch (confirmationError) {
-              console.log('Confirmation email failed, but main email was sent:', confirmationError);
-            }
+            // Add celebration
+            submitBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-green-600');
+            setTimeout(() => {
+              submitBtn.classList.remove('bg-gradient-to-r', 'from-green-500', 'to-green-600');
+              submitBtn.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-blue-800');
+            }, 1000);
             
           } else {
-            throw new Error('Failed to send message');
+            throw new Error('Send failed');
           }
           
         } catch (error) {
-          console.error('Email sending error:', error);
-          
-          // Show error message
+          console.error('Error:', error);
           formMessage.innerHTML = `
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded alert-message">
+            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
               <div class="flex items-center">
-                <i class="fas fa-exclamation-circle mr-2"></i>
-                <span class="font-medium">Failed to send message</span>
+                <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                  <i class="fas fa-exclamation text-red-600"></i>
+                </div>
+                <div>
+                  <p class="font-medium text-red-800">Send Failed</p>
+                  <p class="text-xs text-red-600 mt-1">Please try again or contact directly.</p>
+                </div>
               </div>
-              <p class="mt-1 text-sm">Sorry, there was an error sending your message. Please try again or contact us directly at ashish@apmeasurements.com</p>
-              <p class="mt-1 text-xs">Error: ${error.text || error.message}</p>
             </div>
           `;
         } finally {
-          formMessage.classList.remove('hidden');
-          
-          // Scroll to message
-          formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          
           // Reset button
           submitText.textContent = 'Send Message';
           loadingSpinner.classList.add('hidden');
           submitBtn.disabled = false;
+          formMessage.classList.remove('hidden');
           
-          // Hide message after 8 seconds
+          // Hide message after 5s
           setTimeout(() => {
             formMessage.classList.add('hidden');
-          }, 8000);
+          }, 5000);
         }
       });
       
-      // Real-time validation
-      const inputs = document.querySelectorAll('input, textarea, select');
-      inputs.forEach(input => {
-        input.addEventListener('blur', function() {
-          if (this.hasAttribute('required') && !this.value.trim()) {
-            this.classList.add('border-red-500');
-          } else {
-            this.classList.remove('border-red-500');
+      // Animate cards on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
           }
         });
-        
-        input.addEventListener('input', function() {
-          this.classList.remove('border-red-500');
-        });
+      }, { threshold: 0.1 });
+      
+      // Observe all animated elements
+      document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+        el.style.opacity = '0';
+        observer.observe(el);
       });
     });
   </script>

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header</title>
-    <link rel="stylesheet" href="./header.css">
+    <title></title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./header.css">
     <style>
-        /* Custom styles for vertical separator and hover effects */
         .nav-separator {
             width: 1px;
             height: 20px;
@@ -24,14 +24,8 @@
             transition: all 0.3s ease;
         }
         
-        .nav-link:hover {
-            color: #ea580c;
-        }
-        
-        .nav-link.active {
-            color: #ea580c;
-        }
-        
+        .nav-link:hover { color: #ea580c; }
+        .nav-link.active { color: #ea580c; }
         .nav-link.active::after {
             content: '';
             position: absolute;
@@ -44,10 +38,9 @@
             border-radius: 1px;
         }
         
-        /* Mega menu styling */
         .mega-menu {
-            opacity: 0;
             visibility: hidden;
+            opacity: 0;
             transform: translateY(10px);
             transition: all 0.3s ease;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -65,7 +58,6 @@
             transform: translateY(0) translateX(-50%);
         }
         
-        /* Contact button styling */
         .contact-btn {
             background: linear-gradient(135deg, #ea580c, #c2410c);
             color: white;
@@ -81,337 +73,191 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 16px rgba(234, 88, 12, 0.3);
         }
-        
-        /* Mobile menu improvements */
-        .mobile-sidebar {
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .mobile-sidebar.active {
-            transform: translateX(0);
-        }
-        
-        .mobile-menu-overlay {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
+
+        /* Mobile menu smooth slide */
+        #mobileMenu {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
     </style>
 </head>
-<body>
-    <!-- Header Content -->
-    <header class="fixed inset-x-0 top-0 z-50 bg-gray-100 backdrop-blur-md shadow-sm m-6 rounded-2xl border border-gray-100">
-        <nav class="container mx-auto px-6">
-            <div class="flex items-center justify-between py-3">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="/index.html" class="flex items-center">
-                        <img src="/assets/logo.png"
-                             alt="Logo"
-                             class="h-14 w-auto object-contain ">
-                    </a>
-                </div>
+<body class="pt-24">
 
-                <!-- Desktop Menu - Centered -->
-                <div class="hidden lg:flex items-center absolute left-1/2 transform -translate-x-1/2">
-                    <ul class="flex items-center">
-                        <!-- Home -->
-                        <li>
-                            <a href="/index.html"
-                               class="nav-link active">
-                                Home
-                            </a>
-                        </li>
-                        
-                        <!-- Separator -->
-                        <li><div class="nav-separator"></div></li>
+    <!-- Header -->
+    <header class="fixed inset-x-0 top-0 z-50 bg-gray-100 backdrop-blur-md shadow-sm mx-6 mt-6 rounded-2xl border border-gray-100">
+        <div class="px-6 py-4 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="/home.html">
+                <img src="/assets/logo.png" alt="Logo" class="h-14 w-auto object-contain">
+            </a>
 
-                        <!-- Products Mega Menu -->
-                        <li class="relative group">
-                            <a href="#"
-                               class="nav-link flex items-center">
-                                Products
-                                <svg class="w-3 h-3 ml-1 transition-transform group-hover:rotate-180"
-                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-width="2" d="M19 9l-7 7-7-7"/>
-                                </svg>
-                            </a>
-
-                            <!-- Mega Dropdown -->
-                            <div class="mega-menu absolute top-full mt-4 pt-4">
-                                <div class="container mx-auto px-8 py-8">
-                                    <div class="grid grid-cols-3 gap-8">
-                                        <!-- Suspension Testing -->
-                                        <div>
-                                            <div class="text-orange-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
-                                                <i class="fas fa-car-side"></i> Suspension Testing
-                                            </div>
-                                            <a href="/EMA/ema.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm transition-colors">EMA</a>
-                                            <a href="/Shock-Dyno/shock-dyno.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm transition-colors">Shock Dyno</a>
-                                            <a href="/Spring Rate Tester/spring.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm transition-colors">Spring Rate Tester</a>
-                                            <a href="/Suspension-Tool/suspension.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm transition-colors">Suspension Tools</a>
-                                            <a href="/Adapter/adapter.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm transition-colors">Adapters</a>
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2">
+                <ul class="flex items-center">
+                    <li><a href="/home.html" class="nav-link active">Home</a></li>
+                    <li><div class="nav-separator"></div></li>
+                    <li class="relative group">
+                        <a href="#" class="nav-link flex items-center">
+                            Products
+                            <svg class="w-3 h-3 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </a>
+                        <div class="mega-menu absolute top-full mt-4 pt-4 bg-white shadow-xl rounded-lg border border-gray-200 z-50">
+                            <div class="container mx-auto px-8 py-8">
+                                <div class="grid grid-cols-3 gap-8">
+                                    <div>
+                                        <div class="text-orange-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+                                            <i class="fas fa-car-side"></i> Suspension Testing
                                         </div>
-
-                                        <!-- Data Logger -->
-                                        <div>
-                                            <div class="text-orange-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
-                                                <i class="fas fa-database"></i> Data Logger
-                                            </div>
-                                            <a href="/Data-Aquisition/dataAquisition.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm transition-colors">Data Acquisition System</a>
+                                        <a href="/EMA/ema.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm">EMA</a>
+                                        <a href="/Shock-Dyno/shock-dyno.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm">Shock Dyno</a>
+                                        <a href="/Spring Rate Tester/spring.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm">Spring Rate Tester</a>
+                                        <a href="/Suspension-Tool/suspension.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm">Suspension Tools</a>
+                                        <a href="/Adapter/adapter.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm">Adapters</a>
+                                    </div>
+                                    <div>
+                                        <div class="text-orange-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+                                            <i class="fas fa-database"></i> Data Logger
                                         </div>
-
-                                        <!-- Sensors -->
-                                        <div>
-                                            <div class="text-orange-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
-                                                <i class="fas fa-microchip"></i> Sensors
-                                            </div>
-                                            <a href="/accelerometer.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm transition-colors">Accelerometer</a>
-                                            <a href="/Impact-Hammer/hammer.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm transition-colors">Impact Hammer</a>
-                                            <a href="#" class="block py-2 text-gray-600 hover:text-orange-500 text-sm transition-colors">Pressure Sensor</a>
-                                            <a href="/Weighing-Scales/scale.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm transition-colors">Weighing Scales</a>
+                                        <a href="/Data-Aquisition/dataAquisition.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm">Data Acquisition System</a>
+                                    </div>
+                                    <div>
+                                        <div class="text-orange-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+                                            <i class="fas fa-microchip"></i> Sensors
                                         </div>
+                                        <a href="/accelerometer.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm">Accelerometer</a>
+                                        <a href="/Impact-Hammer/hammer.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm">Impact Hammer</a>
+                                        <a href="#" class="block py-2 text-gray-600 hover:text-orange-500 text-sm">Pressure Sensor</a>
+                                        <a href="/Weighing-Scales/scale.html" class="block py-2 text-gray-600 hover:text-orange-500 text-sm">Weighing Scales</a>
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        
-                        <!-- Separator -->
-                        <li><div class="nav-separator"></div></li>
-
-                        <!-- About -->
-                        <li>
-                            <a href="about.html"
-                               class="nav-link">
-                                About
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Contact Button - Right Side -->
-                <div class="hidden lg:flex items-center">
-                    <a href="contact.html"
-                       class="contact-btn">
-                        Contact Us
-                    </a>
-                </div>
-
-                <!-- Mobile Hamburger -->
-                <button id="mobileBtn"
-                        class="lg:hidden text-gray-600 p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                        aria-label="Toggle mobile menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
+                        </div>
+                    </li>
+                    <li><div class="nav-separator"></div></li>
+                    <li><a href="/about.html" class="nav-link">About</a></li>
+                </ul>
             </div>
-        </nav>
-    </header>
 
-    <!-- Mobile Sidebar Overlay -->
-    <div class="mobile-menu-overlay fixed inset-0 bg-black/50 z-40" id="menuOverlay"></div>
-
-    <!-- Mobile Sidebar -->
-    <div class="mobile-sidebar fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-2xl" id="mobileSidebar">
-        <div class="mobile-sidebar-header flex items-center justify-between p-6 border-b border-gray-100">
-            <div class="flex items-center">
-                <img src="/assets/logo.png" alt="Logo" class="h-10 w-auto">
+            <!-- Desktop Contact -->
+            <div class="hidden lg:block">
+                <a href="/contact.html" class="contact-btn">Contact Us</a>
             </div>
-            <button class="close-sidebar-btn text-gray-400 hover:text-gray-600 transition-colors" id="closeSidebarBtn">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+
+            <!-- Mobile Hamburger -->
+            <button id="mobileBtn" class="lg:hidden p-4 rounded-xl hover:bg-gray-200 transition-colors z-50">
+                <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
         </div>
-        <nav class="mobile-sidebar-nav p-6">
-            <a href="index.html" class="mobile-nav-link flex items-center py-4 border-b border-gray-100 text-gray-700 hover:text-orange-500 transition-colors">
-                <i class="fas fa-home mr-3 text-gray-400"></i> Home
-            </a>
-            
-            <a href="#" class="mobile-nav-link flex items-center justify-between py-4 border-b border-gray-100 text-gray-700 hover:text-orange-500 transition-colors" id="mobileProductsToggle">
-                <div class="flex items-center">
-                    <i class="fas fa-box mr-3 text-gray-400"></i> Products
-                </div>
-                <i class="fas fa-chevron-down text-xs transition-transform" id="productsArrow"></i>
-            </a>
-            
-            <div class="mobile-submenu bg-gray-50 rounded-lg mt-2 mb-4 overflow-hidden" id="mobileProductsMenu">
-                <div class="mobile-submenu-section p-4">
-                    <div class="mobile-submenu-title flex items-center text-orange-500 font-bold text-sm uppercase tracking-wider mb-3">
-                        <i class="fas fa-car-side mr-2"></i> Suspension Testing
+    </header>
+
+    <!-- Mobile Overlay Menu -->
+    <div id="mobileMenu" class="fixed inset-0 bg-white z-40 transform translate-x-full overflow-y-auto">
+        <div class="px-6 py-8 mt-20">
+            <!-- Close Button -->
+            <button id="closeBtn" class="absolute top-8 right-6 p-3 rounded-lg hover:bg-gray-100 transition">
+                <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <ul class="space-y-8 mt-12">
+                <li><a href="/home.html" class="text-2xl font-medium text-gray-800 hover:text-orange-600 block">Home</a></li>
+
+                <li>
+                    <button id="productsToggle" class="w-full text-left text-2xl font-medium text-gray-800 hover:text-orange-600 flex items-center justify-between">
+                        Products
+                        <svg id="productsArrow" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+
+                    <div id="productsDropdown" class="mt-6 space-y-8 pl-6 hidden">
+                        <div>
+                            <div class="text-orange-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <i class="fas fa-car-side"></i> Suspension Testing
+                            </div>
+                            <a href="/EMA/ema.html" class="block py-3 text-lg text-gray-700 hover:text-orange-500">EMA</a>
+                            <a href="/Shock-Dyno/shock-dyno.html" class="block py-3 text-lg text-gray-700 hover:text-orange-500">Shock Dyno</a>
+                            <a href="/Spring Rate Tester/spring.html" class="block py-3 text-lg text-gray-700 hover:text-orange-500">Spring Rate Tester</a>
+                            <a href="/Suspension-Tool/suspension.html" class="block py-3 text-lg text-gray-700 hover:text-orange-500">Suspension Tools</a>
+                            <a href="/Adapter/adapter.html" class="block py-3 text-lg text-gray-700 hover:text-orange-500">Adapters</a>
+                        </div>
+                        <div>
+                            <div class="text-orange-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <i class="fas fa-database"></i> Data Logger
+                            </div>
+                            <a href="/Data-Aquisition/dataAquisition.html" class="block py-3 text-lg text-gray-700 hover:text-orange-500">Data Acquisition System</a>
+                        </div>
+                        <div>
+                            <div class="text-orange-500 font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <i class="fas fa-microchip"></i> Sensors
+                            </div>
+                            <a href="/accelerometer.html" class="block py-3 text-lg text-gray-700 hover:text-orange-500">Accelerometer</a>
+                            <a href="/Impact-Hammer/hammer.html" class="block py-3 text-lg text-gray-700 hover:text-orange-500">Impact Hammer</a>
+                            <a href="#" class="block py-3 text-lg text-gray-700 hover:text-orange-500">Pressure Sensor</a>
+                            <a href="/Weighing-Scales/scale.html" class="block py-3 text-lg text-gray-700 hover:text-orange-500">Weighing Scales</a>
+                        </div>
                     </div>
-                    <a href="EMA/ema.html" class="mobile-submenu-link block py-2 px-4 text-gray-600 hover:text-orange-500 hover:bg-white rounded transition-colors">EMA</a>
-                    <a href="Shock-Dyno/shock-dyno.html" class="mobile-submenu-link block py-2 px-4 text-gray-600 hover:text-orange-500 hover:bg-white rounded transition-colors">Shock Dyno</a>
-                    <a href="Spring Rate Tester/spring.html" class="mobile-submenu-link block py-2 px-4 text-gray-600 hover:text-orange-500 hover:bg-white rounded transition-colors">Spring Rate Tester</a>
-                    <a href="Suspension-Tool/suspension.html" class="mobile-submenu-link block py-2 px-4 text-gray-600 hover:text-orange-500 hover:bg-white rounded transition-colors">Suspension Tools</a>
-                    <a href="Adapter/adapter.html" class="mobile-submenu-link block py-2 px-4 text-gray-600 hover:text-orange-500 hover:bg-white rounded transition-colors">Adapters</a>
-                </div>
-                <div class="mobile-submenu-section p-4 border-t border-gray-200">
-                    <div class="mobile-submenu-title flex items-center text-orange-500 font-bold text-sm uppercase tracking-wider mb-3">
-                        <i class="fas fa-database mr-2"></i> Data Logger
-                    </div>
-                    <a href="Data-Aquisition/dataAquisition.html" class="mobile-submenu-link block py-2 px-4 text-gray-600 hover:text-orange-500 hover:bg-white rounded transition-colors">Data Acquisition System</a>
-                </div>
-                <div class="mobile-submenu-section p-4 border-t border-gray-200">
-                    <div class="mobile-submenu-title flex items-center text-orange-500 font-bold text-sm uppercase tracking-wider mb-3">
-                        <i class="fas fa-microchip mr-2"></i> Sensors
-                    </div>
-                    <a href="accelerometer.html" class="mobile-submenu-link block py-2 px-4 text-gray-600 hover:text-orange-500 hover:bg-white rounded transition-colors">Accelerometer</a>
-                    <a href="Impact-Hammer/hammer.html" class="mobile-submenu-link block py-2 px-4 text-gray-600 hover:text-orange-500 hover:bg-white rounded transition-colors">Impact Hammer</a>
-                    <a href="#" class="mobile-submenu-link block py-2 px-4 text-gray-600 hover:text-orange-500 hover:bg-white rounded transition-colors">Pressure Sensor</a>
-                    <a href="#" class="mobile-submenu-link block py-2 px-4 text-gray-600 hover:text-orange-500 hover:bg-white rounded transition-colors">Weighing Scales</a>
-                </div>
-            </div>
-            
-            <a href="about.html" class="mobile-nav-link flex items-center py-4 border-b border-gray-100 text-gray-700 hover:text-orange-500 transition-colors">
-                <i class="fas fa-info-circle mr-3 text-gray-400"></i> About
-            </a>
-            
-            <a href="contact.html" class="mobile-nav-link flex items-center py-4 border-b border-gray-100 text-gray-700 hover:text-orange-500 transition-colors">
-                <i class="fas fa-phone mr-3 text-gray-400"></i> Contact
-            </a>
-            
-            <a href="#" class="mobile-nav-cta mt-8 block text-center bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 px-6 rounded-lg font-medium hover:from-orange-600 hover:to-orange-700 transition-all shadow-lg">
-                Testing Services
-                <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </nav>
+                </li>
+
+                <li><a href="/about.html" class="text-2xl font-medium text-gray-800 hover:text-orange-600 block">About</a></li>
+                <li><a href="/contact.html" class="text-2xl font-medium text-gray-800 hover:text-orange-600 block">Contact Us</a></li>
+            </ul>
+        </div>
     </div>
 
+    <!-- JavaScript -->
     <script>
-        // Header specific JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Enhanced Header initialized');
-            
-            // Mobile Sidebar Functionality
-            const mobileMenuBtn = document.getElementById('mobileBtn');
-            const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-            const mobileSidebar = document.getElementById('mobileSidebar');
-            const menuOverlay = document.getElementById('menuOverlay');
-            const mobileProductsToggle = document.getElementById('mobileProductsToggle');
-            const mobileProductsMenu = document.getElementById('mobileProductsMenu');
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileBtn = document.getElementById('mobileBtn');
+            const closeBtn = document.getElementById('closeBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const productsToggle = document.getElementById('productsToggle');
+            const productsDropdown = document.getElementById('productsDropdown');
             const productsArrow = document.getElementById('productsArrow');
 
-            // Open sidebar
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    mobileSidebar.classList.add('active');
-                    menuOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
+            // Prevent body scroll when menu is open
+            function lockScroll() {
+                document.body.style.overflow = 'hidden';
+            }
+            function unlockScroll() {
+                document.body.style.overflow = '';
             }
 
-            // Close sidebar
-            if (closeSidebarBtn) {
-                closeSidebarBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    closeMobileMenu();
-                });
-            }
+            // Open menu
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('translate-x-0');
+                lockScroll();
+            });
 
-            // Close sidebar when clicking overlay
-            if (menuOverlay) {
-                menuOverlay.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    closeMobileMenu();
-                });
-            }
+            // Close menu
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-0');
+                mobileMenu.classList.add('translate-x-full');
+                unlockScroll();
+            });
 
-            // Toggle products submenu
-            if (mobileProductsToggle && mobileProductsMenu && productsArrow) {
-                mobileProductsToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    mobileProductsMenu.classList.toggle('active');
-                    productsArrow.classList.toggle('rotate-180');
-                });
-            }
-
-            // Close mobile menu function
-            function closeMobileMenu() {
-                if (mobileSidebar) mobileSidebar.classList.remove('active');
-                if (menuOverlay) menuOverlay.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                
-                // Close products submenu
-                if (mobileProductsMenu && productsArrow) {
-                    mobileProductsMenu.classList.remove('active');
-                    productsArrow.classList.remove('rotate-180');
-                }
-            }
-
-            // Close sidebar on Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && mobileSidebar && mobileSidebar.classList.contains('active')) {
-                    closeMobileMenu();
+            // Close when clicking on the overlay (outside content)
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('translate-x-0');
+                    mobileMenu.classList.add('translate-x-full');
+                    unlockScroll();
                 }
             });
 
-            // Fix header padding on the body
-            const header = document.querySelector('header');
-            if (header) {
-                const headerHeight = header.offsetHeight;
-                document.body.style.paddingTop = headerHeight + 'px';
-                
-                // Recalculate on resize
-                window.addEventListener('resize', function() {
-                    document.body.style.paddingTop = header.offsetHeight + 'px';
-                });
-            }
-
-            // Close mobile sidebar when clicking outside
-            document.addEventListener('click', function(e) {
-                if (mobileSidebar && mobileSidebar.classList.contains('active')) {
-                    if (!mobileSidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                        closeMobileMenu();
-                    }
-                }
-            });
-
-            // Active link highlighting
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Smooth hover effect for mega menu
-            const megaMenuItems = document.querySelectorAll('.group');
-            megaMenuItems.forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    const megaMenu = this.querySelector('.mega-menu');
-                    if (megaMenu) {
-                        megaMenu.style.opacity = '1';
-                        megaMenu.style.visibility = 'visible';
-                        megaMenu.style.transform = 'translateY(0) translateX(-50%)';
-                    }
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    const megaMenu = this.querySelector('.mega-menu');
-                    if (megaMenu) {
-                        megaMenu.style.opacity = '0';
-                        megaMenu.style.visibility = 'hidden';
-                        megaMenu.style.transform = 'translateY(10px) translateX(-50%)';
-                    }
-                });
+            // Products dropdown toggle
+            productsToggle.addEventListener('click', () => {
+                productsDropdown.classList.toggle('hidden');
+                productsArrow.classList.toggle('rotate-180');
             });
         });
     </script>
+
 </body>
 </html>

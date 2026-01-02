@@ -3,87 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Footer</title>
-    <link rel="stylesheet" href="footer.css">
+    <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #dc2626;
+            --primary-dark: #c91621;
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f3f4f6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .main-content h1 {
+            font-size: 2.5rem;
+            color: var(--gray-900);
+            margin-bottom: 20px;
+        }
+
+        .main-content p {
+            font-size: 1.1rem;
+            color: var(--gray-800);
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        
+
+        @keyframes animateWaves {
+            0% {
+                background-position-x: 0;
+            }
+            100% {
+                background-position-x: 1000px;
+            }
+        }
+
+        
+
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        /* Footer Sections */
+        .footer-section-title {
+            font-weight: bold;
+            margin-bottom: 16px;
+            color: var(--primary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-description {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--gray-800);
+            color: var(--gray-300);
+            font-size: 16px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer Links */
+        .footer-link {
+            display: block;
+            color: var(--gray-400);
+            font-size: 14px;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+            line-height: 1.5;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-link:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            border-top: 1px solid var(--gray-800);
+            padding-top: 24px;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+            color: var(--gray-400);
+        }
+
+        .footer-bottom-link {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s;
+            margin: 0 5px;
+        }
+
+        .footer-bottom-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .main-content h1 {
+                font-size: 3rem;
+            }
+            
+            .waves-container {
+                height: 100px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .footer-grid > div {
+                padding: 0 8px;
+            }
+            
+            .waves-container {
+                height: 120px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-content {
+                padding: 0 32px;
+            }
+            
+            .main-content {
+                padding: 60px 40px;
+            }
+            
+            .waves-container {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 639px) {
+            .footer-container {
+                padding: 50px 0 20px;
+            }
+            
+            .footer-grid > div {
+                text-align: center;
+                margin-bottom: 24px;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+            
+            .footer-section-title {
+                margin-bottom: 12px;
+            }
+            
+            .footer-link {
+                margin-bottom: 8px;
+            }
+            
+            .footer-bottom {
+                padding-top: 20px;
+            }
+            
+            .waves-container {
+                height: 80px;
+            }
+            
+            .wave {
+                height: 80px;
+                top: -80px;
+            }
+        }
+    </style>
 </head>
-<style>
-    .wave#wave1 {
-    z-index: 11;
-    opacity: 1;
-    bottom: 0;
-    animation: animateWaves 4s linear infinite;
-}
-
-.wave {
-    filter: brightness(0) saturate(100%) invert(14%) sepia(11%) saturate(2247%) hue-rotate(172deg) brightness(92%) contrast(90%);
-    position: absolute;
-    top: -100px;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background-image: url('../assets/wave.png');
-    background-size: 1000px 100px;
-}
-
-@keyframes animateWaves {
-    0% {
-        background-position-x: 1000px;
-    }
-}
-
-@keyframes animate {
-    0% {
-        background-position-x: -1000px;
-    }
-}
-
-.wave#wave2 {
-    z-index: 11;
-    opacity: .5;
-    bottom: 10px;
-    animation: animate 4s linear infinite !important;
-}
-
-.wave#wave3 {
-    z-index: 11;
-    opacity: .2;
-    bottom: 15px;
-    animation: animateWaves 3s linear infinite;
-}
-
-.wave#wave4 {
-    z-index: 11;
-    opacity: .7;
-    bottom: 20px;
-    animation: animate 3s linear infinite;
-}
-
-@keyframes animateWaves {
-    0% {
-        background-position-x: 1000px;
-    }
-}
-</style>
 <body>
+  
 
-   <div class="container mx-auto px-4">
-             <div b-3j9pea0hfl="" class="waves">
-            <div b-3j9pea0hfl="" class="wave" id="wave1"></div>
-            <div b-3j9pea0hfl="" class="wave" id="wave2"></div>
-            <div b-3j9pea0hfl="" class="wave" id="wave3"></div>
-            <div b-3j9pea0hfl="" class="wave" id="wave4"></div>
-        </div>
+    
+
     <!-- Footer Content -->
-    <footer class="footer-container mx-full">
-        
-        
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-grid">
                 <!-- Company Info -->
                 <div>
                     <h4 class="footer-section-title">About Company</h4>
-                    <p class="footer-description">Leading manufacturer of marine and diesel engines with global presence</p>
+                    <p class="footer-description">AP Measurements boasts state-of-the-art sensor technology and a highly
+                        skilled team of R&D engineers. Our facility covers an area of 10,000 square meters, featuring a
+                        100,000-class clean assembly room, and world-class environmental laboratory.</p>
                     <div class="social-icons">
                         <a href="#" class="social-icon">
                             <i class="fab fa-facebook-f"></i>
@@ -94,49 +263,189 @@
                         <a href="#" class="social-icon">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
-
+    
                 <!-- Products -->
                 <div>
                     <h4 class="footer-section-title">Products</h4>
-                    <a href="#" class="footer-link">Marine Engines</a>
-                    <a href="#" class="footer-link">Commercial Vehicles</a>
-                    <a href="#" class="footer-link">Off Highway</a>
-                    <a href="#" class="footer-link">Components</a>
-                    <a href="#" class="footer-link">Spare Parts</a>
+                    <a href="/EMA/ema.html" class="footer-link">EMA</a>
+                    <a href="/Shock-Dyno/shock-dyno.html" class="footer-link">Shock Dyno</a>
+                    <a href="/Spring Rate Tester/spring.html" class="footer-link">Spring Rate Tester</a>
+                    <a href="/Suspension-Tool/suspension.html" class="footer-link">Suspension Tool</a>
+                    <a href="/Adapter/adapter.html" class="footer-link">Adapters</a>
+                    <a href="/Data-Aquisition/dataAquisition.html" class="footer-link">Data Logger</a>
                 </div>
-
+    
                 <!-- Resources -->
                 <div>
-                    <h4 class="footer-section-title">Resources</h4>
-                    <a href="#" class="footer-link">Downloads</a>
-                    <a href="#" class="footer-link">News & Events</a>
-                    <a href="#" class="footer-link">Blogs</a>
-                    <a href="#" class="footer-link">Our Network</a>
-                    <a href="#" class="footer-link">Careers</a>
+                    <h4 class="footer-section-title">Products</h4>
+                    <a href="/accelerometer.html" class="footer-link">Accelerometer</a>
+                    <a href="/Impact-Hammer/hammer.html" class="footer-link">Impact Hammers</a>
+                    <a href="#" class="footer-link">Pressure Sensors</a>
+                    <a href="/Weighing-Scales/scale.html" class="footer-link">Weighing Scales</a>
+                    <a href="#" class="footer-link">Tesing Sensors </a>
+    
                 </div>
-
+    
                 <!-- Contact -->
                 <div>
                     <h4 class="footer-section-title">Get In Touch</h4>
-                    <a href="#" class="footer-link">📞 +91 (123) 456-7890</a>
-                    <a href="#" class="footer-link">✉️ apdynamics.com</a>
-                    <a href="#" class="footer-link">📍 Industrial Area, Pune</a>
-                    <a href="#" class="footer-link">Contact Form</a>
+                    <a href="tel:+911234567890" class="footer-link">
+                        <i class="fas fa-phone-alt" style="margin-right: 8px;"></i> +91 8793505677
+                    </a>
+                    <a href="mailto:info@apdynamics.com" class="footer-link">
+                        <i class="fas fa-envelope" style="margin-right: 8px;"></i> Ashish@apmeasurements.com
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> Sr. No. -40/1/4/4, FL No - C-504,
+                        <br> Lotus Laxmi-2, Pimpri-Chinchwad,ravet, Pune, Mh-411035
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fas fa-clock" style="margin-right: 8px;"></i> Mon-Fri: 9AM-6PM
+                    </a>
+                    <a href="/contact.html" class="footer-link">Contact Form</a>
                 </div>
             </div>
-
+    
             <div class="footer-bottom">
                 <p class="footer-copyright">
-                    &copy; 2025 AP DYNAMICS Industries. All rights reserved. | 
-                    <a href="#" class="footer-bottom-link">Privacy Policy</a> | 
-                    <a href="#" class="footer-bottom-link">Terms of Service</a>
+                    &copy; <span id="current-year">2026</span> AP Measurements. All rights reserved. |
+                    <a href="#" class="footer-bottom-link">Privacy Policy</a> |
+                    <a href="#" class="footer-bottom-link">Terms of Service</a> |
+                    <a href="#" class="footer-bottom-link">Site Map</a>
                 </p>
+    
             </div>
         </div>
     </footer>
 
-    <script src="footer.js"></script>
+    <script>
+        // JavaScript for enhanced footer functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Footer initialized - Waves are now visible');
+
+            // Update copyright year
+            const currentYear = new Date().getFullYear();
+            document.getElementById('current-year').textContent = currentYear;
+
+            // Display current screen size
+            function updateScreenSize() {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                let sizeCategory = '';
+
+                if (width < 640) sizeCategory = 'Small (Mobile)';
+                else if (width < 768) sizeCategory = 'Medium (Tablet Portrait)';
+                else if (width < 1024) sizeCategory = 'Large (Tablet Landscape)';
+                else if (width < 1280) sizeCategory = 'Extra Large (Desktop)';
+                else sizeCategory = 'Ultra Wide (Large Desktop)';
+
+                document.getElementById('screen-size').textContent =
+                    `${sizeCategory}: ${width}px × ${height}px`;
+            }
+
+            // Initial call
+            updateScreenSize();
+
+            // Update on resize
+            window.addEventListener('resize', updateScreenSize);
+
+            // Verify waves are visible
+            const waves = document.querySelectorAll('.wave');
+            console.log(`Found ${waves.length} wave elements`);
+
+            waves.forEach((wave, index) => {
+                console.log(`Wave ${index + 1}:`, {
+                    visible: wave.offsetParent !== null,
+                    opacity: window.getComputedStyle(wave).opacity,
+                    display: window.getComputedStyle(wave).display
+                });
+
+                // Force visibility just in case
+                wave.style.visibility = 'visible';
+                wave.style.display = 'block';
+            });
+
+            // Test wave animation
+            document.getElementById('wave-status').innerHTML =
+                `✅ <strong>${waves.length} waves detected and animated!</strong>`;
+
+            // Smooth scroll for anchor links in footer
+            const footerLinks = document.querySelectorAll('.footer-link, .footer-bottom-link');
+
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    // Only prevent default if it's an anchor link to same page
+                    if (this.getAttribute('href') && this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Add visual feedback for clicked links
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    console.log(`Navigating to: ${this.getAttribute('href')}`);
+
+                    // Add a temporary active state
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+
+            // Handle contact form link
+            const contactLinks = document.querySelectorAll('.footer-link');
+            contactLinks.forEach(link => {
+                if (link.textContent.includes('Contact Form')) {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        alert('Contact form would open here. In a real application, this would open a modal or redirect to a contact page.');
+                    });
+                }
+            });
+
+            // Add a test button to verify waves
+            const testBtn = document.createElement('button');
+            testBtn.innerHTML = '🎯 Test Wave Visibility';
+            testBtn.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--primary);
+                    color: white;
+                    border: none;
+                    padding: 10px 15px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    z-index: 10000;
+                    font-weight: bold;
+                `;
+            testBtn.onclick = function () {
+                waves.forEach(wave => {
+                    wave.style.outline = '2px solid red';
+                    setTimeout(() => {
+                        wave.style.outline = '';
+                    }, 1000);
+                });
+                alert('Waves are highlighted in red! Check if they are visible.');
+            };
+            document.body.appendChild(testBtn);
+        });
+    </script>
 </body>
 </html>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LABA7 | Automatic Spring Rate Tester</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <title>Automatic Spring Rate Tester</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../include.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,376 +16,100 @@
     <link rel="stylesheet" href="../Footer/footer.css">
     
     <style>
-        :root {
-      --primary-dark: #F5EDED;
-      --primary-blue: #1E3A8A;
-      --secondary-blue: #3B82F6;
-      --accent-blue: #60A5FA;
-      --text-primary: #E1E8F0;
-      --text-secondary: #94A3B8;
-      --background-dark: #F5EDED;
-      --background-light: rgba(5, 5, 5, 0.7);
-      --border-color: rgba(30, 64, 175, 0.15);
-    }
-
+        /* Dark blue background */
         body {
+            background-color: #0a192f;
+            color: #e6f1ff;
             font-family: 'Inter', sans-serif;
-            background-color: var(--background-dark);
-            color: var(--text-primary);
-            overflow-x: hidden;
         }
-
-        /* Subtle Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes floatSubtle {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-
-        @keyframes pulseBorder {
-            0%, 100% {
-                border-color: rgba(30, 64, 175, 0.2);
-            }
-            50% {
-                border-color: rgba(30, 64, 175, 0.4);
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        /* Animation Classes */
-        .animate-fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-            opacity: 0;
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-            opacity: 0;
-        }
-
-        .animate-fade-in-right {
-            animation: fadeInRight 0.8s ease-out forwards;
-            opacity: 0;
-        }
-
-        .animate-fade-in-left {
-            animation: fadeInLeft 0.8s ease-out forwards;
-            opacity: 0;
-        }
-
-        .animate-float-subtle {
-            animation: floatSubtle 6s ease-in-out infinite;
-        }
-
-        .animate-pulse-border {
-            animation: pulseBorder 3s ease-in-out infinite;
-        }
-
-        .animate-shimmer {
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(30, 64, 175, 0.1) 50%, 
-                transparent 100%);
-            background-size: 1000px 100%;
-            animation: shimmer 4s infinite;
-        }
-
-        /* Staggered Animation Delays */
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-500 { animation-delay: 0.5s; }
-        .delay-600 { animation-delay: 0.6s; }
-        .delay-700 { animation-delay: 0.7s; }
-        .delay-800 { animation-delay: 0.8s; }
-        .delay-900 { animation-delay: 0.9s; }
-
-        /* Subtle Components */
-        .glass-card {
-            background: rgba(10, 25, 41, 0.7);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-      
-
-        .glass-card:hover {
-            border-color: rgba(30, 64, 175, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            transform: translateY(-4px);
-        }
-
-        .gradient-border {
-            position: relative;
-            background: var(--background-dark);
-            border-radius: 8px;
-            padding: 1px;
-        }
-
-        .gradient-border::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue), var(--primary-blue));
-            border-radius: 9px;
-            z-index: -1;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
-        .gradient-border:hover::before {
-            opacity: 0.8;
-        }
-
-        .info-card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .info-card::after {
-            content: '';
-            position: absolute;
+        
+        /* Animated orange square boxes - simplified for mobile */
+        .background-boxes {
+            position: fixed;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.1), transparent);
-            transition: left 0.7s ease;
+            z-index: -1;
+            overflow: hidden;
         }
-
-        .info-card:hover::after {
-            left: 100%;
-        }
-
-        .floating-element {
+        
+        .box {
             position: absolute;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.05;
-        }
-
-        .tech-badge {
-            background: rgba(30, 64, 175, 0.15);
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-weight: 500;
-            font-size: 0.85rem;
-            letter-spacing: 0.3px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(30, 64, 175, 0.2);
-            color: var(--accent-blue);
-        }
-
-        .tech-badge:hover {
-            background: rgba(30, 64, 175, 0.2);
-            border-color: rgba(30, 64, 175, 0.3);
-            transform: scale(1.03);
-        }
-
-        .data-point {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 16px;
-            background: rgba(30, 64, 175, 0.1);
-            border-radius: 8px;
-            border-left: 2px solid var(--primary-blue);
-            margin: 6px 0;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .data-point:hover {
-            background: rgba(30, 64, 175, 0.15);
-            transform: translateX(3px);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
-            border-radius: 10px;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.05);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--background-dark);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, var(--primary-blue), var(--secondary-blue));
+            border: 2px solid rgba(209, 98, 8, 0.511);
             border-radius: 4px;
+            pointer-events: none;
+            display: none; /* Hide on mobile by default */
         }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, var(--secondary-blue), var(--accent-blue));
-        }
-
-        /* Grid Pattern Background */
-        .grid-pattern {
-            background-image: 
-                linear-gradient(rgba(30, 64, 175, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(30, 64, 175, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        /* Loading Animation */
-        .loading-dots {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-        }
-
-        .loading-dots span {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--primary-blue);
-            animation: loadingDot 1.4s ease-in-out infinite;
-        }
-
-        .loading-dots span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .loading-dots span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes loadingDot {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(0.7);
-                opacity: 0.5;
+        
+        /* Show only a few boxes on mobile */
+        @media (min-width: 768px) {
+            .box {
+                display: block;
             }
         }
-
-        /* Content Styling */
-        h1, h2, h3, h4 {
-            font-weight: 600;
-            letter-spacing: -0.025em;
+        
+        /* Box animations */
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, -30px) rotate(180deg); }
+        }
+        
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-40px, 20px) rotate(-180deg); }
+        }
+        
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, 40px) scale(1.2); }
+        }
+        
+        @keyframes float4 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -40px) rotate(90deg); }
+        }
+        
+        @keyframes float5 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, -20px) scale(0.8); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.4; }
+        }
+        
+        /* Custom animations for content */
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
         }
 
-        p {
-            line-height: 1.6;
-            color: var(--text-secondary);
+        .slide-up {
+            animation: slideUp 1s ease-out forwards;
+            opacity: 0;
         }
 
-        .text-primary {
-            color: var(--secondary-blue);
+        .slide-left {
+            animation: slideLeft 1s ease-out forwards;
+            opacity: 0;
         }
 
-        .text-secondary {
-            color: var(--accent-blue);
-        }
-
-        /* Section Spacing */
-        section {
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            section {
-                padding-top: 3rem;
-                padding-bottom: 3rem;
-            }
-        }
-
-        /* Original Page Specific Styles */
-        .hero-gradient {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-blue) 100%);
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .tab-active {
-            border-bottom: 3px solid var(--secondary-blue);
-            color: var(--secondary-blue);
-            font-weight: 600;
+        .slide-right {
+            animation: slideRight 1s ease-out forwards;
+            opacity: 0;
         }
 
         @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -390,454 +117,686 @@
             }
         }
 
-        .feature-dropdown {
-            transition: all 0.3s ease;
-            background: var(--background-light);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--border-color);
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .feature-content {
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Feature dropdown animation */
+        .lawyer-feature-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.5s ease, padding 0.3s ease;
         }
 
-        .feature-content.open {
-            max-height: 1000px;
+        .lawyer-feature-content.open {
+            padding: 25px;
+            max-height: 500px;
         }
 
-        .rotate-180 {
-            transform: rotate(180deg);
+        .lawyer-feature-arrow {
             transition: transform 0.3s ease;
         }
 
-        .benefits-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            flex-shrink: 0;
+        .lawyer-feature-arrow.open {
+            transform: rotate(180deg);
         }
-
-        /* Table Styling */
-        table {
-            border-collapse: collapse;
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Adjust text colors for dark background */
+        .text-gray-800 {
+            color: #e6f1ff;
+        }
+        
+        .text-gray-600 {
+            color: #a8b2d1;
+        }
+        
+        .text-gray-900 {
+            color: #ffffff;
+        }
+        
+        /* Section backgrounds */
+        .bg-gray-50 {
+            background-color: #112240;
+        }
+        
+        .bg-white {
+            background-color: #112240;
+            border: 1px solid #233554;
+        }
+        
+        .bg-gray-900 {
+            background-color: #0a192f;
+            border-top: 1px solid #233554;
+            border-bottom: 1px solid #233554;
+        }
+        
+        /* Table adjustments */
+        table tbody tr:hover {
+            background-color: #1a2d4d !important;
+        }
+        
+        .divide-gray-200 > * + * {
+            border-color: #233554;
+        }
+        
+        /* Card hover effects */
+        .hover-shadow-lg:hover {
+            box-shadow: 0 10px 25px rgba(251, 146, 60, 0.15) !important;
+        }
+        
+        .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        /* Responsive utility classes */
+        .container-responsive {
             width: 100%;
-           
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
-
-        th, td {
-            border: 1px solid var(--border-color);
-            padding: 12px 16px;
-            text-align: left;
-            color: var(--text-secondary);
+        
+        @media (min-width: 640px) {
+            .container-responsive {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
         }
-
-        th {
-            background: rgba(30, 64, 175, 0.1);
-            color: var(--text-primary);
-            font-weight: 600;
+        
+        @media (min-width: 768px) {
+            .container-responsive {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
         }
-
-        tr:hover {
-            background: rgba(30, 64, 175, 0.05);
+        
+        @media (min-width: 1024px) {
+            .container-responsive {
+                padding-left: 3rem;
+                padding-right: 3rem;
+                max-width: 1280px;
+            }
         }
-
-        /* Button Styling */
-        .btn-orange {
-            background: var(--orange-primary);
-            color: var(--text-primary);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        
+        /* Animation delays */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-800 { animation-delay: 800ms; }
+        
+        /* Responsive typography */
+        .text-responsive-title {
+            font-size: 1.875rem; /* 3xl */
         }
-
-        .btn-orange:hover {
-            background: var(--orange-secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(227, 116, 52, 0.2);
+        
+        @media (min-width: 768px) {
+            .text-responsive-title {
+                font-size: 2.25rem; /* 4xl */
+            }
         }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        
+        @media (min-width: 1024px) {
+            .text-responsive-title {
+                font-size: 3rem; /* 5xl */
+            }
         }
-
-        .btn-outline:hover {
-            background: rgba(30, 64, 175, 0.1);
-            border-color: var(--secondary-blue);
-            transform: translateY(-2px);
+        
+        /* Button responsive sizes */
+        .btn-responsive {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.875rem;
         }
-
-        /* Responsive adjustments */
+        
+        @media (min-width: 640px) {
+            .btn-responsive {
+                padding: 0.875rem 1.75rem;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Image responsive */
+        .img-responsive {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+        
+        /* Table responsive */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Section spacing */
+        .section-padding {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+        
+        @media (min-width: 768px) {
+            .section-padding {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .section-padding {
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+            }
+        }
+        
+        /* Grid responsive */
+        .grid-responsive {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .grid-responsive-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-responsive-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Mobile menu and navigation adjustments */
         @media (max-width: 768px) {
-            .glass-card:hover {
-                transform: translateY(-2px);
+            body {
+                margin-top: 4rem;
             }
             
-            table {
-                font-size: 0.85rem;
+            .mobile-margin-top {
+                margin-top: 1rem;
             }
             
-            th, td {
-                padding: 8px 12px;
+            .mobile-padding {
+                padding-left: 1rem;
+                padding-right: 1rem;
             }
+            
+            .mobile-text-center {
+                text-align: center;
+            }
+        }
+        
+        /* Fix for small screens */
+        @media (max-width: 640px) {
+            .text-3xl {
+                font-size: 1.75rem;
+            }
+            
+            .text-2xl {
+                font-size: 1.5rem;
+            }
+            
+            .text-xl {
+                font-size: 1.25rem;
+            }
+            
+            .text-lg {
+                font-size: 1.125rem;
+            }
+            
+            .px-8 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .py-3 {
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+            }
+        }
+        
+        /* Prevent horizontal overflow */
+        .overflow-x-hidden {
+            overflow-x: hidden;
+        }
+        
+        /* Ensure images don't overflow */
+        img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
 
-<body class="min-h-screen">
-    <!-- Animated Background Elements -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div class="floating-element top-1/4 left-1/4 w-48 h-48 bg-gradient-to-br from-[#1E3A8A] to-transparent rounded-full blur-2xl animate-float-subtle"></div>
-        <div class="floating-element bottom-1/4 right-1/4 w-56 h-56 bg-gradient-to-tr from-[#1E3A8A] to-transparent rounded-full blur-2xl animate-float-subtle" style="animation-delay: 1s;"></div>
-        <div class="floating-element top-3/4 left-1/2 w-32 h-32 bg-gradient-to-r from-[#1E3A8A] to-transparent rounded-full blur-2xl animate-float-subtle" style="animation-delay: 2s;"></div>
-        <div class="absolute inset-0 grid-pattern"></div>
+<body class="font-inter overflow-x-hidden leading-relaxed mt-16 md:mt-20">
+    <!-- Animated Background Boxes - Simplified for mobile -->
+    <div class="background-boxes">
+        <!-- Orange square boxes with different sizes and animations -->
+        <div class="box box-1 hidden md:block" style="width: 60px; height: 60px; top: 10%; left: 5%; animation: float1 20s infinite ease-in-out, pulse 8s infinite;"></div>
+        <div class="box box-2" style="width: 80px; height: 80px; top: 30%; right: 10%; animation: float2 25s infinite ease-in-out, pulse 10s infinite 1s;"></div>
+        <div class="box box-3 hidden sm:block" style="width: 40px; height: 40px; bottom: 20%; left: 15%; animation: float3 18s infinite ease-in-out, pulse 7s infinite 2s;"></div>
+        <div class="box box-4 hidden lg:block" style="width: 100px; height: 100px; top: 15%; right: 20%; animation: float4 22s infinite ease-in-out, pulse 9s infinite 0.5s;"></div>
+        <div class="box box-5 hidden xl:block" style="width: 70px; height: 70px; bottom: 30%; right: 5%; animation: float5 30s infinite ease-in-out, pulse 12s infinite 1.5s;"></div>
     </div>
 
-    <!-- Header / Navigation -->
+    <!-- Custom Navigation (replaces problematic include) -->
     <div data-include="/Header/header.html"></div>
 
     <!-- Hero Section -->
-    <section class="py-16 md:py-24 ml-4 md:ml-16 mt-12">
-        <div class="container mx-auto px-4 mb-4">
-            <div class="max-w-3xl animate-fade-in-up">
-                <h1 class="text-3xl md:text-3xl font-semibold mb-6 text-gray-700">Automatic Spring Tester
-                    <br><span class="text-primary">for Any Spring</span></h1>
-                <p class="text-lg text-gray-500 mb-8">Our fully automatic spring rate tester measures fork and shock absorber spring rates with precision. Monitor test results instantly with wireless data transmission and real-time performance analytics.</p>
-                <div class="flex flex-wrap gap-4">
-                    <!-- <button class="btn-orange flex items-center animate-fade-in-up delay-200">
-                        <i class="fas fa-play-circle mr-2"></i> Watch Demo
-                    </button> -->
-                    <button class="btn-outline  delay-300 text-white hover:bg-orange-600 bg-orange-500">
-                        View Products
-                    </button>
+    <section class="mobile-margin-top" id="home">
+        <div class="container-responsive mx-auto mb-8 bg-white rounded-xl shadow-2xl border border-orange-500/30">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center py-8 md:py-12">
+                <div class="slide-left px-4 md:px-6 order-2 lg:order-1">
+                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-500 uppercase tracking-wide leading-tight mb-3 md:mb-4">
+                        Automatic Spring Tester
+                    </h1>
+                    <h2 class="text-xl md:text-2xl font-semibold text-gray-600 mb-4 md:mb-6 leading-snug">
+                        for Any Spring
+                    </h2>
+                    <p class="text-gray-500 text-sm md:text-base mb-6 md:mb-8 leading-relaxed">
+                        Our fully automatic spring rate tester measures fork and shock absorber spring rates with precision.
+                        Monitor test results instantly with wireless data transmission and real-time performance analytics.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
+                        <button class="inline-flex items-center justify-center px-4 sm:px-6 py-3 bg-orange-500 text-white font-semibold uppercase tracking-wider rounded-md hover:bg-orange-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 btn-responsive">
+                            <i class="fas fa-play-circle mr-2"></i> Watch Demo
+                        </button>
+                        <button class="inline-flex items-center justify-center px-4 sm:px-6 py-3 border-2 border-orange-500 text-orange-500 font-semibold uppercase tracking-wider rounded-md hover:bg-orange-500 hover:text-white transition-all duration-300 btn-responsive">
+                            View Products
+                        </button>
+                    </div>
+                </div>
+                <div class="slide-right flex justify-center px-4 md:px-6 order-1 lg:order-2 mb-6 lg:mb-0">
+                    <img src="../assets/spring1.jpg" alt="Spring Tester"
+                        class="w-full lg:w-4/5 h-48 md:h-64 lg:h-72 rounded-lg shadow-xl object-contain border border-orange-500/20 img-responsive">
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Products -->
-<div class="container mx-auto px-4 mt-6">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-7xl mx-auto md:ml-64">
-        <!-- MINI Product Card -->
-        <div class="rounded-lg p-4 border border-gray-200 info-card animate-fade-in-up delay-100 flex flex-col">
-            <div class="mb-3 flex justify-center flex-shrink-0">
-                <img src="../assets/spring1.jpg" alt="Spring Tester MINI" class="object-contain">
-            </div>
-            <div>
-                <h2 class="text-gray-600 font-semibold ml-12 mb-2">Spring rate tester MINI</h2>
-            </div>
-            <div class="text-center mt-auto">
-                <button class="btn-orange bg-orange-500 text-white transition-all duration-300 transform hover:scale-105 text-xs px-3 py-1.5">
-                    Get offer
-                </button>
-            </div>
-        </div>
+    <!-- Products Section -->
+    <section class="relative py-8 md:py-12 lg:py-16 bg-gradient-to-b from-gray-900 to-gray-950 rounded-lg mb-6 md:mb-8" id="products">
+        <div class="container-responsive mx-auto">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-blue-500 text-center mb-4 slide-up uppercase tracking-wide relative">
+                Our Products
+                <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-orange-500"></span>
+            </h2>
+            <p class="text-lg md:text-xl text-white text-center mb-8 md:mb-12 slide-up delay-200">
+                Professional spring testing solutions for every need
+            </p>
+            
+           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12 mb-8">
+                <!-- MINI Product Card -->
+                <div class="rounded-xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 slide-up delay-100 border border-orange-500/20 group hover:border-orange-500/50 hover:scale-[1.02]">
+                    <div class="relative overflow-hidden">
+                        <div class="relative h-48 md:h-56 flex items-center justify-center p-4">
+                            <img src="../assets/spring1.jpg" alt="Spring Tester MINI" 
+                                 class="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-5">
+                        <h3 class="text-base md:text-lg font-semibold text-center mt-4 text-white mb-3 group-hover:text-orange-600 transition-colors duration-300">Spring rate tester MINI</h3>
+                    </div>
+                </div>
 
-        <!-- DAILY Product Card -->
-        <div class="rounded-lg p-4 border border-gray-200 info-card animate-fade-in-up delay-200 flex flex-col">
-            <div class="mb-3 flex justify-center flex-shrink-0">
-                <img src="/assets/spring2.png" alt="Spring Tester DAILY" class="object-contain">
-            </div>
-            <div>
-                <h2 class="text-gray-600 font-semibold ml-12 mb-2">Spring rate tester DAILY</h2>
-            </div>
-            <div class="text-center mt-auto">
-                <button class="btn-orange bg-orange-500 text-white transition-all duration-300 transform hover:scale-105 text-xs px-3 py-1.5">
-                    Get offer
-                </button>
-            </div>
-        </div>
+                <!-- DAILY Product Card -->
+                <div class="rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 slide-up delay-200 border border-orange-500/20 group hover:border-orange-500/50 hover:scale-[1.02]">
+                    <div class="relative overflow-hidden">
+                        <div class="relative h-48 md:h-56 flex items-center justify-center p-4">
+                            <img src="../assets/spring2.png" alt="Spring Tester DAILY" 
+                                 class="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-5">
+                        <h3 class="text-base md:text-lg font-semibold text-center mt-4 text-white mb-3 group-hover:text-orange-600 transition-colors duration-300">Spring rate tester DAILY</h3>
+                    </div>
+                </div>
 
-        <!-- PRO Product Card -->
-        <div class="rounded-lg p-4 border border-gray-200 info-card animate-fade-in-up delay-300 flex flex-col">
-            <div class="mb-3 flex justify-center flex-shrink-0">
-                <img src="../assets/spring3.png" alt="Spring Tester PRO" class="object-contain">
+                <!-- PRO Product Card -->
+                <div class="rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 slide-up delay-300 border border-orange-500/20 group hover:border-orange-500/50 hover:scale-[1.02]">
+                    <div class="relative overflow-hidden">
+                        <div class="relative h-48 md:h-56 flex items-center justify-center p-4">
+                            <img src="../assets/spring3.png" alt="Spring Tester PRO" 
+                                 class="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-5">
+                        <h3 class="text-base md:text-lg font-semibold text-center mt-4 text-white mb-3 group-hover:text-orange-600 transition-colors duration-300">Spring rate tester PRO</h3>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h2 class="text-gray-600 font-semibold ml-12 mb-2">Spring rate tester PRO</h2>
-            </div>
-            <div class="text-center mt-auto">
-                <button class="btn-orange bg-orange-500 text-white transition-all duration-300 transform hover:scale-105 text-xs px-3 py-1.5">
-                    Get offer
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 
-        <!-- Specs Table -->
-        <div class="container mx-auto px-4 mt-12">
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <tbody>
-                        <tr class="animate-fade-in-up delay-100">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Automatic tests</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">Yes</td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-150">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Preload</td>
-                            <td class="py-4 px-6 text-center border-gray-600 text-gray-600">Manual or Automatic (force-based)</td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-200">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Dimensions WxDxH</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-r border-gray-600 text-gray-600">
-                                Sine, Triangle, Square, Pulse, Pink noise, Sweep, Chirp, and Direct track data import.
-                            </td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-250">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Adjustable crossbar</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">0.1 mm/s <span class="text-gray-500 text-xs">(0.04 in/s)</span></td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-300">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Maximum allowed force</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">150 Hz</td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-350">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Motor</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">100 G</td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-400">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600 ">Reinforced components</td>
-                            <td colspan="4" class="py-4 px-6 text-center text-xs leading-tight border-gray-600 text-gray-600">
-                                Digital position sampling 20 kHz.<br>
-                                Synchronized analog load cell sampling 20 kHz, 20-bit resolution.
-                            </td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-450">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">EOL testing focused</td>
-                            <td colspan="4" class="py-4 px-6 text-center text-xs border-gray-600 text-gray-600">
-                                8 synchronized channels. Up to 10 kHz sampling rate.
-                            </td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-500">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Free rear spring length</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">50 nanometers</td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-550">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Free front spring length</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">250 mm <span class="text-gray-500 text-xs">(9.85 in)</span></td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-600">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Spring length</td>
-                            <td colspan="4" class="py-4 px-6 text-center text-xs leading-tight border-gray-600 text-gray-600">
-                                3-phase 380/400 VAC 16 A. Can be optimized for 1-phase 220/240 VAC or other configurations.
-                                Contact us to learn more.
-                            </td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-650">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Required power</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">Compressed air</td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-700">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Dimensions WxDxH</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">
-                                Sine, Triangle, Square, Pulse, Pink noise, Sweep, Chirp, and Direct track data import.
-                            </td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-750">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Weight</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">Compressed air</td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-800">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Software</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">LABA7 Spring dyno software, no extra cost. 1-on-1 personalized online onboarding and training.</td>
-                        </tr>
-                        <tr class="animate-fade-in-up delay-850">
-                            <td class="py-4 px-6 text-gray-600 border-r border-gray-600">Technical support</td>
-                            <td colspan="4" class="py-4 px-6 text-center border-gray-600 text-gray-600">Typical resolution time is less than 24 hours. Spare parts are in stock for quick dispatch.</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Technical Specifications Table -->
+            <div class="overflow-x-auto slide-up delay-400 bg-gray-900 p-3 md:p-4 rounded-xl border border-orange-500/30 mt-8">
+                <div class="table-responsive">
+                    <table class="w-full rounded-xl overflow-hidden shadow-lg border border-orange-500/30 min-w-[600px]">
+                        <tbody class="divide-y divide-gray-700">
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Automatic tests</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">Yes</td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Preload</td>
+                                <td class="p-3 md:p-5 text-center text-gray-300">Manual or Automatic (force-based)</td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Dimensions WxDxH</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">
+                                    Sine, Triangle, Square, Pulse, Pink noise, Sweep, Chirp, and Direct track data import.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Adjustable crossbar</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">
+                                    0.1 mm/s <span class="text-gray-400 text-sm">(0.04 in/s)</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Maximum allowed force</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">150 Hz</td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Motor</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">100 G</td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Reinforced components</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-sm leading-tight text-gray-300">
+                                    Digital position sampling 20 kHz.<br>
+                                    Synchronized analog load cell sampling 20 kHz, 20-bit resolution.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">EOL testing focused</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-sm text-gray-300">
+                                    8 synchronized channels. Up to 10 kHz sampling rate.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Free rear spring length</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">50 nanometers</td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Free front spring length</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">
+                                    250 mm <span class="text-gray-400 text-sm">(9.85 in)</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Spring length</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-sm leading-tight text-gray-300">
+                                    3-phase 380/400 VAC 16 A. Can be optimized for 1-phase 220/240 VAC or other configurations.
+                                    Contact us to learn more.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Required power</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">Compressed air</td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Dimensions WxDxH</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">
+                                    Sine, Triangle, Square, Pulse, Pink noise, Sweep, Chirp, and Direct track data import.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Weight</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">Compressed air</td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Software</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">
+                                    LABA7 Spring dyno software, no extra cost. 1-on-1 personalized online onboarding and training.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-blue-900/30 transition-colors">
+                                <td class="p-3 md:p-5 font-semibold text-white">Technical support</td>
+                                <td colspan="4" class="p-3 md:p-5 text-center text-gray-300">
+                                    Typical resolution time is less than 24 hours. Spare parts are in stock for quick dispatch.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Adapters Section -->
-    <section class="py-16">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto animate-fade-in-up">
-                <h2 class="text-2xl md:text-3xl font-semibold text-center mb-4 text-gray-700">No More Limits – 
-                    <br><span class="text-primary">Spring Dyno Adapters for Spring Testers</span></h2>
-                <p class="text-gray-500 text-center mb-12">Focusing on versatility, we supply a range of adapters for our spring rate testers. Their range covers any type of vehicle from MTBs to 4x4s: motorcycles, circuit racing, and dirt track racing vehicles.</p>
-
-                <!-- Buttons -->
-                <div class="flex flex-col md:flex-row justify-center gap-4 mb-12">
-                    <button class="bg-orange-500 hover:bg-orange-600 px-8 py-2 rounded-lg animate-fade-in-up delay-200">
-                        MTB Adapters
-                    </button>
-                    <button class="bg-orange-500 hover:bg-orange-600 px-8 py-2 rounded-lg animate-fade-in-up delay-300">
-                        MOTO And AUTO Adapters
-                    </button>
+    <section class="mb-6 md:mb-12 bg-white rounded-lg shadow-xl border border-gray-200 p-4 md:p-6 mt-4 md:mt-6" id="adapters">
+        <div class="container-responsive mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-500 text-center mb-4 slide-up uppercase tracking-wide relative">
+                No More Limits
+                <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-orange-500"></span>
+            </h2>
+            <h3 class="text-lg md:text-xl lg:text-2xl font-medium text-gray-600 text-center mb-8 md:mb-12 slide-up delay-200">
+                Spring Dyno Adapters for Spring Testers
+            </h3>
+    
+            <p class="bg-blue-100 rounded-lg p-4 border border-orange-500 text-gray-600 text-center mx-auto mb-8 md:mb-12 slide-up delay-300 leading-relaxed">
+                Focusing on versatility, we supply a range of adapters for our spring rate testers.
+                Their range covers any type of vehicle from MTBs to 4x4s: motorcycles, circuit racing, and dirt track racing
+                vehicles.
+            </p>
+    
+            <div class="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 mb-8 md:mb-12 slide-up delay-400">
+                <button class="inline-flex items-center justify-center px-4 sm:px-6 md:px-8 py-3 bg-orange-500 text-white font-semibold uppercase tracking-wider rounded-md hover:bg-orange-600 transition-all duration-300 btn-responsive">
+                    MTB Adapters
+                </button>
+                <button class="inline-flex items-center justify-center px-4 sm:px-6 md:px-8 py-3 border-2 border-orange-500 text-orange-500 font-semibold uppercase tracking-wider rounded-md hover:bg-orange-500 hover:text-white transition-all duration-300 btn-responsive">
+                    MOTO And AUTO Adapters
+                </button>
+            </div>
+    
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 slide-up delay-500 justify-items-center">
+                <div class="rounded-xl w-full max-w-xs overflow-hidden cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 border border-orange-500/20 group bg-gray-300">
+                    <div class="relative h-48 md:h-56 flex items-center justify-center p-4">
+                        <img src="../assets/spring4.png" alt="Spring Adapter 1"
+                            class="max-w-[80%] max-h-[80%] object-contain transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Images -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
-                    <div class="w-full h-64 mb-6 flex justify-center mt-8 animate-fade-in-up delay-100">
-                        <img src="../assets/spring4.png" alt="Spring Adapter 1" class="rounded-lg p-4">
-                    </div>
-                    <div class="w-full h-64 mb-6 flex justify-center mt-8 animate-fade-in-up delay-200">
-                        <img src="../assets/spring5.png" alt="Spring Adapter 2" class="rounded-lg p-4">
-                    </div>
-                    <div class="w-full h-64 mb-6 flex justify-center mt-8 animate-fade-in-up delay-300">
-                        <img src="../assets/spring6.png" alt="Spring Adapter 3" class="rounded-lg p-4">
-                    </div>
-                    <div class="w-full h-64 mb-6 flex justify-center mt-8 animate-fade-in-up delay-400">
-                        <img src="../assets/spring7.png" alt="Spring Adapter 4" class="rounded-lg p-4">
+    
+                <div class="rounded-xl w-full max-w-xs overflow-hidden cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 border border-orange-500/20 group bg-gray-300">
+                    <div class="relative h-48 md:h-56 flex items-center justify-center p-4">
+                        <img src="../assets/spring5.png" alt="Spring Adapter 2"
+                            class="max-w-[80%] max-h-[80%] object-contain transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
                     </div>
                 </div>
-
-                <div class="mt-12 text-center animate-fade-in-up delay-500">
-                    <h2 class="text-2xl md:text-3xl text-gray-700 font-semibold text-center mb-6">Shock Spring Testers for 
-                        <span class="text-primary">Workshops</span></h2>
-                    <p class="text-lg text-gray-500 mb-6">AP Measurements develops professional spring testing machines for workshops, spring manufacturers, and motorsport teams worldwide.</p>
-                    <p class="text-lg text-gray-500">Our equipment makes spring rate testing simple and accurate. Each spring rate tester is designed to be very easy to use and provides the most accurate results immediately on the screen of your device, whether testing fork springs, air springs, bump stops, or gas pressure systems.</p>
+    
+                <div class="rounded-xl w-full max-w-xs overflow-hidden cursor-pointer hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 border border-orange-500/20 group bg-gray-300 sm:col-span-2 lg:col-span-1">
+                    <div class="relative h-48 md:h-56 flex items-center justify-center p-4">
+                        <img src="../assets/spring6.png" alt="Spring Adapter 3"
+                            class="max-w-[80%] max-h-[80%] object-contain transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="mt-8 md:mt-12 lg:mt-16 text-center slide-up delay-600">
+                <h2 class="text-2xl md:text-3xl font-bold text-blue-500 mb-8 md:mb-12 uppercase tracking-wide relative inline-block">
+                    Shock Spring Testers for
+                    <span class="text-orange-500">Workshops</span>
+                    <span class="absolute -bottom-3 left-0 w-full h-1 bg-orange-500"></span>
+                </h2>
+                <div class="max-w-3xl mx-auto bg-blue-100 p-4 md:p-6 rounded-lg border border-orange-500/20 mb-6">
+                    <p class="text-gray-600 mb-4 md:mb-6 leading-relaxed text-sm md:text-base">
+                        AP Measurements develops professional spring testing machines for workshops,
+                        spring manufacturers, and motorsport teams worldwide.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                        Our equipment makes spring rate testing simple and accurate. Each spring rate tester is
+                        designed to be very easy to use and provides the most accurate results immediately on
+                        the screen of your device, whether testing fork springs, air springs, bump stops, or gas pressure
+                        systems.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Key Features & Benefits Section -->
-    <section class="py-16" id="features">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-semibold text-center mb-12 text-gray-700 animate-fade-in-up">Key Features & Benefits of AP Measurements 
-               <br><span class="text-primary">Spring Testing Machines</span></h2>
+    <!-- Features Section -->
+    <section class="relative py-8 md:py-12 lg:py-16 bg-gradient-to-b from-gray-900 to-gray-950 rounded-lg mb-6 md:mb-12" id="features">
+        <div class="container-responsive mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-500 text-center mb-4 slide-up uppercase tracking-wide relative">
+                Key Features & Benefits
+                <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-orange-500"></span>
+            </h2>
+            <h3 class="text-lg md:text-xl lg:text-2xl font-medium text-white text-center mb-8 md:mb-12 slide-up delay-200">
+                AP Measurements Spring Testing Machines
+            </h3>
             
-            <div class="space-y-4 max-w-4xl mx-auto">
-                <!-- Fully Automatic Dropdown -->
-                <div class="bg-gray-50 py-2 rounded-xl overflow-hidden animate-fade-in-up delay-100">
-                    <button class="w-full p-6 text-left flex justify-between items-center  feature-toggle" data-feature="automatic">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-robot text-blue-600 text-xl"></i>
+            <div class="space-y-4 md:space-y-6">
+                <!-- Fully Automatic -->
+                <div class="rounded-xl shadow-md hover:shadow-lg transition-all duration-300 slide-up delay-300 border border-orange-500/20">
+                    <div class="p-4 md:p-6 flex justify-between items-center cursor-pointer rounded-lg transition-colors" onclick="toggleFeature('automatic')">
+                        <div class="flex items-center gap-3 md:gap-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                                <i class="fas fa-robot"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-500">Fully Automatic</h3>
+                            <h4 class="text-base md:text-lg lg:text-xl font-semibold text-white">Fully Automatic</h4>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 feature-icon"></i>
-                    </button>
-                    <div class="feature-content" data-feature="automatic">
-                        <div class="p-6 pt-0">
-                            <div class="pl-16">
-                                <p class="text-gray-500">As with all LABA7 equipment, our spring testers are built with simplicity in mind. Place a spring, fork, or bump stop into the machine, select the settings, and the test will run automatically. Analyze performance through the force-displacement graph and spring progressiveness measurements.</p>
-                            </div>
-                        </div>
+                        <i class="fas fa-chevron-down text-orange-500 lawyer-feature-arrow text-sm md:text-base" id="arrow-automatic"></i>
+                    </div>
+                    <div class="lawyer-feature-content bg-orange-500 rounded-lg" id="content-automatic">
+                        <p class="text-white leading-relaxed p-4 md:p-6 text-sm md:text-base">
+                            As with all LABA7 equipment, our spring testers are built with simplicity in mind. 
+                            Place a spring, fork, or bump stop into the machine, select the settings, and the 
+                            test will run automatically. Analyze performance through the force-displacement 
+                            graph and spring progressiveness measurements.
+                        </p>
                     </div>
                 </div>
-                
-                <!-- Wireless Connectivity Dropdown -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden animate-fade-in-up delay-200">
-                    <button class="w-full p-6 text-left flex justify-between items-center feature-toggle" data-feature="wireless">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-wifi text-blue-600 text-xl"></i>
+
+                <!-- Wireless Connectivity -->
+                <div class="rounded-xl shadow-md hover:shadow-lg transition-all duration-300 slide-up delay-400 border border-orange-500/20">
+                    <div class="p-4 md:p-6 flex justify-between items-center cursor-pointer rounded-lg transition-colors" onclick="toggleFeature('wireless')">
+                        <div class="flex items-center gap-3 md:gap-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                                <i class="fas fa-wifi"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-500">Wireless Connectivity</h3>
+                            <h4 class="text-base md:text-lg lg:text-xl font-semibold text-white">Wireless Connectivity</h4>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 feature-icon"></i>
-                    </button>
-                    <div class="feature-content" data-feature="wireless">
-                        <div class="p-6 pt-0">
-                            <div class="pl-16">
-                                <p class="text-gray-500">Connect the spring rate tester to your device via local Wi-Fi network or USB cable. Both options allow you to track performance data in real-time.</p>
-                            </div>
-                        </div>
+                        <i class="fas fa-chevron-down text-orange-500 lawyer-feature-arrow text-sm md:text-base" id="arrow-wireless"></i>
+                    </div>
+                    <div class="lawyer-feature-content bg-orange-500 rounded-lg" id="content-wireless">
+                        <p class="text-white leading-relaxed p-4 md:p-6 text-sm md:text-base">
+                            Connect the spring rate tester to your device via local Wi-Fi network or USB cable. 
+                            Both options allow you to track performance data in real-time.
+                        </p>
                     </div>
                 </div>
-                
-                <!-- Safety Dropdown -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden animate-fade-in-up delay-300">
-                    <button class="w-full p-6 text-left flex justify-between items-center feature-toggle" data-feature="safety">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-shield-alt text-blue-600 text-xl"></i>
+
+                <!-- Safety -->
+                <div class="rounded-xl shadow-md hover:shadow-lg transition-all duration-300 slide-up delay-500 border border-orange-500/20">
+                    <div class="p-4 md:p-6 flex justify-between items-center cursor-pointer rounded-lg transition-colors" onclick="toggleFeature('safety')">
+                        <div class="flex items-center gap-3 md:gap-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                                <i class="fas fa-shield-alt"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-500">Safety</h3>
+                            <h4 class="text-base md:text-lg lg:text-xl font-semibold text-white">Safety</h4>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 feature-icon"></i>
-                    </button>
-                    <div class="feature-content" data-feature="safety">
-                        <div class="p-6 pt-0">
-                            <div class="pl-16">
-                                <p class="text-gray-500">During the spring rate test, springs are subjected to tremendous force. In case of spring failure, the outcome can be dire. To protect operators and workshops, LABA7 spring rate dynos feature Plexiglass shields and steel casings for maximum safety.</p>
-                            </div>
-                        </div>
+                        <i class="fas fa-chevron-down text-orange-500 lawyer-feature-arrow text-sm md:text-base" id="arrow-safety"></i>
+                    </div>
+                    <div class="lawyer-feature-content bg-orange-500 rounded-lg" id="content-safety">
+                        <p class="text-white leading-relaxed p-4 md:p-6 text-sm md:text-base">
+                            During the spring rate test, springs are subjected to tremendous force. In case of 
+                            spring failure, the outcome can be dire. To protect operators and workshops, LABA7 
+                            spring rate dynos feature Plexiglass shields and steel casings for maximum safety.
+                        </p>
                     </div>
                 </div>
-                
-                <!-- Technical Features Dropdown -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden animate-fade-in-up delay-400">
-                    <button class="w-full p-6 text-left flex justify-between items-center feature-toggle" data-feature="technical">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-cogs text-blue-600 text-xl"></i>
+
+                <!-- MTB and Motorcycle Fork Adapters -->
+                <div class="rounded-xl shadow-md hover:shadow-lg transition-all duration-300 slide-up delay-600 border border-orange-500/20">
+                    <div class="p-4 md:p-6 flex justify-between items-center cursor-pointer rounded-lg transition-colors" onclick="toggleFeature('technical')">
+                        <div class="flex items-center gap-3 md:gap-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                                <i class="fas fa-cogs"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-500">MTB and Motorcycle Fork Adapters</h3>
+                            <h4 class="text-base md:text-lg lg:text-xl font-semibold text-white">MTB and Motorcycle Fork Adapters</h4>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 feature-icon"></i>
-                    </button>
-                    <div class="feature-content" data-feature="technical">
-                        <div class="p-6 pt-0">
-                            <div class="pl-16">
-                                <p class="text-gray-500">To meet diverse customer needs, LABA7 spring testers come equipped with special adapters for MTB and motorcycle forks. Self-preload clevis and U-shaped mounts for rear shocks feature protective plastic heads to prevent damage to tested units.</p>
-                            </div>
-                        </div>
+                        <i class="fas fa-chevron-down text-orange-500 lawyer-feature-arrow text-sm md:text-base" id="arrow-technical"></i>
+                    </div>
+                    <div class="lawyer-feature-content bg-orange-500 rounded-lg" id="content-technical">
+                        <p class="text-white leading-relaxed p-4 md:p-6 text-sm md:text-base">
+                            To meet diverse customer needs, LABA7 spring testers come equipped with special 
+                            adapters for MTB and motorcycle forks. Self-preload clevis and U-shaped mounts for 
+                            rear shocks feature protective plastic heads to prevent damage to tested units.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Custom Mounting Solutions -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden animate-fade-in-up delay-500">
-                    <button class="w-full p-6 text-left flex justify-between items-center feature-toggle" data-feature="mounting">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-tools text-blue-600 text-xl"></i>
+                <div class="rounded-xl shadow-md hover:shadow-lg transition-all duration-300 slide-up delay-700 border border-orange-500/20">
+                    <div class="p-4 md:p-6 flex justify-between items-center cursor-pointer rounded-lg transition-colors" onclick="toggleFeature('mounting')">
+                        <div class="flex items-center gap-3 md:gap-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                                <i class="fas fa-tools"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-500">Custom Mounting Solutions</h3>
+                            <h4 class="text-base md:text-lg lg:text-xl font-semibold text-white">Custom Mounting Solutions</h4>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 feature-icon"></i>
-                    </button>
-                    <div class="feature-content" data-feature="mounting">
-                        <div class="p-6 pt-0">
-                            <div class="pl-16">
-                                <p class="text-gray-500">Testing springs, forks, or coils of unconventional sizes? We develop custom mounts for specialized applications. Contact us for more information.</p>
-                            </div>
-                        </div>
+                        <i class="fas fa-chevron-down text-orange-500 lawyer-feature-arrow text-sm md:text-base" id="arrow-mounting"></i>
+                    </div>
+                    <div class="lawyer-feature-content bg-orange-500 rounded-lg" id="content-mounting">
+                        <p class="text-white leading-relaxed p-4 md:p-6 text-sm md:text-base">
+                            Testing springs, forks, or coils of unconventional sizes? We develop custom mounts 
+                            for specialized applications. Contact us for more information.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Seal Drag Testing -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden animate-fade-in-up delay-600">
-                    <button class="w-full p-6 text-left flex justify-between items-center feature-toggle" data-feature="seal">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-compress-arrows-alt text-blue-600 text-xl"></i>
+                <div class="rounded-xl shadow-md hover:shadow-lg transition-all duration-300 slide-up delay-800 border border-orange-500/20">
+                    <div class="p-4 md:p-6 flex justify-between items-center cursor-pointer rounded-lg transition-colors" onclick="toggleFeature('seal')">
+                        <div class="flex items-center gap-3 md:gap-4">
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                                <i class="fas fa-compress-arrows-alt"></i>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-500">Seal Drag Testing</h3>
+                            <h4 class="text-base md:text-lg lg:text-xl font-semibold text-white">Seal Drag Testing</h4>
                         </div>
-                        <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300 feature-icon"></i>
-                    </button>
-                    <div class="feature-content" data-feature="seal">
-                        <div class="p-6 pt-0">
-                            <div class="pl-16">
-                                <p class="text-gray-500">Our spring compression testers also function as spring tension testers for seal drag testing. This test measures the force required to move suspension components while maintaining proper sealing to prevent contamination – a crucial factor in ensuring the longevity and proper function of the suspension system.</p>
-                            </div>
-                        </div>
+                        <i class="fas fa-chevron-down text-orange-500 lawyer-feature-arrow text-sm md:text-base" id="arrow-seal"></i>
+                    </div>
+                    <div class="lawyer-feature-content bg-orange-500 rounded-lg" id="content-seal">
+                        <p class="text-white leading-relaxed p-4 md:p-6 text-sm md:text-base">
+                            Our spring compression testers also function as spring tension testers for seal drag 
+                            testing. This test measures the force required to move suspension components while 
+                            maintaining proper sealing to prevent contamination – a crucial factor in ensuring the 
+                            longevity and proper function of the suspension system.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -845,159 +804,199 @@
     </section>
 
     <!-- Benefits Section -->
-    <section class="py-16" id="benefits">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-semibold text-center mb-4 text-gray-700 animate-fade-in-up">Benefits of the LABA7
-               <br><span class="text-primary">Spring Rate Tester</span>  </h2>
-            <p class="text-gray-500 text-center mb-12 max-w-3xl mx-auto animate-fade-in-up delay-100">Discover how our spring rate tester improves performance, safety, and efficiency in suspension testing and maintenance.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+    <section class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 mb-6 md:mb-12" id="benefits">
+        <div class="container-responsive mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-500 text-center mb-4 slide-up uppercase tracking-wide relative">
+                Benefits of the LABA7
+                <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-orange-500"></span>
+            </h2>
+            <h3 class="text-lg md:text-xl lg:text-2xl font-medium text-gray-600 text-center mb-8 md:mb-12 slide-up delay-200">
+                Spring Rate Tester
+            </h3>
+    
+            <p class="text-gray-600 bg-blue-100 rounded-lg p-4 text-center mx-auto mb-8 md:mb-12 slide-up delay-300 leading-relaxed text-sm md:text-base">
+                Discover how our spring rate tester improves performance, safety, and efficiency in suspension testing and
+                maintenance.
+            </p>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6 md:mt-8 slide-up delay-400">
                 <!-- Know Your Springs -->
-                <div class="rounded-2xl p-8 border-gray-300 shadow-lg info-card animate-fade-in-up delay-200">
-                    <div class="flex items-start gap-6">
-                        <div class="benefits-icon">
+                <div class="bg-orange-500 p-4 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden border border-blue-500/20">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-700 to-blue-400"></div>
+                    <div class="flex items-center gap-3 mb-3 md:mb-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-lg md:text-xl">
                             <i class="fas fa-search"></i>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-4 text-primary">Know Your Springs</h3>
-                            <p class="text-gray-500">Measure the exact force created by springs, forks, and coils. Since there's no universal measurement protocol, every manufacturer measures differently. Some use preload, others don't – causing declared spring rates to vary. Knowing the precise spring rate helps you choose the right spring based on the athlete, bike, or vehicle weight.</p>
-                        </div>
+                        <h4 class="text-base md:text-lg font-semibold text-white">Know Your Springs</h4>
                     </div>
+                    <p class="text-white text-xs md:text-sm leading-relaxed">
+                        Measure the exact force created by springs, forks, and coils. Since there's no universal
+                        measurement protocol, every manufacturer measures differently. Some use preload, others
+                        don't – causing declared spring rates to vary...
+                    </p>
                 </div>
-
+    
                 <!-- Test Bump Stops -->
-                <div class="rounded-2xl p-8 shadow-lg info-card animate-fade-in-up delay-300">
-                    <div class="flex items-start gap-6">
-                        <div class="benefits-icon">
+                <div class="p-4 bg-orange-500 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden slide-up delay-500 border border-orange-500/20">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-700 to-blue-400"></div>
+                    <div class="flex items-center gap-3 mb-3 md:mb-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-lg md:text-xl">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-4 text-primary">Test Bump Stops</h3>
-                            <p class="text-gray-500">The LABA7 spring rate dyno also measures bump stop force. Bump stops prevent suspension damage, maintain consistent handling, and absorb vibrations for smoother.</p>
-                        </div>
+                        <h4 class="text-base md:text-lg font-semibold text-white">Test Bump Stops</h4>
                     </div>
+                    <p class="text-white text-xs md:text-sm leading-relaxed">
+                        The AP Measurement spring rate dyno also measures bump stop force. Bump stops prevent suspension
+                        damage, maintain consistent handling, and absorb vibrations for smoother operation.
+                    </p>
                 </div>
-
+    
                 <!-- Measure Air Springs -->
-                <div class="rounded-2xl p-8 shadow-lg info-card animate-fade-in-up delay-400">
-                    <div class="flex items-start gap-6">
-                        <div class="benefits-icon">
+                <div class="p-4 bg-orange-500 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden slide-up delay-600 border border-orange-500/20">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-700 to-blue-400"></div>
+                    <div class="flex items-center gap-3 mb-3 md:mb-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-lg md:text-xl">
                             <i class="fas fa-wind"></i>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-4 text-primary">Measure Air Springs</h3>
-                            <p class="text-gray-500">Test the real force created by the air springs of MTB and motorcycle forks. Get accurate measurements for air spring performance and optimize your suspension setup.</p>
-                        </div>
+                        <h4 class="text-base md:text-lg font-semibold text-white">Measure Air Springs</h4>
                     </div>
+                    <p class="text-white text-xs md:text-sm leading-relaxed">
+                        Test the real force created by the air springs of MTB and motorcycle forks. Get accurate
+                        measurements for air spring performance and optimize your suspension setup.
+                    </p>
                 </div>
-
+    
                 <!-- Measure Bearing Friction -->
-                <div class="rounded-2xl p-8 shadow-lg info-card animate-fade-in-up delay-500">
-                    <div class="flex items-start gap-6">
-                        <div class="benefits-icon">
+                <div class="p-4 bg-orange-500 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden slide-up delay-700 border border-orange-500/20">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-700 to-blue-400"></div>
+                    <div class="flex items-center gap-3 mb-3 md:mb-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-lg md:text-xl">
                             <i class="fas fa-sliders-h"></i>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-4 text-primary">Measure Bearing Friction</h3>
-                            <p class="text-gray-500">Using our spring rate dyno, you can measure and evaluate the force differences between individual bearings. Manufacturers of shock absorbers, forks, and coils pay close attention to friction because it creates an unwanted and uncontrolled force. The LABA7 spring rate tester enables you to select seals that create the least friction and increase the efficiency of your suspension.</p>
-                        </div>
+                        <h4 class="text-base md:text-lg font-semibold text-white">Measure Bearing Friction</h4>
                     </div>
+                    <p class="text-white text-xs md:text-sm leading-relaxed">
+                        Using our spring rate dyno, you can measure and evaluate the force differences between
+                        individual bearings. Manufacturers of shock absorbers, forks, and coils pay close attention
+                        to friction because it creates an unwanted and uncontrolled force...
+                    </p>
                 </div>
-            </div>
-
-            <!-- Additional Benefits in a single row -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-8">
+                
                 <!-- Reports and Labels -->
-                <div class="rounded-2xl p-8 border border-blue-100 animate-fade-in-up delay-600">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-print text-blue-600 text-xl"></i>
+                <div class="p-4 bg-orange-500 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden slide-up delay-700 border border-orange-500/20">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-700 to-blue-400"></div>
+                    <div class="flex items-center gap-3 mb-3 md:mb-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-lg md:text-xl">
+                            <i class="fas fa-sliders-h"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-primary">Reports and Labels</h3>
+                        <h4 class="text-base md:text-lg font-semibold text-white">Reports and Labels</h4>
                     </div>
-                    <p class="text-gray-500">Print the report label with spring force after the test that includes force generated in kN. Mark springs quickly when working with many different units.</p>
+                    <p class="text-white text-xs md:text-sm leading-relaxed">
+                        Print the report label with spring force after the test that includes force generated in kN.
+                        Mark springs quickly when working with many different units.
+                    </p>
                 </div>
-
+    
                 <!-- Accurate by Design -->
-                <div class="rounded-2xl p-8 border border-blue-100 animate-fade-in-up delay-700">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-ruler-combined text-blue-600 text-xl"></i>
+                <div class="p-4 bg-orange-500 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden slide-up delay-700 border border-orange-500/20">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-700 to-blue-400"></div>
+                    <div class="flex items-center gap-3 mb-3 md:mb-4">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-lg md:text-xl">
+                            <i class="fas fa-ruler-combined"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-primary">Accurate by Design</h3>
+                        <h4 class="text-base md:text-lg font-semibold text-white">Accurate by Design</h4>
                     </div>
-                    <p class="text-gray-500">Load cell positioned on top of the vertical shaft drastically improves accuracy by eliminating friction caused by the bushing.</p>
-                </div>
-
-                <!-- Seal Drag Testing -->
-                <div class="rounded-2xl p-8 border border-blue-100 animate-fade-in-up delay-800">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-compress-arrows-alt text-blue-600 text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary">Seal Drag Testing</h3>
-                    </div>
-                    <p class="text-gray-500">Measure the force required to move suspension components while maintaining proper sealing to prevent contamination.</p>
+                    <p class="text-white text-xs md:text-sm leading-relaxed">
+                        Load cell positioned on top of the vertical shaft drastically improves accuracy by eliminating
+                        friction caused by the bushing.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Software Section -->
-    <section class="py-16" id="software">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto animate-fade-in-up">
-                <h2 class="text-2xl md:text-3xl font-semibold text-center mb-16 text-gray-700">AP Measurements 
-                    <br><span class="text-primary">Spring Dyno Software</span></h2>
-
-                <div class="flex flex-col lg:flex-row items-center gap-12">
-                    <div class="lg:w-1/2">
-                        <div class="space-y-8">
-                            <div class="animate-fade-in-right delay-100">
-                                <h3 class="text-xl font-bold mb-4 flex items-center text-gray-600">
-                                    <i class="fas fa-chart-line text-primary mr-3"></i>
-                                    Force vs Displacement Graph
-                                </h3>
-                                <p class="text-gray-500">Visualize spring behavior throughout the compression cycle with detailed real-time graphs.</p>
-                            </div>
-
-                            <div class="animate-fade-in-right delay-200">
-                                <h3 class="text-xl font-bold mb-4 flex items-center text-gray-600">
-                                    <i class="fas fa-calculator text-primary mr-3"></i>
-                                    Average Spring Rate
-                                </h3>
-                                <p class="text-gray-500">Automatic calculation in N/mm or lbs/in with precision algorithms.</p>
-                            </div>
-
-                            <div class="animate-fade-in-right delay-300">
-                                <h3 class="text-xl font-bold mb-4 flex items-center text-gray-600">
-                                    <i class="fas fa-layer-group text-primary mr-3"></i>
-                                    Comparison of Different Runs
-                                </h3>
-                                <p class="text-gray-500">Overlay multiple tests to ensure consistency and identify variations.</p>
-                            </div>
-
-                            <div class="animate-fade-in-right delay-400">
-                                <h3 class="text-xl font-bold mb-4 flex items-center text-gray-600">
-                                    <i class="fas fa-print text-primary mr-3"></i>
-                                    Print-ready Reports and Labels
-                                </h3>
-                                <p class="text-gray-500">Generate professional documentation for clients with custom branding options.</p>
-                            </div>
-
-                            <div class="animate-fade-in-right delay-500">
-                                <h3 class="text-xl font-bold mb-4 flex items-center text-gray-600">
-                                    <i class="fas fa-wifi text-primary mr-3"></i>
-                                    Simple Wi-Fi Setup
-                                </h3>
-                                <p class="text-gray-500">Connect wirelessly in seconds with intuitive network configuration.</p>
-                            </div>
+    <section class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 mb-6 md:mb-12" id="software">
+        <div class="container-responsive mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold text-blue-500 text-center mb-4 slide-up uppercase tracking-wide relative">
+                AP Measurements
+                <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-orange-500"></span>
+            </h2>
+            <h3 class="text-lg md:text-xl lg:text-2xl font-medium text-gray-600 text-center mb-8 md:mb-12 slide-up delay-200">
+                Spring Dyno Software
+            </h3>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="space-y-6 slide-left delay-300 order-2 lg:order-1">
+                    <!-- Force vs Displacement Graph -->
+                    <div class="flex items-start gap-3 md:gap-4 bg-gray-200 rounded-lg p-3 md:p-4 border border-orange-500">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="">
+                            <h4 class="text-lg md:text-xl font-bold mb-2 text-blue-500">Force vs Displacement Graph</h4>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                Visualize spring behavior throughout the compression cycle with detailed real-time graphs.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="lg:w-1/2 animate-fade-in-left delay-600 shadow-2xl rounded-2xl border-gray-300">
-                        <img src="../assets/laba7-spring-dyno-software-1.png" alt="Spring Dyno Software Interface" class="rounded-lg p-4">
+                    <!-- Average Spring Rate -->
+                    <div class="flex items-start gap-3 md:gap-4 bg-gray-200 rounded-lg p-3 md:p-4 border border-orange-500">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg md:text-xl font-bold mb-2 text-blue-500">Average Spring Rate</h4>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                Automatic calculation in N/mm or lbs/in with precision algorithms.
+                            </p>
+                        </div>
                     </div>
+
+                    <!-- Comparison of Different Runs -->
+                    <div class="flex items-start gap-3 md:gap-4 bg-gray-200 rounded-lg p-3 md:p-4 border border-orange-500">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg md:text-xl font-bold mb-2 text-blue-500">Comparison of Different Runs</h4>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                Overlay multiple tests to ensure consistency and identify variations.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Print-ready Reports and Labels -->
+                    <div class="flex items-start gap-3 md:gap-4 bg-gray-200 rounded-lg p-3 md:p-4 border border-orange-500">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg md:text-xl font-bold mb-2 text-blue-500">Print-ready Reports and Labels</h4>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                Generate professional documentation for clients with custom branding options.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Simple Wi-Fi Setup -->
+                    <div class="flex items-start gap-3 md:gap-4 bg-gray-200 rounded-lg p-3 md:p-4 border border-orange-500">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white text-base md:text-lg">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg md:text-xl font-bold mb-2 text-blue-500">Simple Wi-Fi Setup</h4>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                Connect wirelessly in seconds with intuitive network configuration.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide-right delay-400 flex justify-center items-center order-1 lg:order-2 mb-6 lg:mb-0">
+                    <img src="../assets/laba7-spring-dyno-software-1.png" 
+                         alt="Spring Dyno Software Interface" 
+                         class="w-full lg:w-4/5 rounded-lg shadow-xl border border-orange-500/20 img-responsive">
                 </div>
             </div>
         </div>
@@ -1007,162 +1006,138 @@
     <div data-include="/Footer/footer.html"></div>
 
     <script>
-        // Initialize animations on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Feature dropdown toggle function
+        function toggleFeature(featureId) {
+            const content = document.getElementById(`content-${featureId}`);
+            const arrow = document.getElementById(`arrow-${featureId}`);
+            
+            // Close all other feature contents
+            document.querySelectorAll('.lawyer-feature-content').forEach(item => {
+                if (item.id !== `content-${featureId}`) {
+                    item.classList.remove('open');
+                }
+            });
+            
+            // Reset all other arrows
+            document.querySelectorAll('.lawyer-feature-arrow').forEach(item => {
+                if (item.id !== `arrow-${featureId}`) {
+                    item.classList.remove('open');
+                }
+            });
+            
+            // Toggle current feature
+            content.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+        
+        // Intersection Observer for animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('animate-fade-in')) {
-                        entry.target.style.animationPlayState = 'running';
-                    }
-                    if (entry.target.classList.contains('animate-fade-in-up')) {
-                        entry.target.style.animationPlayState = 'running';
-                    }
-                    if (entry.target.classList.contains('animate-fade-in-right')) {
-                        entry.target.style.animationPlayState = 'running';
-                    }
-                    if (entry.target.classList.contains('animate-fade-in-left')) {
-                        entry.target.style.animationPlayState = 'running';
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('[class*="animate-"]').forEach(el => {
-            el.style.opacity = '0';
-            el.style.animationPlayState = 'paused';
-            observer.observe(el);
-        });
-
-        // Start animations for initially visible elements
-        document.querySelectorAll('.animate-fade-in, .animate-fade-in-up, .animate-fade-in-right, .animate-fade-in-left').forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight) {
-                el.style.animationPlayState = 'running';
-            }
-        });
-
-        // Add hover effects to info cards
-        document.querySelectorAll('.info-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-4px)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Feature Dropdown Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Feature dropdown functionality
-            const featureToggles = document.querySelectorAll('.feature-toggle');
-            
-            featureToggles.forEach(toggle => {
-                toggle.addEventListener('click', function() {
-                    console.log('Dropdown clicked');
-                    
-                    const featureId = this.getAttribute('data-feature');
-                    const content = document.querySelector(`.feature-content[data-feature="${featureId}"]`);
-                    const icon = this.querySelector('.feature-icon');
-                    
-                    console.log('Feature ID:', featureId);
-                    console.log('Content found:', content);
-                    console.log('Icon found:', icon);
-                    
-                    // Toggle the open class on the content
-                    if (content.classList.contains('open')) {
-                        // If it's already open, close it
-                        content.classList.remove('open');
-                        if (icon) {
-                            icon.classList.remove('fa-chevron-up', 'rotate-180');
-                            icon.classList.add('fa-chevron-down');
+                    const animationClasses = ['slide-up', 'slide-left', 'slide-right', 'fade-in'];
+                    animationClasses.forEach(className => {
+                        if (entry.target.classList.contains(className)) {
+                            entry.target.style.opacity = '1';
+                            // Trigger animation
+                            entry.target.style.animation = 'none';
+                            setTimeout(() => {
+                                entry.target.style.animation = '';
+                            }, 10);
                         }
-                    } else {
-                        // Close all other feature contents
-                        document.querySelectorAll('.feature-content').forEach(item => {
-                            item.classList.remove('open');
-                        });
-                        
-                        // Reset all icons
-                        document.querySelectorAll('.feature-icon').forEach(item => {
-                            item.classList.remove('fa-chevron-up', 'rotate-180');
-                            item.classList.add('fa-chevron-down');
-                        });
-                        
-                        // Open this one
-                        content.classList.add('open');
-                        if (icon) {
-                            icon.classList.remove('fa-chevron-down');
-                            icon.classList.add('fa-chevron-up', 'rotate-180');
-                        }
-                    }
-                });
-            });
-            
-            // FAQ functionality
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.flex');
-                const answer = item.querySelector('.faq-answer');
-                const icon = item.querySelector('.fa-chevron-down');
-                
-                if (question && answer && icon) {
-                    question.addEventListener('click', () => {
-                        // Close all other FAQ items
-                        faqItems.forEach(otherItem => {
-                            if (otherItem !== item) {
-                                const otherAnswer = otherItem.querySelector('.faq-answer');
-                                const otherIcon = otherItem.querySelector('.fa-chevron-down');
-                                if (otherAnswer) otherAnswer.classList.add('hidden');
-                                if (otherIcon) {
-                                    otherIcon.classList.remove('fa-chevron-up');
-                                    otherIcon.classList.add('fa-chevron-down');
-                                }
-                            }
-                        });
-                        
-                        // Toggle current item
-                        answer.classList.toggle('hidden');
-                        icon.classList.toggle('fa-chevron-up');
-                        icon.classList.toggle('fa-chevron-down');
                     });
                 }
             });
-            
-            // Contact form submission
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    alert('Thank you for your request! We will contact you shortly.');
-                    contactForm.reset();
-                });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // Observe animated elements
+        document.querySelectorAll('.slide-up, .slide-left, .slide-right, .fade-in').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+        
+        // Initialize animations for elements in viewport on load
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.slide-up, .slide-left, .slide-right, .fade-in').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.opacity = '1';
+                }
+            });
+        });
+        
+        // Fix image paths to prevent errors
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = function() {
+                // If image fails to load, replace with placeholder
+                this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23112240"/><rect width="400" height="300" fill="%230a192f" opacity="0.7"/><text x="200" y="150" text-anchor="middle" fill="%23fb923c" font-family="Arial" font-size="16">Image</text></svg>';
+            }
+        });
+        
+        // Create more boxes for the background on larger screens
+        function createMoreBoxes() {
+            if (window.innerWidth >= 768) {
+                const boxesContainer = document.querySelector('.background-boxes');
+                for (let i = 6; i <= 10; i++) {
+                    const box = document.createElement('div');
+                    box.className = 'box';
+                    const size = Math.random() * 80 + 40;
+                    const left = Math.random() * 90;
+                    const top = Math.random() * 90;
+                    const animationDuration = Math.random() * 20 + 20;
+                    const animationDelay = Math.random() * 5;
+                    const pulseDuration = Math.random() * 10 + 5;
+                    
+                    box.style.cssText = `
+                        width: ${size}px;
+                        height: ${size}px;
+                        top: ${top}%;
+                        left: ${left}%;
+                        animation: float${Math.floor(Math.random() * 5) + 1} ${animationDuration}s infinite ease-in-out, 
+                                   pulse ${pulseDuration}s infinite ${animationDelay}s;
+                        border-color: rgba(251, 146, 60, ${Math.random() * 0.2 + 0.1});
+                    `;
+                    boxesContainer.appendChild(box);
+                }
+            }
+        }
+        
+        // Initialize more boxes on larger screens
+        if (window.innerWidth >= 768) {
+            setTimeout(createMoreBoxes, 1000);
+        }
+        
+        // Re-initialize on resize
+        window.addEventListener('resize', function() {
+            // Clear existing boxes beyond first 5
+            const boxes = document.querySelectorAll('.box');
+            for (let i = 5; i < boxes.length; i++) {
+                if (boxes[i]) boxes[i].remove();
             }
             
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
+            // Create new boxes if screen is large enough
+            if (window.innerWidth >= 768) {
+                createMoreBoxes();
+            }
+        });
+        
+        // Mobile menu toggle (if you add a mobile menu)
+        function setupMobileMenu() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
                 });
-            });
+            }
+        }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            setupMobileMenu();
         });
     </script>
 </body>
